@@ -24,6 +24,21 @@ namespace YiNing.UI.Controls
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new ComboBoxStyle DropDownStyle { get; set; }
 
+        [Category("Appearance")]
+        [Description("文本框是否只读")]
+        [DefaultValue(false)]
+        public bool ReadOnly
+        {
+            get { return _readOnly; }
+            set
+            {
+                _readOnly = value;
+                if (_readOnly) DropDownStyle = ComboBoxStyle.DropDownList;
+                Invalidate();
+            }
+        }
+
+        private bool _readOnly = false;
         private Bitmap _buffer;
 
         public DarkComboBox() : base()

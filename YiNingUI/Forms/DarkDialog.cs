@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
+using System.Diagnostics;
+using YiNing.UI.Tools;
 
 namespace YiNing.UI.Forms
 {
@@ -9,9 +11,11 @@ namespace YiNing.UI.Forms
     {
         #region Field Region
 
-        private DarkDialogButton _dialogButtons = DarkDialogButton.Ok;
+        private DarkDialogButton _dialogButtons = DarkDialogButton.None;
         private List<DarkButton> _buttons;
 
+        private bool _showShadow = true;
+        private DarkShadow darkShadow = null;
         #endregion
 
         #region Button Region
@@ -44,6 +48,20 @@ namespace YiNing.UI.Forms
             }
         }
 
+        [Description("是否显示蒙板")]
+        [DefaultValue(true)]
+        public bool ShowShadow
+        {
+            get { return _showShadow; }
+            set
+            {
+                if (_showShadow == value)
+                    return;
+                _showShadow = value;
+            }
+        }
+
+
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int TotalButtonSize { get; private set; }
@@ -70,6 +88,13 @@ namespace YiNing.UI.Forms
 
         public DarkDialog()
         {
+            if (_showShadow && !IsDesignMode())
+            {
+                HotKey.RegisterHotKey(this.Handle, 100, HotKey.KeyModifiers.Alt, Keys.Q);
+                darkShadow = new DarkShadow();
+                darkShadow.Show();
+            }
+
             InitializeComponent();
 
             _buttons = new List<DarkButton>
@@ -86,13 +111,54 @@ namespace YiNing.UI.Forms
         protected override void OnLoad(System.EventArgs e)
         {
             base.OnLoad(e);
-
             SetButtons();
         }
+        protected override void WndProc(ref Message m)
+        {
+            const int WM_HOTKEY = 0x0312;
+            //按快捷键   
+            switch (m.Msg)
+            {
+                case WM_HOTKEY:
+                    switch (m.WParam.ToInt32())
+                    {
+                        case 100:
+                            Close();
+                            break;
+                    }
+                    break;
+            }
+            base.WndProc(ref m);
+        }
 
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (darkShadow != null) darkShadow.Close();
+            base.OnFormClosing(e);
+        }
         #endregion
 
         #region Method Region
+
+        public void Done(DarkDialogButton darkDialogButton)
+        {
+            DialogButtons = darkDialogButton;
+        }
+        private bool IsDesignMode()
+        {
+            bool returnFlag = false;
+
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
+            {
+                returnFlag = true;
+            }
+            else if (Process.GetCurrentProcess().ProcessName == "devenv")
+            {
+                returnFlag = true;
+            }
+
+            return returnFlag;
+        }
 
         private void SetButtons()
         {
@@ -101,6 +167,9 @@ namespace YiNing.UI.Forms
 
             switch (_dialogButtons)
             {
+                case DarkDialogButton.None:
+                    this.ControlBox = false;
+                    break;
                 case DarkDialogButton.Ok:
                     ShowButton(btnOk, true);
                     AcceptButton = btnOk;

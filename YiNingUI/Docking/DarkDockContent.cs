@@ -17,6 +17,7 @@ namespace YiNing.UI.Docking
         #region Field Region
 
         private string _dockText;
+        private bool _showCloseButton = true;
         private Image _icon;
 
         #endregion
@@ -65,7 +66,14 @@ namespace YiNing.UI.Docking
         [Category("Behavior")]
         [Description("是否显示关闭按钮")]
         [DefaultValue(true)]
-        public bool ShowCloseButton { get; set; }
+        public bool ShowCloseButton {
+            get { return _showCloseButton; }
+            set
+            {
+                _showCloseButton = value;
+                Invalidate();
+            }
+        }
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]

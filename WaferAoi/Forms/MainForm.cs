@@ -38,7 +38,6 @@ namespace WaferAoi
         public MainForm()
         {
             InitializeComponent();
-
             // Add the control scroll message filter to re-route all mousewheel events
             // to the control the user is currently hovering over with their cursor.
             Application.AddMessageFilter(new ControlScrollFilter());
@@ -88,7 +87,7 @@ namespace WaferAoi
             // Add dummy documents to the main document area of the dock panel
             //DockPanel.AddContent(new DockDocument("Document 2", Icons.document_16xLG) { ShowCloseButton = true });
             //DockPanel.AddContent(new DockDocument("Document 3", Icons.document_16xLG) { ShowCloseButton = true });
-            DockPanel.AddContent(new DockWorkSpace("工作站", Icons.ChipOutline));
+            DockPanel.AddContent(new DockWorkSpace("工作站", Icons.ChipOutline) { ShowCloseButton = false});
         }
 
         #endregion
@@ -118,6 +117,8 @@ namespace WaferAoi
             mnuHistory.Click += History_Click;
 
             mnuAbout.Click += About_Click;
+            参数设置ToolStripMenuItem.Click += 参数设置ToolStripMenuItem_Click;
+            点位测试ToolStripMenuItem.Click += 点位测试ToolStripMenuItem_Click;
         }
 
         private void ToggleToolWindow(DarkToolWindow toolWindow)
@@ -181,6 +182,16 @@ namespace WaferAoi
             Close();
         }
 
+        #region menu
+        private void 参数设置ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DockPanel.AddContent(new DockSetting("运动轴设置", Icons.Tools));
+        }
+        private void 点位测试ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DockPanel.AddContent(new DockPoints("点位测试", Icons.smile));
+        }
+
         private void Dialog_Click(object sender, EventArgs e)
         {
             var test = new DialogControls();
@@ -217,7 +228,7 @@ namespace WaferAoi
             var about = new DialogAbout();
             about.ShowDialog();
         }
-
+        #endregion
         #endregion
 
         #region Serialization Region
@@ -246,5 +257,6 @@ namespace WaferAoi
         }
 
         #endregion
+
     }
 }

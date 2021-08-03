@@ -8,9 +8,16 @@ namespace YiNing.UI.Controls
     public class DarkSectionPanel : Panel
     {
         #region Field Region
+        private bool _dragEnable = false;
+        private bool isMouseDown = false;
+        private Point mouseOffset; //记录鼠标指针的坐标
 
         private string _sectionHeader;
-
+        public delegate void _HeaderMouseDownHandle(MouseEventArgs e);
+        // 标题栏点击的事件
+        public event _HeaderMouseDownHandle HeaderMouseDownHandle;
+        // 标题栏区域
+        private Rectangle _headerRect;
         #endregion
 
         #region Property Region
@@ -33,7 +40,20 @@ namespace YiNing.UI.Controls
                 Invalidate();
             }
         }
-
+        [Category("Appearance")]
+        [Description("是否支持拖拽")]
+        [DefaultValue(false)]
+        public bool DragEnable
+        {
+            get { return _dragEnable; }
+            set
+            {
+                _dragEnable = value;
+                if (_dragEnable) BorderStyle = BorderStyle.FixedSingle;
+                else BorderStyle = BorderStyle.None;
+                Invalidate();
+            }
+        }
         #endregion
 
         #region Constructor Region
@@ -71,6 +91,54 @@ namespace YiNing.UI.Controls
 
             if (Controls.Count > 0)
                 Controls[0].Focus();
+
+            if (_headerRect.Contains(new Point(e.X, e.Y)))
+            {
+                if (DragEnable)
+                {
+                    mouseOffset.X = e.X;
+                    mouseOffset.Y = e.Y;
+                    isMouseDown = true;
+                    BringToFront();
+                }
+                if (HeaderMouseDownHandle != null) HeaderMouseDownHandle(e);
+            }
+        }
+
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            base.OnMouseMove(e);
+            if (DragEnable && _headerRect.Contains(new Point(e.X, e.Y)))
+            {
+                Cursor = Cursors.NoMove2D;
+            } else
+            {
+                Cursor = Cursors.Default;
+            }
+
+            if (isMouseDown && DragEnable)
+            {
+                int left = Left + e.X - mouseOffset.X;
+                int top = Top + e.Y - mouseOffset.Y;
+
+                left = left > 0 ? left : 0;
+                top = top > 0 ? top : 0;
+
+                int maxLeft = Parent.Width - Width;
+                int maxTop = Parent.Height - Height;
+
+
+                Location = new Point(left > maxLeft ? maxLeft : left, top > maxTop ? maxTop : top);
+            }
+        }
+
+        protected override void OnMouseUp(MouseEventArgs e)
+        {
+            base.OnMouseUp(e);
+            if (isMouseDown && DragEnable)
+            {
+                isMouseDown = false;
+            }
         }
 
         #endregion
@@ -95,8 +163,8 @@ namespace YiNing.UI.Controls
 
             using (var b = new SolidBrush(bgColor))
             {
-                var bgRect = new Rectangle(0, 0, rect.Width, 25);
-                g.FillRectangle(b, bgRect);
+                _headerRect = new Rectangle(0, 0, rect.Width, 25);
+                g.FillRectangle(b, _headerRect);
             }
 
             using (var p = new Pen(darkColor))

@@ -37,14 +37,16 @@ namespace WaferAoi
             this.mnuNewFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuClose = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDialog = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTools = new System.Windows.Forms.ToolStripMenuItem();
             this.checkableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkableWithIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.checkedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkedWithIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.参数设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.点位测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDialog = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuWindow = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuProject = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuProperties = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,8 +76,8 @@ namespace WaferAoi
             this.mnuMain.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.mnuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuFile,
-            this.mnuView,
             this.mnuTools,
+            this.mnuView,
             this.mnuWindow,
             this.mnuHelp});
             this.mnuMain.Location = new System.Drawing.Point(0, 0);
@@ -94,8 +96,8 @@ namespace WaferAoi
             this.mnuClose});
             this.mnuFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.mnuFile.Name = "mnuFile";
-            this.mnuFile.Size = new System.Drawing.Size(39, 21);
-            this.mnuFile.Text = "&File";
+            this.mnuFile.Size = new System.Drawing.Size(44, 21);
+            this.mnuFile.Text = "&文件";
             // 
             // mnuNewFile
             // 
@@ -124,6 +126,88 @@ namespace WaferAoi
             this.mnuClose.Size = new System.Drawing.Size(170, 22);
             this.mnuClose.Text = "&Close";
             // 
+            // mnuTools
+            // 
+            this.mnuTools.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.mnuTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.checkableToolStripMenuItem,
+            this.checkableWithIconToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.checkedToolStripMenuItem,
+            this.checkedWithIconToolStripMenuItem,
+            this.参数设置ToolStripMenuItem,
+            this.点位测试ToolStripMenuItem});
+            this.mnuTools.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.mnuTools.Name = "mnuTools";
+            this.mnuTools.Size = new System.Drawing.Size(44, 21);
+            this.mnuTools.Text = "&工具";
+            // 
+            // checkableToolStripMenuItem
+            // 
+            this.checkableToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.checkableToolStripMenuItem.CheckOnClick = true;
+            this.checkableToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.checkableToolStripMenuItem.Name = "checkableToolStripMenuItem";
+            this.checkableToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.checkableToolStripMenuItem.Text = "Checkable";
+            // 
+            // checkableWithIconToolStripMenuItem
+            // 
+            this.checkableWithIconToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.checkableWithIconToolStripMenuItem.CheckOnClick = true;
+            this.checkableWithIconToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.checkableWithIconToolStripMenuItem.Image = global::WaferAoi.Icons.properties_16xLG;
+            this.checkableWithIconToolStripMenuItem.Name = "checkableWithIconToolStripMenuItem";
+            this.checkableWithIconToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.checkableWithIconToolStripMenuItem.Text = "Checkable with icon";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.toolStripSeparator2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.toolStripSeparator2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(188, 6);
+            // 
+            // checkedToolStripMenuItem
+            // 
+            this.checkedToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.checkedToolStripMenuItem.Checked = true;
+            this.checkedToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkedToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.checkedToolStripMenuItem.Name = "checkedToolStripMenuItem";
+            this.checkedToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.checkedToolStripMenuItem.Text = "Checked";
+            // 
+            // checkedWithIconToolStripMenuItem
+            // 
+            this.checkedWithIconToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.checkedWithIconToolStripMenuItem.Checked = true;
+            this.checkedWithIconToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkedWithIconToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.checkedWithIconToolStripMenuItem.Image = global::WaferAoi.Icons.properties_16xLG;
+            this.checkedWithIconToolStripMenuItem.Name = "checkedWithIconToolStripMenuItem";
+            this.checkedWithIconToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.checkedWithIconToolStripMenuItem.Text = "Checked with icon";
+            // 
+            // 参数设置ToolStripMenuItem
+            // 
+            this.参数设置ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.参数设置ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.参数设置ToolStripMenuItem.Image = global::WaferAoi.Icons.Tools;
+            this.参数设置ToolStripMenuItem.Name = "参数设置ToolStripMenuItem";
+            this.参数设置ToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.参数设置ToolStripMenuItem.Text = "参数设置";
+            // 
+            // 点位测试ToolStripMenuItem
+            // 
+            this.点位测试ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.点位测试ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.点位测试ToolStripMenuItem.Image = global::WaferAoi.Icons.smile;
+            this.点位测试ToolStripMenuItem.Name = "点位测试ToolStripMenuItem";
+            this.点位测试ToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.点位测试ToolStripMenuItem.Text = "点位测试";
+            // 
             // mnuView
             // 
             this.mnuView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
@@ -143,65 +227,6 @@ namespace WaferAoi
             this.mnuDialog.Size = new System.Drawing.Size(139, 22);
             this.mnuDialog.Text = "&Dialog test";
             // 
-            // mnuTools
-            // 
-            this.mnuTools.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.mnuTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.checkableToolStripMenuItem,
-            this.checkableWithIconToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.checkedToolStripMenuItem,
-            this.checkedWithIconToolStripMenuItem});
-            this.mnuTools.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.mnuTools.Name = "mnuTools";
-            this.mnuTools.Size = new System.Drawing.Size(52, 21);
-            this.mnuTools.Text = "&Tools";
-            // 
-            // checkableToolStripMenuItem
-            // 
-            this.checkableToolStripMenuItem.CheckOnClick = true;
-            this.checkableToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.checkableToolStripMenuItem.Name = "checkableToolStripMenuItem";
-            this.checkableToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.checkableToolStripMenuItem.Text = "Checkable";
-            // 
-            // checkableWithIconToolStripMenuItem
-            // 
-            this.checkableWithIconToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.checkableWithIconToolStripMenuItem.CheckOnClick = true;
-            this.checkableWithIconToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.checkableWithIconToolStripMenuItem.Image = global::WaferAoi.Icons.properties_16xLG;
-            this.checkableWithIconToolStripMenuItem.Name = "checkableWithIconToolStripMenuItem";
-            this.checkableWithIconToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.checkableWithIconToolStripMenuItem.Text = "Checkable with icon";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.toolStripSeparator2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(188, 6);
-            // 
-            // checkedToolStripMenuItem
-            // 
-            this.checkedToolStripMenuItem.Checked = true;
-            this.checkedToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkedToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.checkedToolStripMenuItem.Name = "checkedToolStripMenuItem";
-            this.checkedToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.checkedToolStripMenuItem.Text = "Checked";
-            // 
-            // checkedWithIconToolStripMenuItem
-            // 
-            this.checkedWithIconToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.checkedWithIconToolStripMenuItem.Checked = true;
-            this.checkedWithIconToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkedWithIconToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.checkedWithIconToolStripMenuItem.Image = global::WaferAoi.Icons.properties_16xLG;
-            this.checkedWithIconToolStripMenuItem.Name = "checkedWithIconToolStripMenuItem";
-            this.checkedWithIconToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.checkedWithIconToolStripMenuItem.Text = "Checked with icon";
-            // 
             // mnuWindow
             // 
             this.mnuWindow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
@@ -213,8 +238,8 @@ namespace WaferAoi
             this.mnuHistory});
             this.mnuWindow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.mnuWindow.Name = "mnuWindow";
-            this.mnuWindow.Size = new System.Drawing.Size(67, 21);
-            this.mnuWindow.Text = "&Window";
+            this.mnuWindow.Size = new System.Drawing.Size(44, 21);
+            this.mnuWindow.Text = "&窗口";
             // 
             // mnuProject
             // 
@@ -268,8 +293,8 @@ namespace WaferAoi
             this.mnuAbout});
             this.mnuHelp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.mnuHelp.Name = "mnuHelp";
-            this.mnuHelp.Size = new System.Drawing.Size(47, 21);
-            this.mnuHelp.Text = "&Help";
+            this.mnuHelp.Size = new System.Drawing.Size(44, 21);
+            this.mnuHelp.Text = "&帮助";
             // 
             // mnuAbout
             // 
@@ -277,8 +302,8 @@ namespace WaferAoi
             this.mnuAbout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.mnuAbout.Image = global::WaferAoi.Icons.StatusAnnotations_Information_16xLG_color;
             this.mnuAbout.Name = "mnuAbout";
-            this.mnuAbout.Size = new System.Drawing.Size(156, 22);
-            this.mnuAbout.Text = "&About DarkUI";
+            this.mnuAbout.Size = new System.Drawing.Size(100, 22);
+            this.mnuAbout.Text = "&关于";
             // 
             // darkSeparator1
             // 
@@ -458,6 +483,8 @@ namespace WaferAoi
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripButton btnNewFile;
         private System.Windows.Forms.ToolStripButton toolStripButton7;
+        private System.Windows.Forms.ToolStripMenuItem 参数设置ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 点位测试ToolStripMenuItem;
     }
 }
 

@@ -166,4 +166,55 @@
   <data name="Play" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Tools" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Tools.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="x轴" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\x轴.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="轴承" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\轴承.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="轴承__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\轴承 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="上128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\上.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="下128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\下.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="向上128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\向上128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="向下128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\向下128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="向右128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\向右128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="向左128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\向左128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="方向_右128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\方向-右.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="方向_左128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\方向-左.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="方向_左__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\方向-左 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="逆时针_半圆128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\逆时针-半圆.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="顺时针_半圆128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\顺时针-半圆.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\smile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -2,6 +2,7 @@
 {
     public enum DarkDialogButton
     {
+        None,
         Ok,
         Close,
         OkCancel,

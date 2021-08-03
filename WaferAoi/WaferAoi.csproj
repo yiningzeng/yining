@@ -9,11 +9,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WaferAoi</RootNamespace>
     <AssemblyName>WaferAoi</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,7 +27,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -51,19 +51,58 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>.\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="ToggleSwitch, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WinFormsToggleSwitch.1.1.0\lib\net40\ToggleSwitch.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Forms\Controls\WafermapImpl.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\DialogGoHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\DialogGoHome.Designer.cs">
+      <DependentUpon>DialogGoHome.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Dialogs\DialogAbout.cs">
       <SubType>Form</SubType>
@@ -82,6 +121,12 @@
     </Compile>
     <Compile Include="Forms\Docking\DockPoints.Designer.cs">
       <DependentUpon>DockPoints.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Docking\DockSetting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Docking\DockSetting.Designer.cs">
+      <DependentUpon>DockSetting.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Docking\DockWorkSpace.cs">
       <SubType>UserControl</SubType>
@@ -139,8 +184,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\Config.cs" />
+    <Compile Include="Tools\googol\GTS.cs" />
+    <Compile Include="Tools\googol\MotorsControl.cs" />
+    <Compile Include="Tools\EMUMS.cs" />
     <EmbeddedResource Include="Forms\Controls\WafermapImpl.resx">
       <DependentUpon>WafermapImpl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\DialogGoHome.resx">
+      <DependentUpon>DialogGoHome.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\DialogAbout.resx">
       <DependentUpon>DialogAbout.cs</DependentUpon>
@@ -150,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Docking\DockPoints.resx">
       <DependentUpon>DockPoints.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Docking\DockSetting.resx">
+      <DependentUpon>DockSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Docking\DockWorkSpace.resx">
       <DependentUpon>DockWorkSpace.cs</DependentUpon>
@@ -190,6 +245,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -256,6 +312,10 @@
     <None Include="Resources\银行卡.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\YiNing.Tools\YiNing.Tools.csproj">
+      <Project>{6533C386-8EEA-45F5-86F9-9078215F7FB3}</Project>
+      <Name>YiNing.Tools</Name>
+    </ProjectReference>
     <ProjectReference Include="..\YiNingFsm\YiNing.Fsm.csproj">
       <Project>{3962a6db-e341-4114-8cab-32e73d9b5a7b}</Project>
       <Name>YiNing.Fsm</Name>
@@ -334,6 +394,63 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tools.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\轴承.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\轴承 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\x轴.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\下.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\方向-右.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\方向-左.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\逆时针-半圆.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\上.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\顺时针-半圆.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\弯曲的_curved22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\方向-左 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\向上128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\向下128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\向右128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\向左128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\smile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

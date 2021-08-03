@@ -69,7 +69,7 @@ namespace YiNing.Fsm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.Name = "WafermapImpl";
-            this.Size = new System.Drawing.Size(1153, 714);
+            this.Size = new System.Drawing.Size(947, 681);
             this.ResumeLayout(false);
 
         }

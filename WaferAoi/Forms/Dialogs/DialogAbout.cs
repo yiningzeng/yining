@@ -11,7 +11,7 @@ namespace WaferAoi
         {
             InitializeComponent();
 
-            lblVersion.Text = $"Version: {Application.ProductVersion.ToString()}";
+            lblVersion.Text = $"版本号: {Application.ProductVersion.ToString()}";
             btnOk.Text = "Close";
         }
 

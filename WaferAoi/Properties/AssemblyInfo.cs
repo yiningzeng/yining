@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Dark UI Example")]
-[assembly: AssemblyDescription("Example application for Dark UI")]
+[assembly: AssemblyTitle("晶圆AOI-轻蜓视觉")]
+[assembly: AssemblyDescription("晶圆AOI-轻蜓视觉")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Robin Perris")]
-[assembly: AssemblyProduct("Dark UI")]
-[assembly: AssemblyCopyright("Copyright © Robin Perris")]
+[assembly: AssemblyCompany("轻蜓视觉")]
+[assembly: AssemblyProduct("晶圆AOI")]
+[assembly: AssemblyCopyright("Copyright © 轻蜓视觉")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
