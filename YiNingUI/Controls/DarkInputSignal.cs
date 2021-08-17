@@ -302,7 +302,7 @@ namespace YiNing.UI.Controls
             var textColor = Colors.LightText;
             var borderColor = Colors.LightText;
             var fillColor = Colors.LightestBackground;
-
+      
             if (_isSuccess)
             {
                 borderColor = Color.Lime;
@@ -330,7 +330,8 @@ namespace YiNing.UI.Controls
                 borderColor = Color.Red;
                 fillColor = Color.Red;
             }
-
+            textColor = Colors.DisabledText;
+            borderColor = Colors.GreyHighlight;
             using (var b = new SolidBrush(Colors.GreyBackground))
             {
                 g.FillRectangle(b, rect);

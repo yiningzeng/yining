@@ -32,6 +32,16 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.darkTitleBarPanel2 = new YiNing.UI.Docking.DarkTitleBarPanel();
             this.darkGroupBox2 = new YiNing.UI.Controls.DarkGroupBox();
+            this.darkSectionPanel2 = new YiNing.UI.Controls.DarkSectionPanel();
+            this.darkButton3 = new YiNing.UI.Controls.DarkButton();
+            this.darkRadioButton5 = new YiNing.UI.Controls.DarkRadioButton();
+            this.darkRadioButton4 = new YiNing.UI.Controls.DarkRadioButton();
+            this.darkRadioButton3 = new YiNing.UI.Controls.DarkRadioButton();
+            this.darkRadioButton2 = new YiNing.UI.Controls.DarkRadioButton();
+            this.darkRadioButton1 = new YiNing.UI.Controls.DarkRadioButton();
+            this.darkLabel21 = new YiNing.UI.Controls.DarkLabel();
+            this.darkButton1 = new YiNing.UI.Controls.DarkButton();
+            this.dcmbNosepieceCom = new YiNing.UI.Controls.DarkComboBox();
             this.dsepAxisStatus = new YiNing.UI.Controls.DarkSectionPanel();
             this.darkLabel10 = new YiNing.UI.Controls.DarkLabel();
             this.darkLabel11 = new YiNing.UI.Controls.DarkLabel();
@@ -41,24 +51,24 @@
             this.darkLabel9 = new YiNing.UI.Controls.DarkLabel();
             this.darkButton6 = new YiNing.UI.Controls.DarkButton();
             this.darkLabel8 = new YiNing.UI.Controls.DarkLabel();
-            this.darkInputSignal5 = new YiNing.UI.Controls.DarkInputSignal();
+            this.DarkPointsIn5 = new YiNing.UI.Controls.DarkPointsIn();
             this.dtbPlanrfpos = new YiNing.UI.Controls.DarkTextBox();
-            this.darkInputSignal6 = new YiNing.UI.Controls.DarkInputSignal();
+            this.DarkPointsIn6 = new YiNing.UI.Controls.DarkPointsIn();
             this.dtbEncpos = new YiNing.UI.Controls.DarkTextBox();
-            this.darkInputSignal7 = new YiNing.UI.Controls.DarkInputSignal();
-            this.darkInputSignal8 = new YiNing.UI.Controls.DarkInputSignal();
+            this.DarkPointsIn7 = new YiNing.UI.Controls.DarkPointsIn();
+            this.DarkPointsIn8 = new YiNing.UI.Controls.DarkPointsIn();
             this.darkSectionPanel6 = new YiNing.UI.Controls.DarkSectionPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.darkGroupBox4 = new YiNing.UI.Controls.DarkGroupBox();
-            this.isNegativePressure3 = new YiNing.UI.Controls.DarkInputSignal();
-            this.isNegativePressure2 = new YiNing.UI.Controls.DarkInputSignal();
-            this.isNegativePressure1 = new YiNing.UI.Controls.DarkInputSignal();
-            this.isPositivePressure = new YiNing.UI.Controls.DarkInputSignal();
-            this.isDoor = new YiNing.UI.Controls.DarkInputSignal();
-            this.isStop = new YiNing.UI.Controls.DarkInputSignal();
-            this.isReset = new YiNing.UI.Controls.DarkInputSignal();
-            this.isStart = new YiNing.UI.Controls.DarkInputSignal();
-            this.isEmergencyStop = new YiNing.UI.Controls.DarkInputSignal();
+            this.isNegativePressure3 = new YiNing.UI.Controls.DarkPointsIn();
+            this.isNegativePressure2 = new YiNing.UI.Controls.DarkPointsIn();
+            this.isNegativePressure1 = new YiNing.UI.Controls.DarkPointsIn();
+            this.isPositivePressure = new YiNing.UI.Controls.DarkPointsIn();
+            this.isDoor = new YiNing.UI.Controls.DarkPointsIn();
+            this.isStop = new YiNing.UI.Controls.DarkPointsIn();
+            this.isReset = new YiNing.UI.Controls.DarkPointsIn();
+            this.isStart = new YiNing.UI.Controls.DarkPointsIn();
+            this.isEmergencyStop = new YiNing.UI.Controls.DarkPointsIn();
             this.darkGroupBox_PointsOut = new YiNing.UI.Controls.DarkGroupBox();
             this.toggleSwitch4 = new JCS.ToggleSwitch();
             this.toggleSwitch3 = new JCS.ToggleSwitch();
@@ -140,6 +150,7 @@
             this.panel1.SuspendLayout();
             this.darkTitleBarPanel2.SuspendLayout();
             this.darkGroupBox2.SuspendLayout();
+            this.darkSectionPanel2.SuspendLayout();
             this.dsepAxisStatus.SuspendLayout();
             this.darkSectionPanel6.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -189,6 +200,7 @@
             // darkGroupBox2
             // 
             this.darkGroupBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.darkGroupBox2.Controls.Add(this.darkSectionPanel2);
             this.darkGroupBox2.Controls.Add(this.dsepAxisStatus);
             this.darkGroupBox2.Controls.Add(this.darkSectionPanel6);
             this.darkGroupBox2.Controls.Add(this.darkSectionPanel_AxisRun);
@@ -198,6 +210,118 @@
             this.darkGroupBox2.Size = new System.Drawing.Size(1485, 555);
             this.darkGroupBox2.TabIndex = 5;
             this.darkGroupBox2.TabStop = false;
+            // 
+            // darkSectionPanel2
+            // 
+            this.darkSectionPanel2.Controls.Add(this.darkButton3);
+            this.darkSectionPanel2.Controls.Add(this.darkRadioButton5);
+            this.darkSectionPanel2.Controls.Add(this.darkRadioButton4);
+            this.darkSectionPanel2.Controls.Add(this.darkRadioButton3);
+            this.darkSectionPanel2.Controls.Add(this.darkRadioButton2);
+            this.darkSectionPanel2.Controls.Add(this.darkRadioButton1);
+            this.darkSectionPanel2.Controls.Add(this.darkLabel21);
+            this.darkSectionPanel2.Controls.Add(this.darkButton1);
+            this.darkSectionPanel2.Controls.Add(this.dcmbNosepieceCom);
+            this.darkSectionPanel2.Location = new System.Drawing.Point(2, 243);
+            this.darkSectionPanel2.Name = "darkSectionPanel2";
+            this.darkSectionPanel2.SectionHeader = "物镜旋转";
+            this.darkSectionPanel2.Size = new System.Drawing.Size(324, 107);
+            this.darkSectionPanel2.TabIndex = 20;
+            // 
+            // darkButton3
+            // 
+            this.darkButton3.Location = new System.Drawing.Point(241, 35);
+            this.darkButton3.Name = "darkButton3";
+            this.darkButton3.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton3.Size = new System.Drawing.Size(75, 24);
+            this.darkButton3.TabIndex = 29;
+            this.darkButton3.Tag = "保存物镜旋转端口";
+            this.darkButton3.Text = "保存端口";
+            // 
+            // darkRadioButton5
+            // 
+            this.darkRadioButton5.AutoSize = true;
+            this.darkRadioButton5.Location = new System.Drawing.Point(263, 79);
+            this.darkRadioButton5.Name = "darkRadioButton5";
+            this.darkRadioButton5.Size = new System.Drawing.Size(57, 19);
+            this.darkRadioButton5.TabIndex = 28;
+            this.darkRadioButton5.Tag = "物镜5";
+            this.darkRadioButton5.Text = "物镜5";
+            this.darkRadioButton5.CheckedChanged += new System.EventHandler(this.darkRadioButton_CheckedChanged);
+            // 
+            // darkRadioButton4
+            // 
+            this.darkRadioButton4.AutoSize = true;
+            this.darkRadioButton4.Location = new System.Drawing.Point(200, 79);
+            this.darkRadioButton4.Name = "darkRadioButton4";
+            this.darkRadioButton4.Size = new System.Drawing.Size(57, 19);
+            this.darkRadioButton4.TabIndex = 27;
+            this.darkRadioButton4.Tag = "物镜4";
+            this.darkRadioButton4.Text = "物镜4";
+            this.darkRadioButton4.CheckedChanged += new System.EventHandler(this.darkRadioButton_CheckedChanged);
+            // 
+            // darkRadioButton3
+            // 
+            this.darkRadioButton3.AutoSize = true;
+            this.darkRadioButton3.Location = new System.Drawing.Point(137, 79);
+            this.darkRadioButton3.Name = "darkRadioButton3";
+            this.darkRadioButton3.Size = new System.Drawing.Size(57, 19);
+            this.darkRadioButton3.TabIndex = 26;
+            this.darkRadioButton3.Tag = "物镜3";
+            this.darkRadioButton3.Text = "物镜3";
+            this.darkRadioButton3.CheckedChanged += new System.EventHandler(this.darkRadioButton_CheckedChanged);
+            // 
+            // darkRadioButton2
+            // 
+            this.darkRadioButton2.AutoSize = true;
+            this.darkRadioButton2.Location = new System.Drawing.Point(74, 79);
+            this.darkRadioButton2.Name = "darkRadioButton2";
+            this.darkRadioButton2.Size = new System.Drawing.Size(57, 19);
+            this.darkRadioButton2.TabIndex = 25;
+            this.darkRadioButton2.Tag = "物镜2";
+            this.darkRadioButton2.Text = "物镜2";
+            this.darkRadioButton2.CheckedChanged += new System.EventHandler(this.darkRadioButton_CheckedChanged);
+            // 
+            // darkRadioButton1
+            // 
+            this.darkRadioButton1.AutoSize = true;
+            this.darkRadioButton1.Location = new System.Drawing.Point(11, 79);
+            this.darkRadioButton1.Name = "darkRadioButton1";
+            this.darkRadioButton1.Size = new System.Drawing.Size(57, 19);
+            this.darkRadioButton1.TabIndex = 24;
+            this.darkRadioButton1.Tag = "物镜1";
+            this.darkRadioButton1.Text = "物镜1";
+            this.darkRadioButton1.CheckedChanged += new System.EventHandler(this.darkRadioButton_CheckedChanged);
+            // 
+            // darkLabel21
+            // 
+            this.darkLabel21.AutoSize = true;
+            this.darkLabel21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel21.Location = new System.Drawing.Point(8, 38);
+            this.darkLabel21.Name = "darkLabel21";
+            this.darkLabel21.Size = new System.Drawing.Size(74, 15);
+            this.darkLabel21.TabIndex = 23;
+            this.darkLabel21.Text = "COM端口：";
+            // 
+            // darkButton1
+            // 
+            this.darkButton1.Location = new System.Drawing.Point(160, 35);
+            this.darkButton1.Name = "darkButton1";
+            this.darkButton1.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton1.Size = new System.Drawing.Size(75, 24);
+            this.darkButton1.TabIndex = 22;
+            this.darkButton1.Tag = "打开物镜旋转端口";
+            this.darkButton1.Text = "打开端口";
+            // 
+            // dcmbNosepieceCom
+            // 
+            this.dcmbNosepieceCom.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.dcmbNosepieceCom.FormattingEnabled = true;
+            this.dcmbNosepieceCom.Location = new System.Drawing.Point(88, 35);
+            this.dcmbNosepieceCom.Name = "dcmbNosepieceCom";
+            this.dcmbNosepieceCom.ReadOnly = true;
+            this.dcmbNosepieceCom.Size = new System.Drawing.Size(66, 24);
+            this.dcmbNosepieceCom.TabIndex = 21;
             // 
             // dsepAxisStatus
             // 
@@ -210,14 +334,14 @@
             this.dsepAxisStatus.Controls.Add(this.darkLabel9);
             this.dsepAxisStatus.Controls.Add(this.darkButton6);
             this.dsepAxisStatus.Controls.Add(this.darkLabel8);
-            this.dsepAxisStatus.Controls.Add(this.darkInputSignal5);
+            this.dsepAxisStatus.Controls.Add(this.DarkPointsIn5);
             this.dsepAxisStatus.Controls.Add(this.dtbPlanrfpos);
-            this.dsepAxisStatus.Controls.Add(this.darkInputSignal6);
+            this.dsepAxisStatus.Controls.Add(this.DarkPointsIn6);
             this.dsepAxisStatus.Controls.Add(this.dtbEncpos);
-            this.dsepAxisStatus.Controls.Add(this.darkInputSignal7);
-            this.dsepAxisStatus.Controls.Add(this.darkInputSignal8);
+            this.dsepAxisStatus.Controls.Add(this.DarkPointsIn7);
+            this.dsepAxisStatus.Controls.Add(this.DarkPointsIn8);
             this.dsepAxisStatus.DragEnable = true;
-            this.dsepAxisStatus.Location = new System.Drawing.Point(938, 6);
+            this.dsepAxisStatus.Location = new System.Drawing.Point(955, 6);
             this.dsepAxisStatus.Name = "dsepAxisStatus";
             this.dsepAxisStatus.SectionHeader = "当前轴状态";
             this.dsepAxisStatus.Size = new System.Drawing.Size(193, 233);
@@ -305,15 +429,17 @@
             this.darkLabel8.TabIndex = 27;
             this.darkLabel8.Text = "实际位置";
             // 
-            // darkInputSignal5
+            // DarkPointsIn5
             // 
-            this.darkInputSignal5.AutoSize = true;
-            this.darkInputSignal5.IsSuccess = false;
-            this.darkInputSignal5.Location = new System.Drawing.Point(26, 178);
-            this.darkInputSignal5.Name = "darkInputSignal5";
-            this.darkInputSignal5.Size = new System.Drawing.Size(78, 19);
-            this.darkInputSignal5.TabIndex = 31;
-            this.darkInputSignal5.Text = "使能状态";
+            this.DarkPointsIn5.AutoSize = true;
+            this.DarkPointsIn5.CheckedColor = System.Drawing.Color.Lime;
+            this.DarkPointsIn5.Enabled = true;
+            this.DarkPointsIn5.Location = new System.Drawing.Point(26, 178);
+            this.DarkPointsIn5.Name = "DarkPointsIn5";
+            this.DarkPointsIn5.Size = new System.Drawing.Size(78, 19);
+            this.DarkPointsIn5.TabIndex = 31;
+            this.DarkPointsIn5.Text = "使能状态";
+            this.DarkPointsIn5.UnCheckedColor = System.Drawing.Color.Red;
             // 
             // dtbPlanrfpos
             // 
@@ -326,15 +452,17 @@
             this.dtbPlanrfpos.Size = new System.Drawing.Size(113, 23);
             this.dtbPlanrfpos.TabIndex = 24;
             // 
-            // darkInputSignal6
+            // DarkPointsIn6
             // 
-            this.darkInputSignal6.AutoSize = true;
-            this.darkInputSignal6.IsSuccess = false;
-            this.darkInputSignal6.Location = new System.Drawing.Point(27, 203);
-            this.darkInputSignal6.Name = "darkInputSignal6";
-            this.darkInputSignal6.Size = new System.Drawing.Size(78, 19);
-            this.darkInputSignal6.TabIndex = 30;
-            this.darkInputSignal6.Text = "伺服报警";
+            this.DarkPointsIn6.AutoSize = true;
+            this.DarkPointsIn6.CheckedColor = System.Drawing.Color.Lime;
+            this.DarkPointsIn6.Enabled = true;
+            this.DarkPointsIn6.Location = new System.Drawing.Point(27, 203);
+            this.DarkPointsIn6.Name = "DarkPointsIn6";
+            this.DarkPointsIn6.Size = new System.Drawing.Size(78, 19);
+            this.DarkPointsIn6.TabIndex = 30;
+            this.DarkPointsIn6.Text = "伺服报警";
+            this.DarkPointsIn6.UnCheckedColor = System.Drawing.Color.Red;
             // 
             // dtbEncpos
             // 
@@ -347,24 +475,29 @@
             this.dtbEncpos.Size = new System.Drawing.Size(113, 23);
             this.dtbEncpos.TabIndex = 26;
             // 
-            // darkInputSignal7
+            // DarkPointsIn7
             // 
-            this.darkInputSignal7.AutoSize = true;
-            this.darkInputSignal7.Location = new System.Drawing.Point(111, 203);
-            this.darkInputSignal7.Name = "darkInputSignal7";
-            this.darkInputSignal7.Size = new System.Drawing.Size(65, 19);
-            this.darkInputSignal7.TabIndex = 29;
-            this.darkInputSignal7.Text = "负限位";
+            this.DarkPointsIn7.AutoSize = true;
+            this.DarkPointsIn7.CheckedColor = System.Drawing.Color.Lime;
+            this.DarkPointsIn7.Enabled = true;
+            this.DarkPointsIn7.Location = new System.Drawing.Point(111, 203);
+            this.DarkPointsIn7.Name = "DarkPointsIn7";
+            this.DarkPointsIn7.Size = new System.Drawing.Size(65, 19);
+            this.DarkPointsIn7.TabIndex = 29;
+            this.DarkPointsIn7.Text = "负限位";
+            this.DarkPointsIn7.UnCheckedColor = System.Drawing.Color.Red;
             // 
-            // darkInputSignal8
+            // DarkPointsIn8
             // 
-            this.darkInputSignal8.AutoSize = true;
-            this.darkInputSignal8.IsSuccess = false;
-            this.darkInputSignal8.Location = new System.Drawing.Point(111, 178);
-            this.darkInputSignal8.Name = "darkInputSignal8";
-            this.darkInputSignal8.Size = new System.Drawing.Size(65, 19);
-            this.darkInputSignal8.TabIndex = 28;
-            this.darkInputSignal8.Text = "正限位";
+            this.DarkPointsIn8.AutoSize = true;
+            this.DarkPointsIn8.CheckedColor = System.Drawing.Color.Lime;
+            this.DarkPointsIn8.Enabled = true;
+            this.DarkPointsIn8.Location = new System.Drawing.Point(111, 178);
+            this.DarkPointsIn8.Name = "DarkPointsIn8";
+            this.DarkPointsIn8.Size = new System.Drawing.Size(65, 19);
+            this.DarkPointsIn8.TabIndex = 28;
+            this.DarkPointsIn8.Text = "正限位";
+            this.DarkPointsIn8.UnCheckedColor = System.Drawing.Color.Red;
             // 
             // darkSectionPanel6
             // 
@@ -374,7 +507,7 @@
             this.darkSectionPanel6.Location = new System.Drawing.Point(2, 6);
             this.darkSectionPanel6.Name = "darkSectionPanel6";
             this.darkSectionPanel6.SectionHeader = "点位控制";
-            this.darkSectionPanel6.Size = new System.Drawing.Size(376, 233);
+            this.darkSectionPanel6.Size = new System.Drawing.Size(393, 233);
             this.darkSectionPanel6.TabIndex = 18;
             // 
             // tableLayoutPanel2
@@ -389,7 +522,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(372, 200);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(389, 200);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // darkGroupBox4
@@ -407,7 +540,7 @@
             this.darkGroupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.darkGroupBox4.Location = new System.Drawing.Point(3, 3);
             this.darkGroupBox4.Name = "darkGroupBox4";
-            this.darkGroupBox4.Size = new System.Drawing.Size(142, 194);
+            this.darkGroupBox4.Size = new System.Drawing.Size(149, 194);
             this.darkGroupBox4.TabIndex = 0;
             this.darkGroupBox4.TabStop = false;
             this.darkGroupBox4.Text = "输入信号";
@@ -415,85 +548,110 @@
             // isNegativePressure3
             // 
             this.isNegativePressure3.AutoSize = true;
+            this.isNegativePressure3.CheckedColor = System.Drawing.Color.Lime;
+            this.isNegativePressure3.Enabled = true;
             this.isNegativePressure3.Location = new System.Drawing.Point(64, 97);
             this.isNegativePressure3.Name = "isNegativePressure3";
             this.isNegativePressure3.Size = new System.Drawing.Size(84, 19);
             this.isNegativePressure3.TabIndex = 8;
             this.isNegativePressure3.Text = "负压检测3";
+            this.isNegativePressure3.UnCheckedColor = System.Drawing.Color.Red;
             // 
             // isNegativePressure2
             // 
             this.isNegativePressure2.AutoSize = true;
-            this.isNegativePressure2.IsSuccess = false;
+            this.isNegativePressure2.CheckedColor = System.Drawing.Color.Lime;
+            this.isNegativePressure2.Enabled = true;
             this.isNegativePressure2.Location = new System.Drawing.Point(64, 72);
             this.isNegativePressure2.Name = "isNegativePressure2";
             this.isNegativePressure2.Size = new System.Drawing.Size(84, 19);
             this.isNegativePressure2.TabIndex = 7;
             this.isNegativePressure2.Text = "负压检测2";
+            this.isNegativePressure2.UnCheckedColor = System.Drawing.Color.Red;
             // 
             // isNegativePressure1
             // 
             this.isNegativePressure1.AutoSize = true;
+            this.isNegativePressure1.CheckedColor = System.Drawing.Color.Lime;
+            this.isNegativePressure1.Enabled = true;
             this.isNegativePressure1.Location = new System.Drawing.Point(64, 47);
             this.isNegativePressure1.Name = "isNegativePressure1";
             this.isNegativePressure1.Size = new System.Drawing.Size(84, 19);
             this.isNegativePressure1.TabIndex = 6;
             this.isNegativePressure1.Text = "负压检测1";
+            this.isNegativePressure1.UnCheckedColor = System.Drawing.Color.Red;
             // 
             // isPositivePressure
             // 
             this.isPositivePressure.AutoSize = true;
+            this.isPositivePressure.CheckedColor = System.Drawing.Color.Lime;
+            this.isPositivePressure.Enabled = true;
             this.isPositivePressure.Location = new System.Drawing.Point(64, 22);
             this.isPositivePressure.Name = "isPositivePressure";
             this.isPositivePressure.Size = new System.Drawing.Size(78, 19);
             this.isPositivePressure.TabIndex = 5;
             this.isPositivePressure.Text = "正压检测";
+            this.isPositivePressure.UnCheckedColor = System.Drawing.Color.Red;
             // 
             // isDoor
             // 
             this.isDoor.AutoSize = true;
-            this.isDoor.IsSuccess = false;
+            this.isDoor.CheckedColor = System.Drawing.Color.Lime;
+            this.isDoor.Enabled = true;
             this.isDoor.Location = new System.Drawing.Point(6, 122);
             this.isDoor.Name = "isDoor";
             this.isDoor.Size = new System.Drawing.Size(52, 19);
             this.isDoor.TabIndex = 4;
             this.isDoor.Text = "门禁";
+            this.isDoor.UnCheckedColor = System.Drawing.Color.Red;
             // 
             // isStop
             // 
             this.isStop.AutoSize = true;
+            this.isStop.CheckedColor = System.Drawing.Color.Lime;
+            this.isStop.Enabled = true;
             this.isStop.Location = new System.Drawing.Point(6, 97);
             this.isStop.Name = "isStop";
             this.isStop.Size = new System.Drawing.Size(52, 19);
             this.isStop.TabIndex = 3;
             this.isStop.Text = "停止";
+            this.isStop.UnCheckedColor = System.Drawing.Color.Red;
             // 
             // isReset
             // 
             this.isReset.AutoSize = true;
+            this.isReset.CheckedColor = System.Drawing.Color.Lime;
+            this.isReset.Enabled = true;
             this.isReset.Location = new System.Drawing.Point(6, 72);
             this.isReset.Name = "isReset";
             this.isReset.Size = new System.Drawing.Size(52, 19);
             this.isReset.TabIndex = 2;
             this.isReset.Text = "复位";
+            this.isReset.UnCheckedColor = System.Drawing.Color.Red;
             // 
             // isStart
             // 
             this.isStart.AutoSize = true;
+            this.isStart.CheckedColor = System.Drawing.Color.Lime;
+            this.isStart.Enabled = true;
             this.isStart.Location = new System.Drawing.Point(6, 47);
             this.isStart.Name = "isStart";
             this.isStart.Size = new System.Drawing.Size(52, 19);
             this.isStart.TabIndex = 1;
             this.isStart.Text = "启动";
+            this.isStart.UnCheckedColor = System.Drawing.Color.Red;
             // 
             // isEmergencyStop
             // 
             this.isEmergencyStop.AutoSize = true;
+            this.isEmergencyStop.CheckedColor = System.Drawing.Color.Lime;
+            this.isEmergencyStop.Enabled = true;
             this.isEmergencyStop.Location = new System.Drawing.Point(6, 22);
             this.isEmergencyStop.Name = "isEmergencyStop";
             this.isEmergencyStop.Size = new System.Drawing.Size(52, 19);
             this.isEmergencyStop.TabIndex = 0;
             this.isEmergencyStop.Text = "急停";
+            this.isEmergencyStop.UnCheckedColor = System.Drawing.Color.Red;
             // 
             // darkGroupBox_PointsOut
             // 
@@ -510,9 +668,9 @@
             this.darkGroupBox_PointsOut.Controls.Add(this.tsReset);
             this.darkGroupBox_PointsOut.Controls.Add(this.tsStart);
             this.darkGroupBox_PointsOut.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.darkGroupBox_PointsOut.Location = new System.Drawing.Point(151, 3);
+            this.darkGroupBox_PointsOut.Location = new System.Drawing.Point(158, 3);
             this.darkGroupBox_PointsOut.Name = "darkGroupBox_PointsOut";
-            this.darkGroupBox_PointsOut.Size = new System.Drawing.Size(218, 194);
+            this.darkGroupBox_PointsOut.Size = new System.Drawing.Size(228, 194);
             this.darkGroupBox_PointsOut.TabIndex = 1;
             this.darkGroupBox_PointsOut.TabStop = false;
             this.darkGroupBox_PointsOut.Text = "输出控制";
@@ -520,60 +678,60 @@
             // toggleSwitch4
             // 
             this.toggleSwitch4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.toggleSwitch4.Location = new System.Drawing.Point(112, 97);
+            this.toggleSwitch4.Location = new System.Drawing.Point(119, 97);
             this.toggleSwitch4.Name = "toggleSwitch4";
             this.toggleSwitch4.OffFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.toggleSwitch4.OffForeColor = System.Drawing.Color.White;
+            this.toggleSwitch4.OffForeColor = System.Drawing.Color.DarkSlateGray;
             this.toggleSwitch4.OffText = "关 8寸阀";
             this.toggleSwitch4.OnFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.toggleSwitch4.OnForeColor = System.Drawing.Color.White;
+            this.toggleSwitch4.OnForeColor = System.Drawing.Color.PaleGreen;
             this.toggleSwitch4.OnText = "开 8寸阀";
-            this.toggleSwitch4.Size = new System.Drawing.Size(100, 19);
+            this.toggleSwitch4.Size = new System.Drawing.Size(103, 19);
             this.toggleSwitch4.TabIndex = 10;
             this.toggleSwitch4.Tag = "8寸阀";
             // 
             // toggleSwitch3
             // 
             this.toggleSwitch3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.toggleSwitch3.Location = new System.Drawing.Point(112, 72);
+            this.toggleSwitch3.Location = new System.Drawing.Point(119, 72);
             this.toggleSwitch3.Name = "toggleSwitch3";
             this.toggleSwitch3.OffFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.toggleSwitch3.OffForeColor = System.Drawing.Color.White;
+            this.toggleSwitch3.OffForeColor = System.Drawing.Color.DarkSlateGray;
             this.toggleSwitch3.OffText = "关 6寸阀";
             this.toggleSwitch3.OnFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.toggleSwitch3.OnForeColor = System.Drawing.Color.White;
+            this.toggleSwitch3.OnForeColor = System.Drawing.Color.PaleGreen;
             this.toggleSwitch3.OnText = "开 6寸阀";
-            this.toggleSwitch3.Size = new System.Drawing.Size(100, 19);
+            this.toggleSwitch3.Size = new System.Drawing.Size(103, 19);
             this.toggleSwitch3.TabIndex = 9;
             this.toggleSwitch3.Tag = "6寸阀";
             // 
             // toggleSwitch2
             // 
             this.toggleSwitch2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.toggleSwitch2.Location = new System.Drawing.Point(112, 47);
+            this.toggleSwitch2.Location = new System.Drawing.Point(119, 47);
             this.toggleSwitch2.Name = "toggleSwitch2";
             this.toggleSwitch2.OffFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.toggleSwitch2.OffForeColor = System.Drawing.Color.White;
+            this.toggleSwitch2.OffForeColor = System.Drawing.Color.DarkSlateGray;
             this.toggleSwitch2.OffText = "关 裸片阀";
             this.toggleSwitch2.OnFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.toggleSwitch2.OnForeColor = System.Drawing.Color.White;
+            this.toggleSwitch2.OnForeColor = System.Drawing.Color.PaleGreen;
             this.toggleSwitch2.OnText = "开 裸片阀";
-            this.toggleSwitch2.Size = new System.Drawing.Size(100, 19);
+            this.toggleSwitch2.Size = new System.Drawing.Size(103, 19);
             this.toggleSwitch2.TabIndex = 8;
             this.toggleSwitch2.Tag = "裸片阀";
             // 
             // toggleSwitch1
             // 
             this.toggleSwitch1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.toggleSwitch1.Location = new System.Drawing.Point(112, 22);
+            this.toggleSwitch1.Location = new System.Drawing.Point(119, 22);
             this.toggleSwitch1.Name = "toggleSwitch1";
             this.toggleSwitch1.OffFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.toggleSwitch1.OffForeColor = System.Drawing.Color.White;
+            this.toggleSwitch1.OffForeColor = System.Drawing.Color.DarkSlateGray;
             this.toggleSwitch1.OffText = "关 顶升气缸";
             this.toggleSwitch1.OnFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.toggleSwitch1.OnForeColor = System.Drawing.Color.White;
+            this.toggleSwitch1.OnForeColor = System.Drawing.Color.PaleGreen;
             this.toggleSwitch1.OnText = "开 顶升气缸";
-            this.toggleSwitch1.Size = new System.Drawing.Size(100, 19);
+            this.toggleSwitch1.Size = new System.Drawing.Size(103, 19);
             this.toggleSwitch1.TabIndex = 7;
             this.toggleSwitch1.Tag = "顶升气缸";
             // 
@@ -583,12 +741,12 @@
             this.tsBuzzer.Location = new System.Drawing.Point(6, 172);
             this.tsBuzzer.Name = "tsBuzzer";
             this.tsBuzzer.OffFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tsBuzzer.OffForeColor = System.Drawing.Color.White;
+            this.tsBuzzer.OffForeColor = System.Drawing.Color.DarkSlateGray;
             this.tsBuzzer.OffText = "关 蜂鸣器";
             this.tsBuzzer.OnFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tsBuzzer.OnForeColor = System.Drawing.Color.White;
+            this.tsBuzzer.OnForeColor = System.Drawing.Color.PaleGreen;
             this.tsBuzzer.OnText = "开 蜂鸣器";
-            this.tsBuzzer.Size = new System.Drawing.Size(100, 19);
+            this.tsBuzzer.Size = new System.Drawing.Size(107, 19);
             this.tsBuzzer.TabIndex = 6;
             this.tsBuzzer.Tag = "蜂鸣器";
             // 
@@ -598,12 +756,12 @@
             this.tsThreeLightGreen.Location = new System.Drawing.Point(6, 147);
             this.tsThreeLightGreen.Name = "tsThreeLightGreen";
             this.tsThreeLightGreen.OffFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tsThreeLightGreen.OffForeColor = System.Drawing.Color.White;
+            this.tsThreeLightGreen.OffForeColor = System.Drawing.Color.DarkSlateGray;
             this.tsThreeLightGreen.OffText = "关 三色灯(绿)";
             this.tsThreeLightGreen.OnFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tsThreeLightGreen.OnForeColor = System.Drawing.Color.White;
+            this.tsThreeLightGreen.OnForeColor = System.Drawing.Color.PaleGreen;
             this.tsThreeLightGreen.OnText = "开 三色灯(绿)";
-            this.tsThreeLightGreen.Size = new System.Drawing.Size(100, 19);
+            this.tsThreeLightGreen.Size = new System.Drawing.Size(107, 19);
             this.tsThreeLightGreen.TabIndex = 5;
             this.tsThreeLightGreen.Tag = "三色灯(绿)";
             // 
@@ -613,12 +771,12 @@
             this.tsThreeLightRed.Location = new System.Drawing.Point(6, 122);
             this.tsThreeLightRed.Name = "tsThreeLightRed";
             this.tsThreeLightRed.OffFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tsThreeLightRed.OffForeColor = System.Drawing.Color.White;
+            this.tsThreeLightRed.OffForeColor = System.Drawing.Color.DarkSlateGray;
             this.tsThreeLightRed.OffText = "关 三色灯(红)";
             this.tsThreeLightRed.OnFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tsThreeLightRed.OnForeColor = System.Drawing.Color.White;
+            this.tsThreeLightRed.OnForeColor = System.Drawing.Color.PaleGreen;
             this.tsThreeLightRed.OnText = "开 三色灯(红)";
-            this.tsThreeLightRed.Size = new System.Drawing.Size(100, 19);
+            this.tsThreeLightRed.Size = new System.Drawing.Size(107, 19);
             this.tsThreeLightRed.TabIndex = 4;
             this.tsThreeLightRed.Tag = "三色灯(红)";
             // 
@@ -628,12 +786,12 @@
             this.tsThreeLightYellow.Location = new System.Drawing.Point(6, 97);
             this.tsThreeLightYellow.Name = "tsThreeLightYellow";
             this.tsThreeLightYellow.OffFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tsThreeLightYellow.OffForeColor = System.Drawing.Color.White;
+            this.tsThreeLightYellow.OffForeColor = System.Drawing.Color.DarkSlateGray;
             this.tsThreeLightYellow.OffText = "关 三色灯(黄)";
             this.tsThreeLightYellow.OnFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tsThreeLightYellow.OnForeColor = System.Drawing.Color.White;
+            this.tsThreeLightYellow.OnForeColor = System.Drawing.Color.PaleGreen;
             this.tsThreeLightYellow.OnText = "开 三色灯(黄)";
-            this.tsThreeLightYellow.Size = new System.Drawing.Size(100, 19);
+            this.tsThreeLightYellow.Size = new System.Drawing.Size(107, 19);
             this.tsThreeLightYellow.TabIndex = 3;
             this.tsThreeLightYellow.Tag = "三色灯(黄)";
             // 
@@ -643,12 +801,12 @@
             this.tsStop.Location = new System.Drawing.Point(6, 72);
             this.tsStop.Name = "tsStop";
             this.tsStop.OffFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tsStop.OffForeColor = System.Drawing.Color.White;
+            this.tsStop.OffForeColor = System.Drawing.Color.DarkSlateGray;
             this.tsStop.OffText = "关 停止灯";
             this.tsStop.OnFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tsStop.OnForeColor = System.Drawing.Color.White;
+            this.tsStop.OnForeColor = System.Drawing.Color.PaleGreen;
             this.tsStop.OnText = "开 停止灯";
-            this.tsStop.Size = new System.Drawing.Size(100, 19);
+            this.tsStop.Size = new System.Drawing.Size(107, 19);
             this.tsStop.TabIndex = 2;
             this.tsStop.Tag = "停止灯";
             // 
@@ -658,12 +816,12 @@
             this.tsReset.Location = new System.Drawing.Point(6, 47);
             this.tsReset.Name = "tsReset";
             this.tsReset.OffFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tsReset.OffForeColor = System.Drawing.Color.White;
+            this.tsReset.OffForeColor = System.Drawing.Color.DarkSlateGray;
             this.tsReset.OffText = "关 复位灯";
             this.tsReset.OnFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tsReset.OnForeColor = System.Drawing.Color.White;
+            this.tsReset.OnForeColor = System.Drawing.Color.PaleGreen;
             this.tsReset.OnText = "开 复位灯";
-            this.tsReset.Size = new System.Drawing.Size(100, 19);
+            this.tsReset.Size = new System.Drawing.Size(107, 19);
             this.tsReset.TabIndex = 1;
             this.tsReset.Tag = "复位灯";
             // 
@@ -673,12 +831,12 @@
             this.tsStart.Location = new System.Drawing.Point(6, 22);
             this.tsStart.Name = "tsStart";
             this.tsStart.OffFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tsStart.OffForeColor = System.Drawing.Color.White;
+            this.tsStart.OffForeColor = System.Drawing.Color.DarkSlateGray;
             this.tsStart.OffText = "关 启动灯";
             this.tsStart.OnFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tsStart.OnForeColor = System.Drawing.Color.White;
+            this.tsStart.OnForeColor = System.Drawing.Color.PaleGreen;
             this.tsStart.OnText = "开 启动灯";
-            this.tsStart.Size = new System.Drawing.Size(100, 19);
+            this.tsStart.Size = new System.Drawing.Size(107, 19);
             this.tsStart.TabIndex = 0;
             this.tsStart.Tag = "启动灯";
             // 
@@ -688,7 +846,7 @@
             this.darkSectionPanel_AxisRun.Controls.Add(this.dgrpVehicleAxisRun);
             this.darkSectionPanel_AxisRun.Controls.Add(this.dgrpCameraAxisRun);
             this.darkSectionPanel_AxisRun.DragEnable = true;
-            this.darkSectionPanel_AxisRun.Location = new System.Drawing.Point(384, 6);
+            this.darkSectionPanel_AxisRun.Location = new System.Drawing.Point(401, 6);
             this.darkSectionPanel_AxisRun.Name = "darkSectionPanel_AxisRun";
             this.darkSectionPanel_AxisRun.SectionHeader = "控制台";
             this.darkSectionPanel_AxisRun.Size = new System.Drawing.Size(548, 233);
@@ -858,7 +1016,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.11688F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.84848F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.03463F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 123F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 131F));
             this.tableLayoutPanel1.Controls.Add(this.dspJOGSettings, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.dspGoHomeSettings, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.dspPointMoveSettings, 1, 0);
@@ -887,13 +1045,13 @@
             this.dspJOGSettings.Location = new System.Drawing.Point(203, 3);
             this.dspJOGSettings.Name = "dspJOGSettings";
             this.dspJOGSettings.SectionHeader = "JOG运动模式参数";
-            this.dspJOGSettings.Size = new System.Drawing.Size(261, 158);
+            this.dspJOGSettings.Size = new System.Drawing.Size(259, 158);
             this.dspJOGSettings.TabIndex = 2;
             // 
             // btnJogSave
             // 
             this.btnJogSave.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnJogSave.Location = new System.Drawing.Point(218, 25);
+            this.btnJogSave.Location = new System.Drawing.Point(216, 25);
             this.btnJogSave.Name = "btnJogSave";
             this.btnJogSave.Padding = new System.Windows.Forms.Padding(5);
             this.btnJogSave.Size = new System.Drawing.Size(42, 132);
@@ -920,7 +1078,7 @@
             this.dtbJogVel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.dtbJogVel.Location = new System.Drawing.Point(126, 123);
             this.dtbJogVel.Name = "dtbJogVel";
-            this.dtbJogVel.Size = new System.Drawing.Size(86, 23);
+            this.dtbJogVel.Size = new System.Drawing.Size(84, 23);
             this.dtbJogVel.TabIndex = 19;
             this.dtbJogVel.Tag = "JOG减速度";
             // 
@@ -943,7 +1101,7 @@
             this.dtbJogSmooth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.dtbJogSmooth.Location = new System.Drawing.Point(126, 94);
             this.dtbJogSmooth.Name = "dtbJogSmooth";
-            this.dtbJogSmooth.Size = new System.Drawing.Size(86, 23);
+            this.dtbJogSmooth.Size = new System.Drawing.Size(84, 23);
             this.dtbJogSmooth.TabIndex = 6;
             // 
             // darkLabel13
@@ -965,7 +1123,7 @@
             this.dtbJogDec.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.dtbJogDec.Location = new System.Drawing.Point(126, 65);
             this.dtbJogDec.Name = "dtbJogDec";
-            this.dtbJogDec.Size = new System.Drawing.Size(86, 23);
+            this.dtbJogDec.Size = new System.Drawing.Size(84, 23);
             this.dtbJogDec.TabIndex = 4;
             this.dtbJogDec.Tag = "JOG减速度";
             // 
@@ -988,7 +1146,7 @@
             this.dtbJogAcc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.dtbJogAcc.Location = new System.Drawing.Point(126, 36);
             this.dtbJogAcc.Name = "dtbJogAcc";
-            this.dtbJogAcc.Size = new System.Drawing.Size(86, 23);
+            this.dtbJogAcc.Size = new System.Drawing.Size(84, 23);
             this.dtbJogAcc.TabIndex = 2;
             this.dtbJogAcc.Tag = "JOG加速度";
             // 
@@ -1012,16 +1170,16 @@
             this.dspGoHomeSettings.Controls.Add(this.cmbGoHomeType);
             this.dspGoHomeSettings.Controls.Add(this.darkLabel15);
             this.dspGoHomeSettings.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dspGoHomeSettings.Location = new System.Drawing.Point(757, 3);
+            this.dspGoHomeSettings.Location = new System.Drawing.Point(753, 3);
             this.dspGoHomeSettings.Name = "dspGoHomeSettings";
             this.dspGoHomeSettings.SectionHeader = "回原点模式参数";
-            this.dspGoHomeSettings.Size = new System.Drawing.Size(595, 158);
+            this.dspGoHomeSettings.Size = new System.Drawing.Size(591, 158);
             this.dspGoHomeSettings.TabIndex = 1;
             // 
             // btnGoHomeSave
             // 
             this.btnGoHomeSave.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnGoHomeSave.Location = new System.Drawing.Point(552, 25);
+            this.btnGoHomeSave.Location = new System.Drawing.Point(548, 25);
             this.btnGoHomeSave.Name = "btnGoHomeSave";
             this.btnGoHomeSave.Padding = new System.Windows.Forms.Padding(5);
             this.btnGoHomeSave.Size = new System.Drawing.Size(42, 132);
@@ -1048,7 +1206,7 @@
             this.dtbGoHomeDec.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.dtbGoHomeDec.Location = new System.Drawing.Point(442, 125);
             this.dtbGoHomeDec.Name = "dtbGoHomeDec";
-            this.dtbGoHomeDec.Size = new System.Drawing.Size(105, 23);
+            this.dtbGoHomeDec.Size = new System.Drawing.Size(101, 23);
             this.dtbGoHomeDec.TabIndex = 31;
             // 
             // darkLabel19
@@ -1070,7 +1228,7 @@
             this.dtbGoHomeAcc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.dtbGoHomeAcc.Location = new System.Drawing.Point(442, 96);
             this.dtbGoHomeAcc.Name = "dtbGoHomeAcc";
-            this.dtbGoHomeAcc.Size = new System.Drawing.Size(105, 23);
+            this.dtbGoHomeAcc.Size = new System.Drawing.Size(101, 23);
             this.dtbGoHomeAcc.TabIndex = 29;
             // 
             // darkLabel18
@@ -1092,7 +1250,7 @@
             this.dtbGoHomeLocationVel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.dtbGoHomeLocationVel.Location = new System.Drawing.Point(441, 67);
             this.dtbGoHomeLocationVel.Name = "dtbGoHomeLocationVel";
-            this.dtbGoHomeLocationVel.Size = new System.Drawing.Size(105, 23);
+            this.dtbGoHomeLocationVel.Size = new System.Drawing.Size(101, 23);
             this.dtbGoHomeLocationVel.TabIndex = 27;
             // 
             // darkLabel17
@@ -1114,7 +1272,7 @@
             this.dtbGoHomeSearchVel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.dtbGoHomeSearchVel.Location = new System.Drawing.Point(441, 36);
             this.dtbGoHomeSearchVel.Name = "dtbGoHomeSearchVel";
-            this.dtbGoHomeSearchVel.Size = new System.Drawing.Size(105, 23);
+            this.dtbGoHomeSearchVel.Size = new System.Drawing.Size(101, 23);
             this.dtbGoHomeSearchVel.TabIndex = 18;
             // 
             // darkLabel16
@@ -1255,16 +1413,16 @@
             this.dspPointMoveSettings.Controls.Add(this.dtbTrapDec);
             this.dspPointMoveSettings.Controls.Add(this.dtbTrapAcc);
             this.dspPointMoveSettings.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dspPointMoveSettings.Location = new System.Drawing.Point(470, 3);
+            this.dspPointMoveSettings.Location = new System.Drawing.Point(468, 3);
             this.dspPointMoveSettings.Name = "dspPointMoveSettings";
             this.dspPointMoveSettings.SectionHeader = "点位运动模式参数";
-            this.dspPointMoveSettings.Size = new System.Drawing.Size(281, 158);
+            this.dspPointMoveSettings.Size = new System.Drawing.Size(279, 158);
             this.dspPointMoveSettings.TabIndex = 0;
             // 
             // btnTrapSave
             // 
             this.btnTrapSave.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnTrapSave.Location = new System.Drawing.Point(238, 25);
+            this.btnTrapSave.Location = new System.Drawing.Point(236, 25);
             this.btnTrapSave.Name = "btnTrapSave";
             this.btnTrapSave.Padding = new System.Windows.Forms.Padding(5);
             this.btnTrapSave.Size = new System.Drawing.Size(42, 132);
@@ -1301,7 +1459,7 @@
             this.dtbTrapSmoothTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.dtbTrapSmoothTime.Location = new System.Drawing.Point(146, 125);
             this.dtbTrapSmoothTime.Name = "dtbTrapSmoothTime";
-            this.dtbTrapSmoothTime.Size = new System.Drawing.Size(86, 23);
+            this.dtbTrapSmoothTime.Size = new System.Drawing.Size(84, 23);
             this.dtbTrapSmoothTime.TabIndex = 16;
             // 
             // darkLabel1
@@ -1333,7 +1491,7 @@
             this.dtbTrapVel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.dtbTrapVel.Location = new System.Drawing.Point(146, 96);
             this.dtbTrapVel.Name = "dtbTrapVel";
-            this.dtbTrapVel.Size = new System.Drawing.Size(86, 23);
+            this.dtbTrapVel.Size = new System.Drawing.Size(84, 23);
             this.dtbTrapVel.TabIndex = 14;
             // 
             // dtbTrapDec
@@ -1345,7 +1503,7 @@
             this.dtbTrapDec.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.dtbTrapDec.Location = new System.Drawing.Point(146, 67);
             this.dtbTrapDec.Name = "dtbTrapDec";
-            this.dtbTrapDec.Size = new System.Drawing.Size(86, 23);
+            this.dtbTrapDec.Size = new System.Drawing.Size(84, 23);
             this.dtbTrapDec.TabIndex = 12;
             // 
             // dtbTrapAcc
@@ -1357,7 +1515,7 @@
             this.dtbTrapAcc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.dtbTrapAcc.Location = new System.Drawing.Point(146, 38);
             this.dtbTrapAcc.Name = "dtbTrapAcc";
-            this.dtbTrapAcc.Size = new System.Drawing.Size(86, 23);
+            this.dtbTrapAcc.Size = new System.Drawing.Size(84, 23);
             this.dtbTrapAcc.TabIndex = 10;
             // 
             // darkTitleBarPanel1
@@ -1389,10 +1547,10 @@
             this.darkSectionPanel1.Controls.Add(this.darkButton5);
             this.darkSectionPanel1.Controls.Add(this.darkButton7);
             this.darkSectionPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.darkSectionPanel1.Location = new System.Drawing.Point(1358, 3);
+            this.darkSectionPanel1.Location = new System.Drawing.Point(1350, 3);
             this.darkSectionPanel1.Name = "darkSectionPanel1";
             this.darkSectionPanel1.SectionHeader = "单轴操作";
-            this.darkSectionPanel1.Size = new System.Drawing.Size(118, 158);
+            this.darkSectionPanel1.Size = new System.Drawing.Size(126, 158);
             this.darkSectionPanel1.TabIndex = 3;
             // 
             // toggleSwitch5
@@ -1401,12 +1559,12 @@
             this.toggleSwitch5.Location = new System.Drawing.Point(4, 123);
             this.toggleSwitch5.Name = "toggleSwitch5";
             this.toggleSwitch5.OffFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.toggleSwitch5.OffForeColor = System.Drawing.Color.White;
+            this.toggleSwitch5.OffForeColor = System.Drawing.Color.DarkSlateGray;
             this.toggleSwitch5.OffText = "使能已关闭";
             this.toggleSwitch5.OnFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.toggleSwitch5.OnForeColor = System.Drawing.Color.White;
+            this.toggleSwitch5.OnForeColor = System.Drawing.Color.PaleGreen;
             this.toggleSwitch5.OnText = "使能已开启";
-            this.toggleSwitch5.Size = new System.Drawing.Size(110, 23);
+            this.toggleSwitch5.Size = new System.Drawing.Size(118, 23);
             this.toggleSwitch5.TabIndex = 8;
             this.toggleSwitch5.Tag = "单轴使能开关";
             // 
@@ -1455,6 +1613,8 @@
             this.panel1.ResumeLayout(false);
             this.darkTitleBarPanel2.ResumeLayout(false);
             this.darkGroupBox2.ResumeLayout(false);
+            this.darkSectionPanel2.ResumeLayout(false);
+            this.darkSectionPanel2.PerformLayout();
             this.dsepAxisStatus.ResumeLayout(false);
             this.dsepAxisStatus.PerformLayout();
             this.darkSectionPanel6.ResumeLayout(false);
@@ -1515,15 +1675,15 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private YiNing.UI.Controls.DarkGroupBox darkGroupBox4;
         private YiNing.UI.Controls.DarkGroupBox darkGroupBox_PointsOut;
-        private YiNing.UI.Controls.DarkInputSignal isPositivePressure;
-        private YiNing.UI.Controls.DarkInputSignal isDoor;
-        private YiNing.UI.Controls.DarkInputSignal isStop;
-        private YiNing.UI.Controls.DarkInputSignal isReset;
-        private YiNing.UI.Controls.DarkInputSignal isStart;
-        private YiNing.UI.Controls.DarkInputSignal isEmergencyStop;
-        private YiNing.UI.Controls.DarkInputSignal isNegativePressure3;
-        private YiNing.UI.Controls.DarkInputSignal isNegativePressure2;
-        private YiNing.UI.Controls.DarkInputSignal isNegativePressure1;
+        private YiNing.UI.Controls.DarkPointsIn isPositivePressure;
+        private YiNing.UI.Controls.DarkPointsIn isDoor;
+        private YiNing.UI.Controls.DarkPointsIn isStop;
+        private YiNing.UI.Controls.DarkPointsIn isReset;
+        private YiNing.UI.Controls.DarkPointsIn isStart;
+        private YiNing.UI.Controls.DarkPointsIn isEmergencyStop;
+        private YiNing.UI.Controls.DarkPointsIn isNegativePressure3;
+        private YiNing.UI.Controls.DarkPointsIn isNegativePressure2;
+        private YiNing.UI.Controls.DarkPointsIn isNegativePressure1;
         private JCS.ToggleSwitch tsStart;
         private JCS.ToggleSwitch tsReset;
         private JCS.ToggleSwitch tsStop;
@@ -1582,16 +1742,26 @@
         private YiNing.UI.Controls.DarkLabel darkLabel9;
         private YiNing.UI.Controls.DarkButton darkButton6;
         private YiNing.UI.Controls.DarkLabel darkLabel8;
-        private YiNing.UI.Controls.DarkInputSignal darkInputSignal5;
+        private YiNing.UI.Controls.DarkPointsIn DarkPointsIn5;
         private YiNing.UI.Controls.DarkTextBox dtbPlanrfpos;
-        private YiNing.UI.Controls.DarkInputSignal darkInputSignal6;
+        private YiNing.UI.Controls.DarkPointsIn DarkPointsIn6;
         private YiNing.UI.Controls.DarkTextBox dtbEncpos;
-        private YiNing.UI.Controls.DarkInputSignal darkInputSignal7;
-        private YiNing.UI.Controls.DarkInputSignal darkInputSignal8;
+        private YiNing.UI.Controls.DarkPointsIn DarkPointsIn7;
+        private YiNing.UI.Controls.DarkPointsIn DarkPointsIn8;
         private System.Windows.Forms.Timer timerUpdateUi;
         private YiNing.UI.Controls.DarkLabel darkLabel10;
         private YiNing.UI.Controls.DarkLabel darkLabel11;
         private YiNing.UI.Controls.DarkTextBox dtbPlanVel;
         private YiNing.UI.Controls.DarkTextBox dtbEncVel;
+        private YiNing.UI.Controls.DarkSectionPanel darkSectionPanel2;
+        private YiNing.UI.Controls.DarkComboBox dcmbNosepieceCom;
+        private YiNing.UI.Controls.DarkLabel darkLabel21;
+        private YiNing.UI.Controls.DarkButton darkButton1;
+        private YiNing.UI.Controls.DarkRadioButton darkRadioButton5;
+        private YiNing.UI.Controls.DarkRadioButton darkRadioButton4;
+        private YiNing.UI.Controls.DarkRadioButton darkRadioButton3;
+        private YiNing.UI.Controls.DarkRadioButton darkRadioButton2;
+        private YiNing.UI.Controls.DarkRadioButton darkRadioButton1;
+        private YiNing.UI.Controls.DarkButton darkButton3;
     }
 }

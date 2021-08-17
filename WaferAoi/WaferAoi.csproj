@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WaferAoi</RootNamespace>
     <AssemblyName>WaferAoi</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile>
@@ -78,6 +78,9 @@
     <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="MVSDK">
+      <HintPath>C:\Program Files (x86)\MindVision\Demo\C#\MVSDK\MVSDK.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -115,6 +118,12 @@
     </Compile>
     <Compile Include="Forms\Dialogs\DialogControls.Designer.cs">
       <DependentUpon>DialogControls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Docking\DockCameraSetting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Docking\DockCameraSetting.designer.cs">
+      <DependentUpon>DockCameraSetting.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Docking\DockPoints.cs">
       <SubType>UserControl</SubType>
@@ -199,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\DialogControls.resx">
       <DependentUpon>DialogControls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Docking\DockCameraSetting.resx">
+      <DependentUpon>DockCameraSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Docking\DockPoints.resx">
       <DependentUpon>DockPoints.cs</DependentUpon>
@@ -448,6 +460,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\smile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh.png" />
+    <None Include="Resources\导出文件.png" />
+    <None Include="Resources\刷新.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo.ico" />

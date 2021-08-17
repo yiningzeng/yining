@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using WaferAoi.Tools;
+using YiNing.Tools;
 
 namespace WaferAoi
 {
@@ -87,7 +89,7 @@ namespace WaferAoi
             // Add dummy documents to the main document area of the dock panel
             //DockPanel.AddContent(new DockDocument("Document 2", Icons.document_16xLG) { ShowCloseButton = true });
             //DockPanel.AddContent(new DockDocument("Document 3", Icons.document_16xLG) { ShowCloseButton = true });
-            DockPanel.AddContent(new DockWorkSpace("工作站", Icons.ChipOutline) { ShowCloseButton = false});
+            DockPanel.AddContent(new DockWorkSpace("工作站", Icons.ChipOutline) { ShowCloseButton = false });
         }
 
         #endregion
@@ -244,7 +246,7 @@ namespace WaferAoi
             var state = SerializerHelper.Deserialize<DockPanelState>(path);
             DockPanel.RestoreDockPanelState(state, GetContentBySerializationKey);
         }
-         
+
         private DarkDockContent GetContentBySerializationKey(string key)
         {
             foreach (var window in _toolWindows)
@@ -258,5 +260,48 @@ namespace WaferAoi
 
         #endregion
 
+
+        Axis GetDefaultAxis(int id, string remark, int vel = 20)
+        {
+            return new Axis()
+            {
+                Id = id,
+                Remarks = remark,
+                StartPoint = 100,
+                EndPoint = 100,
+                JogPrm = new AxisJogPrm() { Acc = 1, Dec = 1, Smooth = 0.9, Vel = vel },
+                TrapPrm = new AxisTrapPrm() { Acc = 1, Dec = 1, Vel = vel, VelStart = 5, SmoothTime = 30 },
+                GoHomePar = new AxisGoHomePar()
+                {
+                    acc = 1,
+                    dec = 1,
+                    edge = 1,
+                    escapeStep = 1000,
+                    homeOffset = 0,
+                    indexDir = 0,
+                    mode = (short)EMUMS.AxisGoHome.HOME_MODE_LIMIT_HOME_INDEX,
+                    modeText = "限位+Home+Index回原点(13)",
+                    moveDir = 1,
+                    searchHomeDistance = 0,
+                    searchIndexDistance = 0,
+                    smoothTime = (short)0.8,
+                    triggerIndex = -1,
+                    velHigh = vel * 2,
+                    velLow = vel
+                }
+            };
+        }
+        private void 恢复默认运动参数ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var result = DarkMessageBox.ShowWarning(@"继续操作会丢失您之前设置的运动参数，确定要继续么?", @"提醒", DarkDialogButton.YesNo);
+            if (result == DialogResult.No)
+                return;
+            Config config = new Config();
+            config.Axes.Add(GetDefaultAxis(1, "载具X轴"));
+            config.Axes.Add(GetDefaultAxis(2, "载具Y轴"));
+            config.Axes.Add(GetDefaultAxis(3, "载具旋转轴", 2));
+            config.Axes.Add(GetDefaultAxis(4, "载具Z轴"));
+            JsonHelper.Serialize(config, "yining.config");
+        }
     }
 }

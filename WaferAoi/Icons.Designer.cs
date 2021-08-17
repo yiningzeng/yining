@@ -203,6 +203,16 @@ namespace WaferAoi {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap refresh {
+            get {
+                object obj = ResourceManager.GetObject("refresh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap Settings {
             get {
                 object obj = ResourceManager.GetObject("Settings", resourceCulture);
@@ -316,6 +326,16 @@ namespace WaferAoi {
         internal static System.Drawing.Bitmap 向左128 {
             get {
                 object obj = ResourceManager.GetObject("向左128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 导出文件 {
+            get {
+                object obj = ResourceManager.GetObject("导出文件", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

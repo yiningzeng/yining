@@ -54,6 +54,7 @@ namespace WaferAoi
             this.mnuLayers = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHistory = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.恢复默认运动参数ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.darkSeparator1 = new YiNing.UI.Controls.DarkSeparator();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -290,11 +291,22 @@ namespace WaferAoi
             // 
             this.mnuHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.mnuHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.恢复默认运动参数ToolStripMenuItem,
             this.mnuAbout});
             this.mnuHelp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.mnuHelp.Name = "mnuHelp";
             this.mnuHelp.Size = new System.Drawing.Size(44, 21);
             this.mnuHelp.Text = "&帮助";
+            // 
+            // 恢复默认运动参数ToolStripMenuItem
+            // 
+            this.恢复默认运动参数ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.恢复默认运动参数ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.恢复默认运动参数ToolStripMenuItem.Image = global::WaferAoi.Icons.refresh;
+            this.恢复默认运动参数ToolStripMenuItem.Name = "恢复默认运动参数ToolStripMenuItem";
+            this.恢复默认运动参数ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.恢复默认运动参数ToolStripMenuItem.Text = "恢复默认运动参数";
+            this.恢复默认运动参数ToolStripMenuItem.Click += new System.EventHandler(this.恢复默认运动参数ToolStripMenuItem_Click);
             // 
             // mnuAbout
             // 
@@ -302,7 +314,7 @@ namespace WaferAoi
             this.mnuAbout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.mnuAbout.Image = global::WaferAoi.Icons.StatusAnnotations_Information_16xLG_color;
             this.mnuAbout.Name = "mnuAbout";
-            this.mnuAbout.Size = new System.Drawing.Size(100, 22);
+            this.mnuAbout.Size = new System.Drawing.Size(180, 22);
             this.mnuAbout.Text = "&关于";
             // 
             // darkSeparator1
@@ -485,6 +497,7 @@ namespace WaferAoi
         private System.Windows.Forms.ToolStripButton toolStripButton7;
         private System.Windows.Forms.ToolStripMenuItem 参数设置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 点位测试ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 恢复默认运动参数ToolStripMenuItem;
     }
 }
 

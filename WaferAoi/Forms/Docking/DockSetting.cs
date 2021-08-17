@@ -10,6 +10,7 @@ using WaferAoi.Tools;
 using YiNing.Tools;
 using System.Threading;
 using System.Threading.Tasks;
+using System.IO.Ports;
 
 namespace WaferAoi
 {
@@ -17,6 +18,7 @@ namespace WaferAoi
     {
         #region Field Region
         Config config;
+        CommunicationManager nosepieceCom;
         #endregion
 
         #region Constructor Region
@@ -41,6 +43,7 @@ namespace WaferAoi
         {
             timerUpdateUi.Tick += TimerUpdateUi_Tick;
             dlvwAxes.SelectedIndicesChanged += DlvwAxes_SelectedIndicesChanged;
+            this.Load += DockSetting_Load;
             
             ControlHelper.SetToggleSwitchCheckedChanged(new Control[] { this }, Ts_CheckedChanged);
             //运动控制
@@ -51,21 +54,38 @@ namespace WaferAoi
             ControlHelper.SetDarkButtonClick(new Control[] { this }, DarkButton_Click);
         }
 
-        
+        private void DockSetting_Load(object sender, EventArgs e)
+        {
+            config = JsonHelper.DeserializeByFile<Config>("yining.config");
+            if (config == null) { DarkMessageBox.ShowError("未找到运动控制的相关配置", "错误提醒"); }
+            else
+            {
+                foreach (var axis in config.Axes)
+                {
+                    var item = new DarkListItem(axis.Remarks);
+                    item.Icon = Icons.x轴;
+                    item.Tag = axis;
+                    dlvwAxes.Items.Add(item);
+                }
+                dlvwAxes.SelectItem(0);
+            }
+
+            string[] ports = SerialPort.GetPortNames();
+            for(int i = 0; i< ports.Length; i++)
+            {
+                dcmbNosepieceCom.Items.Add(ports[i]);
+                if (ports[i].Equals(config.NosepieceCom))
+                {
+                    dcmbNosepieceCom.SelectedIndex = i;
+                }
+            }
+
+        }
 
         private void Initialize()
         {
             timerUpdateUi.Start();
-            config = JsonHelper.DeserializeByFile<Config>("yining.config");
-
-            foreach(var axis in config.Axes)
-            {
-                var item = new DarkListItem(axis.Remarks);
-                item.Icon = Icons.x轴;
-                item.Tag = axis;
-                dlvwAxes.Items.Add(item);
-            }
-            dlvwAxes.SelectItem(0);
+            nosepieceCom = new CommunicationManager();
         }
 
         private Axis GetSelectAxis()
@@ -94,34 +114,39 @@ namespace WaferAoi
             #region 查询轴状态
             try
             {
-                if (axis == null) return;
+       
                 if (!this.Created) return;
-                int iAxisSts = MotorsControl.GetAxisStatusInt(axis.Id);
+                if (axis != null)
+                {
+                    int iAxisSts = MotorsControl.GetAxisStatusInt(axis.Id);
+                    this.BeginInvoke(new Action<Axis, int>((ax, axisSts) =>
+                    {
+                        dsepAxisStatus.SectionHeader = ax.Remarks + "-轴状态";
+
+                        toggleSwitch5.Checked = DarkPointsIn5.Checked = (axisSts & EMUMS.AxisStatus.ServoOn) != 0;
+                        DarkPointsIn6.Checked = (axisSts & EMUMS.AxisStatus.Alarm) == 0;
+                        DarkPointsIn8.Checked = (axisSts & EMUMS.AxisStatus.PLimOn) == 0;
+                        DarkPointsIn7.Checked = (axisSts & EMUMS.AxisStatus.NLimOn) == 0;
+                        MotorsControl.TAxisInfo axisReadInfo = MotorsControl.AxisReadInfo(axis.Id);
+                        dtbPlanrfpos.Text = axisReadInfo.prfpos.ToString();
+                        dtbEncpos.Text = axisReadInfo.encpos.ToString();
+                        dtbPlanVel.Text = axisReadInfo.prfvel.ToString();
+                        dtbEncVel.Text = axisReadInfo.encvel.ToString();
+                    }), axis, iAxisSts);
+                }
                 int exi = MotorsControl.IoSignalEXI(4);
-                this.BeginInvoke(new Action<Axis, int, int>((ax, axisSts, exiSts) =>
+                this.BeginInvoke(new Action<int>((exiSts) =>
                  {
-                     dsepAxisStatus.SectionHeader = ax.Remarks + "-轴状态";
-
-                     toggleSwitch5.Checked = darkInputSignal5.IsSuccess = (axisSts & EMUMS.AxisStatus.ServoOn) != 0;
-                     darkInputSignal6.IsSuccess = (axisSts & EMUMS.AxisStatus.Alarm) == 0;
-                     darkInputSignal8.IsSuccess = (axisSts & EMUMS.AxisStatus.PLimOn) == 0;
-                     darkInputSignal7.IsSuccess = (axisSts & EMUMS.AxisStatus.NLimOn) == 0;
-                     MotorsControl.TAxisInfo axisReadInfo = MotorsControl.AxisReadInfo(axis.Id);
-                     dtbPlanrfpos.Text = axisReadInfo.prfpos.ToString();
-                     dtbEncpos.Text = axisReadInfo.encpos.ToString();
-                     dtbPlanVel.Text = axisReadInfo.prfvel.ToString();
-                     dtbEncVel.Text = axisReadInfo.encvel.ToString();
-
-                     isEmergencyStop.IsSuccess = (exi & (1 << 0)) == 0;
-                     isStart.IsSuccess = (exi & (1 << 1)) != 0;
-                     isReset.IsSuccess = (exi & (1 << 2)) != 0;
-                     isStop.IsSuccess = (exi & (1 << 3)) != 0;
-                     isDoor.IsSuccess = (exi & (1 << 4)) != 0;
-                     isPositivePressure.IsSuccess = (exi & (1 << 7)) != 0;
-                     isNegativePressure1.IsSuccess = (exi & (1 << 8)) != 0;
-                     isNegativePressure2.IsSuccess = (exi & (1 << 9)) != 0;
-                     isNegativePressure3.IsSuccess = (exi & (1 << 10)) != 0;
-                 }), axis, iAxisSts, exi);
+                     isEmergencyStop.Checked = (exi & (1 << 0)) == 0;
+                     isStart.Checked = (exi & (1 << 1)) != 0;
+                     isReset.Checked = (exi & (1 << 2)) != 0;
+                     isStop.Checked = (exi & (1 << 3)) != 0;
+                     isDoor.Checked = (exi & (1 << 4)) != 0;
+                     isPositivePressure.Checked = (exi & (1 << 7)) != 0;
+                     isNegativePressure1.Checked = (exi & (1 << 8)) != 0;
+                     isNegativePressure2.Checked = (exi & (1 << 9)) != 0;
+                     isNegativePressure3.Checked = (exi & (1 << 10)) != 0;
+                 }), exi);
             }
             catch (Exception er) { }
 
@@ -235,6 +260,36 @@ namespace WaferAoi
             
             }
         }
+
+        /// <summary>
+        /// 所有的darkRadioButton事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void darkRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            DarkRadioButton btn = sender as DarkRadioButton;
+            string type = btn.Tag.ToString();
+            switch (type)
+            {
+                case "物镜1":
+                    if (nosepieceCom.isPortOpen) nosepieceCom.WriteData("5A A5 06 83 10 03 01 00 01 9E");
+                    break;
+                case "物镜2":
+                    if (nosepieceCom.isPortOpen) nosepieceCom.WriteData("5A A5 06 83 10 03 01 00 02 9F");
+                    break;
+                case "物镜3":
+                    if (nosepieceCom.isPortOpen) nosepieceCom.WriteData("5A A5 06 83 10 03 01 00 03 A0");
+                    break;
+                case "物镜4":
+                    if (nosepieceCom.isPortOpen) nosepieceCom.WriteData("5A A5 06 83 10 03 01 00 04 A1");
+                    break;
+                case "物镜5":
+                    if (nosepieceCom.isPortOpen) nosepieceCom.WriteData("5A A5 06 83 10 03 01 00 05 A2");
+                    break;
+            }
+        }
+
         /// <summary>
         /// 所有的darkbutton点击事件
         /// </summary>
@@ -243,11 +298,34 @@ namespace WaferAoi
         private void DarkButton_Click(object sender, EventArgs e)
         {
             Axis axis = GetSelectAxis();
-
             DarkButton btn = sender as DarkButton;
             string type = btn.Tag.ToString();
             switch (type)
             {
+                #region 物镜操作
+                case "打开物镜旋转端口":
+                    if (nosepieceCom.isPortOpen) nosepieceCom.ClosePort();
+                    nosepieceCom.PortName = dcmbNosepieceCom.Text;
+                    nosepieceCom.Parity = "None";
+                    nosepieceCom.StopBits = "One";
+                    nosepieceCom.DataBits = "8";
+                    nosepieceCom.BaudRate = "115200";
+                    nosepieceCom.OpenPort();
+                    nosepieceCom.CurrentTransmissionType = CommunicationManager.TransmissionType.Hex;
+                    nosepieceCom.WriteData("5A A5 06 83 10 05 01 00 04 A3");
+                    btn.Text = "关闭端口";
+                    btn.Tag = "关闭物镜旋转端口";
+                    break;
+                case "关闭物镜旋转端口":
+                    btn.Text = "打开端口";
+                    btn.Tag = "打开物镜旋转端口";
+                    nosepieceCom.ClosePort();
+                    break;
+                case "保存物镜旋转端口":
+                    config.NosepieceCom = dcmbNosepieceCom.Text;
+                    JsonHelper.Serialize(config, "yining.config");
+                    break;
+                #endregion
                 #region 运动参数设置和单轴的操作
                 case "单轴清除状态":
                     if (axis != null) MotorsControl.ClearSts(axis.Id);
@@ -372,7 +450,6 @@ namespace WaferAoi
 
             base.Close();
         }
-
         #endregion
 
         //private void darkButton9_Click(object sender, EventArgs e)

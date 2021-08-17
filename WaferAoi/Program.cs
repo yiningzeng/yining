@@ -24,11 +24,20 @@ namespace WaferAoi
             if (Exist)//如果没有运行
             {
                 newMutex.ReleaseMutex();//运行新窗体
-                MotorsControl.OpenDevice(true);
-                foreach (var i in config.Axes)
+                if (!MotorsControl.OpenDevice(true))
                 {
-                    MotorsControl.ServoOn(i.Id);
+                    DarkMessageBox.ShowError("打开运动控制器出错，即将推出程序，请联系技术人员！", "提示");
+                    return;
                 }
+                if (config != null)
+                {
+                    foreach (var i in config.Axes)
+                    {
+                        MotorsControl.ServoOn(i.Id);
+                    }
+                }
+        
+          
                 MainForm mainForm = new MainForm();
                 mainForm.FormClosing += MainForm_FormClosing;
                 Application.Run(mainForm);

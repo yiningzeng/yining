@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>YiNing.UI</RootNamespace>
     <AssemblyName>YiNing.UI</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -89,10 +89,16 @@
     <Compile Include="Controls\DarkNumericUpDown.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\DarkPointsIn.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\DarkRadioButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\DarkScrollOrientation.cs" />
+    <Compile Include="Controls\DarkSectionPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\DarkTitle.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -125,9 +131,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\DarkScrollView.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\DarkSectionPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\DarkSeparator.cs">

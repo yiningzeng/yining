@@ -8,7 +8,19 @@ namespace WaferAoi.Tools
 {
     class Config
     {
+        /// <summary>
+        /// 运动轴
+        /// </summary>
         public List<Axis> Axes { get; set; }
+
+        /// <summary>
+        /// 物镜转盘Com端口
+        /// </summary>
+        public string NosepieceCom { get; set; }
+        /// <summary>
+        /// 奥普特光源Com端口
+        /// </summary>
+        public string OPTLightCom { get; set; }
         public Config()
         {
             Axes = new List<Axis>();

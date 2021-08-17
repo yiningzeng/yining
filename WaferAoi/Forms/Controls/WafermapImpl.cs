@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using YiNing.Fsm;
+using YiNing.WafermapDisplay;
 
 namespace WaferAoi
 {
-    class WafermapImpl : YiNing.WafermapDisplay.Wafermap
+    class WafermapImpl : Wafermap
     {
 
         public override void dieEntered(int previousX, int previousY, int previousBincode, int x, int y, int bincode)
@@ -69,7 +70,7 @@ namespace WaferAoi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.Name = "WafermapImpl";
-            this.Size = new System.Drawing.Size(1153, 623);
+            this.Size = new System.Drawing.Size(1058, 629);
             this.ResumeLayout(false);
 
         }
