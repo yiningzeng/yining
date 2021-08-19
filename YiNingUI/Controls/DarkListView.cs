@@ -29,7 +29,7 @@ namespace YiNing.UI.Controls
         private List<int> _selectedIndices;
         private int _anchoredItemStart = -1;
         private int _anchoredItemEnd = -1;
-
+        private Color _selectFocusItemColor = Colors.BlueSelection;
         #endregion
 
         #region Property Region
@@ -184,7 +184,7 @@ namespace YiNing.UI.Controls
             {
                 var rect = new Rectangle(0, i * ItemHeight, width, ItemHeight);
 
-                if (rect.Contains(pos))
+                if (rect.Contains(pos) && Items[i].Enabled)
                 {
                     if (MultiSelect && ModifierKeys == Keys.Shift)
                         SelectAnchoredRange(i);
@@ -370,7 +370,7 @@ namespace YiNing.UI.Controls
             Invalidate();
         }
 
-        private void SelectAnchoredRange(int index)
+        protected void SelectAnchoredRange(int index)
         {
             _anchoredItemEnd = index;
             SelectItems(_anchoredItemStart, index);
@@ -473,7 +473,7 @@ namespace YiNing.UI.Controls
                 VScrollTo((itemBottom - Viewport.Height));
         }
 
-        private IEnumerable<int> ItemIndexesInView()
+        protected IEnumerable<int> ItemIndexesInView()
         {
             var top = (Viewport.Top / ItemHeight) - 1;
 
@@ -520,7 +520,7 @@ namespace YiNing.UI.Controls
                 var bgColor = !odd ? Colors.HeaderBackground : Colors.GreyBackground;
 
                 if (SelectedIndices.Count > 0 && SelectedIndices.Contains(i))
-                    bgColor = Focused ? Colors.BlueSelection : Colors.GreySelection;
+                    bgColor = Focused ? _selectFocusItemColor : Colors.GreySelection;
 
                 using (var b = new SolidBrush(bgColor))
                 {

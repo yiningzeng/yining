@@ -672,5 +672,206 @@ namespace WaferAoi.Tools
                  _goHomeCallback(axis, homeStatus);
              }, objectArray);
         }
+
+        #region 位置比较
+        private static int _cmpMode = 0;//wells0170
+        /// <summary>
+        /// 保存输出DO类型，【0，GPO；1，HSIO】
+        /// </summary>
+        private static List<int> _doType = new List<int>();//wells0185//改为列表，支持多通道数据
+        //private static int _doType = 1;//wells0170
+
+        /// <summary>
+        /// 输出IO索引，默认是3
+        /// </summary>
+        private static List<int> _doChannel = new List<int>();//wells0185//改为列表，支持多通道数据
+        //private static int _doChannel = 3;//wells0170
+        /// <summary>
+        /// gpo端口
+        /// </summary>
+        private static ushort _gpo = 0x0;//wells0185
+
+        /// <summary>
+        /// hso端口
+        /// </summary>
+        private static ushort _hso = 0x0;//wells0185
+        /// <summary>
+        /// 设置比较模式
+        /// </summary>
+        /// <param name="channel">输出通道</param>
+        /// <param name="doType">输出通道类型，【0，GPO；1，HSIO】</param>
+        /// <param name="cmpMode">比较模式【0，FIFO模式；1，线性模式；2，等差模式】</param>
+        /// <param name="dimension">比较维度【1，一维；2，二维】</param>
+        /// <param name="sourceMode">比较源【0，FDB；1，CMD】</param>
+        /// <param name="sourceX">比较源X轴号</param>
+        /// <param name="axisYId">比较源Y轴号</param>
+        /// <param name="outputMode">输出模式【0，脉冲；1，电平】</param>
+        /// <param name="outputPulseWidth">输出脉冲宽度</param>
+        /// <returns></returns>
+        ///2, 2, new short[] { 1, 1}, new short[] { 1, 1 }, 2, 1, 1,  0, 100
+        public static bool setCompareMode(int axisXId, int axisYId, short[] channel = null, short[] doType = null, short cmpMode = 2, short dimension = 1, short sourceMode = 1, short outputMode = 0, ushort outputPulseWidth = 100)//wells0173//wells0185//支持多通道比较
+        {
+            if (channel == null) channel = new short[] { 1, 1 };
+            if (doType == null) doType = new short[] { 1, 1 };
+            #region ***** 设置比较模式 *****
+            //setCompareMode(new short[] { 3, 4 }, new short[] { 1, 1 }, 2, 1, 1, 5, 5, 0, 100)
+            short nRetVal = 0;
+
+            if (channel == null || doType == null || channel.Length != doType.Length)
+                return false;
+
+            nRetVal = GSN.GTN_PosCompareStop(1, 1);//先关闭比较触发功能
+            if (nRetVal != 0)
+            {
+                return false;
+            }
+
+            nRetVal = GSN.GTN_PosCompareClear(1, 1);//清空比80较数据缓存
+            if (nRetVal != 0)
+            {
+                return false;
+            }
+
+            short permit = 0x2;
+
+            _gpo = 0;
+            _hso = 0;
+
+            for (int igg = 0; igg < channel.Length; igg++)
+            {
+                short dataType = 0;
+                ushort tmp = (ushort)(1 << (channel[igg] - 1));
+                if (doType[igg] == 0)
+                {
+                    dataType = GSN.MC_GPO;
+                    _gpo |= tmp;
+                }
+                else
+                {
+                    dataType = GSN.MC_HSO;
+                    _hso |= tmp;
+                }
+                nRetVal = GSN.GTN_SetTerminalPermitEx(1, 1, dataType, ref permit, channel[igg], 1);//设置比较通道
+                if (nRetVal != 0)
+                {
+                    return false;
+                }
+            }
+
+            GSN.TPosCompareMode mode;
+            nRetVal = GSN.GTN_GetPosCompareMode(1, 1, out mode);//获取比较模式参数
+            if (nRetVal != 0)
+            {
+                return false;
+            }
+
+            mode.mode = cmpMode;
+            mode.dimension = dimension;
+            mode.sourceMode = sourceMode;
+            mode.sourceX = (short)axisXId;
+            mode.sourceY = (short)axisYId;
+            mode.outputMode = outputMode;
+            mode.outputCounter = 1;
+            mode.outputPulseWidth = outputPulseWidth;
+            mode.errorBand = 0;
+
+            nRetVal = GSN.GTN_SetPosCompareMode(1, 1, ref mode);//设置比较模式参数
+            if (nRetVal != 0)
+            {
+                return false;
+            }
+
+            _cmpMode = cmpMode;
+            _doType.Clear();
+            _doChannel.Clear();
+            for (int igg = 0; igg < channel.Length; igg++)
+            {
+                _doType.Add(doType[igg]);
+                _doChannel.Add(channel[igg]);
+            }
+
+            return true;
+
+            #endregion
+        }
+        public static bool setCompareData_Pso(int interval)//wells0173
+        {
+            #region ***** 设置PSO数据 *****
+
+            short nRetVal = 0;
+
+            //nRetVal = GSN.GTN_PosCompareClear(1, 1);//清空比较数据缓存
+            //if (nRetVal != 0)
+            //{
+            //    return false;
+            //}
+
+            //GSN.TPosCompareMode mode;
+            //nRetVal = GSN.GTN_GetPosCompareMode(1, 1, out mode);//获取比较模式参数
+            //if (nRetVal != 0)
+            //{
+            //    return false;
+            //}
+
+            //if (mode.mode != 2 || _cmpMode != 2) //模式不匹配
+            //    return false;
+
+            GSN.TPosComparePsoPrm pPrm;
+            nRetVal = GSN.GTN_GetPosComparePsoPrm(1, 1, out pPrm);
+            if (nRetVal != 0)
+            {
+                return false;
+            }
+
+            pPrm.count = 1;
+            pPrm.gpo = _gpo;
+            pPrm.hso = _hso;
+            pPrm.syncPos = interval;
+
+            nRetVal = GSN.GTN_SetPosComparePsoPrm(1, 1, ref pPrm);
+            if (nRetVal != 0)
+            {
+                return false;
+            }
+
+            return true;
+
+            #endregion
+        }
+
+        public static bool startCompare()//wells0173
+        {
+            #region ***** 开始比较功能 *****
+
+            short nRetVal = 0;
+
+            nRetVal = GSN.GTN_PosCompareStart(1, 1);//开启比较触发功能
+            if (nRetVal != 0)
+            {
+                return false;
+            }
+
+            return true;
+
+            #endregion
+        }
+
+        public static bool stopCompare()//wells0173
+        {
+            #region ***** 停止比较功能 *****
+
+            short nRetVal = 0;
+
+            nRetVal = GSN.GTN_PosCompareStop(1, 1);//先关闭比较触发功能
+            if (nRetVal != 0)
+            {
+                return false;
+            }
+
+            return true;
+
+            #endregion
+        }
+        #endregion
     }
 }

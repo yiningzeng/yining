@@ -34,6 +34,18 @@ namespace YiNing.UI.Controls
             }
         }
 
+        //public new DockStyle Dock
+        //{
+        //    get { return Dock; }
+        //    set
+        //    {
+        //        Dock = value;
+            
+        //        Invalidate();
+        //    }
+        //}
+
+
         [Description("是否可以拖动")]
         [DefaultValue(false)]
         public bool DragEnable
@@ -41,8 +53,15 @@ namespace YiNing.UI.Controls
             get { return _dragEnable; }
             set
             {
-                _dragEnable = value;
-                Invalidate();
+                if (Dock == DockStyle.None)
+                {
+                    _dragEnable = value;
+                    Invalidate();
+                }
+                else
+                {
+                    throw new System.Exception("Dock属性只有是None的时候才可以拖动");
+                }
             }
         }
 

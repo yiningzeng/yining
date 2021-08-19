@@ -28,8 +28,154 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.darkSectionPanel6 = new YiNing.UI.Controls.DarkSectionPanel();
+            this.isNegativePressure3 = new YiNing.UI.Controls.DarkPointsIn();
+            this.isNegativePressure2 = new YiNing.UI.Controls.DarkPointsIn();
+            this.isEmergencyStop = new YiNing.UI.Controls.DarkPointsIn();
+            this.isNegativePressure1 = new YiNing.UI.Controls.DarkPointsIn();
+            this.isStart = new YiNing.UI.Controls.DarkPointsIn();
+            this.isPositivePressure = new YiNing.UI.Controls.DarkPointsIn();
+            this.isReset = new YiNing.UI.Controls.DarkPointsIn();
+            this.isDoor = new YiNing.UI.Controls.DarkPointsIn();
+            this.isStop = new YiNing.UI.Controls.DarkPointsIn();
+            this.timerCheck = new System.Windows.Forms.Timer(this.components);
             this.waferMap = new WaferAoi.WafermapImpl();
+            this.darkSectionPanel6.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // darkSectionPanel6
+            // 
+            this.darkSectionPanel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.darkSectionPanel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.darkSectionPanel6.Controls.Add(this.isNegativePressure3);
+            this.darkSectionPanel6.Controls.Add(this.isNegativePressure2);
+            this.darkSectionPanel6.Controls.Add(this.isEmergencyStop);
+            this.darkSectionPanel6.Controls.Add(this.isNegativePressure1);
+            this.darkSectionPanel6.Controls.Add(this.isStart);
+            this.darkSectionPanel6.Controls.Add(this.isPositivePressure);
+            this.darkSectionPanel6.Controls.Add(this.isReset);
+            this.darkSectionPanel6.Controls.Add(this.isDoor);
+            this.darkSectionPanel6.Controls.Add(this.isStop);
+            this.darkSectionPanel6.DragEnable = true;
+            this.darkSectionPanel6.Location = new System.Drawing.Point(703, 3);
+            this.darkSectionPanel6.Name = "darkSectionPanel6";
+            this.darkSectionPanel6.SectionHeader = "信号监控";
+            this.darkSectionPanel6.Size = new System.Drawing.Size(152, 156);
+            this.darkSectionPanel6.TabIndex = 19;
+            // 
+            // isNegativePressure3
+            // 
+            this.isNegativePressure3.AutoSize = true;
+            this.isNegativePressure3.CheckedColor = System.Drawing.Color.Lime;
+            this.isNegativePressure3.Enabled = true;
+            this.isNegativePressure3.Location = new System.Drawing.Point(62, 104);
+            this.isNegativePressure3.Name = "isNegativePressure3";
+            this.isNegativePressure3.Size = new System.Drawing.Size(84, 19);
+            this.isNegativePressure3.TabIndex = 8;
+            this.isNegativePressure3.Text = "负压检测3";
+            this.isNegativePressure3.UnCheckedColor = System.Drawing.Color.Red;
+            // 
+            // isNegativePressure2
+            // 
+            this.isNegativePressure2.AutoSize = true;
+            this.isNegativePressure2.CheckedColor = System.Drawing.Color.Lime;
+            this.isNegativePressure2.Enabled = true;
+            this.isNegativePressure2.Location = new System.Drawing.Point(62, 79);
+            this.isNegativePressure2.Name = "isNegativePressure2";
+            this.isNegativePressure2.Size = new System.Drawing.Size(84, 19);
+            this.isNegativePressure2.TabIndex = 7;
+            this.isNegativePressure2.Text = "负压检测2";
+            this.isNegativePressure2.UnCheckedColor = System.Drawing.Color.Red;
+            // 
+            // isEmergencyStop
+            // 
+            this.isEmergencyStop.AutoSize = true;
+            this.isEmergencyStop.CheckedColor = System.Drawing.Color.Lime;
+            this.isEmergencyStop.Enabled = true;
+            this.isEmergencyStop.Location = new System.Drawing.Point(4, 29);
+            this.isEmergencyStop.Name = "isEmergencyStop";
+            this.isEmergencyStop.Size = new System.Drawing.Size(52, 19);
+            this.isEmergencyStop.TabIndex = 0;
+            this.isEmergencyStop.Text = "急停";
+            this.isEmergencyStop.UnCheckedColor = System.Drawing.Color.Red;
+            // 
+            // isNegativePressure1
+            // 
+            this.isNegativePressure1.AutoSize = true;
+            this.isNegativePressure1.CheckedColor = System.Drawing.Color.Lime;
+            this.isNegativePressure1.Enabled = true;
+            this.isNegativePressure1.Location = new System.Drawing.Point(62, 54);
+            this.isNegativePressure1.Name = "isNegativePressure1";
+            this.isNegativePressure1.Size = new System.Drawing.Size(84, 19);
+            this.isNegativePressure1.TabIndex = 6;
+            this.isNegativePressure1.Text = "负压检测1";
+            this.isNegativePressure1.UnCheckedColor = System.Drawing.Color.Red;
+            // 
+            // isStart
+            // 
+            this.isStart.AutoSize = true;
+            this.isStart.CheckedColor = System.Drawing.Color.Lime;
+            this.isStart.Enabled = true;
+            this.isStart.Location = new System.Drawing.Point(4, 54);
+            this.isStart.Name = "isStart";
+            this.isStart.Size = new System.Drawing.Size(52, 19);
+            this.isStart.TabIndex = 1;
+            this.isStart.Text = "启动";
+            this.isStart.UnCheckedColor = System.Drawing.Color.Red;
+            // 
+            // isPositivePressure
+            // 
+            this.isPositivePressure.AutoSize = true;
+            this.isPositivePressure.CheckedColor = System.Drawing.Color.Lime;
+            this.isPositivePressure.Enabled = true;
+            this.isPositivePressure.Location = new System.Drawing.Point(62, 29);
+            this.isPositivePressure.Name = "isPositivePressure";
+            this.isPositivePressure.Size = new System.Drawing.Size(78, 19);
+            this.isPositivePressure.TabIndex = 5;
+            this.isPositivePressure.Text = "正压检测";
+            this.isPositivePressure.UnCheckedColor = System.Drawing.Color.Red;
+            // 
+            // isReset
+            // 
+            this.isReset.AutoSize = true;
+            this.isReset.CheckedColor = System.Drawing.Color.Lime;
+            this.isReset.Enabled = true;
+            this.isReset.Location = new System.Drawing.Point(4, 79);
+            this.isReset.Name = "isReset";
+            this.isReset.Size = new System.Drawing.Size(52, 19);
+            this.isReset.TabIndex = 2;
+            this.isReset.Text = "复位";
+            this.isReset.UnCheckedColor = System.Drawing.Color.Red;
+            // 
+            // isDoor
+            // 
+            this.isDoor.AutoSize = true;
+            this.isDoor.CheckedColor = System.Drawing.Color.Lime;
+            this.isDoor.Enabled = true;
+            this.isDoor.Location = new System.Drawing.Point(4, 129);
+            this.isDoor.Name = "isDoor";
+            this.isDoor.Size = new System.Drawing.Size(52, 19);
+            this.isDoor.TabIndex = 4;
+            this.isDoor.Text = "门禁";
+            this.isDoor.UnCheckedColor = System.Drawing.Color.Red;
+            // 
+            // isStop
+            // 
+            this.isStop.AutoSize = true;
+            this.isStop.CheckedColor = System.Drawing.Color.Lime;
+            this.isStop.Enabled = true;
+            this.isStop.Location = new System.Drawing.Point(4, 104);
+            this.isStop.Name = "isStop";
+            this.isStop.Size = new System.Drawing.Size(52, 19);
+            this.isStop.TabIndex = 3;
+            this.isStop.Text = "停止";
+            this.isStop.UnCheckedColor = System.Drawing.Color.Red;
+            // 
+            // timerCheck
+            // 
+            this.timerCheck.Interval = 150;
+            this.timerCheck.Tick += new System.EventHandler(this.timerCheck_Tick);
             // 
             // waferMap
             // 
@@ -290,7 +436,6 @@
         System.Drawing.Color.Empty,
         System.Drawing.Color.Empty};
             this.waferMap.Dataset = null;
-            this.waferMap.DieAlpha = 150;
             this.waferMap.Dock = System.Windows.Forms.DockStyle.Fill;
             this.waferMap.Interactive = false;
             this.waferMap.Location = new System.Drawing.Point(0, 0);
@@ -302,7 +447,7 @@
             this.waferMap.SelectBincode = 0;
             this.waferMap.SelectX = 0;
             this.waferMap.SelectY = 0;
-            this.waferMap.Size = new System.Drawing.Size(744, 404);
+            this.waferMap.Size = new System.Drawing.Size(858, 533);
             this.waferMap.TabIndex = 0;
             this.waferMap.TooSmallString = "TOO SMALL";
             this.waferMap.TranslationX = 0;
@@ -313,10 +458,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.darkSectionPanel6);
             this.Controls.Add(this.waferMap);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "DockWorkSpace";
-            this.Size = new System.Drawing.Size(744, 404);
+            this.Size = new System.Drawing.Size(858, 533);
+            this.darkSectionPanel6.ResumeLayout(false);
+            this.darkSectionPanel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -324,5 +472,16 @@
         #endregion
 
         private WafermapImpl waferMap;
+        private YiNing.UI.Controls.DarkSectionPanel darkSectionPanel6;
+        private YiNing.UI.Controls.DarkPointsIn isNegativePressure3;
+        private YiNing.UI.Controls.DarkPointsIn isNegativePressure2;
+        private YiNing.UI.Controls.DarkPointsIn isNegativePressure1;
+        private YiNing.UI.Controls.DarkPointsIn isPositivePressure;
+        private YiNing.UI.Controls.DarkPointsIn isDoor;
+        private YiNing.UI.Controls.DarkPointsIn isStop;
+        private YiNing.UI.Controls.DarkPointsIn isReset;
+        private YiNing.UI.Controls.DarkPointsIn isStart;
+        private YiNing.UI.Controls.DarkPointsIn isEmergencyStop;
+        private System.Windows.Forms.Timer timerCheck;
     }
 }

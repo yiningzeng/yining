@@ -11,7 +11,8 @@ namespace YiNing.UI.Forms
 
         private string _message;
         private int _maximumWidth = 350;
-
+        private bool _isShowed = false; // 表示是否已经打开了提醒
+        private DarkMessageBox darkMessageBox;
         #endregion
 
         #region Property Region
@@ -67,17 +68,17 @@ namespace YiNing.UI.Forms
 
         #region Static Method Region
 
-        public static DialogResult ShowInformation(string message, string caption, DarkDialogButton buttons = DarkDialogButton.Ok)
+        public static DialogResult ShowInformation(string message, string caption = "提醒", DarkDialogButton buttons = DarkDialogButton.Ok)
         {
             return ShowDialog(message, caption, DarkMessageBoxIcon.Information, buttons);
         }
 
-        public static DialogResult ShowWarning(string message, string caption, DarkDialogButton buttons = DarkDialogButton.Ok)
+        public static DialogResult ShowWarning(string message, string caption = "警告", DarkDialogButton buttons = DarkDialogButton.Ok)
         {
             return ShowDialog(message, caption, DarkMessageBoxIcon.Warning, buttons);
         }
 
-        public static DialogResult ShowError(string message, string caption, DarkDialogButton buttons = DarkDialogButton.Ok)
+        public static DialogResult ShowError(string message, string caption = "错误", DarkDialogButton buttons = DarkDialogButton.Ok)
         {
             return ShowDialog(message, caption, DarkMessageBoxIcon.Error, buttons);
         }
@@ -94,6 +95,37 @@ namespace YiNing.UI.Forms
         #endregion
 
         #region Method Region
+
+        public void ShowDialogInformation(string message, DarkDialogButton buttons = DarkDialogButton.Ok)
+        {
+            Text = "提醒";
+            _message = message;
+            DialogButtons = DarkDialogButton.None;
+            DialogButtons = buttons;
+            SetIcon(DarkMessageBoxIcon.Information);
+            if (!_isShowed) ShowDialog();
+        }
+
+        public void ShowDialogWarning(string message, DarkDialogButton buttons = DarkDialogButton.Ok)
+        {
+            Text = "警告";
+            _message = message;
+            DialogButtons = DarkDialogButton.None;
+            DialogButtons = buttons;
+            SetIcon(DarkMessageBoxIcon.Warning);
+            if (!_isShowed) ShowDialog();
+        }
+
+        public void ShowDialogError(string message, DarkDialogButton buttons = DarkDialogButton.Ok)
+        {
+            Text = "出错了";
+            _message = message;
+            DialogButtons = DarkDialogButton.None;
+            DialogButtons = buttons;
+            SetIcon(DarkMessageBoxIcon.Error);
+            if (!_isShowed) ShowDialog();
+        }
+
 
         private void SetIcon(DarkMessageBoxIcon icon)
         {
@@ -169,6 +201,18 @@ namespace YiNing.UI.Forms
             base.OnLoad(e);
 
             CalculateSize();
+        }
+
+        protected override void OnShown(EventArgs e)
+        {
+            _isShowed = true;
+            base.OnShown(e);
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            _isShowed = false;
+            base.OnClosing(e);
         }
 
         #endregion

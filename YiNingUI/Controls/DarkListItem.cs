@@ -16,6 +16,8 @@ namespace YiNing.UI.Controls
 
         private string _text;
 
+        private bool _Enabled = true;
+
         #endregion
 
         #region Property Region
@@ -32,9 +34,28 @@ namespace YiNing.UI.Controls
             }
         }
 
+        /// <summary>
+        /// 是否可选中和点击
+        /// </summary>
+        public bool Enabled
+        {
+            get { return _Enabled; }
+            set
+            {
+                _Enabled = value;
+            }
+        }
+
+
         public Rectangle Area { get; set; }
 
         public Color TextColor { get; set; }
+
+        /// <summary>
+        /// 背景颜色
+        /// </summary>
+        public Color BackgroundColor { get; set; }
+
 
         public FontStyle FontStyle { get; set; }
 

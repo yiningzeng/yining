@@ -103,6 +103,16 @@ namespace YiNing.UI {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap hook {
+            get {
+                object obj = ResourceManager.GetObject("hook", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap inactive_close {
             get {
                 object obj = ResourceManager.GetObject("inactive_close", resourceCulture);
@@ -156,6 +166,16 @@ namespace YiNing.UI {
         internal static System.Drawing.Bitmap tw_close_selected {
             get {
                 object obj = ResourceManager.GetObject("tw_close_selected", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 选择 {
+            get {
+                object obj = ResourceManager.GetObject("选择", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

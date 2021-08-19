@@ -70,7 +70,7 @@ namespace WaferAoi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.Name = "WafermapImpl";
-            this.Size = new System.Drawing.Size(1058, 629);
+            this.Size = new System.Drawing.Size(0, 0);
             this.ResumeLayout(false);
 
         }

@@ -8,6 +8,8 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using WaferAoi.Tools;
 using YiNing.Tools;
+using System.Threading;
+using System.Linq;
 
 namespace WaferAoi
 {
@@ -15,12 +17,12 @@ namespace WaferAoi
     {
 
         #region Field Region
-
+        public FsmHelper fsmHelper = new FsmHelper();
         private List<DarkDockContent> _toolWindows = new List<DarkDockContent>();
 
-        private DockProject _dockProject;
+        private DockWaferList _dockProject;
         private DockProperties _dockProperties;
-        private DockConsole _dockConsole;
+        private DockControl _dockControl;
         private DockLayers _dockLayers;
         private DockHistory _dockHistory;
 
@@ -39,6 +41,7 @@ namespace WaferAoi
 
         public MainForm()
         {
+            fsmHelper.IssueCommand(FsmHelper.Action.On);
             InitializeComponent();
             // Add the control scroll message filter to re-route all mousewheel events
             // to the control the user is currently hovering over with their cursor.
@@ -55,16 +58,16 @@ namespace WaferAoi
             HookEvents();
 
             // Build the tool windows and add them to the dock panel
-            _dockProject = new DockProject();
+            _dockProject = new DockWaferList();
             _dockProperties = new DockProperties();
-            _dockConsole = new DockConsole();
+            _dockControl = new DockControl();
             _dockLayers = new DockLayers();
             _dockHistory = new DockHistory();
 
             // Add the tool windows to a list
             _toolWindows.Add(_dockProject);
             _toolWindows.Add(_dockProperties);
-            _toolWindows.Add(_dockConsole);
+            _toolWindows.Add(_dockControl);
             _toolWindows.Add(_dockLayers);
             _toolWindows.Add(_dockHistory);
 
@@ -89,7 +92,9 @@ namespace WaferAoi
             // Add dummy documents to the main document area of the dock panel
             //DockPanel.AddContent(new DockDocument("Document 2", Icons.document_16xLG) { ShowCloseButton = true });
             //DockPanel.AddContent(new DockDocument("Document 3", Icons.document_16xLG) { ShowCloseButton = true });
-            DockPanel.AddContent(new DockWorkSpace("工作站", Icons.ChipOutline) { ShowCloseButton = false });
+            fsmHelper.IssueCommand(FsmHelper.Action.Initialize);
+            DockPanel.AddContent(new DockWorkSpace(this, "工作站", Icons.ChipOutline) { ShowCloseButton = false });
+ 
         }
 
         #endregion
@@ -120,7 +125,8 @@ namespace WaferAoi
 
             mnuAbout.Click += About_Click;
             参数设置ToolStripMenuItem.Click += 参数设置ToolStripMenuItem_Click;
-            点位测试ToolStripMenuItem.Click += 点位测试ToolStripMenuItem_Click;
+            DebugToolStripMenuItem.Click += DebugToolStripMenuItem_Click;
+            Load += MainForm_Load;
         }
 
         private void ToggleToolWindow(DarkToolWindow toolWindow)
@@ -135,7 +141,7 @@ namespace WaferAoi
         {
             mnuProject.Checked = DockPanel.ContainsContent(_dockProject);
             mnuProperties.Checked = DockPanel.ContainsContent(_dockProperties);
-            mnuConsole.Checked = DockPanel.ContainsContent(_dockConsole);
+            mnuConsole.Checked = DockPanel.ContainsContent(_dockControl);
             mnuLayers.Checked = DockPanel.Contains(_dockLayers);
             mnuHistory.Checked = DockPanel.Contains(_dockHistory);
         }
@@ -143,6 +149,23 @@ namespace WaferAoi
         #endregion
 
         #region Event Handler Region
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            if (DarkMessageBox.ShowInformation("是否需要一键回原点", buttons: DarkDialogButton.YesNo) == DialogResult.Yes)
+            {
+                fsmHelper.IssueCommand(FsmHelper.Action.Free);
+            }
+            var aa= GetLatestFiles(@"D:\WaferDataIn\mapping"); 
+        }
+
+        private string[] GetLatestFiles(string Path)
+        {
+            var query = from f in Directory.GetFiles(Path, "*.txt")
+                        let fi = new FileInfo(f)
+                        orderby fi.CreationTime descending
+                        select fi.Name;
+            return query.ToArray();
+        }
         /// <summary>
         /// 鼠标按下
         /// </summary>
@@ -159,6 +182,7 @@ namespace WaferAoi
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             SerializeDockPanel("dockpanel.config");
+            MotorsControl.CloseDevice();
         }
 
         private void DockPanel_ContentAdded(object sender, DockContentEventArgs e)
@@ -189,9 +213,9 @@ namespace WaferAoi
         {
             DockPanel.AddContent(new DockSetting("运动轴设置", Icons.Tools));
         }
-        private void 点位测试ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DebugToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DockPanel.AddContent(new DockPoints("点位测试", Icons.smile));
+            DockPanel.AddContent(new DockDebugs("开发功能测试", Icons.smile));
         }
 
         private void Dialog_Click(object sender, EventArgs e)
@@ -212,7 +236,7 @@ namespace WaferAoi
 
         private void Console_Click(object sender, EventArgs e)
         {
-            ToggleToolWindow(_dockConsole);
+            ToggleToolWindow(_dockControl);
         }
 
         private void Layers_Click(object sender, EventArgs e)
@@ -261,7 +285,7 @@ namespace WaferAoi
         #endregion
 
 
-        Axis GetDefaultAxis(int id, string remark, int vel = 20)
+        Axis GetDefaultAxis(int id, string remark, int vel = 10)
         {
             return new Axis()
             {
@@ -302,6 +326,16 @@ namespace WaferAoi
             config.Axes.Add(GetDefaultAxis(3, "载具旋转轴", 2));
             config.Axes.Add(GetDefaultAxis(4, "载具Z轴"));
             JsonHelper.Serialize(config, "yining.config");
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            fsmHelper.IssueCommand(FsmHelper.Action.ManualFeed);
+        }
+
+        private void 制作程式ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DockPanel.AddContent(new DockSoftwareEdit(this, "程式制作", Icons.Cup));
         }
     }
 }

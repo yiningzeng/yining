@@ -91,4 +91,20 @@ namespace WaferAoi.Tools
             EightInchesAir = 4,
         }
     }
+
+
+    public class NosepieceData
+    {
+        public static string PortName;
+        public const string Parity = "None"; //{ get; set; }
+        public const string StopBits = "One";
+        public const string DataBits = "8";
+        public const string BaudRate = "115200";
+        public const string Select5BingHoleHex = "5A A5 06 83 10 05 01 00 04 A3"; // 选择5个大洞模式
+        public const string Hole1Hex = "5A A5 06 83 10 03 01 00 01 9E"; // 洞1
+        public const string Hole2Hex = "5A A5 06 83 10 03 01 00 02 9F"; // 洞2
+        public const string Hole3Hex = "5A A5 06 83 10 03 01 00 03 A0"; // 洞3
+        public const string Hole4Hex = "5A A5 06 83 10 03 01 00 04 A1"; // 洞4
+        public const string Hole5Hex = "5A A5 06 83 10 03 01 00 05 A2"; // 洞5
+    }
 }

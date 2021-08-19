@@ -5,11 +5,17 @@ using YiNing.UI.Forms;
 using System.Drawing;
 using System.Windows.Forms;
 using System;
+using WaferAoi.Tools;
+using System.Collections.Generic;
 
 namespace WaferAoi
 {
     public partial class DockWorkSpace : DarkDocument
     {
+        #region Field Region
+        private MainForm main;
+        #endregion
+
         #region Constructor Region
 
         public DockWorkSpace()
@@ -41,16 +47,33 @@ namespace WaferAoi
             }
         }
 
-        public DockWorkSpace(string text, Image icon):this()
+        public DockWorkSpace(MainForm main, string text, Image icon) : this()
         {
+            this.main = main;
             DockText = text;
             Icon = icon;
+            this.timerCheck.Start();
         }
-
         #endregion
 
         #region Event Handler Region
-
+        private void timerCheck_Tick(object sender, EventArgs e)
+        {
+            int exi = MotorsControl.IoSignalEXI(4);
+            this.BeginInvoke(new Action<int>((exiSts) =>
+            {
+           
+                isEmergencyStop.Checked = (exi & (1 << 0)) == 0;
+                isStart.Checked = (exi & (1 << 1)) != 0;
+                isReset.Checked = (exi & (1 << 2)) != 0;
+                isStop.Checked = (exi & (1 << 3)) != 0;
+                isDoor.Checked = (exi & (1 << 4)) != 0;
+                isPositivePressure.Checked = (exi & (1 << 7)) != 0;
+                isNegativePressure1.Checked = (exi & (1 << 8)) != 0;
+                isNegativePressure2.Checked = (exi & (1 << 9)) != 0;
+                isNegativePressure3.Checked = (exi & (1 << 10)) != 0;
+            }), exi);
+        }
         public override void Close()
         {
             var result = DarkMessageBox.ShowWarning(@"You will lose any unsaved changes. Continue?", @"Close document", DarkDialogButton.YesNo);
@@ -59,6 +82,7 @@ namespace WaferAoi
 
             base.Close();
         }
+
 
         #endregion
     }

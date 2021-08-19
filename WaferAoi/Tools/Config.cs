@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WaferAoi.Tools
 {
-    class Config
+    public class Config
     {
         /// <summary>
         /// 运动轴

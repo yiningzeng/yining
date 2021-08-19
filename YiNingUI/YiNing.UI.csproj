@@ -99,6 +99,13 @@
     <Compile Include="Controls\DarkSectionPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\DarkWaferListItemInfo.cs" />
+    <Compile Include="Controls\DarkWaferList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\DarkStepViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\DarkTitle.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -205,6 +212,11 @@
     <Compile Include="Forms\DarkShadow.Designer.cs">
       <DependentUpon>DarkShadow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Icons\DarkWaferListIcons.Designer.cs">
+      <DependentUpon>DarkWaferListIcons.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Icons\DockIcons.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -251,6 +263,12 @@
     <Compile Include="Win32\WindowsMessages.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\DarkWaferList.resx">
+      <DependentUpon>DarkWaferList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DarkStepViewer.resx">
+      <DependentUpon>DarkStepViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\DarkTitleBarPanel.resx">
       <DependentUpon>DarkTitleBarPanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -265,6 +283,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DarkShadow.resx">
       <DependentUpon>DarkShadow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Icons\DarkWaferListIcons.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DarkWaferListIcons.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>YiNing.UI</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="Icons\DockIcons.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -456,6 +479,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\可见.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hook.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\选择.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\对.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wait.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\start.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

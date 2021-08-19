@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HalconDotNet;
+using System;
 using System.Windows.Forms;
 using WaferAoi.Tools;
 using YiNing.Tools;
@@ -11,7 +12,10 @@ namespace WaferAoi
         [STAThread]
         static void Main()
         {
-            Config config = JsonHelper.DeserializeByFile<Config>("yining.config");
+            HOperatorSet.SetSystem("do_low_error", "false"); ///少报错
+            HOperatorSet.SetSystem("clip_region", "false"); //region在图像外不切掉
+            HOperatorSet.SetSystem("border_shape_models", "true"); //依然匹配边缘的图形
+            HOperatorSet.SetSystem("use_window_thread", "true");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
@@ -24,20 +28,6 @@ namespace WaferAoi
             if (Exist)//如果没有运行
             {
                 newMutex.ReleaseMutex();//运行新窗体
-                if (!MotorsControl.OpenDevice(true))
-                {
-                    DarkMessageBox.ShowError("打开运动控制器出错，即将推出程序，请联系技术人员！", "提示");
-                    return;
-                }
-                if (config != null)
-                {
-                    foreach (var i in config.Axes)
-                    {
-                        MotorsControl.ServoOn(i.Id);
-                    }
-                }
-        
-          
                 MainForm mainForm = new MainForm();
                 mainForm.FormClosing += MainForm_FormClosing;
                 Application.Run(mainForm);

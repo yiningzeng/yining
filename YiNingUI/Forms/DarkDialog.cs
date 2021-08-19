@@ -92,6 +92,7 @@ namespace YiNing.UI.Forms
             {
                 HotKey.RegisterHotKey(this.Handle, 100, HotKey.KeyModifiers.Alt, Keys.Q);
                 darkShadow = new DarkShadow();
+                darkShadow.ShowInTaskbar = false;
                 darkShadow.Show();
             }
 
@@ -168,7 +169,7 @@ namespace YiNing.UI.Forms
             switch (_dialogButtons)
             {
                 case DarkDialogButton.None:
-                    this.ControlBox = false;
+                    //this.ControlBox = false;
                     break;
                 case DarkDialogButton.Ok:
                     ShowButton(btnOk, true);

@@ -34,6 +34,7 @@ namespace WaferAoi
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mnuMain = new YiNing.UI.Controls.DarkMenuStrip();
             this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.制作程式ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuNewFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuClose = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,7 +45,7 @@ namespace WaferAoi
             this.checkedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkedWithIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.参数设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.点位测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DebugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDialog = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuWindow = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,6 +66,7 @@ namespace WaferAoi
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.mnuMain.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -92,6 +94,7 @@ namespace WaferAoi
             // 
             this.mnuFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.mnuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.制作程式ToolStripMenuItem,
             this.mnuNewFile,
             this.toolStripSeparator1,
             this.mnuClose});
@@ -99,6 +102,16 @@ namespace WaferAoi
             this.mnuFile.Name = "mnuFile";
             this.mnuFile.Size = new System.Drawing.Size(44, 21);
             this.mnuFile.Text = "&文件";
+            // 
+            // 制作程式ToolStripMenuItem
+            // 
+            this.制作程式ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.制作程式ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.制作程式ToolStripMenuItem.Image = global::WaferAoi.Icons.Cup;
+            this.制作程式ToolStripMenuItem.Name = "制作程式ToolStripMenuItem";
+            this.制作程式ToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.制作程式ToolStripMenuItem.Text = "制作程式";
+            this.制作程式ToolStripMenuItem.Click += new System.EventHandler(this.制作程式ToolStripMenuItem_Click);
             // 
             // mnuNewFile
             // 
@@ -137,7 +150,7 @@ namespace WaferAoi
             this.checkedToolStripMenuItem,
             this.checkedWithIconToolStripMenuItem,
             this.参数设置ToolStripMenuItem,
-            this.点位测试ToolStripMenuItem});
+            this.DebugToolStripMenuItem});
             this.mnuTools.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.mnuTools.Name = "mnuTools";
             this.mnuTools.Size = new System.Drawing.Size(44, 21);
@@ -200,14 +213,14 @@ namespace WaferAoi
             this.参数设置ToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.参数设置ToolStripMenuItem.Text = "参数设置";
             // 
-            // 点位测试ToolStripMenuItem
+            // DebugToolStripMenuItem
             // 
-            this.点位测试ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.点位测试ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.点位测试ToolStripMenuItem.Image = global::WaferAoi.Icons.smile;
-            this.点位测试ToolStripMenuItem.Name = "点位测试ToolStripMenuItem";
-            this.点位测试ToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.点位测试ToolStripMenuItem.Text = "点位测试";
+            this.DebugToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.DebugToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.DebugToolStripMenuItem.Image = global::WaferAoi.Icons.smile;
+            this.DebugToolStripMenuItem.Name = "DebugToolStripMenuItem";
+            this.DebugToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.DebugToolStripMenuItem.Text = "Debug";
             // 
             // mnuView
             // 
@@ -248,7 +261,7 @@ namespace WaferAoi
             this.mnuProject.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.mnuProject.Image = global::WaferAoi.Icons.application_16x;
             this.mnuProject.Name = "mnuProject";
-            this.mnuProject.Size = new System.Drawing.Size(169, 22);
+            this.mnuProject.Size = new System.Drawing.Size(180, 22);
             this.mnuProject.Text = "&Project Explorer";
             // 
             // mnuProperties
@@ -257,7 +270,7 @@ namespace WaferAoi
             this.mnuProperties.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.mnuProperties.Image = global::WaferAoi.Icons.properties_16xLG;
             this.mnuProperties.Name = "mnuProperties";
-            this.mnuProperties.Size = new System.Drawing.Size(169, 22);
+            this.mnuProperties.Size = new System.Drawing.Size(180, 22);
             this.mnuProperties.Text = "P&roperties";
             // 
             // mnuConsole
@@ -266,7 +279,7 @@ namespace WaferAoi
             this.mnuConsole.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.mnuConsole.Image = global::WaferAoi.Icons.Console;
             this.mnuConsole.Name = "mnuConsole";
-            this.mnuConsole.Size = new System.Drawing.Size(169, 22);
+            this.mnuConsole.Size = new System.Drawing.Size(180, 22);
             this.mnuConsole.Text = "&Console";
             // 
             // mnuLayers
@@ -275,7 +288,7 @@ namespace WaferAoi
             this.mnuLayers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.mnuLayers.Image = global::WaferAoi.Icons.Collection_16xLG;
             this.mnuLayers.Name = "mnuLayers";
-            this.mnuLayers.Size = new System.Drawing.Size(169, 22);
+            this.mnuLayers.Size = new System.Drawing.Size(180, 22);
             this.mnuLayers.Text = "&Layers";
             // 
             // mnuHistory
@@ -284,7 +297,7 @@ namespace WaferAoi
             this.mnuHistory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.mnuHistory.Image = ((System.Drawing.Image)(resources.GetObject("mnuHistory.Image")));
             this.mnuHistory.Name = "mnuHistory";
-            this.mnuHistory.Size = new System.Drawing.Size(169, 22);
+            this.mnuHistory.Size = new System.Drawing.Size(180, 22);
             this.mnuHistory.Text = "&History";
             // 
             // mnuHelp
@@ -304,7 +317,7 @@ namespace WaferAoi
             this.恢复默认运动参数ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.恢复默认运动参数ToolStripMenuItem.Image = global::WaferAoi.Icons.refresh;
             this.恢复默认运动参数ToolStripMenuItem.Name = "恢复默认运动参数ToolStripMenuItem";
-            this.恢复默认运动参数ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.恢复默认运动参数ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.恢复默认运动参数ToolStripMenuItem.Text = "恢复默认运动参数";
             this.恢复默认运动参数ToolStripMenuItem.Click += new System.EventHandler(this.恢复默认运动参数ToolStripMenuItem_Click);
             // 
@@ -314,7 +327,7 @@ namespace WaferAoi
             this.mnuAbout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.mnuAbout.Image = global::WaferAoi.Icons.StatusAnnotations_Information_16xLG_color;
             this.mnuAbout.Name = "mnuAbout";
-            this.mnuAbout.Size = new System.Drawing.Size(180, 22);
+            this.mnuAbout.Size = new System.Drawing.Size(172, 22);
             this.mnuAbout.Text = "&关于";
             // 
             // darkSeparator1
@@ -373,6 +386,7 @@ namespace WaferAoi
             this.toolStripButton1,
             this.toolStripButton2,
             this.toolStripButton3,
+            this.toolStripButton4,
             this.toolStripButton7});
             this.darkToolStrip1.Location = new System.Drawing.Point(0, 25);
             this.darkToolStrip1.Name = "darkToolStrip1";
@@ -413,6 +427,7 @@ namespace WaferAoi
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton2.Text = "toolStripButton2";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // toolStripButton3
             // 
@@ -424,6 +439,16 @@ namespace WaferAoi
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton3.Text = "toolStripButton3";
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.toolStripButton4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.toolStripButton4.Image = global::WaferAoi.Icons.Cup;
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(76, 22);
+            this.toolStripButton4.Text = "制作程式";
             // 
             // toolStripButton7
             // 
@@ -496,8 +521,10 @@ namespace WaferAoi
         private System.Windows.Forms.ToolStripButton btnNewFile;
         private System.Windows.Forms.ToolStripButton toolStripButton7;
         private System.Windows.Forms.ToolStripMenuItem 参数设置ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 点位测试ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DebugToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 恢复默认运动参数ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.ToolStripMenuItem 制作程式ToolStripMenuItem;
     }
 }
 
