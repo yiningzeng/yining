@@ -101,9 +101,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\Controls\WafermapImpl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Forms\Dialogs\DialogMessage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -215,9 +212,6 @@
     <Compile Include="Tools\googol\MotorsControl.cs" />
     <Compile Include="Tools\MVCameraHelper.cs" />
     <Compile Include="Tools\Utils.cs" />
-    <EmbeddedResource Include="Forms\Controls\WafermapImpl.resx">
-      <DependentUpon>WafermapImpl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\DialogMessage.resx">
       <DependentUpon>DialogMessage.cs</DependentUpon>
     </EmbeddedResource>
@@ -486,6 +480,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo.ico" />
+    <None Include="Resources\完成打钩.png" />
+    <None Include="Resources\进度指向.png" />
     <None Include="Resources\选择.png" />
     <None Include="Resources\晶圆和批次-01.png" />
     <None Include="Resources\wafer2.png" />
@@ -513,6 +509,9 @@
     <None Include="Resources\warning.png" />
     <None Include="Resources\info.png" />
     <None Include="Resources\error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Forms\Controls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

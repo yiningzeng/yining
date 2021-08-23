@@ -5,21 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using YiNing.Fsm;
 using YiNing.WafermapDisplay;
+using YiNing.WafermapDisplay.WafermapControl;
 
 namespace WaferAoi
 {
-    class WafermapImpl : Wafermap
+    public class WafermapImpl : Wafermap
     {
 
-        public override void dieEntered(int previousX, int previousY, int previousBincode, int x, int y, int bincode)
+        public override void dieEntered(Die previousDie, Die currentDie)
         {
-            if (previousX == x && previousY == y) updateDie(x, y, bincode);
-            else updateDie(previousX, previousY, previousBincode, x, y, bincode);
-            Console.WriteLine("previousX:{0}, previousY:{1}, x:{2},y:{3},bincode:{4}", previousX, previousY, x, y, bincode);
+            if (previousDie == null || currentDie == null) return;
+            if (previousDie.XIndex == currentDie.XIndex && previousDie.YIndex == currentDie.YIndex) updateDie(currentDie);
+            else updateDie(previousDie, currentDie);
+            //Console.WriteLine("previousX:{0}, previousY:{1}, x:{2},y:{3},bincode:{4}", previousX, previousY, x, y, bincode);
             // Do nothing
         }
 
-        public override void dieMouseDown(int x, int y, int bincode, System.Windows.Forms.MouseButtons btn)
+        public override void dieMouseDown(Die die, System.Windows.Forms.MouseButtons btn)
         {
             // Cast
 
@@ -28,7 +30,7 @@ namespace WaferAoi
                 // Update dataset
                 //Dataset[x, y] = 3;
                 // Show the changes
-                MouseDownDie(x, y, bincode);
+                MouseDownDie(die);
             }
             else
             {
@@ -41,7 +43,7 @@ namespace WaferAoi
             }
         }
 
-        public override void dieMouseUp(int x, int y, int bincode, System.Windows.Forms.MouseButtons btn)
+        public override void dieMouseUp(Die die, System.Windows.Forms.MouseButtons btn)
         {
             // Cast
             if (btn == System.Windows.Forms.MouseButtons.Left)
@@ -49,7 +51,7 @@ namespace WaferAoi
                 // Update dataset
                 //Dataset[x, y] = 3;
                 // Show the changes
-                MouseUpDie(x, y, bincode);
+                MouseUpDie(die);
             }
             else
             {
@@ -70,7 +72,7 @@ namespace WaferAoi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.Name = "WafermapImpl";
-            this.Size = new System.Drawing.Size(0, 0);
+            this.Size = new System.Drawing.Size(1002, 555);
             this.ResumeLayout(false);
 
         }

@@ -19,8 +19,30 @@ namespace WaferAoi
         {
             InitializeComponent();
         }
-
         #endregion
+
+
+        public void StartWorking()
+        {
+            if (darkWaferList1.SelectedIndices.Count == 0)
+            {
+                DarkMessageBox.ShowWarning("还未选择需要检测的晶圆");
+                return;
+            }
+            //var aa = darkWaferList1.Items[darkWaferList1.SelectedIndices[0]].Tag;
+            darkWaferList1.StartWorking();
+        }
+
+        public void StopWorking()
+        {
+            darkWaferList1.StopWorking();
+        }
+
+        public void RefreshWafer()
+        {
+            darkWaferList1.RefreshWafer();
+        }
+
         private void darkButton1_Click(object sender, System.EventArgs e)
         {
             darkWaferList1.RefreshWafer();

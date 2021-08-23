@@ -40,8 +40,16 @@
             this.isDoor = new YiNing.UI.Controls.DarkPointsIn();
             this.isStop = new YiNing.UI.Controls.DarkPointsIn();
             this.timerCheck = new System.Windows.Forms.Timer(this.components);
-            this.waferMap = new WaferAoi.WafermapImpl();
+            this.darkSectionPanel1 = new YiNing.UI.Controls.DarkSectionPanel();
+            this.dlvwProgress = new YiNing.UI.Controls.DarkProgressReminder();
+            this.darkButton1 = new YiNing.UI.Controls.DarkButton();
+            this.darkButton2 = new YiNing.UI.Controls.DarkButton();
+            this.darkButton3 = new YiNing.UI.Controls.DarkButton();
+            this.darkButton4 = new YiNing.UI.Controls.DarkButton();
+            this.darkButton5 = new YiNing.UI.Controls.DarkButton();
+            this.waferMap = new YiNing.WafermapDisplay.Wafermap();
             this.darkSectionPanel6.SuspendLayout();
+            this.darkSectionPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // darkSectionPanel6
@@ -58,7 +66,7 @@
             this.darkSectionPanel6.Controls.Add(this.isDoor);
             this.darkSectionPanel6.Controls.Add(this.isStop);
             this.darkSectionPanel6.DragEnable = true;
-            this.darkSectionPanel6.Location = new System.Drawing.Point(703, 3);
+            this.darkSectionPanel6.Location = new System.Drawing.Point(693, 10);
             this.darkSectionPanel6.Name = "darkSectionPanel6";
             this.darkSectionPanel6.SectionHeader = "信号监控";
             this.darkSectionPanel6.Size = new System.Drawing.Size(152, 156);
@@ -176,6 +184,76 @@
             // 
             this.timerCheck.Interval = 150;
             this.timerCheck.Tick += new System.EventHandler(this.timerCheck_Tick);
+            // 
+            // darkSectionPanel1
+            // 
+            this.darkSectionPanel1.Controls.Add(this.dlvwProgress);
+            this.darkSectionPanel1.DragEnable = true;
+            this.darkSectionPanel1.Location = new System.Drawing.Point(10, 10);
+            this.darkSectionPanel1.Name = "darkSectionPanel1";
+            this.darkSectionPanel1.SectionHeader = "进度提醒";
+            this.darkSectionPanel1.Size = new System.Drawing.Size(170, 259);
+            this.darkSectionPanel1.TabIndex = 20;
+            // 
+            // dlvwProgress
+            // 
+            this.dlvwProgress.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dlvwProgress.Location = new System.Drawing.Point(1, 25);
+            this.dlvwProgress.Name = "dlvwProgress";
+            this.dlvwProgress.Size = new System.Drawing.Size(168, 233);
+            this.dlvwProgress.TabIndex = 0;
+            this.dlvwProgress.Text = "darkProgressReminder1";
+            // 
+            // darkButton1
+            // 
+            this.darkButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.darkButton1.Location = new System.Drawing.Point(186, 35);
+            this.darkButton1.Name = "darkButton1";
+            this.darkButton1.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton1.Size = new System.Drawing.Size(75, 23);
+            this.darkButton1.TabIndex = 21;
+            this.darkButton1.Text = "Next";
+            this.darkButton1.Click += new System.EventHandler(this.darkButton1_Click);
+            // 
+            // darkButton2
+            // 
+            this.darkButton2.Location = new System.Drawing.Point(186, 6);
+            this.darkButton2.Name = "darkButton2";
+            this.darkButton2.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton2.Size = new System.Drawing.Size(75, 23);
+            this.darkButton2.TabIndex = 22;
+            this.darkButton2.Text = "go to 1";
+            this.darkButton2.Click += new System.EventHandler(this.darkButton2_Click);
+            // 
+            // darkButton3
+            // 
+            this.darkButton3.Location = new System.Drawing.Point(268, 5);
+            this.darkButton3.Name = "darkButton3";
+            this.darkButton3.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton3.Size = new System.Drawing.Size(75, 23);
+            this.darkButton3.TabIndex = 23;
+            this.darkButton3.Text = "出错啦";
+            this.darkButton3.Click += new System.EventHandler(this.darkButton3_Click);
+            // 
+            // darkButton4
+            // 
+            this.darkButton4.Location = new System.Drawing.Point(268, 34);
+            this.darkButton4.Name = "darkButton4";
+            this.darkButton4.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton4.Size = new System.Drawing.Size(75, 23);
+            this.darkButton4.TabIndex = 24;
+            this.darkButton4.Text = "停止了";
+            this.darkButton4.Click += new System.EventHandler(this.darkButton4_Click);
+            // 
+            // darkButton5
+            // 
+            this.darkButton5.Location = new System.Drawing.Point(593, 5);
+            this.darkButton5.Name = "darkButton5";
+            this.darkButton5.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton5.Size = new System.Drawing.Size(75, 23);
+            this.darkButton5.TabIndex = 25;
+            this.darkButton5.Text = "darkButton5";
+            this.darkButton5.Click += new System.EventHandler(this.darkButton5_Click);
             // 
             // waferMap
             // 
@@ -444,7 +522,8 @@
             this.waferMap.NoDataString = "NO DATA";
             this.waferMap.Notchlocation = 0;
             this.waferMap.Rotation = 0;
-            this.waferMap.SelectBincode = 0;
+            this.waferMap.SelectDies = null;
+            this.waferMap.SelectOneDie = null;
             this.waferMap.SelectX = 0;
             this.waferMap.SelectY = 0;
             this.waferMap.Size = new System.Drawing.Size(858, 533);
@@ -458,6 +537,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.darkButton5);
+            this.Controls.Add(this.darkButton4);
+            this.Controls.Add(this.darkButton3);
+            this.Controls.Add(this.darkButton2);
+            this.Controls.Add(this.darkButton1);
+            this.Controls.Add(this.darkSectionPanel1);
             this.Controls.Add(this.darkSectionPanel6);
             this.Controls.Add(this.waferMap);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -465,13 +550,12 @@
             this.Size = new System.Drawing.Size(858, 533);
             this.darkSectionPanel6.ResumeLayout(false);
             this.darkSectionPanel6.PerformLayout();
+            this.darkSectionPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private WafermapImpl waferMap;
         private YiNing.UI.Controls.DarkSectionPanel darkSectionPanel6;
         private YiNing.UI.Controls.DarkPointsIn isNegativePressure3;
         private YiNing.UI.Controls.DarkPointsIn isNegativePressure2;
@@ -483,5 +567,13 @@
         private YiNing.UI.Controls.DarkPointsIn isStart;
         private YiNing.UI.Controls.DarkPointsIn isEmergencyStop;
         private System.Windows.Forms.Timer timerCheck;
+        private YiNing.UI.Controls.DarkSectionPanel darkSectionPanel1;
+        public YiNing.WafermapDisplay.Wafermap waferMap;
+        private YiNing.UI.Controls.DarkProgressReminder dlvwProgress;
+        private YiNing.UI.Controls.DarkButton darkButton1;
+        private YiNing.UI.Controls.DarkButton darkButton2;
+        private YiNing.UI.Controls.DarkButton darkButton3;
+        private YiNing.UI.Controls.DarkButton darkButton4;
+        private YiNing.UI.Controls.DarkButton darkButton5;
     }
 }

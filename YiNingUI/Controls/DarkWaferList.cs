@@ -14,6 +14,9 @@ namespace YiNing.UI.Controls
 {
     public class DarkWaferList : DarkListView
     {
+
+        private Color _NotNullTextColor = Color.Silver; // 不是空的Item 文字颜色
+        private Color _SelectBackgroundColor = Color.Chocolate; // 不是空的Item 选中颜色
         private List<int> _selectItems;
         private string _WaferPath = @"D:\WaferDataIn\mapping";
         private string _WaferSuffix = "txt";
@@ -110,13 +113,13 @@ namespace YiNing.UI.Controls
                         {
                             Items[i].Icon = DarkWaferListIcons.select;
                             Items[i].TextColor = Color.White;
-                            Items[i].BackgroundColor = Color.Chocolate;
+                            Items[i].BackgroundColor = _SelectBackgroundColor;
                             _selectItems.Add(i);
                         }
                         else
                         {
                             Items[i].Icon = null;
-                            Items[i].TextColor = Color.Chocolate;
+                            Items[i].TextColor = _NotNullTextColor;
                             Items[i].BackgroundColor = Colors.GreyBackground;
                             _selectItems.Remove(i);
                         }
@@ -145,6 +148,8 @@ namespace YiNing.UI.Controls
 
         public void StartWorking()
         {
+            if (_selectItems.Count == 0) return;
+            _ReadOnly = true;
             var list = (from f in _selectItems
                         orderby f ascending
                         select f).ToList<int>();
@@ -154,18 +159,18 @@ namespace YiNing.UI.Controls
             {
                 Items[list[i]].Icon = DarkWaferListIcons.wait;
             }
-            _ReadOnly = true;
             Invalidate();
         }
         public void StopWorking()
         {
+            if (_selectItems.Count == 0) return;
+            _ReadOnly = false;
             for (int i = 0; i < _selectItems.Count; i++)
             {
-                Items[_selectItems[i]].BackgroundColor = Color.Chocolate;
+                Items[_selectItems[i]].BackgroundColor = _SelectBackgroundColor;
                 Items[_selectItems[i]].Icon = DarkWaferListIcons.select;
                 Items[_selectItems[i]].TextColor = Color.White;
             }
-            _ReadOnly = false;
             Invalidate();
         }
         /// <summary>
@@ -173,6 +178,7 @@ namespace YiNing.UI.Controls
         /// </summary>
         public void RefreshWafer()
         {
+            _ReadOnly = false;
             _selectItems.Clear();
             string[] files = GetLatestFiles();
             Items.Clear();
@@ -189,7 +195,7 @@ namespace YiNing.UI.Controls
 
                 if (one != null) {
                     item.Text = "NO." + id + "　　" + one.Prefix;
-                    item.TextColor = Color.Chocolate;
+                    item.TextColor = _NotNullTextColor;
                     item.Enabled = true;
                     item.Tag = one;
                     //item.BackgroundColor = Color.Chocolate;

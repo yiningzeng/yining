@@ -7,6 +7,9 @@ using System.Windows.Forms;
 using System;
 using WaferAoi.Tools;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Threading;
+using YiNing.WafermapDisplay.WafermapControl;
 
 namespace WaferAoi
 {
@@ -21,16 +24,18 @@ namespace WaferAoi
         public DockWorkSpace()
         {
             InitializeComponent();
+            waferMap.OnDieClick += WaferMap_OnDieClick;
+            dlvwProgress.Items.Add(new DarkListItem("空闲") { Icon = Icons.进度指向, TextColor = Color.Chocolate });
             for (int waferNum = 0; waferNum < 1; waferNum++)
             {
                 // Create sample dataset
-                int[,] data = new int[41, 40];
+                Die[,] data = new Die[41, 40];
                 Random binGenerator = new Random(waferNum);
                 for (int x = 0; x < 41; x++)
                 {
                     for (int y = 0; y < 40; y++)
                     {
-                        data[x, y] = binGenerator.Next(8);
+                        data[x, y] = new Die() { ColorIndex = binGenerator.Next(8), XIndex = x, YIndex = y, XPluse = 0, YPluse = 0 };// 
                     }
                 }
                 int a = data.Length;
@@ -41,10 +46,42 @@ namespace WaferAoi
                 waferMap.Dock = DockStyle.Fill;
                 waferMap.SelectX = 21;
                 waferMap.SelectY = 14;
-                waferMap.SelectBincode = data[21, 14];
+                waferMap.SelectOneDie = data[21, 14];
                 //wmap.NoDataString = "没有数据";
                 //this.Controls.Add(wmap);
             }
+        }
+
+        private void WaferMap_OnDieClick(object sender, Die e)
+        {
+        }
+
+        public void SetProgress()
+        {
+            dlvwProgress.Items.Clear();
+            dlvwProgress.Items.Add(new DarkListItem("加载图谱"));
+            dlvwProgress.Items.Add(new DarkListItem("取料"));
+            dlvwProgress.Items.Add(new DarkListItem("定位晶圆切面/凹槽"));
+            dlvwProgress.Items.Add(new DarkListItem("方向矫正"));
+            dlvwProgress.Items.Add(new DarkListItem("检测中"));
+            dlvwProgress.Items.Add(new DarkListItem("检测完毕"));
+            dlvwProgress.Items.Add(new DarkListItem("数据导出"));
+            dlvwProgress.Items.Add(new DarkListItem("放料"));
+            dlvwProgress.Items.Add(new DarkListItem("空闲"));
+            dlvwProgress.SetStartNum(0);
+            Task.Run(() =>
+            {
+                int i = 0;
+                while (i < 9)
+                {
+                    Thread.Sleep(1500);
+                    this.BeginInvoke(new Action(() =>
+                    {
+                        dlvwProgress.Next();
+                        if (dlvwProgress.IsDone()) i = 10;
+                    }));
+                }
+            });
         }
 
         public DockWorkSpace(MainForm main, string text, Image icon) : this()
@@ -52,6 +89,11 @@ namespace WaferAoi
             this.main = main;
             DockText = text;
             Icon = icon;
+            this.Load += DockWorkSpace_Load;
+        }
+
+        private void DockWorkSpace_Load(object sender, EventArgs e)
+        {
             this.timerCheck.Start();
         }
         #endregion
@@ -85,5 +127,39 @@ namespace WaferAoi
 
 
         #endregion
+
+        private void darkButton1_Click(object sender, EventArgs e)
+        {
+            dlvwProgress.Next();
+        }
+
+        private void darkButton2_Click(object sender, EventArgs e)
+        {
+            dlvwProgress.SetStartNum(1);
+        }
+
+        private void darkButton3_Click(object sender, EventArgs e)
+        {
+            dlvwProgress.Error();
+        }
+
+        private void darkButton4_Click(object sender, EventArgs e)
+        {
+            dlvwProgress.Stop();
+        }
+
+        private void darkButton5_Click(object sender, EventArgs e)
+        {
+            List<Die> dies = new List<Die>();
+            dies.Add(new Die() { XIndex = 20, YIndex = 21 });
+            dies.Add(new Die() { XIndex = 20, YIndex = 22 });
+            dies.Add(new Die() { XIndex = 20, YIndex = 23 });
+            dies.Add(new Die() { XIndex = 21, YIndex = 21 });
+            dies.Add(new Die() { XIndex = 21, YIndex = 22 });
+            dies.Add(new Die() { XIndex = 21, YIndex = 23 });
+            waferMap.SelectDies = dies;
+
+            waferMap.DrawSelectDies();
+        }
     }
 }

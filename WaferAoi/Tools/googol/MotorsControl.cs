@@ -668,7 +668,8 @@ namespace WaferAoi.Tools
                      GSN.GTN_GetHomeStatus(CORE, axis, out homeStatus);
                      _goHomeCallback(axis, homeStatus);
                  } while (Convert.ToBoolean(homeStatus.run));
-                 GSN.GTN_ZeroPos(CORE, axis, 1);
+                 Thread.Sleep(200);
+                 //GSN.GTN_ZeroPos(CORE, axis, 1);
                  _goHomeCallback(axis, homeStatus);
              }, objectArray);
         }

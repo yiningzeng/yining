@@ -180,7 +180,7 @@ namespace WaferAoi
                     darkStepViewer1.Complete();
                     break;
                 case "读取mapping图":
-                    var aa =WaferMappingHelper.GetLatestFiles(@"D:\WaferDataIn\mapping");
+                    //var aa =WaferMappingHelper.GetLatestFiles(@"D:\WaferDataIn\mapping");
                     break;
             }
         }

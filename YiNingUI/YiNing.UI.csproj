@@ -86,6 +86,9 @@
     <Compile Include="Controls\DarkGroupBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\DarkProgressReminder.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\DarkNumericUpDown.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -212,6 +215,11 @@
     <Compile Include="Forms\DarkShadow.Designer.cs">
       <DependentUpon>DarkShadow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Icons\DarkProgressReminderIcons.Designer.cs">
+      <DependentUpon>DarkProgressReminderIcons.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Icons\DarkWaferListIcons.Designer.cs">
       <DependentUpon>DarkWaferListIcons.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -284,6 +292,11 @@
     <EmbeddedResource Include="Forms\DarkShadow.resx">
       <DependentUpon>DarkShadow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Icons\DarkProgressReminderIcons.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DarkProgressReminderIcons.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>YiNing.UI</CustomToolNamespace>
+    </EmbeddedResource>
     <EmbeddedResource Include="Icons\DarkWaferListIcons.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DarkWaferListIcons.Designer.cs</LastGenOutput>
@@ -341,9 +354,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\scrollbar_arrow_standard.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\error.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\info.png" />
@@ -494,6 +504,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\start.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\进度指向.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\完成打钩.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\出错.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\错误.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\停止.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace YiNing.UI.Controls
 {
-    public class DarkListView : DarkScrollView
+    public class DarkProgressReminder : DarkScrollView
     {
         #region Event Region
 
@@ -20,17 +20,18 @@ namespace YiNing.UI.Controls
 
         #region Field Region
 
+        /// <summary>
+        /// 进度开始的地方
+        /// </summary>
+        private int _startNum = 0;
+
         private int _itemHeight = 20;
-        private bool _multiSelect;
 
         private readonly int _iconSize = 16;
 
         private ObservableCollection<DarkListItem> _items;
         private List<int> _selectedIndices;
-        private int _anchoredItemStart = -1;
-        private int _anchoredItemEnd = -1;
         private Color _selectFocusItemColor = Colors.BlueSelection;
-        private bool _ReadOnly = false;
         #endregion
 
         #region Property Region
@@ -72,38 +73,15 @@ namespace YiNing.UI.Controls
                 UpdateListBox();
             }
         }
-
-        [Category("Behaviour")]
-        [Description("Determines whether multiple list view items can be selected at once.")]
-        [DefaultValue(false)]
-        public bool MultiSelect
-        {
-            get { return _multiSelect; }
-            set { _multiSelect = value; }
-        }
-
-        [Category("Appearance")]
-        [Description("是否只读不可点击")]
-        [DefaultValue(false)]
-        public bool ReadOnly
-        {
-            get { return _ReadOnly; }
-            set { _ReadOnly = value; }
-        }
-
-        [Category("Appearance")]
-        [Description("Determines whether icons are rendered with the list items.")]
-        [DefaultValue(false)]
-        public bool ShowIcons { get; set; }
-
         #endregion
 
         #region Constructor Region
 
-        public DarkListView()
+        public DarkProgressReminder()
         {
             Items = new ObservableCollection<DarkListItem>();
             _selectedIndices = new List<int>();
+            //SetStartNum(0);
         }
 
         #endregion
@@ -172,220 +150,95 @@ namespace YiNing.UI.Controls
             Invalidate();
         }
 
-        protected override void OnMouseDown(MouseEventArgs e)
-        {
-            base.OnMouseDown(e);
-            if (ReadOnly) return;
-            if (Items.Count == 0)
-                return;
-
-            if (e.Button != MouseButtons.Left && e.Button != MouseButtons.Right)
-                return;
-
-            var pos = OffsetMousePosition;
-
-            var range = ItemIndexesInView().ToList();
-
-            var top = range.Min();
-            var bottom = range.Max();
-            var width = Math.Max(ContentSize.Width, Viewport.Width);
-
-            for (var i = top; i <= bottom; i++)
-            {
-                var rect = new Rectangle(0, i * ItemHeight, width, ItemHeight);
-
-                if (rect.Contains(pos) && Items[i].Enabled)
-                {
-                    if (MultiSelect && ModifierKeys == Keys.Shift)
-                        SelectAnchoredRange(i);
-                    else if (MultiSelect && ModifierKeys == Keys.Control)
-                        ToggleItem(i);
-                    else
-                        SelectItem(i);
-                }
-            }
-        }
-
-        protected override void OnKeyDown(KeyEventArgs e)
-        {
-            base.OnKeyDown(e);
-
-            if (Items.Count == 0)
-                return;
-
-            if (e.KeyCode != Keys.Down && e.KeyCode != Keys.Up)
-                return;
-
-            if (MultiSelect && ModifierKeys == Keys.Shift)
-            {
-                if (e.KeyCode == Keys.Up)
-                {
-                    if (_anchoredItemEnd - 1 >= 0)
-                    {
-                        SelectAnchoredRange(_anchoredItemEnd - 1);
-                        EnsureVisible();
-                    }
-                }
-                else if (e.KeyCode == Keys.Down)
-                {
-                    if (_anchoredItemEnd + 1 <= Items.Count - 1)
-                    {
-                        SelectAnchoredRange(_anchoredItemEnd + 1);
-                    }
-                }
-            }
-            else
-            {
-                if (e.KeyCode == Keys.Up)
-                {
-                    if (_anchoredItemEnd - 1 >= 0)
-                        SelectItem(_anchoredItemEnd - 1);
-                }
-                else if (e.KeyCode == Keys.Down)
-                {
-                    if (_anchoredItemEnd + 1 <= Items.Count - 1)
-                        SelectItem(_anchoredItemEnd + 1);
-                }
-            }
-
-            EnsureVisible();
-        }
-
+        protected override void OnMouseDown(MouseEventArgs e) { }
         #endregion
 
         #region Method Region
 
-        public int GetItemIndex(DarkListItem item)
+        /// <summary>
+        /// 执行下一个进度
+        /// </summary>
+        public void Next()
         {
-            return Items.IndexOf(item);
-        }
-
-        public void SelectItem(int index)
-        {
-            if (index < 0 || index > Items.Count - 1)
-                throw new IndexOutOfRangeException($"Value '{index}' is outside of valid range.");
-
-            _selectedIndices.Clear();
-            _selectedIndices.Add(index);
-
-            if (SelectedIndicesChanged != null)
-                SelectedIndicesChanged(this, null);
-
-            _anchoredItemStart = index;
-            _anchoredItemEnd = index;
-
-            Invalidate();
-        }
-
-        public void SelectItems(IEnumerable<int> indexes)
-        {
-            _selectedIndices.Clear();
-
-            var list = indexes.ToList();
-
-            foreach (var index in list)
+            _startNum++;
+            if (_startNum > Items.Count + 1) _startNum = Items.Count + 1;
+            for (int i = 0; i < Items.Count; i++)
             {
-                if (index < 0 || index > Items.Count - 1)
-                    throw new IndexOutOfRangeException($"Value '{index}' is outside of valid range.");
-
-                _selectedIndices.Add(index);
-            }
-
-            if (SelectedIndicesChanged != null)
-                SelectedIndicesChanged(this, null);
-
-            _anchoredItemStart = list[list.Count - 1];
-            _anchoredItemEnd = list[list.Count - 1];
-
-            Invalidate();
-        }
-
-        public void ToggleItem(int index)
-        {
-            if (_selectedIndices.Contains(index))
-            {
-                _selectedIndices.Remove(index);
-
-                // If we just removed both the anchor start AND end then reset them
-                if (_anchoredItemStart == index && _anchoredItemEnd == index)
+                if (i < _startNum)
                 {
-                    if (_selectedIndices.Count > 0)
-                    {
-                        _anchoredItemStart = _selectedIndices[0];
-                        _anchoredItemEnd = _selectedIndices[0];
-                    }
-                    else
-                    {
-                        _anchoredItemStart = -1;
-                        _anchoredItemEnd = -1;
-                    }
+                    Items[i].Icon = DarkProgressReminderIcons.完成打钩;
+                    Items[i].TextColor = Color.Chocolate;
                 }
-
-                // If we just removed the anchor start then update it accordingly
-                if (_anchoredItemStart == index)
+                else  if (i == _startNum)
                 {
-                    if (_anchoredItemEnd < index)
-                        _anchoredItemStart = index - 1;
-                    else if (_anchoredItemEnd > index)
-                        _anchoredItemStart = index + 1;
-                    else
-                        _anchoredItemStart = _anchoredItemEnd;
+                    Items[i].Icon = DarkProgressReminderIcons.进度指向;
+                    Items[i].TextColor = Color.Chocolate;
                 }
-
-                // If we just removed the anchor end then update it accordingly
-                if (_anchoredItemEnd == index)
+                else
                 {
-                    if (_anchoredItemStart < index)
-                        _anchoredItemEnd = index - 1;
-                    else if (_anchoredItemStart > index)
-                        _anchoredItemEnd = index + 1;
-                    else
-                        _anchoredItemEnd = _anchoredItemStart;
+                    Items[i].Icon = null;
+                    Items[i].TextColor = Color.DimGray;
                 }
             }
-            else
+            Invalidate();
+        }
+        /// <summary>
+        /// 重置当前进度Index
+        /// </summary>
+        /// <param name="index"></param>
+        public void SetStartNum(int index)
+        {
+            _startNum = index;
+            if (_startNum > Items.Count + 1) _startNum = Items.Count + 1;
+            for (int i = 0; i < Items.Count; i++)
             {
-                _selectedIndices.Add(index);
-                _anchoredItemStart = index;
-                _anchoredItemEnd = index;
+                if (i < _startNum)
+                {
+                    Items[i].Icon = DarkProgressReminderIcons.完成打钩;
+                    Items[i].TextColor = Color.Chocolate;
+                }
+                else if (i == _startNum)
+                {
+                    Items[i].Icon = DarkProgressReminderIcons.进度指向;
+                    Items[i].TextColor = Color.Chocolate;
+                }
+                else
+                {
+                    Items[i].Icon = null;
+                    Items[i].TextColor = Color.DimGray;
+                }
             }
-
-            if (SelectedIndicesChanged != null)
-                SelectedIndicesChanged(this, null);
-
             Invalidate();
         }
 
-        public void SelectItems(int startRange, int endRange)
+        /// <summary>
+        /// 设置当前的进度错误
+        /// </summary>
+        public void Error()
         {
-            _selectedIndices.Clear();
-
-            if (startRange == endRange)
-                _selectedIndices.Add(startRange);
-
-            if (startRange < endRange)
-            {
-                for (var i = startRange; i <= endRange; i++)
-                    _selectedIndices.Add(i);
-            }
-            else if (startRange > endRange)
-            {
-                for (var i = startRange; i >= endRange; i--)
-                    _selectedIndices.Add(i);
-            }
-
-            if (SelectedIndicesChanged != null)
-                SelectedIndicesChanged(this, null);
-
+            Items[_startNum].Icon = DarkProgressReminderIcons.错误;
+            Items[_startNum].TextColor = Color.Red;
             Invalidate();
         }
 
-        protected void SelectAnchoredRange(int index)
+        /// <summary>
+        /// 当前的进度设置暂停
+        /// </summary>
+        public void Stop()
         {
-            _anchoredItemEnd = index;
-            SelectItems(_anchoredItemStart, index);
+            Items[_startNum].Icon = DarkProgressReminderIcons.停止;
+            Items[_startNum].TextColor = Color.Yellow;
+            Invalidate();
         }
 
+        /// <summary>
+        /// 表示是否结束
+        /// </summary>
+        /// <returns></returns>
+        public bool IsDone()
+        {
+            return _startNum >= Items.Count;
+        }  
         private void UpdateListBox()
         {
             using (var g = CreateGraphics())
@@ -414,8 +267,7 @@ namespace YiNing.UI.Controls
             var size = g.MeasureString(item.Text, Font);
             size.Width++;
 
-            if (ShowIcons)
-                size.Width += _iconSize + 8;
+            size.Width += _iconSize + 8;
 
             item.Area = new Rectangle(item.Area.Left, item.Area.Top, (int)size.Width, item.Area.Height);
         }
@@ -462,27 +314,6 @@ namespace YiNing.UI.Controls
             }
         }
 
-        public void EnsureVisible()
-        {
-            if (SelectedIndices.Count == 0)
-                return;
-
-            var itemTop = -1;
-
-            if (!MultiSelect)
-                itemTop = SelectedIndices[0] * ItemHeight;
-            else
-                itemTop = _anchoredItemEnd * ItemHeight;
-
-            var itemBottom = itemTop + ItemHeight;
-
-            if (itemTop < Viewport.Top)
-                VScrollTo(itemTop);
-
-            if (itemBottom > Viewport.Bottom)
-                VScrollTo((itemBottom - Viewport.Height));
-        }
-
         protected IEnumerable<int> ItemIndexesInView()
         {
             var top = (Viewport.Top / ItemHeight) - 1;
@@ -526,11 +357,7 @@ namespace YiNing.UI.Controls
                 var rect = new Rectangle(0, i * ItemHeight, width, ItemHeight);
 
                 // Background
-                var odd = i % 2 != 0;
-                var bgColor = !odd ? Colors.HeaderBackground : Colors.GreyBackground;
-
-                if (SelectedIndices.Count > 0 && SelectedIndices.Contains(i))
-                    bgColor = Focused ? _selectFocusItemColor : Colors.GreySelection;
+                var bgColor = Colors.GreyBackground;
 
                 using (var b = new SolidBrush(bgColor))
                 {
@@ -544,7 +371,7 @@ namespace YiNing.UI.Controls
                 }*/
 
                 // Icon
-                if (ShowIcons && Items[i].Icon != null)
+                if (Items[i].Icon != null)
                 {
                     g.DrawImageUnscaled(Items[i].Icon, new Point(rect.Left + 5, rect.Top + (rect.Height / 2) - (_iconSize / 2)));
                 }
@@ -562,8 +389,7 @@ namespace YiNing.UI.Controls
 
                     var modRect = new Rectangle(rect.Left + 2, rect.Top, rect.Width, rect.Height);
 
-                    if (ShowIcons)
-                        modRect.X += _iconSize + 8;
+                    modRect.X += _iconSize + 8;
 
                     g.DrawString(Items[i].Text, modFont, b, modRect, stringFormat);
                 }

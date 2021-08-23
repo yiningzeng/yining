@@ -20,11 +20,12 @@ namespace WaferAoi
         public FsmHelper fsmHelper = new FsmHelper();
         private List<DarkDockContent> _toolWindows = new List<DarkDockContent>();
 
-        private DockWaferList _dockProject;
-        private DockProperties _dockProperties;
-        private DockControl _dockControl;
-        private DockLayers _dockLayers;
-        private DockHistory _dockHistory;
+        public DockWaferList _dockWaferList;
+        public DockProperties _dockProperties;
+        public DockControl _dockControl;
+        public DockLayers _dockLayers;
+        public DockHistory _dockHistory;
+        public DockWorkSpace _dockWorkSpace;
 
 
         [DllImport("user32.dll")]
@@ -58,14 +59,14 @@ namespace WaferAoi
             HookEvents();
 
             // Build the tool windows and add them to the dock panel
-            _dockProject = new DockWaferList();
+            _dockWaferList = new DockWaferList();
             _dockProperties = new DockProperties();
-            _dockControl = new DockControl();
+            _dockControl = new DockControl(this);
             _dockLayers = new DockLayers();
             _dockHistory = new DockHistory();
-
+            _dockWorkSpace = new DockWorkSpace(this, "工作站", Icons.ChipOutline) { ShowCloseButton = false };
             // Add the tool windows to a list
-            _toolWindows.Add(_dockProject);
+            _toolWindows.Add(_dockWaferList);
             _toolWindows.Add(_dockProperties);
             _toolWindows.Add(_dockControl);
             _toolWindows.Add(_dockLayers);
@@ -93,7 +94,7 @@ namespace WaferAoi
             //DockPanel.AddContent(new DockDocument("Document 2", Icons.document_16xLG) { ShowCloseButton = true });
             //DockPanel.AddContent(new DockDocument("Document 3", Icons.document_16xLG) { ShowCloseButton = true });
             fsmHelper.IssueCommand(FsmHelper.Action.Initialize);
-            DockPanel.AddContent(new DockWorkSpace(this, "工作站", Icons.ChipOutline) { ShowCloseButton = false });
+            DockPanel.AddContent(_dockWorkSpace);
  
         }
 
@@ -139,7 +140,7 @@ namespace WaferAoi
 
         private void BuildWindowMenu()
         {
-            mnuProject.Checked = DockPanel.ContainsContent(_dockProject);
+            mnuProject.Checked = DockPanel.ContainsContent(_dockWaferList);
             mnuProperties.Checked = DockPanel.ContainsContent(_dockProperties);
             mnuConsole.Checked = DockPanel.ContainsContent(_dockControl);
             mnuLayers.Checked = DockPanel.Contains(_dockLayers);
@@ -226,7 +227,7 @@ namespace WaferAoi
 
         private void Project_Click(object sender, EventArgs e)
         {
-            ToggleToolWindow(_dockProject);
+            ToggleToolWindow(_dockWaferList);
         }
 
         private void Properties_Click(object sender, EventArgs e)
