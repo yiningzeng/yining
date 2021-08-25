@@ -42,11 +42,12 @@ namespace WaferAoi
                 waferMap.Dataset = data;
                 waferMap.Notchlocation = 0;
                 //wmap.MinimumSize = new Size(500, 500);
-                waferMap.Interactive = true;
                 waferMap.Dock = DockStyle.Fill;
-                waferMap.SelectX = 21;
-                waferMap.SelectY = 14;
-                waferMap.SelectOneDie = data[21, 14];
+                //waferMap.SelectX = 21;
+                //waferMap.SelectY = 14;
+                //waferMap.SelectOneDie = data[21, 14];
+
+                waferMap.SelectRegionDiagonalDie = new Die[] { new Die() { XIndex = 10, YIndex = 10 }, new Die() { XIndex = 21, YIndex = 23 } };
                 //wmap.NoDataString = "没有数据";
                 //this.Controls.Add(wmap);
             }
@@ -146,20 +147,6 @@ namespace WaferAoi
         private void darkButton4_Click(object sender, EventArgs e)
         {
             dlvwProgress.Stop();
-        }
-
-        private void darkButton5_Click(object sender, EventArgs e)
-        {
-            List<Die> dies = new List<Die>();
-            dies.Add(new Die() { XIndex = 20, YIndex = 21 });
-            dies.Add(new Die() { XIndex = 20, YIndex = 22 });
-            dies.Add(new Die() { XIndex = 20, YIndex = 23 });
-            dies.Add(new Die() { XIndex = 21, YIndex = 21 });
-            dies.Add(new Die() { XIndex = 21, YIndex = 22 });
-            dies.Add(new Die() { XIndex = 21, YIndex = 23 });
-            waferMap.SelectDies = dies;
-
-            waferMap.DrawSelectDies();
         }
     }
 }

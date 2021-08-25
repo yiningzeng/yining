@@ -182,6 +182,7 @@ namespace WaferAoi
                         break;
                     case "回原点参数保存":
                         #region
+                        axis.GoHomePar.mode = Int16.Parse(cmbGoHomeType.Text.Split('(')[1].Replace(")","")); 
                         axis.GoHomePar.modeText = cmbGoHomeType.Text;
                         axis.GoHomePar.moveDir = rdoGoHomeStartPositive.Checked ? (short)1 : (short)-1;
                         axis.GoHomePar.indexDir = rdoGoHomeSearchPositive.Checked ? (short)1 : (short)-1;
@@ -330,6 +331,9 @@ namespace WaferAoi
                 case "单轴清除状态":
                     if (axis != null) MotorsControl.ClearSts(axis.Id);
                     break;
+                case "单轴报警清除":
+                    if (axis != null) MotorsControl.IoSignalEXO(axis.Id, 1, 11);
+                    break;
                 case "单轴位置清零":
                     axis = GetSelectAxis();
                     if (axis != null) MotorsControl.ZeroPos(axis.Id);
@@ -381,8 +385,8 @@ namespace WaferAoi
                 case "右移": axisId = 2; direction = -1; break;//晶圆载具Y轴状态";
                 case "顺时针转": axisId = 3; direction = 1; break;//晶圆载具旋转轴状态
                 case "逆时针转": axisId = 3; direction = -1; break;//晶圆载具旋转轴状态               
-                case "相机高度向上": axisId = 4; direction = -1; break;//相机拍照Z轴状态               
-                case "相机高度向下": axisId = 4; direction = 1; break;//相机拍照Z轴状态
+                case "相机高度向上": axisId = 4; direction = 1; break;//相机拍照Z轴状态               
+                case "相机高度向下": axisId = 4; direction = -1; break;//相机拍照Z轴状态
             }
             axis = config.Axes.Find(a => a.Id == axisId);
             int index = config.Axes.FindIndex(a=>a.Id == axisId);

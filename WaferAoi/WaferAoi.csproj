@@ -210,6 +210,8 @@
     <Compile Include="Tools\FsmHelper.cs" />
     <Compile Include="Tools\googol\GTS.cs" />
     <Compile Include="Tools\googol\MotorsControl.cs" />
+    <Compile Include="Tools\HDevelopExport.cs" />
+    <Compile Include="Tools\InterLayerDraw.cs" />
     <Compile Include="Tools\MVCameraHelper.cs" />
     <Compile Include="Tools\Utils.cs" />
     <EmbeddedResource Include="Forms\Dialogs\DialogMessage.resx">

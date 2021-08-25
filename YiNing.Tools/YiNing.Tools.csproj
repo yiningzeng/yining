@@ -133,6 +133,10 @@
       <Project>{F19472F5-8C44-4C51-A8A0-B9DE5F555255}</Project>
       <Name>YiNing.UI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\YiNingWafermapDisplay\YiNing.WafermapDisplay.csproj">
+      <Project>{303C3301-3E16-4E88-991B-68AD9D66B11C}</Project>
+      <Name>YiNing.WafermapDisplay</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -209,5 +209,15 @@ namespace WaferAoi.Tools
                 LogHelper.WriteLog("关闭相机出错", er);
             }
         }
+
+        public void CameraSetExposureTime(double exposureTime)
+        {
+            if (m_Grabber[0] != IntPtr.Zero)
+            {
+                //MvApi.CameraShowSettingPage(m_hCamera[i], 1);//1 show ; 0 hide
+                MvApi.CameraSetAeState(m_hCamera[0], 0);//设置为手动曝光模式
+                MvApi.CameraSetExposureTime(m_hCamera[0], exposureTime);
+            }
+        }
     }
 }

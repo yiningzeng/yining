@@ -46,7 +46,6 @@
             this.darkButton2 = new YiNing.UI.Controls.DarkButton();
             this.darkButton3 = new YiNing.UI.Controls.DarkButton();
             this.darkButton4 = new YiNing.UI.Controls.DarkButton();
-            this.darkButton5 = new YiNing.UI.Controls.DarkButton();
             this.waferMap = new YiNing.WafermapDisplay.Wafermap();
             this.darkSectionPanel6.SuspendLayout();
             this.darkSectionPanel1.SuspendLayout();
@@ -244,16 +243,6 @@
             this.darkButton4.TabIndex = 24;
             this.darkButton4.Text = "停止了";
             this.darkButton4.Click += new System.EventHandler(this.darkButton4_Click);
-            // 
-            // darkButton5
-            // 
-            this.darkButton5.Location = new System.Drawing.Point(593, 5);
-            this.darkButton5.Name = "darkButton5";
-            this.darkButton5.Padding = new System.Windows.Forms.Padding(5);
-            this.darkButton5.Size = new System.Drawing.Size(75, 23);
-            this.darkButton5.TabIndex = 25;
-            this.darkButton5.Text = "darkButton5";
-            this.darkButton5.Click += new System.EventHandler(this.darkButton5_Click);
             // 
             // waferMap
             // 
@@ -522,8 +511,8 @@
             this.waferMap.NoDataString = "NO DATA";
             this.waferMap.Notchlocation = 0;
             this.waferMap.Rotation = 0;
-            this.waferMap.SelectDies = null;
             this.waferMap.SelectOneDie = null;
+            this.waferMap.SelectRegionDiagonalDie = null;
             this.waferMap.SelectX = 0;
             this.waferMap.SelectY = 0;
             this.waferMap.Size = new System.Drawing.Size(858, 533);
@@ -537,7 +526,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.darkButton5);
             this.Controls.Add(this.darkButton4);
             this.Controls.Add(this.darkButton3);
             this.Controls.Add(this.darkButton2);
@@ -574,6 +562,5 @@
         private YiNing.UI.Controls.DarkButton darkButton2;
         private YiNing.UI.Controls.DarkButton darkButton3;
         private YiNing.UI.Controls.DarkButton darkButton4;
-        private YiNing.UI.Controls.DarkButton darkButton5;
     }
 }

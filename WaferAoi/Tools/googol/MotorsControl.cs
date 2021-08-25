@@ -193,8 +193,14 @@ namespace WaferAoi.Tools
             switch (diTepy)
             {
                 case DriveEnable:
-                case AlarGSNlear:
                     setStart = GSN.GTN_SetDo(CORE, diTepy, PdoValue);
+                    break;
+                case AlarGSNlear:
+                    setStart = GSN.GTN_SetDoBit(CORE, diTepy, (short)Index, 0);
+                    Thread.Sleep(50);
+                    setStart = GSN.GTN_SetDoBit(CORE, diTepy, (short)Index, 1);
+                    Thread.Sleep(50);
+                    ClearSts(Index);
                     break;
                 case GeneralOutput:
                     setStart = GSN.GTN_SetDoBit(CORE, diTepy, (short)Index, (short)PdoValue);
@@ -669,7 +675,7 @@ namespace WaferAoi.Tools
                      _goHomeCallback(axis, homeStatus);
                  } while (Convert.ToBoolean(homeStatus.run));
                  Thread.Sleep(200);
-                 //GSN.GTN_ZeroPos(CORE, axis, 1);
+                 GSN.GTN_ZeroPos(CORE, axis, 1);
                  _goHomeCallback(axis, homeStatus);
              }, objectArray);
         }
