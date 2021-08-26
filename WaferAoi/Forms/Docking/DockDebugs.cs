@@ -159,10 +159,10 @@ namespace WaferAoi
             int direction = 1;
             switch (btn.Tag.ToString())
             {
-                case "向上": axisId = 1; direction = -1; break; // 晶圆载具X轴状态
-                case "向下": axisId = 1; direction = 1; break;// 晶圆载具X轴状态
-                case "向左": axisId = 2; direction = 1; break;//"晶圆载具Y轴状态";
-                case "向右": axisId = 2; direction = -1; break;//晶圆载具Y轴状态";
+                case "向上": axisId = 1; direction = 1; break; // 晶圆载具X轴状态
+                case "向下": axisId = 1; direction = -1; break;// 晶圆载具X轴状态
+                case "向左": axisId = 2; direction = -1; break;//"晶圆载具Y轴状态";
+                case "向右": axisId = 2; direction = 1; break;//晶圆载具Y轴状态";
                 case "顺时针转": axisId = 3; direction = 1; break;//晶圆载具旋转轴状态
                 case "逆时针转": axisId = 3; direction = -1; break;//晶圆载具旋转轴状态               
                 case "相机高度向上": axisId = 4; direction = -1; break;//相机拍照Z轴状态               
@@ -238,7 +238,34 @@ namespace WaferAoi
                 case "相机曝光":
                     mVCameraHelper.CameraSetExposureTime(double.Parse(dtbExposeTime.Text));
                             break;
+
+                case "计算等边三角形":
+                    try
+                    {
+                        int topX = int.Parse(tbTopPointX.Text);
+                        int topY = int.Parse(tbTopPointY.Text);
+                        int radius = int.Parse(tbRd.Text) / 2;
+                        Point[] points = getSanjiaoxingOtherPoint(new Point(topX, topY), radius);
+                        tb1x.Text = points[0].X.ToString();
+                        tb1y.Text = points[0].Y.ToString();
+
+                        tb2x.Text = points[1].X.ToString();
+                        tb2y.Text = points[1].Y.ToString();
+
+                        tb3x.Text = points[2].X.ToString();
+                        tb3y.Text = points[2].Y.ToString();
+                    }
+                    catch (Exception er) { }
+
+                    break;
             }
+        }
+
+        private Point[] getSanjiaoxingOtherPoint(Point rightPoint, int radius)
+        {
+            Point topPoint = new Point(rightPoint.X + radius, rightPoint.Y - radius);
+            Point bottomPoint = new Point(topPoint.X, rightPoint.Y + radius);
+            return new Point[] { rightPoint, topPoint, bottomPoint };
         }
 
         void MovePoint(string velStr, string pxStr, string pyStr)
@@ -249,8 +276,8 @@ namespace WaferAoi
                 int px = int.Parse(pxStr);
                 int py = int.Parse(pyStr);
                 Config cc = JsonHelper.DeserializeByFile<Config>("yining.config");
-                Axis ax = cc.Axes.Find(v => v.Id == 1);
-                Axis ay = cc.Axes.Find(v => v.Id == 2);
+                Axis ax = cc.Axes.Find(v => v.Id == 2);
+                Axis ay = cc.Axes.Find(v => v.Id == 1);
                 Parallel.Invoke(() => MotorsControl.MoveTrap(ax.Id, ax.TrapPrm.Get(), vel, px), () => MotorsControl.MoveTrap(ay.Id, ay.TrapPrm.Get(), vel, py));
                 //MessageBox.Show("daole");
             }

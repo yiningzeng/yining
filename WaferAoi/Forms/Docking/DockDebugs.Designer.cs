@@ -49,6 +49,8 @@
             this.darkSectionPanel2 = new YiNing.UI.Controls.DarkSectionPanel();
             this.hSmartWindowControl1 = new HalconDotNet.HSmartWindowControl();
             this.darkSectionPanel3 = new YiNing.UI.Controls.DarkSectionPanel();
+            this.darkButton15 = new YiNing.UI.Controls.DarkButton();
+            this.dtbExposeTime = new YiNing.UI.Controls.DarkTextBox();
             this.darkButton6 = new YiNing.UI.Controls.DarkButton();
             this.darkButton5 = new YiNing.UI.Controls.DarkButton();
             this.dtebInterval = new YiNing.UI.Controls.DarkTextBox();
@@ -61,6 +63,7 @@
             this.button13 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.darkSectionPanel4 = new YiNing.UI.Controls.DarkSectionPanel();
+            this.darkButton14 = new YiNing.UI.Controls.DarkButton();
             this.darkButton13 = new YiNing.UI.Controls.DarkButton();
             this.darkLabel2 = new YiNing.UI.Controls.DarkLabel();
             this.tbVel = new YiNing.UI.Controls.DarkTextBox();
@@ -82,15 +85,21 @@
             this.darkButton9 = new YiNing.UI.Controls.DarkButton();
             this.darkButton8 = new YiNing.UI.Controls.DarkButton();
             this.darkButton7 = new YiNing.UI.Controls.DarkButton();
-            this.darkButton14 = new YiNing.UI.Controls.DarkButton();
-            this.dtbExposeTime = new YiNing.UI.Controls.DarkTextBox();
-            this.darkButton15 = new YiNing.UI.Controls.DarkButton();
+            this.darkSectionPanel5 = new YiNing.UI.Controls.DarkSectionPanel();
+            this.darkButton16 = new YiNing.UI.Controls.DarkButton();
+            this.tbTopPointX = new YiNing.UI.Controls.DarkTextBox();
+            this.tbTopPointY = new YiNing.UI.Controls.DarkTextBox();
+            this.tbRd = new YiNing.UI.Controls.DarkTextBox();
+            this.darkLabel3 = new YiNing.UI.Controls.DarkLabel();
+            this.darkLabel4 = new YiNing.UI.Controls.DarkLabel();
+            this.darkLabel5 = new YiNing.UI.Controls.DarkLabel();
             this.darkSectionPanel1.SuspendLayout();
             this.dsepMove.SuspendLayout();
             this.darkSectionPanel2.SuspendLayout();
             this.darkSectionPanel3.SuspendLayout();
             this.darkGroupBox1.SuspendLayout();
             this.darkSectionPanel4.SuspendLayout();
+            this.darkSectionPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // darkButton1
@@ -345,6 +354,27 @@
             this.darkSectionPanel3.Size = new System.Drawing.Size(269, 171);
             this.darkSectionPanel3.TabIndex = 36;
             // 
+            // darkButton15
+            // 
+            this.darkButton15.Location = new System.Drawing.Point(222, 58);
+            this.darkButton15.Name = "darkButton15";
+            this.darkButton15.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton15.Size = new System.Drawing.Size(40, 23);
+            this.darkButton15.TabIndex = 8;
+            this.darkButton15.Tag = "相机曝光";
+            this.darkButton15.Text = "曝光";
+            // 
+            // dtbExposeTime
+            // 
+            this.dtbExposeTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.dtbExposeTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.dtbExposeTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.dtbExposeTime.Location = new System.Drawing.Point(146, 57);
+            this.dtbExposeTime.Name = "dtbExposeTime";
+            this.dtbExposeTime.Size = new System.Drawing.Size(70, 23);
+            this.dtbExposeTime.TabIndex = 7;
+            this.dtbExposeTime.Text = "1";
+            // 
             // darkButton6
             // 
             this.darkButton6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -500,6 +530,15 @@
             this.darkSectionPanel4.Size = new System.Drawing.Size(339, 286);
             this.darkSectionPanel4.TabIndex = 46;
             // 
+            // darkButton14
+            // 
+            this.darkButton14.Location = new System.Drawing.Point(236, 249);
+            this.darkButton14.Name = "darkButton14";
+            this.darkButton14.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton14.Size = new System.Drawing.Size(75, 23);
+            this.darkButton14.TabIndex = 21;
+            this.darkButton14.Text = "循环";
+            // 
             // darkButton13
             // 
             this.darkButton13.Location = new System.Drawing.Point(159, 250);
@@ -580,7 +619,6 @@
             this.tb4y.Name = "tb4y";
             this.tb4y.Size = new System.Drawing.Size(100, 23);
             this.tb4y.TabIndex = 13;
-            this.tb4y.Text = "62491";
             // 
             // tb4x
             // 
@@ -591,7 +629,6 @@
             this.tb4x.Name = "tb4x";
             this.tb4x.Size = new System.Drawing.Size(100, 23);
             this.tb4x.TabIndex = 12;
-            this.tb4x.Text = "144001";
             // 
             // tb3y
             // 
@@ -602,7 +639,6 @@
             this.tb3y.Name = "tb3y";
             this.tb3y.Size = new System.Drawing.Size(100, 23);
             this.tb3y.TabIndex = 11;
-            this.tb3y.Text = "60935";
             // 
             // tb3x
             // 
@@ -613,7 +649,6 @@
             this.tb3x.Name = "tb3x";
             this.tb3x.Size = new System.Drawing.Size(100, 23);
             this.tb3x.TabIndex = 10;
-            this.tb3x.Text = "-15987";
             // 
             // tb2y
             // 
@@ -624,7 +659,6 @@
             this.tb2y.Name = "tb2y";
             this.tb2y.Size = new System.Drawing.Size(100, 23);
             this.tb2y.TabIndex = 9;
-            this.tb2y.Text = "220895";
             // 
             // tb2x
             // 
@@ -635,7 +669,6 @@
             this.tb2x.Name = "tb2x";
             this.tb2x.Size = new System.Drawing.Size(100, 23);
             this.tb2x.TabIndex = 8;
-            this.tb2x.Text = "-17514";
             // 
             // tb1y
             // 
@@ -646,7 +679,6 @@
             this.tb1y.Name = "tb1y";
             this.tb1y.Size = new System.Drawing.Size(100, 23);
             this.tb1y.TabIndex = 7;
-            this.tb1y.Text = "222452";
             // 
             // tb1x
             // 
@@ -657,7 +689,6 @@
             this.tb1x.Name = "tb1x";
             this.tb1x.Size = new System.Drawing.Size(100, 23);
             this.tb1x.TabIndex = 6;
-            this.tb1x.Text = "142490";
             // 
             // darkButton12
             // 
@@ -719,40 +750,100 @@
             this.darkButton7.Tag = "点1";
             this.darkButton7.Text = "点1";
             // 
-            // darkButton14
+            // darkSectionPanel5
             // 
-            this.darkButton14.Location = new System.Drawing.Point(236, 249);
-            this.darkButton14.Name = "darkButton14";
-            this.darkButton14.Padding = new System.Windows.Forms.Padding(5);
-            this.darkButton14.Size = new System.Drawing.Size(75, 23);
-            this.darkButton14.TabIndex = 21;
-            this.darkButton14.Text = "循环";
+            this.darkSectionPanel5.Controls.Add(this.darkLabel5);
+            this.darkSectionPanel5.Controls.Add(this.darkLabel4);
+            this.darkSectionPanel5.Controls.Add(this.darkLabel3);
+            this.darkSectionPanel5.Controls.Add(this.tbRd);
+            this.darkSectionPanel5.Controls.Add(this.tbTopPointY);
+            this.darkSectionPanel5.Controls.Add(this.tbTopPointX);
+            this.darkSectionPanel5.Controls.Add(this.darkButton16);
+            this.darkSectionPanel5.DragEnable = true;
+            this.darkSectionPanel5.Location = new System.Drawing.Point(432, 436);
+            this.darkSectionPanel5.Name = "darkSectionPanel5";
+            this.darkSectionPanel5.SectionHeader = "计算等边三角形";
+            this.darkSectionPanel5.Size = new System.Drawing.Size(200, 170);
+            this.darkSectionPanel5.TabIndex = 47;
             // 
-            // dtbExposeTime
+            // darkButton16
             // 
-            this.dtbExposeTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
-            this.dtbExposeTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.dtbExposeTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.dtbExposeTime.Location = new System.Drawing.Point(146, 57);
-            this.dtbExposeTime.Name = "dtbExposeTime";
-            this.dtbExposeTime.Size = new System.Drawing.Size(70, 23);
-            this.dtbExposeTime.TabIndex = 7;
-            this.dtbExposeTime.Text = "1";
+            this.darkButton16.Location = new System.Drawing.Point(52, 124);
+            this.darkButton16.Name = "darkButton16";
+            this.darkButton16.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton16.Size = new System.Drawing.Size(140, 23);
+            this.darkButton16.TabIndex = 0;
+            this.darkButton16.Tag = "计算等边三角形";
+            this.darkButton16.Text = "计算等边三角形";
             // 
-            // darkButton15
+            // tbTopPointX
             // 
-            this.darkButton15.Location = new System.Drawing.Point(222, 58);
-            this.darkButton15.Name = "darkButton15";
-            this.darkButton15.Padding = new System.Windows.Forms.Padding(5);
-            this.darkButton15.Size = new System.Drawing.Size(40, 23);
-            this.darkButton15.TabIndex = 8;
-            this.darkButton15.Tag = "相机曝光";
-            this.darkButton15.Text = "曝光";
+            this.tbTopPointX.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.tbTopPointX.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbTopPointX.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.tbTopPointX.Location = new System.Drawing.Point(64, 37);
+            this.tbTopPointX.Name = "tbTopPointX";
+            this.tbTopPointX.Size = new System.Drawing.Size(100, 23);
+            this.tbTopPointX.TabIndex = 1;
+            this.tbTopPointX.Text = "79727";
+            // 
+            // tbTopPointY
+            // 
+            this.tbTopPointY.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.tbTopPointY.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbTopPointY.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.tbTopPointY.Location = new System.Drawing.Point(64, 66);
+            this.tbTopPointY.Name = "tbTopPointY";
+            this.tbTopPointY.Size = new System.Drawing.Size(100, 23);
+            this.tbTopPointY.TabIndex = 2;
+            this.tbTopPointY.Text = "125626";
+            // 
+            // tbRd
+            // 
+            this.tbRd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.tbRd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbRd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.tbRd.Location = new System.Drawing.Point(64, 95);
+            this.tbRd.Name = "tbRd";
+            this.tbRd.Size = new System.Drawing.Size(100, 23);
+            this.tbRd.TabIndex = 3;
+            this.tbRd.Text = "199405";
+            // 
+            // darkLabel3
+            // 
+            this.darkLabel3.AutoSize = true;
+            this.darkLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel3.Location = new System.Drawing.Point(18, 39);
+            this.darkLabel3.Name = "darkLabel3";
+            this.darkLabel3.Size = new System.Drawing.Size(40, 15);
+            this.darkLabel3.TabIndex = 4;
+            this.darkLabel3.Text = "顶点X";
+            // 
+            // darkLabel4
+            // 
+            this.darkLabel4.AutoSize = true;
+            this.darkLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel4.Location = new System.Drawing.Point(18, 68);
+            this.darkLabel4.Name = "darkLabel4";
+            this.darkLabel4.Size = new System.Drawing.Size(40, 15);
+            this.darkLabel4.TabIndex = 5;
+            this.darkLabel4.Text = "顶点Y";
+            // 
+            // darkLabel5
+            // 
+            this.darkLabel5.AutoSize = true;
+            this.darkLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel5.Location = new System.Drawing.Point(25, 97);
+            this.darkLabel5.Name = "darkLabel5";
+            this.darkLabel5.Size = new System.Drawing.Size(33, 15);
+            this.darkLabel5.TabIndex = 6;
+            this.darkLabel5.Text = "直径";
             // 
             // DockDebugs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.darkSectionPanel5);
             this.Controls.Add(this.darkSectionPanel4);
             this.Controls.Add(this.button14);
             this.Controls.Add(this.button13);
@@ -777,6 +868,8 @@
             this.darkGroupBox1.ResumeLayout(false);
             this.darkSectionPanel4.ResumeLayout(false);
             this.darkSectionPanel4.PerformLayout();
+            this.darkSectionPanel5.ResumeLayout(false);
+            this.darkSectionPanel5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -841,5 +934,13 @@
         private YiNing.UI.Controls.DarkButton darkButton14;
         private YiNing.UI.Controls.DarkTextBox dtbExposeTime;
         private YiNing.UI.Controls.DarkButton darkButton15;
+        private YiNing.UI.Controls.DarkSectionPanel darkSectionPanel5;
+        private YiNing.UI.Controls.DarkButton darkButton16;
+        private YiNing.UI.Controls.DarkLabel darkLabel4;
+        private YiNing.UI.Controls.DarkLabel darkLabel3;
+        private YiNing.UI.Controls.DarkTextBox tbRd;
+        private YiNing.UI.Controls.DarkTextBox tbTopPointY;
+        private YiNing.UI.Controls.DarkTextBox tbTopPointX;
+        private YiNing.UI.Controls.DarkLabel darkLabel5;
     }
 }

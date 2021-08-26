@@ -83,6 +83,7 @@
             this.tsStart = new JCS.ToggleSwitch();
             this.darkSectionPanel_AxisRun = new YiNing.UI.Controls.DarkSectionPanel();
             this.dgrpVehicleAxisRun = new YiNing.UI.Controls.DarkGroupBox();
+            this.darkButton9 = new YiNing.UI.Controls.DarkButton();
             this.btnGoUp = new System.Windows.Forms.Button();
             this.btnRotateClockwise = new System.Windows.Forms.Button();
             this.btnRotateAnticlockwise = new System.Windows.Forms.Button();
@@ -142,13 +143,12 @@
             this.darkTitleBarPanel1 = new YiNing.UI.Controls.DarkSectionPanel();
             this.dlvwAxes = new YiNing.UI.Controls.DarkListView();
             this.darkSectionPanel1 = new YiNing.UI.Controls.DarkSectionPanel();
+            this.darkButton4 = new YiNing.UI.Controls.DarkButton();
             this.toggleSwitch5 = new JCS.ToggleSwitch();
             this.darkButton8 = new YiNing.UI.Controls.DarkButton();
             this.darkButton5 = new YiNing.UI.Controls.DarkButton();
             this.darkButton7 = new YiNing.UI.Controls.DarkButton();
             this.timerUpdateUi = new System.Windows.Forms.Timer(this.components);
-            this.darkButton4 = new YiNing.UI.Controls.DarkButton();
-            this.darkButton9 = new YiNing.UI.Controls.DarkButton();
             this.panel1.SuspendLayout();
             this.darkTitleBarPanel2.SuspendLayout();
             this.darkGroupBox2.SuspendLayout();
@@ -202,9 +202,9 @@
             // darkGroupBox2
             // 
             this.darkGroupBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.darkGroupBox2.Controls.Add(this.darkSectionPanel6);
             this.darkGroupBox2.Controls.Add(this.darkSectionPanel2);
             this.darkGroupBox2.Controls.Add(this.dsepAxisStatus);
-            this.darkGroupBox2.Controls.Add(this.darkSectionPanel6);
             this.darkGroupBox2.Controls.Add(this.darkSectionPanel_AxisRun);
             this.darkGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.darkGroupBox2.Location = new System.Drawing.Point(0, 221);
@@ -871,6 +871,16 @@
             this.dgrpVehicleAxisRun.TabStop = false;
             this.dgrpVehicleAxisRun.Text = "载具控制台";
             // 
+            // darkButton9
+            // 
+            this.darkButton9.Location = new System.Drawing.Point(250, 166);
+            this.darkButton9.Name = "darkButton9";
+            this.darkButton9.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton9.Size = new System.Drawing.Size(86, 23);
+            this.darkButton9.TabIndex = 13;
+            this.darkButton9.Tag = "所有轴回零";
+            this.darkButton9.Text = "所有轴回零";
+            // 
             // btnGoUp
             // 
             this.btnGoUp.BackgroundImage = global::WaferAoi.Icons.向上128;
@@ -1058,7 +1068,7 @@
             this.btnJogSave.Name = "btnJogSave";
             this.btnJogSave.Padding = new System.Windows.Forms.Padding(5);
             this.btnJogSave.Size = new System.Drawing.Size(42, 132);
-            this.btnJogSave.TabIndex = 21;
+            this.btnJogSave.TabIndex = 5;
             this.btnJogSave.Tag = "JOG运动参数保存";
             this.btnJogSave.Text = "保存";
             // 
@@ -1082,7 +1092,7 @@
             this.dtbJogVel.Location = new System.Drawing.Point(126, 123);
             this.dtbJogVel.Name = "dtbJogVel";
             this.dtbJogVel.Size = new System.Drawing.Size(75, 23);
-            this.dtbJogVel.TabIndex = 19;
+            this.dtbJogVel.TabIndex = 4;
             this.dtbJogVel.Tag = "JOG减速度";
             // 
             // darkLabel12
@@ -1105,7 +1115,7 @@
             this.dtbJogSmooth.Location = new System.Drawing.Point(126, 94);
             this.dtbJogSmooth.Name = "dtbJogSmooth";
             this.dtbJogSmooth.Size = new System.Drawing.Size(75, 23);
-            this.dtbJogSmooth.TabIndex = 6;
+            this.dtbJogSmooth.TabIndex = 3;
             // 
             // darkLabel13
             // 
@@ -1127,7 +1137,7 @@
             this.dtbJogDec.Location = new System.Drawing.Point(126, 65);
             this.dtbJogDec.Name = "dtbJogDec";
             this.dtbJogDec.Size = new System.Drawing.Size(75, 23);
-            this.dtbJogDec.TabIndex = 4;
+            this.dtbJogDec.TabIndex = 2;
             this.dtbJogDec.Tag = "JOG减速度";
             // 
             // darkLabel14
@@ -1150,7 +1160,7 @@
             this.dtbJogAcc.Location = new System.Drawing.Point(126, 36);
             this.dtbJogAcc.Name = "dtbJogAcc";
             this.dtbJogAcc.Size = new System.Drawing.Size(75, 23);
-            this.dtbJogAcc.TabIndex = 2;
+            this.dtbJogAcc.TabIndex = 1;
             this.dtbJogAcc.Tag = "JOG加速度";
             // 
             // dspGoHomeSettings
@@ -1186,7 +1196,7 @@
             this.btnGoHomeSave.Name = "btnGoHomeSave";
             this.btnGoHomeSave.Padding = new System.Windows.Forms.Padding(5);
             this.btnGoHomeSave.Size = new System.Drawing.Size(42, 132);
-            this.btnGoHomeSave.TabIndex = 34;
+            this.btnGoHomeSave.TabIndex = 15;
             this.btnGoHomeSave.Tag = "回原点参数保存";
             this.btnGoHomeSave.Text = "保存";
             // 
@@ -1198,7 +1208,7 @@
             this.dtbGoHomeOffset.Location = new System.Drawing.Point(114, 123);
             this.dtbGoHomeOffset.Name = "dtbGoHomeOffset";
             this.dtbGoHomeOffset.Size = new System.Drawing.Size(169, 23);
-            this.dtbGoHomeOffset.TabIndex = 33;
+            this.dtbGoHomeOffset.TabIndex = 6;
             // 
             // dtbGoHomeDec
             // 
@@ -1210,7 +1220,7 @@
             this.dtbGoHomeDec.Location = new System.Drawing.Point(423, 125);
             this.dtbGoHomeDec.Name = "dtbGoHomeDec";
             this.dtbGoHomeDec.Size = new System.Drawing.Size(99, 23);
-            this.dtbGoHomeDec.TabIndex = 31;
+            this.dtbGoHomeDec.TabIndex = 10;
             // 
             // darkLabel19
             // 
@@ -1232,7 +1242,7 @@
             this.dtbGoHomeAcc.Location = new System.Drawing.Point(423, 96);
             this.dtbGoHomeAcc.Name = "dtbGoHomeAcc";
             this.dtbGoHomeAcc.Size = new System.Drawing.Size(99, 23);
-            this.dtbGoHomeAcc.TabIndex = 29;
+            this.dtbGoHomeAcc.TabIndex = 9;
             // 
             // darkLabel18
             // 
@@ -1254,7 +1264,7 @@
             this.dtbGoHomeLocationVel.Location = new System.Drawing.Point(422, 67);
             this.dtbGoHomeLocationVel.Name = "dtbGoHomeLocationVel";
             this.dtbGoHomeLocationVel.Size = new System.Drawing.Size(100, 23);
-            this.dtbGoHomeLocationVel.TabIndex = 27;
+            this.dtbGoHomeLocationVel.TabIndex = 8;
             // 
             // darkLabel17
             // 
@@ -1276,7 +1286,7 @@
             this.dtbGoHomeSearchVel.Location = new System.Drawing.Point(422, 36);
             this.dtbGoHomeSearchVel.Name = "dtbGoHomeSearchVel";
             this.dtbGoHomeSearchVel.Size = new System.Drawing.Size(100, 23);
-            this.dtbGoHomeSearchVel.TabIndex = 18;
+            this.dtbGoHomeSearchVel.TabIndex = 7;
             // 
             // darkLabel16
             // 
@@ -1313,7 +1323,7 @@
             this.rdoGoHomeSearchPositive.Location = new System.Drawing.Point(3, 3);
             this.rdoGoHomeSearchPositive.Name = "rdoGoHomeSearchPositive";
             this.rdoGoHomeSearchPositive.Size = new System.Drawing.Size(64, 19);
-            this.rdoGoHomeSearchPositive.TabIndex = 0;
+            this.rdoGoHomeSearchPositive.TabIndex = 4;
             this.rdoGoHomeSearchPositive.Text = "正方向";
             // 
             // rdoGoHomeSearchNegative
@@ -1323,7 +1333,7 @@
             this.rdoGoHomeSearchNegative.Location = new System.Drawing.Point(73, 3);
             this.rdoGoHomeSearchNegative.Name = "rdoGoHomeSearchNegative";
             this.rdoGoHomeSearchNegative.Size = new System.Drawing.Size(64, 19);
-            this.rdoGoHomeSearchNegative.TabIndex = 1;
+            this.rdoGoHomeSearchNegative.TabIndex = 5;
             this.rdoGoHomeSearchNegative.TabStop = true;
             this.rdoGoHomeSearchNegative.Text = "反方向";
             // 
@@ -1353,7 +1363,7 @@
             this.rdoGoHomeStartPositive.Location = new System.Drawing.Point(3, 3);
             this.rdoGoHomeStartPositive.Name = "rdoGoHomeStartPositive";
             this.rdoGoHomeStartPositive.Size = new System.Drawing.Size(64, 19);
-            this.rdoGoHomeStartPositive.TabIndex = 0;
+            this.rdoGoHomeStartPositive.TabIndex = 2;
             this.rdoGoHomeStartPositive.TabStop = true;
             this.rdoGoHomeStartPositive.Text = "正方向";
             // 
@@ -1363,7 +1373,7 @@
             this.rdoGoHomeStartNegative.Location = new System.Drawing.Point(73, 3);
             this.rdoGoHomeStartNegative.Name = "rdoGoHomeStartNegative";
             this.rdoGoHomeStartNegative.Size = new System.Drawing.Size(64, 19);
-            this.rdoGoHomeStartNegative.TabIndex = 1;
+            this.rdoGoHomeStartNegative.TabIndex = 3;
             this.rdoGoHomeStartNegative.Text = "反方向";
             // 
             // darkLabel2
@@ -1392,7 +1402,7 @@
             this.cmbGoHomeType.Name = "cmbGoHomeType";
             this.cmbGoHomeType.ReadOnly = true;
             this.cmbGoHomeType.Size = new System.Drawing.Size(169, 24);
-            this.cmbGoHomeType.TabIndex = 20;
+            this.cmbGoHomeType.TabIndex = 1;
             // 
             // darkLabel15
             // 
@@ -1429,7 +1439,7 @@
             this.btnTrapSave.Name = "btnTrapSave";
             this.btnTrapSave.Padding = new System.Windows.Forms.Padding(5);
             this.btnTrapSave.Size = new System.Drawing.Size(42, 132);
-            this.btnTrapSave.TabIndex = 1;
+            this.btnTrapSave.TabIndex = 5;
             this.btnTrapSave.Tag = "点位运动参数保存";
             this.btnTrapSave.Text = "保存";
             // 
@@ -1463,7 +1473,7 @@
             this.dtbTrapSmoothTime.Location = new System.Drawing.Point(146, 125);
             this.dtbTrapSmoothTime.Name = "dtbTrapSmoothTime";
             this.dtbTrapSmoothTime.Size = new System.Drawing.Size(74, 23);
-            this.dtbTrapSmoothTime.TabIndex = 16;
+            this.dtbTrapSmoothTime.TabIndex = 4;
             // 
             // darkLabel1
             // 
@@ -1495,7 +1505,7 @@
             this.dtbTrapVel.Location = new System.Drawing.Point(146, 96);
             this.dtbTrapVel.Name = "dtbTrapVel";
             this.dtbTrapVel.Size = new System.Drawing.Size(74, 23);
-            this.dtbTrapVel.TabIndex = 14;
+            this.dtbTrapVel.TabIndex = 3;
             // 
             // dtbTrapDec
             // 
@@ -1507,7 +1517,7 @@
             this.dtbTrapDec.Location = new System.Drawing.Point(146, 67);
             this.dtbTrapDec.Name = "dtbTrapDec";
             this.dtbTrapDec.Size = new System.Drawing.Size(74, 23);
-            this.dtbTrapDec.TabIndex = 12;
+            this.dtbTrapDec.TabIndex = 2;
             // 
             // dtbTrapAcc
             // 
@@ -1519,7 +1529,7 @@
             this.dtbTrapAcc.Location = new System.Drawing.Point(146, 38);
             this.dtbTrapAcc.Name = "dtbTrapAcc";
             this.dtbTrapAcc.Size = new System.Drawing.Size(74, 23);
-            this.dtbTrapAcc.TabIndex = 10;
+            this.dtbTrapAcc.TabIndex = 1;
             // 
             // darkTitleBarPanel1
             // 
@@ -1556,6 +1566,16 @@
             this.darkSectionPanel1.SectionHeader = "单轴操作";
             this.darkSectionPanel1.Size = new System.Drawing.Size(165, 158);
             this.darkSectionPanel1.TabIndex = 3;
+            // 
+            // darkButton4
+            // 
+            this.darkButton4.Location = new System.Drawing.Point(85, 28);
+            this.darkButton4.Name = "darkButton4";
+            this.darkButton4.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton4.Size = new System.Drawing.Size(75, 44);
+            this.darkButton4.TabIndex = 9;
+            this.darkButton4.Tag = "单轴报警清除";
+            this.darkButton4.Text = "报警清除";
             // 
             // toggleSwitch5
             // 
@@ -1605,26 +1625,6 @@
             // timerUpdateUi
             // 
             this.timerUpdateUi.Interval = 50;
-            // 
-            // darkButton4
-            // 
-            this.darkButton4.Location = new System.Drawing.Point(85, 28);
-            this.darkButton4.Name = "darkButton4";
-            this.darkButton4.Padding = new System.Windows.Forms.Padding(5);
-            this.darkButton4.Size = new System.Drawing.Size(75, 44);
-            this.darkButton4.TabIndex = 9;
-            this.darkButton4.Tag = "单轴报警清除";
-            this.darkButton4.Text = "报警清除";
-            // 
-            // darkButton9
-            // 
-            this.darkButton9.Location = new System.Drawing.Point(250, 166);
-            this.darkButton9.Name = "darkButton9";
-            this.darkButton9.Padding = new System.Windows.Forms.Padding(5);
-            this.darkButton9.Size = new System.Drawing.Size(86, 23);
-            this.darkButton9.TabIndex = 13;
-            this.darkButton9.Tag = "所有轴回零";
-            this.darkButton9.Text = "所有轴回零";
             // 
             // DockSetting
             // 
