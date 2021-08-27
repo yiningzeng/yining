@@ -32,6 +32,30 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.darkTitleBarPanel2 = new YiNing.UI.Docking.DarkTitleBarPanel();
             this.darkGroupBox2 = new YiNing.UI.Controls.DarkGroupBox();
+            this.darkSectionPanel6 = new YiNing.UI.Controls.DarkSectionPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.darkGroupBox4 = new YiNing.UI.Controls.DarkGroupBox();
+            this.isNegativePressure3 = new YiNing.UI.Controls.DarkPointsIn();
+            this.isNegativePressure2 = new YiNing.UI.Controls.DarkPointsIn();
+            this.isNegativePressure1 = new YiNing.UI.Controls.DarkPointsIn();
+            this.isPositivePressure = new YiNing.UI.Controls.DarkPointsIn();
+            this.isDoor = new YiNing.UI.Controls.DarkPointsIn();
+            this.isStop = new YiNing.UI.Controls.DarkPointsIn();
+            this.isReset = new YiNing.UI.Controls.DarkPointsIn();
+            this.isStart = new YiNing.UI.Controls.DarkPointsIn();
+            this.isEmergencyStop = new YiNing.UI.Controls.DarkPointsIn();
+            this.darkGroupBox_PointsOut = new YiNing.UI.Controls.DarkGroupBox();
+            this.toggleSwitch4 = new JCS.ToggleSwitch();
+            this.toggleSwitch3 = new JCS.ToggleSwitch();
+            this.toggleSwitch2 = new JCS.ToggleSwitch();
+            this.toggleSwitch1 = new JCS.ToggleSwitch();
+            this.tsBuzzer = new JCS.ToggleSwitch();
+            this.tsThreeLightGreen = new JCS.ToggleSwitch();
+            this.tsThreeLightRed = new JCS.ToggleSwitch();
+            this.tsThreeLightYellow = new JCS.ToggleSwitch();
+            this.tsStop = new JCS.ToggleSwitch();
+            this.tsReset = new JCS.ToggleSwitch();
+            this.tsStart = new JCS.ToggleSwitch();
             this.darkSectionPanel2 = new YiNing.UI.Controls.DarkSectionPanel();
             this.darkButton3 = new YiNing.UI.Controls.DarkButton();
             this.darkRadioButton5 = new YiNing.UI.Controls.DarkRadioButton();
@@ -57,30 +81,6 @@
             this.dtbEncpos = new YiNing.UI.Controls.DarkTextBox();
             this.DarkPointsIn7 = new YiNing.UI.Controls.DarkPointsIn();
             this.DarkPointsIn8 = new YiNing.UI.Controls.DarkPointsIn();
-            this.darkSectionPanel6 = new YiNing.UI.Controls.DarkSectionPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.darkGroupBox4 = new YiNing.UI.Controls.DarkGroupBox();
-            this.isNegativePressure3 = new YiNing.UI.Controls.DarkPointsIn();
-            this.isNegativePressure2 = new YiNing.UI.Controls.DarkPointsIn();
-            this.isNegativePressure1 = new YiNing.UI.Controls.DarkPointsIn();
-            this.isPositivePressure = new YiNing.UI.Controls.DarkPointsIn();
-            this.isDoor = new YiNing.UI.Controls.DarkPointsIn();
-            this.isStop = new YiNing.UI.Controls.DarkPointsIn();
-            this.isReset = new YiNing.UI.Controls.DarkPointsIn();
-            this.isStart = new YiNing.UI.Controls.DarkPointsIn();
-            this.isEmergencyStop = new YiNing.UI.Controls.DarkPointsIn();
-            this.darkGroupBox_PointsOut = new YiNing.UI.Controls.DarkGroupBox();
-            this.toggleSwitch4 = new JCS.ToggleSwitch();
-            this.toggleSwitch3 = new JCS.ToggleSwitch();
-            this.toggleSwitch2 = new JCS.ToggleSwitch();
-            this.toggleSwitch1 = new JCS.ToggleSwitch();
-            this.tsBuzzer = new JCS.ToggleSwitch();
-            this.tsThreeLightGreen = new JCS.ToggleSwitch();
-            this.tsThreeLightRed = new JCS.ToggleSwitch();
-            this.tsThreeLightYellow = new JCS.ToggleSwitch();
-            this.tsStop = new JCS.ToggleSwitch();
-            this.tsReset = new JCS.ToggleSwitch();
-            this.tsStart = new JCS.ToggleSwitch();
             this.darkSectionPanel_AxisRun = new YiNing.UI.Controls.DarkSectionPanel();
             this.dgrpVehicleAxisRun = new YiNing.UI.Controls.DarkGroupBox();
             this.darkButton9 = new YiNing.UI.Controls.DarkButton();
@@ -149,15 +149,16 @@
             this.darkButton5 = new YiNing.UI.Controls.DarkButton();
             this.darkButton7 = new YiNing.UI.Controls.DarkButton();
             this.timerUpdateUi = new System.Windows.Forms.Timer(this.components);
+            this.cmbRunDirection = new YiNing.UI.Controls.DarkComboBox();
             this.panel1.SuspendLayout();
             this.darkTitleBarPanel2.SuspendLayout();
             this.darkGroupBox2.SuspendLayout();
-            this.darkSectionPanel2.SuspendLayout();
-            this.dsepAxisStatus.SuspendLayout();
             this.darkSectionPanel6.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.darkGroupBox4.SuspendLayout();
             this.darkGroupBox_PointsOut.SuspendLayout();
+            this.darkSectionPanel2.SuspendLayout();
+            this.dsepAxisStatus.SuspendLayout();
             this.darkSectionPanel_AxisRun.SuspendLayout();
             this.dgrpVehicleAxisRun.SuspendLayout();
             this.dgrpCameraAxisRun.SuspendLayout();
@@ -212,294 +213,6 @@
             this.darkGroupBox2.Size = new System.Drawing.Size(1485, 555);
             this.darkGroupBox2.TabIndex = 5;
             this.darkGroupBox2.TabStop = false;
-            // 
-            // darkSectionPanel2
-            // 
-            this.darkSectionPanel2.Controls.Add(this.darkButton3);
-            this.darkSectionPanel2.Controls.Add(this.darkRadioButton5);
-            this.darkSectionPanel2.Controls.Add(this.darkRadioButton4);
-            this.darkSectionPanel2.Controls.Add(this.darkRadioButton3);
-            this.darkSectionPanel2.Controls.Add(this.darkRadioButton2);
-            this.darkSectionPanel2.Controls.Add(this.darkRadioButton1);
-            this.darkSectionPanel2.Controls.Add(this.darkLabel21);
-            this.darkSectionPanel2.Controls.Add(this.darkButton1);
-            this.darkSectionPanel2.Controls.Add(this.dcmbNosepieceCom);
-            this.darkSectionPanel2.Location = new System.Drawing.Point(2, 243);
-            this.darkSectionPanel2.Name = "darkSectionPanel2";
-            this.darkSectionPanel2.SectionHeader = "物镜旋转";
-            this.darkSectionPanel2.Size = new System.Drawing.Size(324, 107);
-            this.darkSectionPanel2.TabIndex = 20;
-            // 
-            // darkButton3
-            // 
-            this.darkButton3.Location = new System.Drawing.Point(241, 35);
-            this.darkButton3.Name = "darkButton3";
-            this.darkButton3.Padding = new System.Windows.Forms.Padding(5);
-            this.darkButton3.Size = new System.Drawing.Size(75, 24);
-            this.darkButton3.TabIndex = 29;
-            this.darkButton3.Tag = "保存物镜旋转端口";
-            this.darkButton3.Text = "保存端口";
-            // 
-            // darkRadioButton5
-            // 
-            this.darkRadioButton5.AutoSize = true;
-            this.darkRadioButton5.Location = new System.Drawing.Point(263, 79);
-            this.darkRadioButton5.Name = "darkRadioButton5";
-            this.darkRadioButton5.Size = new System.Drawing.Size(57, 19);
-            this.darkRadioButton5.TabIndex = 28;
-            this.darkRadioButton5.Tag = "物镜5";
-            this.darkRadioButton5.Text = "物镜5";
-            this.darkRadioButton5.CheckedChanged += new System.EventHandler(this.darkRadioButton_CheckedChanged);
-            // 
-            // darkRadioButton4
-            // 
-            this.darkRadioButton4.AutoSize = true;
-            this.darkRadioButton4.Location = new System.Drawing.Point(200, 79);
-            this.darkRadioButton4.Name = "darkRadioButton4";
-            this.darkRadioButton4.Size = new System.Drawing.Size(57, 19);
-            this.darkRadioButton4.TabIndex = 27;
-            this.darkRadioButton4.Tag = "物镜4";
-            this.darkRadioButton4.Text = "物镜4";
-            this.darkRadioButton4.CheckedChanged += new System.EventHandler(this.darkRadioButton_CheckedChanged);
-            // 
-            // darkRadioButton3
-            // 
-            this.darkRadioButton3.AutoSize = true;
-            this.darkRadioButton3.Location = new System.Drawing.Point(137, 79);
-            this.darkRadioButton3.Name = "darkRadioButton3";
-            this.darkRadioButton3.Size = new System.Drawing.Size(57, 19);
-            this.darkRadioButton3.TabIndex = 26;
-            this.darkRadioButton3.Tag = "物镜3";
-            this.darkRadioButton3.Text = "物镜3";
-            this.darkRadioButton3.CheckedChanged += new System.EventHandler(this.darkRadioButton_CheckedChanged);
-            // 
-            // darkRadioButton2
-            // 
-            this.darkRadioButton2.AutoSize = true;
-            this.darkRadioButton2.Location = new System.Drawing.Point(74, 79);
-            this.darkRadioButton2.Name = "darkRadioButton2";
-            this.darkRadioButton2.Size = new System.Drawing.Size(57, 19);
-            this.darkRadioButton2.TabIndex = 25;
-            this.darkRadioButton2.Tag = "物镜2";
-            this.darkRadioButton2.Text = "物镜2";
-            this.darkRadioButton2.CheckedChanged += new System.EventHandler(this.darkRadioButton_CheckedChanged);
-            // 
-            // darkRadioButton1
-            // 
-            this.darkRadioButton1.AutoSize = true;
-            this.darkRadioButton1.Location = new System.Drawing.Point(11, 79);
-            this.darkRadioButton1.Name = "darkRadioButton1";
-            this.darkRadioButton1.Size = new System.Drawing.Size(57, 19);
-            this.darkRadioButton1.TabIndex = 24;
-            this.darkRadioButton1.Tag = "物镜1";
-            this.darkRadioButton1.Text = "物镜1";
-            this.darkRadioButton1.CheckedChanged += new System.EventHandler(this.darkRadioButton_CheckedChanged);
-            // 
-            // darkLabel21
-            // 
-            this.darkLabel21.AutoSize = true;
-            this.darkLabel21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel21.Location = new System.Drawing.Point(8, 38);
-            this.darkLabel21.Name = "darkLabel21";
-            this.darkLabel21.Size = new System.Drawing.Size(74, 15);
-            this.darkLabel21.TabIndex = 23;
-            this.darkLabel21.Text = "COM端口：";
-            // 
-            // darkButton1
-            // 
-            this.darkButton1.Location = new System.Drawing.Point(160, 35);
-            this.darkButton1.Name = "darkButton1";
-            this.darkButton1.Padding = new System.Windows.Forms.Padding(5);
-            this.darkButton1.Size = new System.Drawing.Size(75, 24);
-            this.darkButton1.TabIndex = 22;
-            this.darkButton1.Tag = "打开物镜旋转端口";
-            this.darkButton1.Text = "打开端口";
-            // 
-            // dcmbNosepieceCom
-            // 
-            this.dcmbNosepieceCom.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.dcmbNosepieceCom.FormattingEnabled = true;
-            this.dcmbNosepieceCom.Location = new System.Drawing.Point(88, 35);
-            this.dcmbNosepieceCom.Name = "dcmbNosepieceCom";
-            this.dcmbNosepieceCom.ReadOnly = true;
-            this.dcmbNosepieceCom.Size = new System.Drawing.Size(66, 24);
-            this.dcmbNosepieceCom.TabIndex = 21;
-            // 
-            // dsepAxisStatus
-            // 
-            this.dsepAxisStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.dsepAxisStatus.Controls.Add(this.darkLabel10);
-            this.dsepAxisStatus.Controls.Add(this.darkLabel11);
-            this.dsepAxisStatus.Controls.Add(this.dtbPlanVel);
-            this.dsepAxisStatus.Controls.Add(this.dtbEncVel);
-            this.dsepAxisStatus.Controls.Add(this.darkButton2);
-            this.dsepAxisStatus.Controls.Add(this.darkLabel9);
-            this.dsepAxisStatus.Controls.Add(this.darkButton6);
-            this.dsepAxisStatus.Controls.Add(this.darkLabel8);
-            this.dsepAxisStatus.Controls.Add(this.DarkPointsIn5);
-            this.dsepAxisStatus.Controls.Add(this.dtbPlanrfpos);
-            this.dsepAxisStatus.Controls.Add(this.DarkPointsIn6);
-            this.dsepAxisStatus.Controls.Add(this.dtbEncpos);
-            this.dsepAxisStatus.Controls.Add(this.DarkPointsIn7);
-            this.dsepAxisStatus.Controls.Add(this.DarkPointsIn8);
-            this.dsepAxisStatus.DragEnable = true;
-            this.dsepAxisStatus.Location = new System.Drawing.Point(860, 6);
-            this.dsepAxisStatus.Name = "dsepAxisStatus";
-            this.dsepAxisStatus.SectionHeader = "当前轴状态";
-            this.dsepAxisStatus.Size = new System.Drawing.Size(178, 233);
-            this.dsepAxisStatus.TabIndex = 19;
-            // 
-            // darkLabel10
-            // 
-            this.darkLabel10.AutoSize = true;
-            this.darkLabel10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel10.Location = new System.Drawing.Point(5, 92);
-            this.darkLabel10.Name = "darkLabel10";
-            this.darkLabel10.Size = new System.Drawing.Size(59, 15);
-            this.darkLabel10.TabIndex = 34;
-            this.darkLabel10.Text = "规划速度";
-            // 
-            // darkLabel11
-            // 
-            this.darkLabel11.AutoSize = true;
-            this.darkLabel11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel11.Location = new System.Drawing.Point(5, 121);
-            this.darkLabel11.Name = "darkLabel11";
-            this.darkLabel11.Size = new System.Drawing.Size(59, 15);
-            this.darkLabel11.TabIndex = 36;
-            this.darkLabel11.Text = "实际速度";
-            // 
-            // dtbPlanVel
-            // 
-            this.dtbPlanVel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
-            this.dtbPlanVel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.dtbPlanVel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.dtbPlanVel.Location = new System.Drawing.Point(70, 90);
-            this.dtbPlanVel.Name = "dtbPlanVel";
-            this.dtbPlanVel.ReadOnly = true;
-            this.dtbPlanVel.Size = new System.Drawing.Size(100, 23);
-            this.dtbPlanVel.TabIndex = 33;
-            // 
-            // dtbEncVel
-            // 
-            this.dtbEncVel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
-            this.dtbEncVel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.dtbEncVel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.dtbEncVel.Location = new System.Drawing.Point(70, 119);
-            this.dtbEncVel.Name = "dtbEncVel";
-            this.dtbEncVel.ReadOnly = true;
-            this.dtbEncVel.Size = new System.Drawing.Size(100, 23);
-            this.dtbEncVel.TabIndex = 35;
-            // 
-            // darkButton2
-            // 
-            this.darkButton2.Location = new System.Drawing.Point(92, 151);
-            this.darkButton2.Name = "darkButton2";
-            this.darkButton2.Padding = new System.Windows.Forms.Padding(5);
-            this.darkButton2.Size = new System.Drawing.Size(78, 23);
-            this.darkButton2.TabIndex = 32;
-            this.darkButton2.Tag = "轴位置2保存";
-            this.darkButton2.Text = "保存位置2";
-            // 
-            // darkLabel9
-            // 
-            this.darkLabel9.AutoSize = true;
-            this.darkLabel9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel9.Location = new System.Drawing.Point(5, 34);
-            this.darkLabel9.Name = "darkLabel9";
-            this.darkLabel9.Size = new System.Drawing.Size(59, 15);
-            this.darkLabel9.TabIndex = 25;
-            this.darkLabel9.Text = "规划位置";
-            // 
-            // darkButton6
-            // 
-            this.darkButton6.Location = new System.Drawing.Point(8, 151);
-            this.darkButton6.Name = "darkButton6";
-            this.darkButton6.Padding = new System.Windows.Forms.Padding(5);
-            this.darkButton6.Size = new System.Drawing.Size(78, 23);
-            this.darkButton6.TabIndex = 23;
-            this.darkButton6.Tag = "轴位置1保存";
-            this.darkButton6.Text = "保存位置1";
-            // 
-            // darkLabel8
-            // 
-            this.darkLabel8.AutoSize = true;
-            this.darkLabel8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel8.Location = new System.Drawing.Point(5, 63);
-            this.darkLabel8.Name = "darkLabel8";
-            this.darkLabel8.Size = new System.Drawing.Size(59, 15);
-            this.darkLabel8.TabIndex = 27;
-            this.darkLabel8.Text = "实际位置";
-            // 
-            // DarkPointsIn5
-            // 
-            this.DarkPointsIn5.AutoSize = true;
-            this.DarkPointsIn5.CheckedColor = System.Drawing.Color.Lime;
-            this.DarkPointsIn5.Enabled = true;
-            this.DarkPointsIn5.Location = new System.Drawing.Point(13, 178);
-            this.DarkPointsIn5.Name = "DarkPointsIn5";
-            this.DarkPointsIn5.Size = new System.Drawing.Size(78, 19);
-            this.DarkPointsIn5.TabIndex = 31;
-            this.DarkPointsIn5.Text = "使能状态";
-            this.DarkPointsIn5.UnCheckedColor = System.Drawing.Color.Red;
-            // 
-            // dtbPlanrfpos
-            // 
-            this.dtbPlanrfpos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
-            this.dtbPlanrfpos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.dtbPlanrfpos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.dtbPlanrfpos.Location = new System.Drawing.Point(70, 32);
-            this.dtbPlanrfpos.Name = "dtbPlanrfpos";
-            this.dtbPlanrfpos.ReadOnly = true;
-            this.dtbPlanrfpos.Size = new System.Drawing.Size(100, 23);
-            this.dtbPlanrfpos.TabIndex = 24;
-            // 
-            // DarkPointsIn6
-            // 
-            this.DarkPointsIn6.AutoSize = true;
-            this.DarkPointsIn6.CheckedColor = System.Drawing.Color.Lime;
-            this.DarkPointsIn6.Enabled = true;
-            this.DarkPointsIn6.Location = new System.Drawing.Point(14, 203);
-            this.DarkPointsIn6.Name = "DarkPointsIn6";
-            this.DarkPointsIn6.Size = new System.Drawing.Size(78, 19);
-            this.DarkPointsIn6.TabIndex = 30;
-            this.DarkPointsIn6.Text = "伺服报警";
-            this.DarkPointsIn6.UnCheckedColor = System.Drawing.Color.Red;
-            // 
-            // dtbEncpos
-            // 
-            this.dtbEncpos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
-            this.dtbEncpos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.dtbEncpos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.dtbEncpos.Location = new System.Drawing.Point(70, 61);
-            this.dtbEncpos.Name = "dtbEncpos";
-            this.dtbEncpos.ReadOnly = true;
-            this.dtbEncpos.Size = new System.Drawing.Size(100, 23);
-            this.dtbEncpos.TabIndex = 26;
-            // 
-            // DarkPointsIn7
-            // 
-            this.DarkPointsIn7.AutoSize = true;
-            this.DarkPointsIn7.CheckedColor = System.Drawing.Color.Lime;
-            this.DarkPointsIn7.Enabled = true;
-            this.DarkPointsIn7.Location = new System.Drawing.Point(98, 203);
-            this.DarkPointsIn7.Name = "DarkPointsIn7";
-            this.DarkPointsIn7.Size = new System.Drawing.Size(65, 19);
-            this.DarkPointsIn7.TabIndex = 29;
-            this.DarkPointsIn7.Text = "负限位";
-            this.DarkPointsIn7.UnCheckedColor = System.Drawing.Color.Red;
-            // 
-            // DarkPointsIn8
-            // 
-            this.DarkPointsIn8.AutoSize = true;
-            this.DarkPointsIn8.CheckedColor = System.Drawing.Color.Lime;
-            this.DarkPointsIn8.Enabled = true;
-            this.DarkPointsIn8.Location = new System.Drawing.Point(98, 178);
-            this.DarkPointsIn8.Name = "DarkPointsIn8";
-            this.DarkPointsIn8.Size = new System.Drawing.Size(65, 19);
-            this.DarkPointsIn8.TabIndex = 28;
-            this.DarkPointsIn8.Text = "正限位";
-            this.DarkPointsIn8.UnCheckedColor = System.Drawing.Color.Red;
             // 
             // darkSectionPanel6
             // 
@@ -842,6 +555,294 @@
             this.tsStart.TabIndex = 0;
             this.tsStart.Tag = "启动灯";
             // 
+            // darkSectionPanel2
+            // 
+            this.darkSectionPanel2.Controls.Add(this.darkButton3);
+            this.darkSectionPanel2.Controls.Add(this.darkRadioButton5);
+            this.darkSectionPanel2.Controls.Add(this.darkRadioButton4);
+            this.darkSectionPanel2.Controls.Add(this.darkRadioButton3);
+            this.darkSectionPanel2.Controls.Add(this.darkRadioButton2);
+            this.darkSectionPanel2.Controls.Add(this.darkRadioButton1);
+            this.darkSectionPanel2.Controls.Add(this.darkLabel21);
+            this.darkSectionPanel2.Controls.Add(this.darkButton1);
+            this.darkSectionPanel2.Controls.Add(this.dcmbNosepieceCom);
+            this.darkSectionPanel2.Location = new System.Drawing.Point(2, 243);
+            this.darkSectionPanel2.Name = "darkSectionPanel2";
+            this.darkSectionPanel2.SectionHeader = "物镜旋转";
+            this.darkSectionPanel2.Size = new System.Drawing.Size(324, 107);
+            this.darkSectionPanel2.TabIndex = 20;
+            // 
+            // darkButton3
+            // 
+            this.darkButton3.Location = new System.Drawing.Point(241, 35);
+            this.darkButton3.Name = "darkButton3";
+            this.darkButton3.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton3.Size = new System.Drawing.Size(75, 24);
+            this.darkButton3.TabIndex = 29;
+            this.darkButton3.Tag = "保存物镜旋转端口";
+            this.darkButton3.Text = "保存端口";
+            // 
+            // darkRadioButton5
+            // 
+            this.darkRadioButton5.AutoSize = true;
+            this.darkRadioButton5.Location = new System.Drawing.Point(263, 79);
+            this.darkRadioButton5.Name = "darkRadioButton5";
+            this.darkRadioButton5.Size = new System.Drawing.Size(57, 19);
+            this.darkRadioButton5.TabIndex = 28;
+            this.darkRadioButton5.Tag = "物镜5";
+            this.darkRadioButton5.Text = "物镜5";
+            this.darkRadioButton5.CheckedChanged += new System.EventHandler(this.darkRadioButton_CheckedChanged);
+            // 
+            // darkRadioButton4
+            // 
+            this.darkRadioButton4.AutoSize = true;
+            this.darkRadioButton4.Location = new System.Drawing.Point(200, 79);
+            this.darkRadioButton4.Name = "darkRadioButton4";
+            this.darkRadioButton4.Size = new System.Drawing.Size(57, 19);
+            this.darkRadioButton4.TabIndex = 27;
+            this.darkRadioButton4.Tag = "物镜4";
+            this.darkRadioButton4.Text = "物镜4";
+            this.darkRadioButton4.CheckedChanged += new System.EventHandler(this.darkRadioButton_CheckedChanged);
+            // 
+            // darkRadioButton3
+            // 
+            this.darkRadioButton3.AutoSize = true;
+            this.darkRadioButton3.Location = new System.Drawing.Point(137, 79);
+            this.darkRadioButton3.Name = "darkRadioButton3";
+            this.darkRadioButton3.Size = new System.Drawing.Size(57, 19);
+            this.darkRadioButton3.TabIndex = 26;
+            this.darkRadioButton3.Tag = "物镜3";
+            this.darkRadioButton3.Text = "物镜3";
+            this.darkRadioButton3.CheckedChanged += new System.EventHandler(this.darkRadioButton_CheckedChanged);
+            // 
+            // darkRadioButton2
+            // 
+            this.darkRadioButton2.AutoSize = true;
+            this.darkRadioButton2.Location = new System.Drawing.Point(74, 79);
+            this.darkRadioButton2.Name = "darkRadioButton2";
+            this.darkRadioButton2.Size = new System.Drawing.Size(57, 19);
+            this.darkRadioButton2.TabIndex = 25;
+            this.darkRadioButton2.Tag = "物镜2";
+            this.darkRadioButton2.Text = "物镜2";
+            this.darkRadioButton2.CheckedChanged += new System.EventHandler(this.darkRadioButton_CheckedChanged);
+            // 
+            // darkRadioButton1
+            // 
+            this.darkRadioButton1.AutoSize = true;
+            this.darkRadioButton1.Location = new System.Drawing.Point(11, 79);
+            this.darkRadioButton1.Name = "darkRadioButton1";
+            this.darkRadioButton1.Size = new System.Drawing.Size(57, 19);
+            this.darkRadioButton1.TabIndex = 24;
+            this.darkRadioButton1.Tag = "物镜1";
+            this.darkRadioButton1.Text = "物镜1";
+            this.darkRadioButton1.CheckedChanged += new System.EventHandler(this.darkRadioButton_CheckedChanged);
+            // 
+            // darkLabel21
+            // 
+            this.darkLabel21.AutoSize = true;
+            this.darkLabel21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel21.Location = new System.Drawing.Point(8, 38);
+            this.darkLabel21.Name = "darkLabel21";
+            this.darkLabel21.Size = new System.Drawing.Size(74, 15);
+            this.darkLabel21.TabIndex = 23;
+            this.darkLabel21.Text = "COM端口：";
+            // 
+            // darkButton1
+            // 
+            this.darkButton1.Location = new System.Drawing.Point(160, 35);
+            this.darkButton1.Name = "darkButton1";
+            this.darkButton1.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton1.Size = new System.Drawing.Size(75, 24);
+            this.darkButton1.TabIndex = 22;
+            this.darkButton1.Tag = "打开物镜旋转端口";
+            this.darkButton1.Text = "打开端口";
+            // 
+            // dcmbNosepieceCom
+            // 
+            this.dcmbNosepieceCom.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.dcmbNosepieceCom.FormattingEnabled = true;
+            this.dcmbNosepieceCom.Location = new System.Drawing.Point(88, 35);
+            this.dcmbNosepieceCom.Name = "dcmbNosepieceCom";
+            this.dcmbNosepieceCom.ReadOnly = true;
+            this.dcmbNosepieceCom.Size = new System.Drawing.Size(66, 24);
+            this.dcmbNosepieceCom.TabIndex = 21;
+            // 
+            // dsepAxisStatus
+            // 
+            this.dsepAxisStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.dsepAxisStatus.Controls.Add(this.darkLabel10);
+            this.dsepAxisStatus.Controls.Add(this.darkLabel11);
+            this.dsepAxisStatus.Controls.Add(this.dtbPlanVel);
+            this.dsepAxisStatus.Controls.Add(this.dtbEncVel);
+            this.dsepAxisStatus.Controls.Add(this.darkButton2);
+            this.dsepAxisStatus.Controls.Add(this.darkLabel9);
+            this.dsepAxisStatus.Controls.Add(this.darkButton6);
+            this.dsepAxisStatus.Controls.Add(this.darkLabel8);
+            this.dsepAxisStatus.Controls.Add(this.DarkPointsIn5);
+            this.dsepAxisStatus.Controls.Add(this.dtbPlanrfpos);
+            this.dsepAxisStatus.Controls.Add(this.DarkPointsIn6);
+            this.dsepAxisStatus.Controls.Add(this.dtbEncpos);
+            this.dsepAxisStatus.Controls.Add(this.DarkPointsIn7);
+            this.dsepAxisStatus.Controls.Add(this.DarkPointsIn8);
+            this.dsepAxisStatus.DragEnable = true;
+            this.dsepAxisStatus.Location = new System.Drawing.Point(860, 6);
+            this.dsepAxisStatus.Name = "dsepAxisStatus";
+            this.dsepAxisStatus.SectionHeader = "当前轴状态";
+            this.dsepAxisStatus.Size = new System.Drawing.Size(178, 233);
+            this.dsepAxisStatus.TabIndex = 19;
+            // 
+            // darkLabel10
+            // 
+            this.darkLabel10.AutoSize = true;
+            this.darkLabel10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel10.Location = new System.Drawing.Point(5, 92);
+            this.darkLabel10.Name = "darkLabel10";
+            this.darkLabel10.Size = new System.Drawing.Size(59, 15);
+            this.darkLabel10.TabIndex = 34;
+            this.darkLabel10.Text = "规划速度";
+            // 
+            // darkLabel11
+            // 
+            this.darkLabel11.AutoSize = true;
+            this.darkLabel11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel11.Location = new System.Drawing.Point(5, 121);
+            this.darkLabel11.Name = "darkLabel11";
+            this.darkLabel11.Size = new System.Drawing.Size(59, 15);
+            this.darkLabel11.TabIndex = 36;
+            this.darkLabel11.Text = "实际速度";
+            // 
+            // dtbPlanVel
+            // 
+            this.dtbPlanVel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.dtbPlanVel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.dtbPlanVel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.dtbPlanVel.Location = new System.Drawing.Point(70, 90);
+            this.dtbPlanVel.Name = "dtbPlanVel";
+            this.dtbPlanVel.ReadOnly = true;
+            this.dtbPlanVel.Size = new System.Drawing.Size(100, 23);
+            this.dtbPlanVel.TabIndex = 33;
+            // 
+            // dtbEncVel
+            // 
+            this.dtbEncVel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.dtbEncVel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.dtbEncVel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.dtbEncVel.Location = new System.Drawing.Point(70, 119);
+            this.dtbEncVel.Name = "dtbEncVel";
+            this.dtbEncVel.ReadOnly = true;
+            this.dtbEncVel.Size = new System.Drawing.Size(100, 23);
+            this.dtbEncVel.TabIndex = 35;
+            // 
+            // darkButton2
+            // 
+            this.darkButton2.Location = new System.Drawing.Point(92, 151);
+            this.darkButton2.Name = "darkButton2";
+            this.darkButton2.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton2.Size = new System.Drawing.Size(78, 23);
+            this.darkButton2.TabIndex = 32;
+            this.darkButton2.Tag = "轴位置2保存";
+            this.darkButton2.Text = "保存位置2";
+            // 
+            // darkLabel9
+            // 
+            this.darkLabel9.AutoSize = true;
+            this.darkLabel9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel9.Location = new System.Drawing.Point(5, 34);
+            this.darkLabel9.Name = "darkLabel9";
+            this.darkLabel9.Size = new System.Drawing.Size(59, 15);
+            this.darkLabel9.TabIndex = 25;
+            this.darkLabel9.Text = "规划位置";
+            // 
+            // darkButton6
+            // 
+            this.darkButton6.Location = new System.Drawing.Point(8, 151);
+            this.darkButton6.Name = "darkButton6";
+            this.darkButton6.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton6.Size = new System.Drawing.Size(78, 23);
+            this.darkButton6.TabIndex = 23;
+            this.darkButton6.Tag = "轴位置1保存";
+            this.darkButton6.Text = "保存位置1";
+            // 
+            // darkLabel8
+            // 
+            this.darkLabel8.AutoSize = true;
+            this.darkLabel8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel8.Location = new System.Drawing.Point(5, 63);
+            this.darkLabel8.Name = "darkLabel8";
+            this.darkLabel8.Size = new System.Drawing.Size(59, 15);
+            this.darkLabel8.TabIndex = 27;
+            this.darkLabel8.Text = "实际位置";
+            // 
+            // DarkPointsIn5
+            // 
+            this.DarkPointsIn5.AutoSize = true;
+            this.DarkPointsIn5.CheckedColor = System.Drawing.Color.Lime;
+            this.DarkPointsIn5.Enabled = true;
+            this.DarkPointsIn5.Location = new System.Drawing.Point(13, 178);
+            this.DarkPointsIn5.Name = "DarkPointsIn5";
+            this.DarkPointsIn5.Size = new System.Drawing.Size(78, 19);
+            this.DarkPointsIn5.TabIndex = 31;
+            this.DarkPointsIn5.Text = "使能状态";
+            this.DarkPointsIn5.UnCheckedColor = System.Drawing.Color.Red;
+            // 
+            // dtbPlanrfpos
+            // 
+            this.dtbPlanrfpos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.dtbPlanrfpos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.dtbPlanrfpos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.dtbPlanrfpos.Location = new System.Drawing.Point(70, 32);
+            this.dtbPlanrfpos.Name = "dtbPlanrfpos";
+            this.dtbPlanrfpos.ReadOnly = true;
+            this.dtbPlanrfpos.Size = new System.Drawing.Size(100, 23);
+            this.dtbPlanrfpos.TabIndex = 24;
+            // 
+            // DarkPointsIn6
+            // 
+            this.DarkPointsIn6.AutoSize = true;
+            this.DarkPointsIn6.CheckedColor = System.Drawing.Color.Lime;
+            this.DarkPointsIn6.Enabled = true;
+            this.DarkPointsIn6.Location = new System.Drawing.Point(14, 203);
+            this.DarkPointsIn6.Name = "DarkPointsIn6";
+            this.DarkPointsIn6.Size = new System.Drawing.Size(78, 19);
+            this.DarkPointsIn6.TabIndex = 30;
+            this.DarkPointsIn6.Text = "伺服报警";
+            this.DarkPointsIn6.UnCheckedColor = System.Drawing.Color.Red;
+            // 
+            // dtbEncpos
+            // 
+            this.dtbEncpos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.dtbEncpos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.dtbEncpos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.dtbEncpos.Location = new System.Drawing.Point(70, 61);
+            this.dtbEncpos.Name = "dtbEncpos";
+            this.dtbEncpos.ReadOnly = true;
+            this.dtbEncpos.Size = new System.Drawing.Size(100, 23);
+            this.dtbEncpos.TabIndex = 26;
+            // 
+            // DarkPointsIn7
+            // 
+            this.DarkPointsIn7.AutoSize = true;
+            this.DarkPointsIn7.CheckedColor = System.Drawing.Color.Lime;
+            this.DarkPointsIn7.Enabled = true;
+            this.DarkPointsIn7.Location = new System.Drawing.Point(98, 203);
+            this.DarkPointsIn7.Name = "DarkPointsIn7";
+            this.DarkPointsIn7.Size = new System.Drawing.Size(65, 19);
+            this.DarkPointsIn7.TabIndex = 29;
+            this.DarkPointsIn7.Text = "负限位";
+            this.DarkPointsIn7.UnCheckedColor = System.Drawing.Color.Red;
+            // 
+            // DarkPointsIn8
+            // 
+            this.DarkPointsIn8.AutoSize = true;
+            this.DarkPointsIn8.CheckedColor = System.Drawing.Color.Lime;
+            this.DarkPointsIn8.Enabled = true;
+            this.DarkPointsIn8.Location = new System.Drawing.Point(98, 178);
+            this.DarkPointsIn8.Name = "DarkPointsIn8";
+            this.DarkPointsIn8.Size = new System.Drawing.Size(65, 19);
+            this.DarkPointsIn8.TabIndex = 28;
+            this.DarkPointsIn8.Text = "正限位";
+            this.DarkPointsIn8.UnCheckedColor = System.Drawing.Color.Red;
+            // 
             // darkSectionPanel_AxisRun
             // 
             this.darkSectionPanel_AxisRun.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -857,6 +858,7 @@
             // dgrpVehicleAxisRun
             // 
             this.dgrpVehicleAxisRun.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.dgrpVehicleAxisRun.Controls.Add(this.cmbRunDirection);
             this.dgrpVehicleAxisRun.Controls.Add(this.darkButton9);
             this.dgrpVehicleAxisRun.Controls.Add(this.btnGoUp);
             this.dgrpVehicleAxisRun.Controls.Add(this.btnRotateClockwise);
@@ -1626,6 +1628,19 @@
             // 
             this.timerUpdateUi.Interval = 50;
             // 
+            // cmbRunDirection
+            // 
+            this.cmbRunDirection.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cmbRunDirection.FormattingEnabled = true;
+            this.cmbRunDirection.Items.AddRange(new object[] {
+            "物理方向",
+            "相机方向"});
+            this.cmbRunDirection.Location = new System.Drawing.Point(228, 17);
+            this.cmbRunDirection.Name = "cmbRunDirection";
+            this.cmbRunDirection.ReadOnly = true;
+            this.cmbRunDirection.Size = new System.Drawing.Size(108, 24);
+            this.cmbRunDirection.TabIndex = 14;
+            // 
             // DockSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1637,15 +1652,15 @@
             this.panel1.ResumeLayout(false);
             this.darkTitleBarPanel2.ResumeLayout(false);
             this.darkGroupBox2.ResumeLayout(false);
-            this.darkSectionPanel2.ResumeLayout(false);
-            this.darkSectionPanel2.PerformLayout();
-            this.dsepAxisStatus.ResumeLayout(false);
-            this.dsepAxisStatus.PerformLayout();
             this.darkSectionPanel6.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.darkGroupBox4.ResumeLayout(false);
             this.darkGroupBox4.PerformLayout();
             this.darkGroupBox_PointsOut.ResumeLayout(false);
+            this.darkSectionPanel2.ResumeLayout(false);
+            this.darkSectionPanel2.PerformLayout();
+            this.dsepAxisStatus.ResumeLayout(false);
+            this.dsepAxisStatus.PerformLayout();
             this.darkSectionPanel_AxisRun.ResumeLayout(false);
             this.dgrpVehicleAxisRun.ResumeLayout(false);
             this.dgrpCameraAxisRun.ResumeLayout(false);
@@ -1789,5 +1804,6 @@
         private YiNing.UI.Controls.DarkButton darkButton3;
         private YiNing.UI.Controls.DarkButton darkButton4;
         private YiNing.UI.Controls.DarkButton darkButton9;
+        private YiNing.UI.Controls.DarkComboBox cmbRunDirection;
     }
 }

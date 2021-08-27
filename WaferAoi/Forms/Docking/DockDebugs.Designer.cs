@@ -760,7 +760,7 @@
             this.darkSectionPanel5.Controls.Add(this.tbTopPointX);
             this.darkSectionPanel5.Controls.Add(this.darkButton16);
             this.darkSectionPanel5.DragEnable = true;
-            this.darkSectionPanel5.Location = new System.Drawing.Point(432, 436);
+            this.darkSectionPanel5.Location = new System.Drawing.Point(432, 352);
             this.darkSectionPanel5.Name = "darkSectionPanel5";
             this.darkSectionPanel5.SectionHeader = "计算等边三角形";
             this.darkSectionPanel5.Size = new System.Drawing.Size(200, 170);
@@ -785,7 +785,7 @@
             this.tbTopPointX.Name = "tbTopPointX";
             this.tbTopPointX.Size = new System.Drawing.Size(100, 23);
             this.tbTopPointX.TabIndex = 1;
-            this.tbTopPointX.Text = "79727";
+            this.tbTopPointX.Text = "239824";
             // 
             // tbTopPointY
             // 
@@ -796,7 +796,7 @@
             this.tbTopPointY.Name = "tbTopPointY";
             this.tbTopPointY.Size = new System.Drawing.Size(100, 23);
             this.tbTopPointY.TabIndex = 2;
-            this.tbTopPointY.Text = "125626";
+            this.tbTopPointY.Text = "115136";
             // 
             // tbRd
             // 
@@ -807,7 +807,7 @@
             this.tbRd.Name = "tbRd";
             this.tbRd.Size = new System.Drawing.Size(100, 23);
             this.tbRd.TabIndex = 3;
-            this.tbRd.Text = "199405";
+            this.tbRd.Text = "199393";
             // 
             // darkLabel3
             // 

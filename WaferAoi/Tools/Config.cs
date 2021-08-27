@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,8 @@ namespace WaferAoi.Tools
 {
     public class Config
     {
+        public Inch Inch6 { get; set; }
+        public Inch Inch8 { get; set; }
         /// <summary>
         /// 运动轴
         /// </summary>
@@ -27,6 +30,33 @@ namespace WaferAoi.Tools
         }
     }
 
+    #region 算法相关
+
+    public class Algorithm
+    {
+
+    }
+    public class Inch
+    {
+        /// <summary>
+        /// 尺寸
+        /// </summary>
+        public int Size { get; set; }
+
+        /// <summary>
+        /// 圆心定位中心用到的 固定右边的点，单位脉冲
+        /// </summary>
+        public Point RightPoint { get; set; }
+        /// <summary>
+        /// 晶圆定位中心需要用到的直径
+        /// </summary>
+        public int Diameter { get; set; }
+        public Algorithm Algorithms { get; set; }
+
+    }
+    #endregion
+
+    #region 轴相关类
     public class Axis
     {
         /// <summary>
@@ -235,4 +265,5 @@ namespace WaferAoi.Tools
         public short pad33 { get; set; }
         #endregion
     }
+    #endregion
 }

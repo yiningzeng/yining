@@ -42,7 +42,7 @@ namespace WaferAoi
 
         public MainForm()
         {
-            fsmHelper.IssueCommand(FsmHelper.Action.On);
+            fsmHelper.IssueCommand(FsmHelper.MacroAction.DO_ON);
             InitializeComponent();
             // Add the control scroll message filter to re-route all mousewheel events
             // to the control the user is currently hovering over with their cursor.
@@ -93,9 +93,7 @@ namespace WaferAoi
             // Add dummy documents to the main document area of the dock panel
             //DockPanel.AddContent(new DockDocument("Document 2", Icons.document_16xLG) { ShowCloseButton = true });
             //DockPanel.AddContent(new DockDocument("Document 3", Icons.document_16xLG) { ShowCloseButton = true });
-            fsmHelper.IssueCommand(FsmHelper.Action.Initialize);
             DockPanel.AddContent(_dockWorkSpace);
- 
         }
 
         #endregion
@@ -154,7 +152,7 @@ namespace WaferAoi
         {
             if (DarkMessageBox.ShowInformation("是否需要一键回原点", buttons: DarkDialogButton.YesNo) == DialogResult.Yes)
             {
-                fsmHelper.IssueCommand(FsmHelper.Action.Free);
+                fsmHelper.IssueCommand(FsmHelper.MacroAction.DO_INIT);
             }
             var aa= GetLatestFiles(@"D:\WaferDataIn\mapping"); 
         }
@@ -331,7 +329,7 @@ namespace WaferAoi
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            fsmHelper.IssueCommand(FsmHelper.Action.ManualFeed);
+            //fsmHelper.IssueCommand(FsmHelper.Action.ManualFeed);
         }
 
         private void 制作程式ToolStripMenuItem_Click(object sender, EventArgs e)

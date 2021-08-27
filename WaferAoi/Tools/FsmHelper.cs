@@ -12,12 +12,16 @@ namespace WaferAoi.Tools
 {
     public class FsmHelper
     {
-
+        static Config config;
+        static CommunicationManager nosepieceCom;
+        public FiniteStateMachine<MacroStatus, MacroAction> MacroFsm = FiniteStateMachine<MacroStatus, MacroAction>.FromEnum();
         /// <summary>
         /// 整机宏观的状态
         /// </summary>
         public enum MacroStatus
         {
+            On,         //控制卡被打开
+            Off,        //控制卡关闭
             INIT,       //初始态
             STOP,       //停止态
             RUN,        //运行态, 微观的状态都在宏观RUN的状态可以运行
@@ -27,6 +31,134 @@ namespace WaferAoi.Tools
             ALARM,      //警告状态，不需要复位
             ERROR,      //错误停止，需要复位
         }
+
+        public enum MacroAction
+        {
+            DO_ON,
+            DO_OFF,
+            DO_INIT,
+            DO_STOP,
+            DO_RUN,
+            DO_RESET,
+            DO_SCRAM,
+            DO_PAUSE,
+            DO_ALARM,
+            DO_ERROR,
+        }
+        Func<bool> DO_ON = () =>
+        {
+            if (!MotorsControl.OpenDevice(true))
+            {
+                DarkMessageBox.ShowError("打开运动控制器出错，即将退出程序，请联系技术人员！");
+                Application.Exit();
+                return false;
+            }
+            config = JsonHelper.DeserializeByFile<Config>("yining.config");
+            if (config != null)
+            {
+                foreach (var i in config.Axes)
+                {
+                    MotorsControl.ServoOn(i.Id);
+                }
+            }
+            else
+            {
+                DarkMessageBox.ShowError("获取控制参数失败，请联系技术人员！");
+                return false;
+            }
+            nosepieceCom = new CommunicationManager();
+            nosepieceCom.PortName = NosepieceData.PortName = config.NosepieceCom;
+            nosepieceCom.Parity = "None";
+            nosepieceCom.StopBits = "One";
+            nosepieceCom.DataBits = "8";
+            nosepieceCom.BaudRate = "115200";
+            if (!nosepieceCom.OpenPort()) { DarkMessageBox.ShowError("连接物镜旋转盘出错！"); return false; }
+            nosepieceCom.CurrentTransmissionType = CommunicationManager.TransmissionType.Hex;
+            nosepieceCom.WriteData(NosepieceData.Select5BingHoleHex);
+            return true;
+        };
+        Func<bool> DO_OFF = () => { MotorsControl.CloseDevice(); return true; };
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        Func<bool> DO_INIT = () =>
+        {
+            config = JsonHelper.DeserializeByFile<Config>("yining.config");
+            nosepieceCom.WriteData(NosepieceData.Hole1Hex);
+            if (config != null)
+            {
+                foreach (var i in config.Axes)
+                {
+                    MotorsControl.GoHomeAsync(i.Id, i.GoHomePar.Get(), new Action<short, GSN.THomeStatus>((a, b) =>
+                    {
+
+                    }));
+                }
+            }
+            else
+            {
+                DarkMessageBox.ShowError("获取控制参数失败，请联系技术人员！");
+                return false;
+            }
+            return true;
+        };
+        Func<bool> DO_STOP = () => { return true; };
+        Func<bool> DO_RUN = () => { return true; };
+        Func<bool> DO_RESET = () => { return true; };
+        Func<bool> DO_SCRAM = () => { return true; };
+        Func<bool> DO_PAUSE = () => { return true; };
+        Func<bool> DO_ALARM = () => { return true; };
+        Func<bool> DO_ERROR = () => { return true; };
+
+        public FsmHelper()
+        {
+            MacroFsm.Begin(MacroStatus.Off);
+            MacroFsm.AddTransition(MacroStatus.Off, MacroStatus.On, MacroAction.DO_ON, DO_ON)
+                .AddTransition(MacroStatus.On, MacroStatus.INIT, MacroAction.DO_INIT, DO_INIT)
+                .AddTransition(MacroStatus.INIT, MacroStatus.INIT, MacroAction.DO_INIT, DO_INIT)
+                .AddTransition(MacroStatus.INIT, MacroStatus.ERROR, MacroAction.DO_ERROR, DO_ERROR)
+
+                .AddTransition(MacroStatus.INIT, MacroStatus.SCRAM, MacroAction.DO_SCRAM)
+                .AddTransition(MacroStatus.INIT, MacroStatus.RESET, MacroAction.DO_RESET, DO_RESET)
+                .AddTransition(MacroStatus.INIT, MacroStatus.RUN, MacroAction.DO_RUN, DO_RUN)
+
+                .AddTransition(MacroStatus.RUN, MacroStatus.PAUSE, MacroAction.DO_PAUSE, DO_PAUSE)
+                .AddTransition(MacroStatus.RUN, MacroStatus.STOP, MacroAction.DO_STOP, DO_STOP)
+                .AddTransition(MacroStatus.RUN, MacroStatus.SCRAM, MacroAction.DO_SCRAM, DO_SCRAM)
+                .AddTransition(MacroStatus.RUN, MacroStatus.ERROR, MacroAction.DO_ERROR, DO_ERROR)
+                .AddTransition(MacroStatus.RUN, MacroStatus.ALARM, MacroAction.DO_ALARM, DO_ALARM)
+                .AddTransition(MacroStatus.RUN, MacroStatus.INIT, MacroAction.DO_INIT, DO_INIT)
+                .AddTransition(MacroStatus.INIT, MacroStatus.Off, MacroAction.DO_OFF, DO_OFF)
+
+
+                .AddTransition(MacroStatus.PAUSE, MacroStatus.RUN, MacroAction.DO_RUN, DO_RUN)
+                .AddTransition(MacroStatus.STOP, MacroStatus.INIT, MacroAction.DO_INIT, DO_INIT)
+                .AddTransition(MacroStatus.SCRAM, MacroStatus.INIT, MacroAction.DO_INIT, DO_INIT)
+                .AddTransition(MacroStatus.ERROR, MacroStatus.INIT, MacroAction.DO_INIT, DO_INIT)
+
+                .AddTransition(MacroStatus.ALARM, MacroStatus.RUN, MacroAction.DO_RUN, DO_RUN); // 这个有待争议，警告了之后是否只是暂停还可继续
+        }
+
+        public void IssueCommand(MacroAction ac)
+        {
+            MacroFsm.IssueCommand(ac);
+        }
+        public void UpdateConfig()
+        {
+            config = JsonHelper.DeserializeByFile<Config>("yining.config");
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 
         public enum Status
         {
@@ -56,108 +188,5 @@ namespace WaferAoi.Tools
             Edit,
             Work,
         }
-
-        static Config config;
-        static CommunicationManager nosepieceCom;
-        public FiniteStateMachine<Status, Action> machine = FiniteStateMachine<Status, Action>.FromEnum();
-
-        public FsmHelper()
-        {
-            machine.Begin(Status.Off);
-            machine.AddTransition(Status.Off, Status.On, Action.On, On)
-                .AddTransition(Status.On, Status.Off, Action.Off, () => { MotorsControl.CloseDevice(); return true; })
-                .AddTransition(Status.On, Status.Initialized, Action.Initialize, Initialize)
-                .AddTransition(Status.Initialized, Status.Freed, Action.Free, Free);
-        }
-
-        public void IssueCommand(Action ac)
-        {
-            machine.IssueCommand(ac);
-        }
-
-        public Status CurrentState()
-        {
-            return machine.CurrentState;
-        }
-
-        public Status PreviousState()
-        {
-            return machine.PreviousState;
-        }
-
-        public void UpdateConfig()
-        {
-            config = JsonHelper.DeserializeByFile<Config>("yining.config");
-        }
-
-        #region func
-
-        Func<bool> On = () =>
-        {
-            if (!MotorsControl.OpenDevice(true))
-            {
-                DarkMessageBox.ShowError("打开运动控制器出错，即将退出程序，请联系技术人员！");
-                Application.Exit();
-                return false;
-            }
-            return true;
-        };
-
-        /// <summary>
-        /// 初始化
-        /// </summary>
-        Func<bool> Initialize = () =>
-        {
-            config = JsonHelper.DeserializeByFile<Config>("yining.config");
-            if (config != null)
-            {
-                foreach (var i in config.Axes)
-                {
-                    MotorsControl.ServoOn(i.Id);
-                }
-            }
-            else
-            {
-                DarkMessageBox.ShowError("获取控制参数失败，请联系技术人员！");
-                return false;
-            }
-            nosepieceCom = new CommunicationManager();
-            nosepieceCom.PortName = NosepieceData.PortName = config.NosepieceCom;
-            nosepieceCom.Parity = "None";
-            nosepieceCom.StopBits = "One";
-            nosepieceCom.DataBits = "8";
-            nosepieceCom.BaudRate = "115200";
-            if (!nosepieceCom.OpenPort()) { DarkMessageBox.ShowError("连接物镜旋转盘出错！"); return false; }
-            nosepieceCom.CurrentTransmissionType = CommunicationManager.TransmissionType.Hex;
-            nosepieceCom.WriteData(NosepieceData.Select5BingHoleHex);
-            return true;
-        };
-
-        /// <summary>
-        /// 回原点操作
-        /// </summary>
-        Func<bool> Free = () =>
-        {
-            config = JsonHelper.DeserializeByFile<Config>("yining.config");
-            nosepieceCom.WriteData(NosepieceData.Hole1Hex);
-            if (config != null)
-            {
-                foreach (var i in config.Axes)
-                {
-                    MotorsControl.GoHomeAsync(i.Id, i.GoHomePar.Get(), new Action<short, GSN.THomeStatus>((a, b) =>
-                    {
-
-                    }));
-                }
-            }
-            else
-            {
-                DarkMessageBox.ShowError("获取控制参数失败，请联系技术人员！");
-                return false;
-            }
-            return true;
-        };
-
-        #endregion
     }
 }

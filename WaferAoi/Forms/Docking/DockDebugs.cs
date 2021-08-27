@@ -242,10 +242,10 @@ namespace WaferAoi
                 case "计算等边三角形":
                     try
                     {
-                        int topX = int.Parse(tbTopPointX.Text);
-                        int topY = int.Parse(tbTopPointY.Text);
+                        int rightX = int.Parse(tbTopPointX.Text);
+                        int rightY = int.Parse(tbTopPointY.Text);
                         int radius = int.Parse(tbRd.Text) / 2;
-                        Point[] points = getSanjiaoxingOtherPoint(new Point(topX, topY), radius);
+                        Point[] points = getSanjiaoxingOtherPoint(new Point(rightX, rightY), radius);
                         tb1x.Text = points[0].X.ToString();
                         tb1y.Text = points[0].Y.ToString();
 
@@ -254,6 +254,12 @@ namespace WaferAoi
 
                         tb3x.Text = points[2].X.ToString();
                         tb3y.Text = points[2].Y.ToString();
+                        if (config.Inch8 == null)
+                        {
+                            Inch inch8 = new Inch() { Size = 8, RightPoint = new Point(rightX, rightY), Diameter = int.Parse(tbRd.Text) };
+                            config.Inch8 = inch8;
+                            JsonHelper.Serialize(config, "yining.config");
+                        }
                     }
                     catch (Exception er) { }
 
@@ -263,8 +269,8 @@ namespace WaferAoi
 
         private Point[] getSanjiaoxingOtherPoint(Point rightPoint, int radius)
         {
-            Point topPoint = new Point(rightPoint.X + radius, rightPoint.Y - radius);
-            Point bottomPoint = new Point(topPoint.X, rightPoint.Y + radius);
+            Point topPoint = new Point(rightPoint.X - radius, rightPoint.Y + radius);
+            Point bottomPoint = new Point(rightPoint.X - radius, rightPoint.Y - radius);
             return new Point[] { rightPoint, topPoint, bottomPoint };
         }
 

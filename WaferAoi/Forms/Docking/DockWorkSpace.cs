@@ -105,7 +105,6 @@ namespace WaferAoi
             int exi = MotorsControl.IoSignalEXI(4);
             this.BeginInvoke(new Action<int>((exiSts) =>
             {
-           
                 isEmergencyStop.Checked = (exi & (1 << 0)) == 0;
                 isStart.Checked = (exi & (1 << 1)) != 0;
                 isReset.Checked = (exi & (1 << 2)) != 0;
@@ -115,6 +114,9 @@ namespace WaferAoi
                 isNegativePressure1.Checked = (exi & (1 << 8)) != 0;
                 isNegativePressure2.Checked = (exi & (1 << 9)) != 0;
                 isNegativePressure3.Checked = (exi & (1 << 10)) != 0;
+
+                //if (!isEmergencyStop.Checked) main.fsmHelper.IssueCommand(FsmHelper.MacroAction.DO_SCRAM);
+                //if (!isReset.Checked) main.fsmHelper.IssueCommand(FsmHelper.MacroAction.DO_INIT_RESET);
             }), exi);
         }
         public override void Close()

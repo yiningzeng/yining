@@ -17,6 +17,7 @@ namespace WaferAoi
     public partial class DockSetting : DarkDocument
     {
         #region Field Region
+        private int runDirection = 1;
         Config config;
         CommunicationManager nosepieceCom;
         #endregion
@@ -79,8 +80,10 @@ namespace WaferAoi
                     dcmbNosepieceCom.SelectedIndex = i;
                 }
             }
-
+            cmbRunDirection.SelectedIndex = 0;
+            cmbRunDirection.SelectedIndexChanged += CmbRunDirection_SelectedIndexChanged;
         }
+
 
         private void Initialize()
         {
@@ -211,6 +214,11 @@ namespace WaferAoi
         #endregion
 
         #region Event Handler Region
+        private void CmbRunDirection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbRunDirection.SelectedIndex == 1) runDirection = -1;
+            else runDirection = 1;
+        }
         /// <summary>
         /// 实时更新页面数据
         /// </summary>
@@ -379,12 +387,12 @@ namespace WaferAoi
             int direction = 1;
             switch (btn.Tag.ToString())
             {
-                case "前进": axisId = 1; direction = 1; break; // 晶圆载具X轴状态
-                case "后退": axisId = 1; direction = -1; break;// 晶圆载具X轴状态
-                case "左移": axisId = 2; direction = -1; break;//"晶圆载具Y轴状态";
-                case "右移": axisId = 2; direction = 1; break;//晶圆载具Y轴状态";
-                case "顺时针转": axisId = 3; direction = 1; break;//晶圆载具旋转轴状态
-                case "逆时针转": axisId = 3; direction = -1; break;//晶圆载具旋转轴状态               
+                case "前进": axisId = 1; direction = -1 * runDirection; break; // 晶圆载具X轴状态
+                case "后退": axisId = 1; direction = 1 * runDirection; break;// 晶圆载具X轴状态
+                case "左移": axisId = 2; direction = 1 * runDirection; break;//"晶圆载具Y轴状态";
+                case "右移": axisId = 2; direction = -1 * runDirection; break;//晶圆载具Y轴状态";
+                case "顺时针转": axisId = 3; direction = 1 * runDirection; break;//晶圆载具旋转轴状态
+                case "逆时针转": axisId = 3; direction = -1 * runDirection; break;//晶圆载具旋转轴状态               
                 case "相机高度向上": axisId = 4; direction = 1; break;//相机拍照Z轴状态               
                 case "相机高度向下": axisId = 4; direction = -1; break;//相机拍照Z轴状态
             }
