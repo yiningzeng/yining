@@ -10,6 +10,7 @@ using WaferAoi.Tools;
 using YiNing.Tools;
 using System.Threading;
 using System.Linq;
+using YiNing.UI.Controls;
 
 namespace WaferAoi
 {
@@ -17,6 +18,7 @@ namespace WaferAoi
     {
 
         #region Field Region
+        MVCameraHelper mVCameraHelper;
         public FsmHelper fsmHelper = new FsmHelper();
         private List<DarkDockContent> _toolWindows = new List<DarkDockContent>();
 
@@ -57,9 +59,9 @@ namespace WaferAoi
 
             // Hook in all the UI events manually for clarity.
             HookEvents();
-
+            mVCameraHelper = new MVCameraHelper(2);
             // Build the tool windows and add them to the dock panel
-            _dockWaferList = new DockWaferList();
+            _dockWaferList = new DockWaferList(this);
             _dockProperties = new DockProperties();
             _dockControl = new DockControl(this);
             _dockLayers = new DockLayers();
@@ -214,7 +216,7 @@ namespace WaferAoi
         }
         private void DebugToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DockPanel.AddContent(new DockDebugs("开发功能测试", Icons.smile));
+            DockPanel.AddContent(new DockDebugs("开发功能测试", Icons.smile, ref mVCameraHelper));
         }
 
         private void Dialog_Click(object sender, EventArgs e)
@@ -332,9 +334,16 @@ namespace WaferAoi
             //fsmHelper.IssueCommand(FsmHelper.Action.ManualFeed);
         }
 
-        private void 制作程式ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void 新建程式ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DockPanel.AddContent(new DockSoftwareEdit(this, "程式制作", Icons.Cup));
+            //Form1 form1 = new Form1();
+            //form1.ShowDialog();
+            DialogNewProject dialogNewProject = new DialogNewProject();
+            dialogNewProject.ShowDialog(this);
+            if (dialogNewProject.DialogResult == DialogResult.OK)
+            {
+                DockPanel.AddContent(new DockSoftwareEdit("程式制作", Icons.Cup, ref mVCameraHelper, (ProgramConfig)dialogNewProject.Tag));
+            }
         }
     }
 }

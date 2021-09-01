@@ -124,7 +124,7 @@ namespace WaferAoi
                     int iAxisSts = MotorsControl.GetAxisStatusInt(axis.Id);
                     this.BeginInvoke(new Action<Axis, int>((ax, axisSts) =>
                     {
-                        dsepAxisStatus.SectionHeader = ax.Remarks + "-轴状态";
+                        dsepAxisStatus.SectionHeader = "当前轴: " + ax.Remarks + " 状态";
 
                         toggleSwitch5.Checked = DarkPointsIn5.Checked = (axisSts & EMUMS.AxisStatus.ServoOn) != 0;
                         DarkPointsIn6.Checked = (axisSts & EMUMS.AxisStatus.Alarm) == 0;
@@ -336,6 +336,9 @@ namespace WaferAoi
                     break;
                 #endregion
                 #region 运动参数设置和单轴的操作
+                case "保存当前轴位置":
+                    new DialogSavePoint().Show();
+                    break;
                 case "单轴清除状态":
                     if (axis != null) MotorsControl.ClearSts(axis.Id);
                     break;
@@ -398,6 +401,7 @@ namespace WaferAoi
             }
             axis = config.Axes.Find(a => a.Id == axisId);
             int index = config.Axes.FindIndex(a=>a.Id == axisId);
+            if (index == -1 || axis == null) return;
             dlvwAxes.SelectItem(index);
             dsepAxisStatus.SectionHeader = axis.Remarks + "-状态";
             MotorsControl.MoveJog(axis.Id, axis.JogPrm.Get(), axis.JogPrm.Vel, direction);

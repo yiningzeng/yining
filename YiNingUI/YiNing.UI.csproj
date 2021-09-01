@@ -67,6 +67,7 @@
     <Compile Include="Collections\ObservableListModified.cs" />
     <Compile Include="Config\Colors.cs" />
     <Compile Include="Config\Consts.cs" />
+    <Compile Include="Controls\DarkStepViewerItem.cs" />
     <Compile Include="Controls\DarkButtonStyle.cs" />
     <Compile Include="Controls\DarkInputSignal.cs">
       <SubType>Component</SubType>
@@ -100,6 +101,9 @@
     </Compile>
     <Compile Include="Controls\DarkScrollOrientation.cs" />
     <Compile Include="Controls\DarkSectionPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\DarkTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\DarkWaferListItemInfo.cs" />

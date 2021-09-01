@@ -13,11 +13,16 @@ namespace WaferAoi
 {
     public partial class DockWaferList : DarkToolWindow
     {
+        private MainForm mainForm;
         #region Constructor Region
 
         public DockWaferList()
         {
             InitializeComponent();
+        }
+        public DockWaferList(MainForm main) : this()
+        {
+            mainForm = main;
         }
         #endregion
 
@@ -31,6 +36,7 @@ namespace WaferAoi
             }
             //var aa = darkWaferList1.Items[darkWaferList1.SelectedIndices[0]].Tag;
             darkWaferList1.StartWorking();
+            mainForm._dockWorkSpace.SetProgress();
         }
 
         public void StopWorking()
@@ -45,17 +51,17 @@ namespace WaferAoi
 
         private void darkButton1_Click(object sender, System.EventArgs e)
         {
-            darkWaferList1.RefreshWafer();
+            RefreshWafer();
         }
 
         private void darkButton2_Click(object sender, EventArgs e)
         {
-            darkWaferList1.StartWorking();
+            StartWorking();
         }
 
         private void darkButton3_Click(object sender, EventArgs e)
         {
-            darkWaferList1.StopWorking();
+            StopWorking();
         }
 
         private void DockWaferList_Load(object sender, EventArgs e)

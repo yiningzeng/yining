@@ -31,24 +31,27 @@ namespace YiNing.UI.Forms
         private void InitializeComponent()
         {
             this.picIcon = new System.Windows.Forms.PictureBox();
-            this.lblText = new DarkLabel();
+            this.lblText = new YiNing.UI.Controls.DarkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // picIcon
             // 
-            this.picIcon.Location = new System.Drawing.Point(10, 10);
+            this.picIcon.Location = new System.Drawing.Point(12, 11);
+            this.picIcon.Margin = new System.Windows.Forms.Padding(20, 20, 3, 3);
             this.picIcon.Name = "picIcon";
-            this.picIcon.Size = new System.Drawing.Size(32, 32);
+            this.picIcon.Size = new System.Drawing.Size(43, 41);
             this.picIcon.TabIndex = 3;
             this.picIcon.TabStop = false;
             // 
             // lblText
             // 
+            this.lblText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.lblText.Location = new System.Drawing.Point(50, 9);
+            this.lblText.Location = new System.Drawing.Point(61, 8);
             this.lblText.Name = "lblText";
-            this.lblText.Size = new System.Drawing.Size(185, 15);
+            this.lblText.Size = new System.Drawing.Size(263, 41);
             this.lblText.TabIndex = 4;
             this.lblText.Text = "Something something something";
             // 
@@ -56,9 +59,9 @@ namespace YiNing.UI.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(244, 86);
-            this.Controls.Add(this.lblText);
+            this.ClientSize = new System.Drawing.Size(336, 103);
             this.Controls.Add(this.picIcon);
+            this.Controls.Add(this.lblText);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -68,8 +71,8 @@ namespace YiNing.UI.Forms
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Message box";
-            this.Controls.SetChildIndex(this.picIcon, 0);
             this.Controls.SetChildIndex(this.lblText, 0);
+            this.Controls.SetChildIndex(this.picIcon, 0);
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).EndInit();
             this.ResumeLayout(false);
 

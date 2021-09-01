@@ -14,7 +14,7 @@ namespace YiNing.UI.Forms
         private DarkDialogButton _dialogButtons = DarkDialogButton.None;
         private List<DarkButton> _buttons;
 
-        private bool _showShadow = true;
+        private bool _showShadow = false;
         private DarkShadow darkShadow = null;
         #endregion
 
@@ -49,7 +49,7 @@ namespace YiNing.UI.Forms
         }
 
         [Description("是否显示蒙板")]
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool ShowShadow
         {
             get { return _showShadow; }
@@ -134,13 +134,21 @@ namespace YiNing.UI.Forms
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            if (darkShadow != null) darkShadow.Close();
             base.OnFormClosing(e);
+        }
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            base.OnFormClosed(e);
+            CloseShadow();
         }
         #endregion
 
         #region Method Region
 
+        public void CloseShadow()
+        {
+            if (darkShadow != null) darkShadow.Close();
+        }
         public void Done(DarkDialogButton darkDialogButton)
         {
             DialogButtons = darkDialogButton;

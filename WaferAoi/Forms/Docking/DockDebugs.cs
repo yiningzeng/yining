@@ -18,7 +18,7 @@ namespace WaferAoi
     {
         #region Constructor Region
         InterLayerDraw interLayerDraw;
-        MVCameraHelper mVCameraHelper = new MVCameraHelper(2);
+        MVCameraHelper mVCameraHelper;
         Config config;
         public DockDebugs()
         {
@@ -27,30 +27,29 @@ namespace WaferAoi
             Ini();
         }
 
-        public DockDebugs(string text, Image icon)
+        public DockDebugs(string text, Image icon, ref MVCameraHelper mc)
             : this()
         {
             DockText = text;
             Icon = icon;
+            mVCameraHelper = mc;
         }
 
         #endregion
 
         #region Method Region
         private void HookEvents()// 写活了
-
         {
             //运动控制
             ControlHelper.SetButtonMouseDown(new Control[] { dsepMove }, Button_MouseDown);
             ControlHelper.SetButtonMouseUp(new Control[] { dsepMove }, Button_MouseUp);
             //注册所有darkbutton
             ControlHelper.SetDarkButtonClick(new Control[] { this }, DarkButton_Click);
-
         }
         private void Ini()
         {
             hSmartWindowControl1.HMouseMove += HSmartWindowControl1_HMouseMove;
-            mVCameraHelper.CameraImageCallBack += MVCameraHelper_CameraImageCallBack;
+            //mVCameraHelper.CameraImageCallBack += MVCameraHelper_CameraImageCallBack;
             interLayerDraw = new InterLayerDraw(hSmartWindowControl1);
                         config = JsonHelper.DeserializeByFile<Config>("yining.config");
             if (config == null) { DarkMessageBox.ShowError("未找到运动控制的相关配置", "错误提醒"); }
@@ -65,12 +64,12 @@ namespace WaferAoi
                 }
                 dlvwAxes.SelectItem(0);
             }
-            List<DarkStepViewer.StepEntity> list = new List<DarkStepViewer.StepEntity>();
-            list.Add(new DarkStepViewer.StepEntity("1", "步骤1", 1, "这里是该步骤的描述信息", null));
+            List<DarkStepViewerItem> list = new List<DarkStepViewerItem>();
+            //list.Add(new DarkStepViewerItem("1", "步骤1", 1, "这里是该步骤的描述信息", null));
 
-            list.Add(new DarkStepViewer.StepEntity("2", "步骤2", 2, "这里是该步骤的描述信息", null));
-            list.Add(new DarkStepViewer.StepEntity("3", "步骤步骤23", 3, "这里是该步骤的描述信息", null));
-            list.Add(new DarkStepViewer.StepEntity("2", "步骤4", 4, "这里是该步骤的描述信息", null));
+            //list.Add(new DarkStepViewerItem("2", "步骤2", 2, "这里是该步骤的描述信息", null));
+            //list.Add(new DarkStepViewerItem("3", "步骤步骤23", 3, "这里是该步骤的描述信息", null));
+            //list.Add(new DarkStepViewerItem("2", "步骤4", 4, "这里是该步骤的描述信息", null));
 
             this.darkStepViewer1.CurrentStep = 2;
             this.darkStepViewer1.ListDataSource = list;
@@ -254,12 +253,12 @@ namespace WaferAoi
 
                         tb3x.Text = points[2].X.ToString();
                         tb3y.Text = points[2].Y.ToString();
-                        if (config.Inch8 == null)
-                        {
-                            Inch inch8 = new Inch() { Size = 8, RightPoint = new Point(rightX, rightY), Diameter = int.Parse(tbRd.Text) };
-                            config.Inch8 = inch8;
-                            JsonHelper.Serialize(config, "yining.config");
-                        }
+                        //if (config.Inch8 == null)
+                        //{
+                        //    Inch inch8 = new Inch() { Size = 8, RightPoint = new Point(rightX, rightY), Diameter = int.Parse(tbRd.Text) };
+                        //    config.Inch8 = inch8;
+                        //    JsonHelper.Serialize(config, "yining.config");
+                        //}
                     }
                     catch (Exception er) { }
 
@@ -288,7 +287,6 @@ namespace WaferAoi
                 //MessageBox.Show("daole");
             }
             catch (Exception er) { MessageBox.Show("输入有误"); }
-
         }
         public override void Close()
         {

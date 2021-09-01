@@ -15,6 +15,11 @@ namespace WaferAoi
             this.axis = ax;
             InitializeComponent();
             this.Text = axis.Remarks + "-回零状态";
+            this.Load += DialogGoHome_Load;
+        }
+
+        private void DialogGoHome_Load(object sender, EventArgs e)
+        {
             MotorsControl.GoHomeAsync(axis.Id, axis.GoHomePar.Get(), new Action<short, GSN.THomeStatus>((id, par) =>
             {
                 this.BeginInvoke(new Action<GSN.THomeStatus>((homepar) =>

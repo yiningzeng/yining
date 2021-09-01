@@ -61,23 +61,26 @@ namespace WaferAoi
         {
             dlvwProgress.Items.Clear();
             dlvwProgress.Items.Add(new DarkListItem("加载图谱"));
-            dlvwProgress.Items.Add(new DarkListItem("取料"));
+            dlvwProgress.Items.Add(new DarkListItem("放料"));
             dlvwProgress.Items.Add(new DarkListItem("定位晶圆切面/凹槽"));
             dlvwProgress.Items.Add(new DarkListItem("方向矫正"));
             dlvwProgress.Items.Add(new DarkListItem("检测中"));
             dlvwProgress.Items.Add(new DarkListItem("检测完毕"));
             dlvwProgress.Items.Add(new DarkListItem("数据导出"));
-            dlvwProgress.Items.Add(new DarkListItem("放料"));
+            dlvwProgress.Items.Add(new DarkListItem("取料"));
             dlvwProgress.Items.Add(new DarkListItem("空闲"));
             dlvwProgress.SetStartNum(0);
+            waferMap.DieAlpha = 0;
             Task.Run(() =>
             {
                 int i = 0;
                 while (i < 9)
                 {
+                    i++;
                     Thread.Sleep(1500);
                     this.BeginInvoke(new Action(() =>
                     {
+                        if (i <= 2) waferMap.DieAlpha = 150;
                         dlvwProgress.Next();
                         if (dlvwProgress.IsDone()) i = 10;
                     }));
@@ -144,11 +147,13 @@ namespace WaferAoi
         private void darkButton3_Click(object sender, EventArgs e)
         {
             dlvwProgress.Error();
+            //waferMap.DieAlpha = 0;
         }
 
         private void darkButton4_Click(object sender, EventArgs e)
         {
             dlvwProgress.Stop();
+            //waferMap.DieAlpha = 150;
         }
     }
 }

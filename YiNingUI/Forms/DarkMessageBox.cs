@@ -85,7 +85,7 @@ namespace YiNing.UI.Forms
 
         private static DialogResult ShowDialog(string message, string caption, DarkMessageBoxIcon icon, DarkDialogButton buttons)
         {
-            using (var dlg = new DarkMessageBox(message, caption, icon, buttons))
+            using (var dlg = new DarkMessageBox(message + "　　", caption, icon, buttons))
             {
                 var result = dlg.ShowDialog();
                 return result;

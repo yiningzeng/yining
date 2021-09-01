@@ -288,6 +288,24 @@ namespace WaferAoi.Tools
         }
 
         /// <summary>
+        /// 2维运动
+        /// </summary>
+        /// <param name="vel">速度</param>
+        /// <param name="px">点位x</param>
+        /// <param name="py">点位y</param>
+        public static bool MovePoint2D(double vel, int px, int py, Axis ax, Axis ay)
+        {
+            try
+            {
+                //Axis ax = config.Axes.Find(v => v.Id == 2);
+                //Axis ay = config.Axes.Find(v => v.Id == 1);
+                Parallel.Invoke(() => MoveTrap(ax.Id, ax.TrapPrm.Get(), vel, px), () => MoveTrap(ay.Id, ay.TrapPrm.Get(), vel, py));
+                return true;    
+            }
+            catch (Exception er) { return false; }
+        }
+
+        /// <summary>
         /// 点位运动模式
         /// </summary>
         /// <param name="axis">轴号</param>
@@ -586,6 +604,27 @@ namespace WaferAoi.Tools
             return axisInfo;
         }
 
+        /// <summary>
+        /// 获取X，Y，z当前的坐标
+        /// </summary>
+        /// <param name="axisXId"></param>
+        /// <param name="axisYid"></param>
+        /// <param name="axisZid"></param>
+        /// <returns></returns>
+        public static int[] GetXYEncPos(int axisXId, int axisYid, int axisZid)
+        {
+            try
+            {
+                double encX, encY, encZ;
+                uint clk = 0;
+                GSN.GTN_GetEncPos(CORE, (short)axisXId, out encX, 1, out clk);
+                GSN.GTN_GetEncPos(CORE, (short)axisYid, out encY, 1, out clk);
+                GSN.GTN_GetEncPos(CORE, (short)axisZid, out encZ, 1, out clk);
+                return new int[] { Convert.ToInt32(encX), Convert.ToInt32(encY), Convert.ToInt32(encZ) };
+            }
+            catch { return new int[] { -1, -1, -1 }; }
+        }
+
 
 
         public static short GoHome(int nAxisNumber, GSN.THomePrm goHomePrm, out GSN.THomeStatus homeStatus)
@@ -647,27 +686,27 @@ namespace WaferAoi.Tools
                      GSN.GTN_GetPos(CORE, 1, out int pos);
                      GSN.GTN_ClrSts(CORE, axis, 1);
                      GSN.GTN_PrfTrap(CORE, axis); // 设置为点位运动模式
-                    GSN.GTN_GetTrapPrm(CORE, axis, out GSN.TTrapPrm trap);
+                     GSN.GTN_GetTrapPrm(CORE, axis, out GSN.TTrapPrm trap);
                      trap.acc = _goHomePrm.acc;
                      trap.dec = _goHomePrm.dec;
                      trap.smoothTime = _goHomePrm.smoothTime;
                      GSN.GTN_SetTrapPrm(CORE, axis, ref trap); // 设置点位运动参数
-                    GSN.GTN_SetVel(CORE, axis, 10);  // 设置目标速度
-                    GSN.GTN_SetPos(CORE, axis, pos + 10000);  // 设置目标位置
-                    GSN.GTN_Update(CORE, 1 << (axis - 1));    // 更新轴运动
-                    do
+                     GSN.GTN_SetVel(CORE, axis, 10);  // 设置目标速度
+                     GSN.GTN_SetPos(CORE, axis, pos + 10000);  // 设置目标位置
+                     GSN.GTN_Update(CORE, 1 << (axis - 1));    // 更新轴运动
+                     do
                      {
                          GSN.GTN_GetSts(CORE, axis, out pSta, 1, out pC);
                      } while ((pSta & 0x400) == 0x400);
                  }
-                //没有限位开关则取消限位,取消限位信息
-                //GTS.GT_LmtsOn(_cardNum, i, 0);
-                //清除轴状态
-                GSN.GTN_ClrSts(CORE, axis, 1);
-                //
-                GSN.GTN_ZeroPos(CORE, axis, 1);
-                //启动自动回原点
-                short stn = GSN.GTN_GoHome(CORE, axis, ref _goHomePrm);
+                 //没有限位开关则取消限位,取消限位信息
+                 //GTS.GT_LmtsOn(_cardNum, i, 0);
+                 //清除轴状态
+                 GSN.GTN_ClrSts(CORE, axis, 1);
+                 //
+                 GSN.GTN_ZeroPos(CORE, axis, 1);
+                 //启动自动回原点
+                 short stn = GSN.GTN_GoHome(CORE, axis, ref _goHomePrm);
                  GSN.THomeStatus homeStatus;
                  do
                  {

@@ -156,6 +156,49 @@ namespace YiNing.UI.Controls
         #region Method Region
 
         /// <summary>
+        /// 获取当前的id
+        /// </summary>
+        /// <returns></returns>
+        public int NowId()
+        {
+            return _startNum;
+        }
+        /// <summary>
+        /// 获取当前的Item
+        /// </summary>
+        /// <returns></returns>
+        public DarkListItem NowItem()
+        {
+            return Items[_startNum];
+        }
+        /// <summary>
+        /// 上一个进度
+        /// </summary>
+        public void Previous()
+        {
+            _startNum--;
+            if (_startNum > Items.Count + 1) _startNum = Items.Count + 1;
+            for (int i = 0; i < Items.Count; i++)
+            {
+                if (i < _startNum)
+                {
+                    Items[i].Icon = DarkProgressReminderIcons.完成打钩;
+                    Items[i].TextColor = Color.Chocolate;
+                }
+                else if (i == _startNum)
+                {
+                    Items[i].Icon = DarkProgressReminderIcons.进度指向;
+                    Items[i].TextColor = Color.Chocolate;
+                }
+                else
+                {
+                    Items[i].Icon = null;
+                    Items[i].TextColor = Color.DimGray;
+                }
+            }
+            Invalidate();
+        }
+        /// <summary>
         /// 执行下一个进度
         /// </summary>
         public void Next()

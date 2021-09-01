@@ -78,6 +78,9 @@
     <Reference Include="halcondotnetxl">
       <HintPath>C:\Program Files\MVTec\HALCON-18.11-Progress\bin\dotnet35\halcondotnetxl.dll</HintPath>
     </Reference>
+    <Reference Include="hdevenginedotnetxl">
+      <HintPath>C:\Program Files\MVTec\HALCON-18.11-Progress\bin\dotnet35\hdevenginedotnetxl.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>
     </Reference>
@@ -101,6 +104,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\Dialogs\DialogSavePoint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\DialogSavePoint.Designer.cs">
+      <DependentUpon>DialogSavePoint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialogs\DialogNewProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\DialogNewProject.Designer.cs">
+      <DependentUpon>DialogNewProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Docking\DockSoftwareEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Docking\DockSoftwareEdit.Designer.cs">
+      <DependentUpon>DockSoftwareEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Dialogs\DialogMessage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,12 +163,6 @@
     </Compile>
     <Compile Include="Forms\Docking\DockSetting.Designer.cs">
       <DependentUpon>DockSetting.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Docking\DockSoftwareEdit.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\Docking\DockSoftwareEdit.Designer.cs">
-      <DependentUpon>DockSoftwareEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Docking\DockWorkSpace.cs">
       <SubType>UserControl</SubType>
@@ -210,10 +225,20 @@
     <Compile Include="Tools\FsmHelper.cs" />
     <Compile Include="Tools\googol\GTS.cs" />
     <Compile Include="Tools\googol\MotorsControl.cs" />
-    <Compile Include="Tools\HDevelopExport.cs" />
+    <Compile Include="Tools\HDevProgramHelper.cs" />
     <Compile Include="Tools\InterLayerDraw.cs" />
     <Compile Include="Tools\MVCameraHelper.cs" />
+    <Compile Include="Tools\ProgramConfig.cs" />
     <Compile Include="Tools\Utils.cs" />
+    <EmbeddedResource Include="Forms\Dialogs\DialogSavePoint.resx">
+      <DependentUpon>DialogSavePoint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\DialogNewProject.resx">
+      <DependentUpon>DialogNewProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Docking\DockSoftwareEdit.resx">
+      <DependentUpon>DockSoftwareEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\DialogMessage.resx">
       <DependentUpon>DialogMessage.cs</DependentUpon>
     </EmbeddedResource>
@@ -234,9 +259,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Docking\DockSetting.resx">
       <DependentUpon>DockSetting.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Docking\DockSoftwareEdit.resx">
-      <DependentUpon>DockSoftwareEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Docking\DockWorkSpace.resx">
       <DependentUpon>DockWorkSpace.cs</DependentUpon>
@@ -482,6 +504,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo.ico" />
+    <None Include="Resources\PlaceWafer.png" />
     <None Include="Resources\完成打钩.png" />
     <None Include="Resources\进度指向.png" />
     <None Include="Resources\选择.png" />

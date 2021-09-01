@@ -148,6 +148,11 @@ namespace WaferAoi.Tools
             config = JsonHelper.DeserializeByFile<Config>("yining.config");
         }
 
+        public static Config GetConfig()
+        {
+            config = JsonHelper.DeserializeByFile<Config>("yining.config");
+            return config;
+        }
 
 
 

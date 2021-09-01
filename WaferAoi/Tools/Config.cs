@@ -9,13 +9,18 @@ namespace WaferAoi.Tools
 {
     public class Config
     {
-        public Inch Inch6 { get; set; }
-        public Inch Inch8 { get; set; }
         /// <summary>
         /// 运动轴
         /// </summary>
         public List<Axis> Axes { get; set; }
-
+        /// <summary>
+        /// 6寸相应的保存位置
+        /// </summary>
+        public List<PointInfo> Inch6SavePoints { get; set; }
+        /// <summary>
+        /// 8寸相应的保存位置
+        /// </summary>
+        public List<PointInfo> Inch8SavePoints { get; set; }
         /// <summary>
         /// 物镜转盘Com端口
         /// </summary>
@@ -27,32 +32,30 @@ namespace WaferAoi.Tools
         public Config()
         {
             Axes = new List<Axis>();
+            Inch6SavePoints = new List<PointInfo>();
+            Inch8SavePoints = new List<PointInfo>();
         }
     }
 
-    #region 算法相关
-
-    public class Algorithm
-    {
-
-    }
-    public class Inch
+    #region 保存的点位
+    public class PointInfo
     {
         /// <summary>
-        /// 尺寸
+        /// 点位X
         /// </summary>
-        public int Size { get; set; }
-
+        public int X { get; set; }
         /// <summary>
-        /// 圆心定位中心用到的 固定右边的点，单位脉冲
+        /// 点位Y
         /// </summary>
-        public Point RightPoint { get; set; }
+        public int Y { get; set; }
         /// <summary>
-        /// 晶圆定位中心需要用到的直径
+        /// 点位Z
         /// </summary>
-        public int Diameter { get; set; }
-        public Algorithm Algorithms { get; set; }
-
+        public int Z { get; set; }
+        /// <summary>
+        /// 点位备注信息
+        /// </summary>
+        public string Remark { get; set; }
     }
     #endregion
 

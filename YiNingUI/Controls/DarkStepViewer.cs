@@ -11,41 +11,20 @@ namespace YiNing.UI.Controls
 {
     public class DarkStepViewer: UserControl
     {
-        //public enum eumStepState
-        //{
-        //    Completed,
-        //    Waiting,
-        //    OutTime,
-        //}
-        public class StepEntity
-        {
-            public string Id { get; set; }
-            public string StepName { get; set; }
-            public int StepOrder { get; set; }
-            public string StepDesc { get; set; }
-            public object StepTag { get; set; }
-            //public Image StepCompletedImage { get; set; }
-            //public Image StepDoingImage { get; set; }
-            public StepEntity(string id, string stepname, int steporder, string stepdesc, object tag)
-            {
-                this.Id = id;
-                this.StepName = stepname;
-                this.StepOrder = steporder;
-                this.StepDesc = stepdesc;
-                this.StepTag = tag;
-            }
-        }
-
+        /// <summary>
+        /// 进度改变触发事件
+        /// </summary>
+        public event EventHandler OnStepChanged; //定义一个委托类型的事件  
         private Color _Gray = Color.Gray;
         private Color _DarkGray = Color.DarkGray;
         private Color _CompletedColor = Color.Green;
         private Color _WaitingColor = Color.Orange;
         private Color _Red = Color.Red;
         private int _CurrentStep = 0;
-        private List<StepEntity> _dataSourceList = null;
+        private List<DarkStepViewerItem> _dataSourceList = null;
        
         [Browsable(true), Category("StepViewer")]
-        public List<StepEntity> ListDataSource
+        public List<DarkStepViewerItem> ListDataSource
         {
             get
             {
@@ -86,7 +65,16 @@ namespace YiNing.UI.Controls
     
         protected override void OnPaint(PaintEventArgs e)
         {
-            if (this.ListDataSource != null)
+            //if (DesignMode && (ListDataSource == null || ListDataSource.Count ==0))
+            //{
+            //    ListDataSource = new List<DarkStepViewerItem>();
+            //    ListDataSource.Add(new DarkStepViewerItem("1", "放置晶圆", 1, "请放置晶圆", null));
+            //    ListDataSource.Add(new DarkStepViewerItem("2", "晶圆定位", 2, "精准的定位到晶圆的位置", null));
+            //    ListDataSource.Add(new DarkStepViewerItem("3", "制作程式", 3, "这里是该步骤的描述信息", null));
+            //    ListDataSource.Add(new DarkStepViewerItem("4", "程式测试", 4, "这里是该步骤的描述信息", null));
+            //    ListDataSource.Add(new DarkStepViewerItem("5", "保存程式", 5, "这里是该步骤的描述信息", null));
+            //}
+            if (this.ListDataSource != null && ListDataSource.Count > 0)
             {
                 int CenterY = 50;
                 int index = 1;
@@ -97,7 +85,7 @@ namespace YiNing.UI.Controls
                 int defaultTxtWidth = 80; // 节点的默认计算的标题文字宽度
                 lineWidth = (Parent.Width - (StepNodeWH + defaultTxtWidth) * count) / count;
                 int initX  = (Parent.Width - (lineWidth + StepNodeWH + defaultTxtWidth) * count) / 2 + 50;
-                CenterY = initX;
+                CenterY = 20;
                 //this.Width = 32 * count + lineWidth * (count - 1) + 6+300;
                 //defalut pen & brush
                 e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
@@ -213,17 +201,20 @@ namespace YiNing.UI.Controls
             // DarkStepViewer
             // 
             this.Name = "DarkStepViewer";
-            this.Size = new System.Drawing.Size(468, 177);
+            this.Size = new System.Drawing.Size(637, 258);
             this.ResumeLayout(false);
+
         }
 
         public void Complete()
         {
             CurrentStep++;
+            if (OnStepChanged != null) OnStepChanged(this, new EventArgs());
         }
         public void PreviousStep()
         {
             CurrentStep--;
+            if (OnStepChanged != null) OnStepChanged(this, new EventArgs());
         }
     }
 }

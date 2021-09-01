@@ -19,11 +19,14 @@ namespace WaferAoi.Tools
         /// </summary>
         int _w, _h;
         HObject _hObject;
+        int _xPulse, _yPulse; //x, y 对应该图片的脉冲位置
         //事件参数重载
-        public ImageArgs(int w, int h, HObject hObject)//当输入内容为字符
+        public ImageArgs(int w, int h, int xPulse, int yPulse, HObject hObject)//当输入内容为字符
         {
             this._w = w;
             this._h = h;
+            _xPulse = xPulse;
+            _yPulse = yPulse;
             this._hObject = hObject;
         }
         //事件属性
@@ -35,6 +38,20 @@ namespace WaferAoi.Tools
         {
             get { return _h; }
         }
+        /// <summary>
+        /// 获取当前图像对应的X坐标
+        /// </summary>
+        public int XPulse
+        {
+            get { return _xPulse; }
+        }
+        /// <summary>
+        /// 获取当前图像对应的Y坐标
+        /// </summary>
+        public int YPulse
+        {
+            get { return _yPulse; }
+        }
         public HObject ImageHobject
         {
             get { return _hObject; }
@@ -42,6 +59,8 @@ namespace WaferAoi.Tools
     }
     public class MVCameraHelper
     {
+
+        private int axisXId = 2, axisYId = 1; // X和Y轴的Id
         protected IntPtr[] m_Grabber = new IntPtr[4];
         protected CameraHandle[] m_hCamera = new CameraHandle[4];
         protected tSdkCameraDevInfo[] m_DevInfo;
@@ -65,17 +84,10 @@ namespace WaferAoi.Tools
         /// <param name="iModeSel">一般情况，0表示连续采集模式；1表示软件触发模式；2表示硬件触发模式。</param>
         private void InitCamera(int iModeSel)
         {
+
             this.TriggerMode = iModeSel;
             m_FrameCallback = new pfnCameraGrabberFrameCallback(CameraGrabberFrameCallback1);
             OpenCameras();
-            //m_SaveImageComplete = new pfnCameraGrabberSaveImageComplete(CameraGrabberSaveImageComplete);
-
-
-            //for (int i = 0; i < NumDev; ++i)
-            //{
-            //    if (m_Grabber[i] != IntPtr.Zero)
-            //        MvApi.CameraGrabber_StartLive(m_Grabber[i]);
-            //}
         }
 
         private void CameraGrabberFrameCallback1(IntPtr Grabber, IntPtr pFrameBuffer, ref tSdkFrameHead pFrameHead, IntPtr Context)
@@ -92,11 +104,12 @@ namespace WaferAoi.Tools
             //int h = ;
             try
             {
-                object[] objectArray = new object[4];//这里的2就是改成你要传递几个参数
+                object[] objectArray = new object[5];//这里的2就是改成你要传递几个参数
                 objectArray[0] = pFrameBuffer;
                 objectArray[1] = pFrameHead.iWidth;
                 objectArray[2] = pFrameHead.iHeight;
                 objectArray[3] = pFrameHead.uiMediaType;
+                objectArray[4] = MotorsControl.GetXYEncPos(2, 1, 4);
                 object param = (object)objectArray;
 
                 tasklst.Add(fac.StartNew(obs => {
@@ -106,6 +119,7 @@ namespace WaferAoi.Tools
                     var w = (CameraHandle)objArr[1];
                     var h = (CameraHandle)objArr[2];
                     var uiMediaType = (uint)objArr[3];
+                    var xy = (int[])objArr[4];
                     HObject Image;
                     HOperatorSet.GenEmptyObj(out Image);
                     try
@@ -128,12 +142,11 @@ namespace WaferAoi.Tools
                         {
                             //throw new HalconException("Image format is not supported!!");
                         }
-
                         HObject ImageRaw = Image;
                         HOperatorSet.MirrorImage(ImageRaw, out Image, "row");
                         ImageRaw.Dispose();
                         //HOperatorSet.WriteImage(Image, "jpg", 0, "aaaaa.jpg");
-                        if (CameraImageCallBack != null) CameraImageCallBack(this, new ImageArgs(w, h, Image));
+                        if (CameraImageCallBack != null) CameraImageCallBack(this, new ImageArgs(w, h, xy[0], xy[1], Image));
                     }
                     catch (Exception er)
                     {

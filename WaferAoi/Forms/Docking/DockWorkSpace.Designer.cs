@@ -503,6 +503,7 @@
         System.Drawing.Color.Empty,
         System.Drawing.Color.Empty};
             this.waferMap.Dataset = null;
+            this.waferMap.DieAlpha = 0;
             this.waferMap.Dock = System.Windows.Forms.DockStyle.Fill;
             this.waferMap.Interactive = false;
             this.waferMap.Location = new System.Drawing.Point(0, 0);
