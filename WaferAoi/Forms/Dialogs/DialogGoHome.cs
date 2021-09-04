@@ -22,6 +22,7 @@ namespace WaferAoi
         {
             MotorsControl.GoHomeAsync(axis.Id, axis.GoHomePar.Get(), new Action<short, GSN.THomeStatus>((id, par) =>
             {
+                if (!this.IsHandleCreated) return;
                 this.BeginInvoke(new Action<GSN.THomeStatus>((homepar) =>
                 {
                     lbStatus.Text = homepar.run == 1 ? "正在回原点" : "已停止运动";

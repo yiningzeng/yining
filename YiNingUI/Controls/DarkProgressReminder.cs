@@ -51,6 +51,7 @@ namespace YiNing.UI.Controls
                 _items.CollectionChanged += Items_CollectionChanged;
 
                 UpdateListBox();
+                SetStartNum(0);
             }
         }
 
@@ -169,6 +170,7 @@ namespace YiNing.UI.Controls
         /// <returns></returns>
         public DarkListItem NowItem()
         {
+            if (_startNum >= Items.Count) return new DarkListItem("已全部完成");
             return Items[_startNum];
         }
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HalconDotNet;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,39 @@ namespace WaferAoi.Tools
 {
     public class Utils
     {
+        /// <summary>
+        /// 计算图像的方法，值越高清晰度越高
+        /// </summary>
+        /// <param name="ho_image"></param>
+        /// <returns></returns>
+        public static double CalIntensity(HObject ho_image, double zoom = 1)//wells0179
+        {
+
+            HOperatorSet.GenEmptyObj(out HObject calHob);
+            if (zoom < 1)
+            {
+                HOperatorSet.ZoomImageFactor(ho_image, out calHob, 0.5, 0.5, "bilinear");
+            }
+            else calHob = ho_image.Clone();
+            #region ***** 计算图片方差 *****
+            double Deviation = 0;
+            try
+            {
+                HOperatorSet.SobelAmp(calHob, out HObject imgAmp, "sum_abs", 3);
+                HOperatorSet.Intensity(imgAmp, imgAmp, out HTuple mean, out HTuple deviation);
+                //ho_image.Dispose();
+                imgAmp.Dispose();
+                calHob.Dispose();
+                //ho_image.Dispose();
+                Deviation = deviation.D;
+            }
+            catch (System.Exception ex)
+            {
+
+            }
+            return Deviation;
+            #endregion
+        }
         public class LimitedConcurrencyLevelTaskScheduler : TaskScheduler
         {
             /// <summary>Whether the current thread is processing work items.</summary> 
@@ -45,7 +79,7 @@ namespace WaferAoi.Tools
                 // delegates currently queued or running to process tasks, schedule another. 
                 lock (_tasks)
                 {
-                    Console.WriteLine("Task Count : {0} ", _tasks.Count);
+                    //Console.WriteLine("Task Count : {0} ", _tasks.Count);
                     _tasks.AddLast(task);
                     if (_delegatesQueuedOrRunning < _maxDegreeOfParallelism)
                     {

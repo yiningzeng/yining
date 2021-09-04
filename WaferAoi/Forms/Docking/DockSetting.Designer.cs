@@ -83,9 +83,18 @@
             this.DarkPointsIn8 = new YiNing.UI.Controls.DarkPointsIn();
             this.darkSectionPanel_AxisRun = new YiNing.UI.Controls.DarkSectionPanel();
             this.dgrpVehicleAxisRun = new YiNing.UI.Controls.DarkGroupBox();
+            this.darkButton10 = new YiNing.UI.Controls.DarkButton();
             this.cmbRunDirection = new YiNing.UI.Controls.DarkComboBox();
             this.darkButton9 = new YiNing.UI.Controls.DarkButton();
+            this.btnGoUp = new System.Windows.Forms.Button();
+            this.btnRotateClockwise = new System.Windows.Forms.Button();
+            this.btnRotateAnticlockwise = new System.Windows.Forms.Button();
+            this.btnGoLeft = new System.Windows.Forms.Button();
+            this.btnGoDown = new System.Windows.Forms.Button();
+            this.btnGoRight = new System.Windows.Forms.Button();
             this.dgrpCameraAxisRun = new YiNing.UI.Controls.DarkGroupBox();
+            this.btnGoDownCamera = new System.Windows.Forms.Button();
+            this.btnGoUpCamera = new System.Windows.Forms.Button();
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.darkGroupBox1 = new YiNing.UI.Controls.DarkGroupBox();
@@ -141,15 +150,6 @@
             this.darkButton5 = new YiNing.UI.Controls.DarkButton();
             this.darkButton7 = new YiNing.UI.Controls.DarkButton();
             this.timerUpdateUi = new System.Windows.Forms.Timer(this.components);
-            this.darkButton10 = new YiNing.UI.Controls.DarkButton();
-            this.btnGoUp = new System.Windows.Forms.Button();
-            this.btnRotateClockwise = new System.Windows.Forms.Button();
-            this.btnRotateAnticlockwise = new System.Windows.Forms.Button();
-            this.btnGoLeft = new System.Windows.Forms.Button();
-            this.btnGoDown = new System.Windows.Forms.Button();
-            this.btnGoRight = new System.Windows.Forms.Button();
-            this.btnGoDownCamera = new System.Windows.Forms.Button();
-            this.btnGoUpCamera = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.darkTitleBarPanel2.SuspendLayout();
             this.darkGroupBox2.SuspendLayout();
@@ -878,6 +878,16 @@
             this.dgrpVehicleAxisRun.TabStop = false;
             this.dgrpVehicleAxisRun.Text = "载盘控制";
             // 
+            // darkButton10
+            // 
+            this.darkButton10.Location = new System.Drawing.Point(136, 166);
+            this.darkButton10.Name = "darkButton10";
+            this.darkButton10.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton10.Size = new System.Drawing.Size(108, 23);
+            this.darkButton10.TabIndex = 15;
+            this.darkButton10.Tag = "保存当前轴位置";
+            this.darkButton10.Text = "保存当前轴位置";
+            // 
             // cmbRunDirection
             // 
             this.cmbRunDirection.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
@@ -901,6 +911,72 @@
             this.darkButton9.Tag = "所有轴回零";
             this.darkButton9.Text = "所有轴回零";
             // 
+            // btnGoUp
+            // 
+            this.btnGoUp.BackgroundImage = global::WaferAoi.Icons.向上128;
+            this.btnGoUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnGoUp.Location = new System.Drawing.Point(144, 30);
+            this.btnGoUp.Name = "btnGoUp";
+            this.btnGoUp.Size = new System.Drawing.Size(60, 60);
+            this.btnGoUp.TabIndex = 9;
+            this.btnGoUp.Tag = "前进";
+            this.btnGoUp.UseVisualStyleBackColor = true;
+            // 
+            // btnRotateClockwise
+            // 
+            this.btnRotateClockwise.BackgroundImage = global::WaferAoi.Icons.顺时针_半圆128;
+            this.btnRotateClockwise.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRotateClockwise.Location = new System.Drawing.Point(12, 63);
+            this.btnRotateClockwise.Name = "btnRotateClockwise";
+            this.btnRotateClockwise.Size = new System.Drawing.Size(60, 60);
+            this.btnRotateClockwise.TabIndex = 7;
+            this.btnRotateClockwise.Tag = "顺时针转";
+            this.btnRotateClockwise.UseVisualStyleBackColor = true;
+            // 
+            // btnRotateAnticlockwise
+            // 
+            this.btnRotateAnticlockwise.BackgroundImage = global::WaferAoi.Icons.逆时针_半圆128;
+            this.btnRotateAnticlockwise.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRotateAnticlockwise.Location = new System.Drawing.Point(276, 63);
+            this.btnRotateAnticlockwise.Name = "btnRotateAnticlockwise";
+            this.btnRotateAnticlockwise.Size = new System.Drawing.Size(60, 60);
+            this.btnRotateAnticlockwise.TabIndex = 12;
+            this.btnRotateAnticlockwise.Tag = "逆时针转";
+            this.btnRotateAnticlockwise.UseVisualStyleBackColor = true;
+            // 
+            // btnGoLeft
+            // 
+            this.btnGoLeft.BackgroundImage = global::WaferAoi.Icons.向左128;
+            this.btnGoLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnGoLeft.Location = new System.Drawing.Point(78, 63);
+            this.btnGoLeft.Name = "btnGoLeft";
+            this.btnGoLeft.Size = new System.Drawing.Size(60, 60);
+            this.btnGoLeft.TabIndex = 8;
+            this.btnGoLeft.Tag = "左移";
+            this.btnGoLeft.UseVisualStyleBackColor = true;
+            // 
+            // btnGoDown
+            // 
+            this.btnGoDown.BackgroundImage = global::WaferAoi.Icons.向下128;
+            this.btnGoDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnGoDown.Location = new System.Drawing.Point(144, 96);
+            this.btnGoDown.Name = "btnGoDown";
+            this.btnGoDown.Size = new System.Drawing.Size(60, 60);
+            this.btnGoDown.TabIndex = 10;
+            this.btnGoDown.Tag = "后退";
+            this.btnGoDown.UseVisualStyleBackColor = true;
+            // 
+            // btnGoRight
+            // 
+            this.btnGoRight.BackgroundImage = global::WaferAoi.Icons.向右128;
+            this.btnGoRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnGoRight.Location = new System.Drawing.Point(210, 63);
+            this.btnGoRight.Name = "btnGoRight";
+            this.btnGoRight.Size = new System.Drawing.Size(60, 60);
+            this.btnGoRight.TabIndex = 11;
+            this.btnGoRight.Tag = "右移";
+            this.btnGoRight.UseVisualStyleBackColor = true;
+            // 
             // dgrpCameraAxisRun
             // 
             this.dgrpCameraAxisRun.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
@@ -912,6 +988,28 @@
             this.dgrpCameraAxisRun.TabIndex = 13;
             this.dgrpCameraAxisRun.TabStop = false;
             this.dgrpCameraAxisRun.Text = "相机控制";
+            // 
+            // btnGoDownCamera
+            // 
+            this.btnGoDownCamera.BackgroundImage = global::WaferAoi.Icons.向下128;
+            this.btnGoDownCamera.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnGoDownCamera.Location = new System.Drawing.Point(14, 95);
+            this.btnGoDownCamera.Name = "btnGoDownCamera";
+            this.btnGoDownCamera.Size = new System.Drawing.Size(60, 60);
+            this.btnGoDownCamera.TabIndex = 13;
+            this.btnGoDownCamera.Tag = "相机高度向下";
+            this.btnGoDownCamera.UseVisualStyleBackColor = true;
+            // 
+            // btnGoUpCamera
+            // 
+            this.btnGoUpCamera.BackgroundImage = global::WaferAoi.Icons.向上128;
+            this.btnGoUpCamera.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnGoUpCamera.Location = new System.Drawing.Point(14, 29);
+            this.btnGoUpCamera.Name = "btnGoUpCamera";
+            this.btnGoUpCamera.Size = new System.Drawing.Size(60, 60);
+            this.btnGoUpCamera.TabIndex = 10;
+            this.btnGoUpCamera.Tag = "相机高度向上";
+            this.btnGoUpCamera.UseVisualStyleBackColor = true;
             // 
             // splitter3
             // 
@@ -1546,104 +1644,6 @@
             // timerUpdateUi
             // 
             this.timerUpdateUi.Interval = 50;
-            // 
-            // darkButton10
-            // 
-            this.darkButton10.Location = new System.Drawing.Point(136, 166);
-            this.darkButton10.Name = "darkButton10";
-            this.darkButton10.Padding = new System.Windows.Forms.Padding(5);
-            this.darkButton10.Size = new System.Drawing.Size(108, 23);
-            this.darkButton10.TabIndex = 15;
-            this.darkButton10.Tag = "保存当前轴位置";
-            this.darkButton10.Text = "保存当前轴位置";
-            // 
-            // btnGoUp
-            // 
-            this.btnGoUp.BackgroundImage = global::WaferAoi.Icons.向上128;
-            this.btnGoUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnGoUp.Location = new System.Drawing.Point(144, 30);
-            this.btnGoUp.Name = "btnGoUp";
-            this.btnGoUp.Size = new System.Drawing.Size(60, 60);
-            this.btnGoUp.TabIndex = 9;
-            this.btnGoUp.Tag = "前进";
-            this.btnGoUp.UseVisualStyleBackColor = true;
-            // 
-            // btnRotateClockwise
-            // 
-            this.btnRotateClockwise.BackgroundImage = global::WaferAoi.Icons.顺时针_半圆128;
-            this.btnRotateClockwise.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnRotateClockwise.Location = new System.Drawing.Point(12, 63);
-            this.btnRotateClockwise.Name = "btnRotateClockwise";
-            this.btnRotateClockwise.Size = new System.Drawing.Size(60, 60);
-            this.btnRotateClockwise.TabIndex = 7;
-            this.btnRotateClockwise.Tag = "顺时针转";
-            this.btnRotateClockwise.UseVisualStyleBackColor = true;
-            // 
-            // btnRotateAnticlockwise
-            // 
-            this.btnRotateAnticlockwise.BackgroundImage = global::WaferAoi.Icons.逆时针_半圆128;
-            this.btnRotateAnticlockwise.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnRotateAnticlockwise.Location = new System.Drawing.Point(276, 63);
-            this.btnRotateAnticlockwise.Name = "btnRotateAnticlockwise";
-            this.btnRotateAnticlockwise.Size = new System.Drawing.Size(60, 60);
-            this.btnRotateAnticlockwise.TabIndex = 12;
-            this.btnRotateAnticlockwise.Tag = "逆时针转";
-            this.btnRotateAnticlockwise.UseVisualStyleBackColor = true;
-            // 
-            // btnGoLeft
-            // 
-            this.btnGoLeft.BackgroundImage = global::WaferAoi.Icons.向左128;
-            this.btnGoLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnGoLeft.Location = new System.Drawing.Point(78, 63);
-            this.btnGoLeft.Name = "btnGoLeft";
-            this.btnGoLeft.Size = new System.Drawing.Size(60, 60);
-            this.btnGoLeft.TabIndex = 8;
-            this.btnGoLeft.Tag = "左移";
-            this.btnGoLeft.UseVisualStyleBackColor = true;
-            // 
-            // btnGoDown
-            // 
-            this.btnGoDown.BackgroundImage = global::WaferAoi.Icons.向下128;
-            this.btnGoDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnGoDown.Location = new System.Drawing.Point(144, 96);
-            this.btnGoDown.Name = "btnGoDown";
-            this.btnGoDown.Size = new System.Drawing.Size(60, 60);
-            this.btnGoDown.TabIndex = 10;
-            this.btnGoDown.Tag = "后退";
-            this.btnGoDown.UseVisualStyleBackColor = true;
-            // 
-            // btnGoRight
-            // 
-            this.btnGoRight.BackgroundImage = global::WaferAoi.Icons.向右128;
-            this.btnGoRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnGoRight.Location = new System.Drawing.Point(210, 63);
-            this.btnGoRight.Name = "btnGoRight";
-            this.btnGoRight.Size = new System.Drawing.Size(60, 60);
-            this.btnGoRight.TabIndex = 11;
-            this.btnGoRight.Tag = "右移";
-            this.btnGoRight.UseVisualStyleBackColor = true;
-            // 
-            // btnGoDownCamera
-            // 
-            this.btnGoDownCamera.BackgroundImage = global::WaferAoi.Icons.向下128;
-            this.btnGoDownCamera.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnGoDownCamera.Location = new System.Drawing.Point(14, 95);
-            this.btnGoDownCamera.Name = "btnGoDownCamera";
-            this.btnGoDownCamera.Size = new System.Drawing.Size(60, 60);
-            this.btnGoDownCamera.TabIndex = 13;
-            this.btnGoDownCamera.Tag = "相机高度向下";
-            this.btnGoDownCamera.UseVisualStyleBackColor = true;
-            // 
-            // btnGoUpCamera
-            // 
-            this.btnGoUpCamera.BackgroundImage = global::WaferAoi.Icons.向上128;
-            this.btnGoUpCamera.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnGoUpCamera.Location = new System.Drawing.Point(14, 29);
-            this.btnGoUpCamera.Name = "btnGoUpCamera";
-            this.btnGoUpCamera.Size = new System.Drawing.Size(60, 60);
-            this.btnGoUpCamera.TabIndex = 10;
-            this.btnGoUpCamera.Tag = "相机高度向上";
-            this.btnGoUpCamera.UseVisualStyleBackColor = true;
             // 
             // DockSetting
             // 

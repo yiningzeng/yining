@@ -58,6 +58,8 @@ namespace WaferAoi.Tools
             {
                 foreach (var i in config.Axes)
                 {
+                    MotorsControl.ClearSts(i.Id);
+                    MotorsControl.IoSignalEXO(i.Id, 1, 11);
                     MotorsControl.ServoOn(i.Id);
                 }
             }
@@ -89,7 +91,8 @@ namespace WaferAoi.Tools
             {
                 foreach (var i in config.Axes)
                 {
-                    MotorsControl.GoHomeAsync(i.Id, i.GoHomePar.Get(), new Action<short, GSN.THomeStatus>((a, b) =>
+                    //if (!i.Remarks.Contains("Z")) continue;
+                   MotorsControl.GoHomeAsync(i.Id, i.GoHomePar.Get(), new Action<short, GSN.THomeStatus>((a, b) =>
                     {
 
                     }));

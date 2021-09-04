@@ -19,14 +19,15 @@ namespace WaferAoi.Tools
         /// </summary>
         int _w, _h;
         HObject _hObject;
-        int _xPulse, _yPulse; //x, y 对应该图片的脉冲位置
+        int _xPulse, _yPulse, _zPulse; //x, y 对应该图片的脉冲位置
         //事件参数重载
-        public ImageArgs(int w, int h, int xPulse, int yPulse, HObject hObject)//当输入内容为字符
+        public ImageArgs(int w, int h, int xPulse, int yPulse, int zPulse, HObject hObject)//当输入内容为字符
         {
             this._w = w;
             this._h = h;
             _xPulse = xPulse;
             _yPulse = yPulse;
+            _zPulse = zPulse;
             this._hObject = hObject;
         }
         //事件属性
@@ -52,9 +53,21 @@ namespace WaferAoi.Tools
         {
             get { return _yPulse; }
         }
+        /// <summary>
+        /// 获取当前图像对应的z坐标
+        /// </summary>
+        public int ZPulse
+        {
+            get { return _zPulse; }
+        }
         public HObject ImageHobject
         {
             get { return _hObject; }
+        }
+
+        public void Dispose()
+        {
+            if (_hObject.IsInitialized()) _hObject.Dispose();
         }
     }
     public class MVCameraHelper
@@ -109,7 +122,7 @@ namespace WaferAoi.Tools
                 objectArray[1] = pFrameHead.iWidth;
                 objectArray[2] = pFrameHead.iHeight;
                 objectArray[3] = pFrameHead.uiMediaType;
-                objectArray[4] = MotorsControl.GetXYEncPos(2, 1, 4);
+                objectArray[4] = MotorsControl.GetXYZEncPos(2, 1, 4);
                 object param = (object)objectArray;
 
                 tasklst.Add(fac.StartNew(obs => {
@@ -119,7 +132,7 @@ namespace WaferAoi.Tools
                     var w = (CameraHandle)objArr[1];
                     var h = (CameraHandle)objArr[2];
                     var uiMediaType = (uint)objArr[3];
-                    var xy = (int[])objArr[4];
+                    var xyz = (PointInfo)objArr[4];
                     HObject Image;
                     HOperatorSet.GenEmptyObj(out Image);
                     try
@@ -146,7 +159,7 @@ namespace WaferAoi.Tools
                         HOperatorSet.MirrorImage(ImageRaw, out Image, "row");
                         ImageRaw.Dispose();
                         //HOperatorSet.WriteImage(Image, "jpg", 0, "aaaaa.jpg");
-                        if (CameraImageCallBack != null) CameraImageCallBack(this, new ImageArgs(w, h, xy[0], xy[1], Image));
+                        if (CameraImageCallBack != null) CameraImageCallBack(this, new ImageArgs(w, h, xyz.X, xyz.Y, xyz.Z, Image));
                     }
                     catch (Exception er)
                     {
@@ -223,6 +236,13 @@ namespace WaferAoi.Tools
             }
         }
 
+        public void ShowSettingPage(uint show = 1)
+        {
+            if (m_Grabber[0] != IntPtr.Zero)
+            {
+                MvApi.CameraShowSettingPage(m_hCamera[0], show);//1 show ; 0 hide
+            }
+        }
         public void CameraSetExposureTime(double exposureTime)
         {
             if (m_Grabber[0] != IntPtr.Zero)

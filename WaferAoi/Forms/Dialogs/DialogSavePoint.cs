@@ -19,10 +19,13 @@ namespace WaferAoi
 
         private void DialogSavePoint_Load(object sender, EventArgs e)
         {
-            int[] xyz = MotorsControl.GetXYEncPos(2, 1, 4);
-            tbX.Text = xyz[0].ToString();
-            tbY.Text = xyz[1].ToString();
-            tbZ.Text = xyz[2].ToString();
+            PointInfo xyz = MotorsControl.GetXYZEncPos(2, 1, 4);
+            if (xyz.Remark == "成功")
+            {
+                tbX.Text = xyz.X.ToString();
+                tbY.Text = xyz.Y.ToString();
+                tbZ.Text = xyz.Z.ToString();
+            }
         }
 
         public void Ini()

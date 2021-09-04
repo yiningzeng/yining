@@ -20,6 +20,7 @@ namespace WaferAoi.Tools
 
         private HObject drawingCross;
         public HDrawingObject selected_drawing_object = new HDrawingObject();
+        public HDrawingObject line = new HDrawingObject();
         public HSmartWindowControl hsmartwindows;
         public double X = 0, Y = 0;
         public InterLayerDraw(HSmartWindowControl hs)
@@ -33,12 +34,84 @@ namespace WaferAoi.Tools
             HOperatorSet.GenEmptyObj(out hImage);
             HOperatorSet.GenEmptyObj(out fullImage);
         }
+
         /// <summary>
         /// 加载外部图像
         /// </summary>
         /// <param name="hSmartWindow"></param>
         /// <returns></returns>
 
+        public bool OpenfileDialogPath(HTuple hSmartWindow)
+        {
+            if (hSmartWindow == null)
+            {
+                MessageBox.Show("请先选着需要显示的窗口，左键点击窗口即可", "图像加载提示框", MessageBoxButtons.OK);
+            }
+            string filePath;
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Title = "请选择图片";
+            fileDialog.Filter = "BMP图像|*.bmp|PNG图像|*.png|JPG图像|*.jpg|所有文件|*.*";
+            fileDialog.RestoreDirectory = false;    //若为false，则打开对话框后为上次的目录。若为true，则为初始目录
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                filePath = Path.GetFullPath(fileDialog.FileName);
+                HOperatorSet.ReadImage(out hImage, filePath);
+                ShowImg(hImage);
+                fileDialog.Dispose();
+                return true;
+            }
+
+            else
+            {
+                fileDialog.Dispose();
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 显示图片
+        /// </summary>
+        /// <param name="e"></param>
+        /// <param name="tempControl"></param>
+        public void ShowImg(ImageArgs e, bool coverOldImage = true)
+        {
+            if (hsmartwindows != null && e.ImageHobject.IsInitialized())
+            {
+                //HOperatorSet.GetImageSize(e.ImageHobject, out HTuple Iwidth, out HTuple Iheight);
+                HOperatorSet.SetPart(hsmartwindows.HalconWindow, 0, 0, e.Height - 1, e.Width - 1);
+                HOperatorSet.ClearWindow(hsmartwindows.HalconWindow);
+                HOperatorSet.DispObj(e.ImageHobject, hsmartwindows.HalconWindow);
+                hsmartwindows.SetFullImagePart();
+                if (coverOldImage)
+                {
+                    if (hImage.IsInitialized()) hImage.Dispose();
+                    hImage = e.ImageHobject.Clone();
+                }
+                HOperatorSet.WriteImage(e.ImageHobject, "bmp", 0, @"D:\1.bmp");
+                e.Dispose();
+            }
+        }
+        public void ShowImg(HObject hObject, bool coverOldImage = true)
+        {
+            if (hsmartwindows != null)
+            {
+                HOperatorSet.GetImageSize(hObject, out HTuple Iwidth, out HTuple Iheight);
+                HOperatorSet.ClearWindow(hsmartwindows.HalconWindow);
+                HOperatorSet.DispObj(hObject, hsmartwindows.HalconWindow);
+                hsmartwindows.SetFullImagePart();
+                if (coverOldImage)
+                {
+                    if (hImage.IsInitialized()) hImage.Dispose();
+                    hImage = hObject.Clone();
+                }
+                hObject.Dispose();
+            }
+        }
+        /// <summary>
+        /// 加载外部图像
+        /// </summary>
+        /// <param name="hSmartWindow"></param>
+        /// <returns></returns>
         public void SaveImg(string format, string path)
         {
             HOperatorSet.WriteImage(hImage, format, 0, path);
@@ -67,6 +140,23 @@ namespace WaferAoi.Tools
                     drawingObjects.Add(rect1);
                 else
                     drawingObjects2.Add(rect1);
+                hsmartwindows.HalconWindow.AttachDrawingObjectToWindow(rect1);
+                return "";
+            }
+            catch (Exception er)
+            {
+                return "err";
+            }
+        }
+
+        public string Drawline()
+        {
+            try
+            {
+                HDrawingObject rect1 = HDrawingObject.CreateDrawingObject(
+                     HDrawingObject.HDrawingObjectType.LINE, Y, X, Y + 50, X + 50);
+                rect1.SetDrawingObjectParams("color", color);
+                line = rect1;
                 hsmartwindows.HalconWindow.AttachDrawingObjectToWindow(rect1);
                 return "";
             }

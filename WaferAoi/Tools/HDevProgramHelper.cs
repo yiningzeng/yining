@@ -16,7 +16,6 @@ namespace WaferAoi.Tools
             //MyEngine.SetProcedurePath(System.Windows.Forms.Application.StartupPath);
             //ProgramPathString = @"C:\Users\Administrator\source\repos\WindowsFormsApp2\WindowsFormsApp2\bin\x64\Debug\ol\chipInsp_0508.hdev";
             m_Program = new HDevProgram(ProgramPathString);
-
         }
 
         ~HDevProgramHelper()
@@ -29,6 +28,33 @@ namespace WaferAoi.Tools
         {
             if (m_Program != null) m_Program.Dispose();
             if (MyEngine != null) MyEngine.Dispose();
+        }
+
+
+        /// <summary>
+        ///         /**chip_deg 这里用halcon自带排版算子计算旋转角度，经测试效果还行
+        /// </summary>
+        /// <param name="hObject">为输入图像</param>
+        /// <param name="ImageRotate1">为角度校正后的图像</param>
+        /// <param name="OrientationAngle">OrientationAngle</param>
+        /// <param name="Degree">为旋转角度</param>
+        public void ChipDeg(HObject hObject, out HObject ImageRotate1, out HTuple OrientationAngle, out HTuple Degree)
+        {
+            HOperatorSet.GenEmptyObj(out ImageRotate1);
+            OrientationAngle = new HTuple();
+            Degree = new HTuple();
+            try
+            {
+                HDevProcedureCall call = new HDevProcedureCall(new HDevProcedure(m_Program, "chip_deg"));
+                call.SetInputIconicParamObject("Image3", hObject);
+
+                call.Execute();
+                ImageRotate1 = call.GetOutputIconicParamObject("ImageRotate1");
+                OrientationAngle = call.GetOutputCtrlParamTuple("OrientationAngle");
+                Degree = call.GetOutputCtrlParamTuple("Degree");
+                call.Dispose();
+            }
+            catch (Exception er) { }
         }
 
         /// <summary>
@@ -44,24 +70,34 @@ namespace WaferAoi.Tools
         /// <param name="S_scope"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        public void FindEdge(HObject hObject, out HObject objectSelected, out double pointXPulse, out double pointYPulse, int xPulse, int yPulse, double Pixel_Length = 3.2, double S_scope = 2, int width = 4096, int height = 3072)
+        public void FindEdge(HObject hObject, out HObject objectSelected, out HTuple pointXPulse, out HTuple pointYPulse, int xPulse, int yPulse, double Pixel_Length = 3.2, double mult_V = 0.3, double thresh = 80,  double S_scope = 2, int width = 4096, int height = 3072)
         {
-            HOperatorSet.Rgb1ToGray(hObject, out hObject);
-            HDevProcedureCall call = new HDevProcedureCall(new HDevProcedure(m_Program, "Edge_point"));
-            call.SetInputIconicParamObject("Rectangle", hObject);
-            call.SetInputIconicParamObject("GrayImage", hObject);
-            call.SetInputCtrlParamTuple("Pixel_Length", Pixel_Length);
-            call.SetInputCtrlParamTuple("S_scope", S_scope);
-            call.SetInputCtrlParamTuple("XX", xPulse);
-            call.SetInputCtrlParamTuple("width", width);
+            HOperatorSet.GenEmptyObj(out objectSelected);
+            pointXPulse = new HTuple();
+            pointYPulse = new HTuple();
+            try
+            {
+                HOperatorSet.Rgb1ToGray(hObject, out hObject);
+                HDevProcedureCall call = new HDevProcedureCall(new HDevProcedure(m_Program, "edgepoint"));
+                call.SetInputIconicParamObject("Rectangle", hObject);
+                call.SetInputIconicParamObject("GrayImage", hObject);
+                call.SetInputCtrlParamTuple("mult_V", mult_V);
+                call.SetInputCtrlParamTuple("thresh", thresh);
+                call.SetInputCtrlParamTuple("Pixel_Length", Pixel_Length);
+                call.SetInputCtrlParamTuple("S_scope", S_scope);
+                call.SetInputCtrlParamTuple("XX", xPulse);
+                call.SetInputCtrlParamTuple("width", width);
 
-            call.SetInputCtrlParamTuple("YY", yPulse);
-            call.SetInputCtrlParamTuple("height", height);
+                call.SetInputCtrlParamTuple("YY", yPulse);
+                call.SetInputCtrlParamTuple("height", height);
 
-            call.Execute();
-            objectSelected = call.GetOutputIconicParamObject("ObjectSelected");
-            pointXPulse = call.GetOutputCtrlParamTuple("Point_X");
-            pointYPulse = call.GetOutputCtrlParamTuple("Point_Y");
+                call.Execute();
+                objectSelected = call.GetOutputIconicParamObject("ObjectSelected");
+                pointXPulse = call.GetOutputCtrlParamTuple("Point_X");
+                pointYPulse = call.GetOutputCtrlParamTuple("Point_Y");
+                call.Dispose();
+            }
+            catch (Exception er) { }
         }
 
         /// <summary>

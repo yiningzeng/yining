@@ -293,13 +293,13 @@ namespace WaferAoi.Tools
         /// <param name="vel">速度</param>
         /// <param name="px">点位x</param>
         /// <param name="py">点位y</param>
-        public static bool MovePoint2D(double vel, int px, int py, Axis ax, Axis ay)
+        public static bool MovePoint2D(double vel, int px, int py, Axis ax, Axis ay, bool listen = false)
         {
             try
             {
                 //Axis ax = config.Axes.Find(v => v.Id == 2);
                 //Axis ay = config.Axes.Find(v => v.Id == 1);
-                Parallel.Invoke(() => MoveTrap(ax.Id, ax.TrapPrm.Get(), vel, px), () => MoveTrap(ay.Id, ay.TrapPrm.Get(), vel, py));
+                Parallel.Invoke(() => MoveTrap(ax.Id, ax.TrapPrm.Get(), vel, px, listen), () => MoveTrap(ay.Id, ay.TrapPrm.Get(), vel, py, listen));
                 return true;    
             }
             catch (Exception er) { return false; }
@@ -313,7 +313,7 @@ namespace WaferAoi.Tools
         /// <param name="vel"></param>
         /// <param name="pos">点位脉冲</param>
         /// <returns></returns>
-        public static bool MoveTrap(int axis, GSN.TTrapPrm trapPrm, double vel, int pos)
+        public static bool MoveTrap(int axis, GSN.TTrapPrm trapPrm, double vel, int pos, bool listen = false)
         {
             short nAxisNumber = (short)axis;
             #region ***** 绝对位置移动  *****
@@ -357,6 +357,20 @@ namespace WaferAoi.Tools
                 return false;
             }
 
+            if (listen)
+            {
+                int state = -1;
+                DateTime dateBegin = DateTime.Now;
+                while ((state & EMUMS.AxisStatus.Running) == EMUMS.AxisStatus.Running)
+                {
+                    GSN.GTN_GetSts(CORE, nAxisNumber, out state, 1, out uint pc);
+                    var timeSpan = DateTime.Now - dateBegin;
+                    if (timeSpan.TotalSeconds > 40)
+                    {
+                        break;
+                    }
+                };
+            }
             return true;
 
             #endregion
@@ -611,24 +625,63 @@ namespace WaferAoi.Tools
         /// <param name="axisYid"></param>
         /// <param name="axisZid"></param>
         /// <returns></returns>
-        public static int[] GetXYEncPos(int axisXId, int axisYid, int axisZid)
+        public static PointInfo GetXYZEncPos(int axisXId, int axisYid, int axisZid)
         {
             try
             {
-                double encX, encY, encZ;
+                double encX = 20181121, encY = 20181121, encZ = 20181121;
                 uint clk = 0;
-                GSN.GTN_GetEncPos(CORE, (short)axisXId, out encX, 1, out clk);
-                GSN.GTN_GetEncPos(CORE, (short)axisYid, out encY, 1, out clk);
-                GSN.GTN_GetEncPos(CORE, (short)axisZid, out encZ, 1, out clk);
-                return new int[] { Convert.ToInt32(encX), Convert.ToInt32(encY), Convert.ToInt32(encZ) };
+                if (axisXId != -1) GSN.GTN_GetEncPos(CORE, (short)axisXId, out encX, 1, out clk);
+                if (axisYid != -1) GSN.GTN_GetEncPos(CORE, (short)axisYid, out encY, 1, out clk);
+                if (axisZid != -1) GSN.GTN_GetEncPos(CORE, (short)axisZid, out encZ, 1, out clk);
+                if (encX.Equals(20181121) || encY.Equals(20181121) || encZ.Equals(20181121))
+                    return new PointInfo() { Remark = "失败" };
+                else
+                    return new PointInfo() { X = Convert.ToInt32(encX), Y = Convert.ToInt32(encY), Z = Convert.ToInt32(encZ), Remark = "成功" };
             }
-            catch { return new int[] { -1, -1, -1 }; }
+            catch { return new PointInfo() { Remark = "失败" }; }
+        }
+        /// <summary>
+        /// 获取旋转轴当前的位置
+        /// </summary>
+        /// <param name="axisRid"></param>
+        /// <returns></returns>
+        public static int GetREncPos(int axisRid)
+        {
+            try
+            {
+                double encR;
+                uint clk = 0;
+                GSN.GTN_GetEncPos(CORE, (short)axisRid, out encR, 1, out clk);
+                return Convert.ToInt32(encR);
+            }
+            catch { return 20181121; }
+        }
+        /// <summary>
+        /// 获取X，Y，z当前的坐标
+        /// </summary>
+        /// <param name="axisXId"></param>
+        /// <param name="axisYid"></param>
+        /// <param name="axisZid"></param>
+        /// <returns></returns>
+        public static int GetZEncPos(int axisZid)
+        {
+            try
+            {
+                double encZ;
+                uint clk = 0;
+                GSN.GTN_GetEncPos(CORE, (short)axisZid, out encZ, 1, out clk);
+                return Convert.ToInt32(encZ);
+            }
+            catch { return 20181121; }
         }
 
 
 
         public static short GoHome(int nAxisNumber, GSN.THomePrm goHomePrm, out GSN.THomeStatus homeStatus)
         {
+            ClearSts(nAxisNumber);
+            IoSignalEXO(nAxisNumber, 1, 11);
             short axis = (short)nAxisNumber;
             GSN.GTN_GetSts(CORE, axis, out int pSta, 1, out uint pC);
             if ((pSta & 0x40) == 0x40)
@@ -669,6 +722,8 @@ namespace WaferAoi.Tools
 
         public static async void GoHomeAsync(int nAxisNumber, GSN.THomePrm goHomePrm, Action<short, GSN.THomeStatus> goHomeCallback)
         {
+            ClearSts(nAxisNumber);
+            IoSignalEXO(nAxisNumber, 1, 11);
             object[] objectArray = new object[3];//这里的2就是改成你要传递几个参数
             objectArray[0] = (short)nAxisNumber;
             objectArray[1] = goHomePrm;
@@ -749,13 +804,13 @@ namespace WaferAoi.Tools
         /// <param name="cmpMode">比较模式【0，FIFO模式；1，线性模式；2，等差模式】</param>
         /// <param name="dimension">比较维度【1，一维；2，二维】</param>
         /// <param name="sourceMode">比较源【0，FDB；1，CMD】</param>
-        /// <param name="sourceX">比较源X轴号</param>
+        /// <param name="axisXId">比较源X轴号</param>
         /// <param name="axisYId">比较源Y轴号</param>
         /// <param name="outputMode">输出模式【0，脉冲；1，电平】</param>
         /// <param name="outputPulseWidth">输出脉冲宽度</param>
         /// <returns></returns>
         ///2, 2, new short[] { 1, 1}, new short[] { 1, 1 }, 2, 1, 1,  0, 100
-        public static bool setCompareMode(int axisXId, int axisYId, short[] channel = null, short[] doType = null, short cmpMode = 2, short dimension = 1, short sourceMode = 1, short outputMode = 0, ushort outputPulseWidth = 100)//wells0173//wells0185//支持多通道比较
+        public static bool setCompareMode(int axisXId, int axisYId, short[] channel = null, short[] doType = null, short cmpMode = 2, short dimension = 1, ushort outputPulseWidth = 100, short sourceMode = 1, short outputMode = 0)//wells0173//wells0185//支持多通道比较
         {
             if (channel == null) channel = new short[] { 1, 1 };
             if (doType == null) doType = new short[] { 1, 1 };

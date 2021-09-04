@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Threading;
 using YiNing.WafermapDisplay.WafermapControl;
+using HalconDotNet;
 
 namespace WaferAoi
 {
@@ -153,7 +154,6 @@ namespace WaferAoi
         private void darkButton4_Click(object sender, EventArgs e)
         {
             dlvwProgress.Stop();
-            //waferMap.DieAlpha = 150;
         }
     }
 }

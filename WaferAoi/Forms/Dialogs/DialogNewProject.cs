@@ -23,6 +23,9 @@ namespace WaferAoi
             cmbWaferType.SelectedIndex = 0;
             cmbFlatOrNotche.SelectedIndex = 0;
             cmbFlatNotcheDirection.SelectedIndex = 0;
+#if DEBUG
+            tbJobName.Text = "test";
+#endif
         }
 
         private void cmbFlatOrNotche_SelectedIndexChanged(object sender, System.EventArgs e)

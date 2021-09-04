@@ -52,6 +52,12 @@ namespace WaferAoi.Tools
         public double DieWidth { get; set; }
         public double DieHeight { get; set; }
         /// <summary>
+        /// 切割道宽度
+        /// </summary>
+        public double CutRoadWidth { get; set; }
+        //晶圆中心
+        public Point WaferCenter { get; set; }
+        /// <summary>
         /// 晶圆的厚度
         /// </summary>
         public double WaferThickness { get; set; }
