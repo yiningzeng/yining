@@ -13,7 +13,7 @@ namespace WaferAoi
         static void Main()
         {
             HOperatorSet.SetSystem("do_low_error", "false"); ///少报错
-            HOperatorSet.SetSystem("clip_region", "false"); //region在图像外不切掉
+            HOperatorSet.SetSystem("clip_region", "true"); //region在图像外不切掉
             HOperatorSet.SetSystem("border_shape_models", "true"); //依然匹配边缘的图形
             HOperatorSet.SetSystem("use_window_thread", "true");
             Application.EnableVisualStyles();

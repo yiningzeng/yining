@@ -56,6 +56,15 @@ namespace WaferAoi.Tools
         /// 点位备注信息
         /// </summary>
         public string Remark { get; set; }
+
+        public int Row()
+        {
+            return Y;
+        }
+        public int Col()
+        {
+            return X;
+        }
     }
     #endregion
 

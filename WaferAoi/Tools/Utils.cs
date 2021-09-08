@@ -19,6 +19,7 @@ namespace WaferAoi.Tools
         {
 
             HOperatorSet.GenEmptyObj(out HObject calHob);
+            if (!ho_image.IsInitialized()) return 0;
             if (zoom < 1)
             {
                 HOperatorSet.ZoomImageFactor(ho_image, out calHob, 0.5, 0.5, "bilinear");

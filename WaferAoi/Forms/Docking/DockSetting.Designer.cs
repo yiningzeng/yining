@@ -190,12 +190,13 @@
             this.darkTitleBarPanel2.Controls.Add(this.splitter3);
             this.darkTitleBarPanel2.Controls.Add(this.splitter2);
             this.darkTitleBarPanel2.Controls.Add(this.darkGroupBox1);
+            this.darkTitleBarPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.darkTitleBarPanel2.HeaderText = null;
             this.darkTitleBarPanel2.Icon = null;
             this.darkTitleBarPanel2.Location = new System.Drawing.Point(0, 0);
             this.darkTitleBarPanel2.Name = "darkTitleBarPanel2";
             this.darkTitleBarPanel2.ShowHeader = false;
-            this.darkTitleBarPanel2.Size = new System.Drawing.Size(1046, 831);
+            this.darkTitleBarPanel2.Size = new System.Drawing.Size(1487, 831);
             this.darkTitleBarPanel2.TabIndex = 2;
             // 
             // darkGroupBox2
@@ -208,7 +209,7 @@
             this.darkGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.darkGroupBox2.Location = new System.Drawing.Point(0, 221);
             this.darkGroupBox2.Name = "darkGroupBox2";
-            this.darkGroupBox2.Size = new System.Drawing.Size(1044, 605);
+            this.darkGroupBox2.Size = new System.Drawing.Size(1485, 605);
             this.darkGroupBox2.TabIndex = 5;
             this.darkGroupBox2.TabStop = false;
             // 
@@ -1016,7 +1017,7 @@
             this.splitter3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.splitter3.Location = new System.Drawing.Point(0, 826);
             this.splitter3.Name = "splitter3";
-            this.splitter3.Size = new System.Drawing.Size(1044, 3);
+            this.splitter3.Size = new System.Drawing.Size(1485, 3);
             this.splitter3.TabIndex = 4;
             this.splitter3.TabStop = false;
             // 
@@ -1025,7 +1026,7 @@
             this.splitter2.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitter2.Location = new System.Drawing.Point(0, 211);
             this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(1044, 10);
+            this.splitter2.Size = new System.Drawing.Size(1485, 10);
             this.splitter2.TabIndex = 1;
             this.splitter2.TabStop = false;
             // 
@@ -1036,7 +1037,7 @@
             this.darkGroupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.darkGroupBox1.Location = new System.Drawing.Point(0, 25);
             this.darkGroupBox1.Name = "darkGroupBox1";
-            this.darkGroupBox1.Size = new System.Drawing.Size(1044, 186);
+            this.darkGroupBox1.Size = new System.Drawing.Size(1485, 186);
             this.darkGroupBox1.TabIndex = 0;
             this.darkGroupBox1.TabStop = false;
             this.darkGroupBox1.Text = "运动参数设置";
@@ -1044,11 +1045,11 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 5;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.19495F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.80505F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 0F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 172F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.9243F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.9243F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.15141F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 173F));
             this.tableLayoutPanel1.Controls.Add(this.dspJOGSettings, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.dspGoHomeSettings, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.dspPointMoveSettings, 1, 0);
@@ -1059,7 +1060,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1038, 164);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1479, 164);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // dspJOGSettings
@@ -1074,16 +1075,16 @@
             this.dspJOGSettings.Controls.Add(this.darkLabel14);
             this.dspJOGSettings.Controls.Add(this.dtbJogAcc);
             this.dspJOGSettings.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dspJOGSettings.Location = new System.Drawing.Point(203, 3);
+            this.dspJOGSettings.Location = new System.Drawing.Point(129, 3);
             this.dspJOGSettings.Name = "dspJOGSettings";
             this.dspJOGSettings.SectionHeader = "连续运动模式参数";
-            this.dspJOGSettings.Size = new System.Drawing.Size(314, 158);
+            this.dspJOGSettings.Size = new System.Drawing.Size(299, 158);
             this.dspJOGSettings.TabIndex = 2;
             // 
             // btnJogSave
             // 
             this.btnJogSave.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnJogSave.Location = new System.Drawing.Point(271, 25);
+            this.btnJogSave.Location = new System.Drawing.Point(256, 25);
             this.btnJogSave.Name = "btnJogSave";
             this.btnJogSave.Padding = new System.Windows.Forms.Padding(5);
             this.btnJogSave.Size = new System.Drawing.Size(42, 132);
@@ -1110,7 +1111,7 @@
             this.dtbJogVel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.dtbJogVel.Location = new System.Drawing.Point(126, 123);
             this.dtbJogVel.Name = "dtbJogVel";
-            this.dtbJogVel.Size = new System.Drawing.Size(139, 23);
+            this.dtbJogVel.Size = new System.Drawing.Size(124, 23);
             this.dtbJogVel.TabIndex = 4;
             this.dtbJogVel.Tag = "JOG减速度";
             // 
@@ -1133,7 +1134,7 @@
             this.dtbJogSmooth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.dtbJogSmooth.Location = new System.Drawing.Point(126, 94);
             this.dtbJogSmooth.Name = "dtbJogSmooth";
-            this.dtbJogSmooth.Size = new System.Drawing.Size(139, 23);
+            this.dtbJogSmooth.Size = new System.Drawing.Size(124, 23);
             this.dtbJogSmooth.TabIndex = 3;
             // 
             // darkLabel13
@@ -1155,7 +1156,7 @@
             this.dtbJogDec.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.dtbJogDec.Location = new System.Drawing.Point(126, 65);
             this.dtbJogDec.Name = "dtbJogDec";
-            this.dtbJogDec.Size = new System.Drawing.Size(139, 23);
+            this.dtbJogDec.Size = new System.Drawing.Size(124, 23);
             this.dtbJogDec.TabIndex = 2;
             this.dtbJogDec.Tag = "JOG减速度";
             // 
@@ -1178,7 +1179,7 @@
             this.dtbJogAcc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.dtbJogAcc.Location = new System.Drawing.Point(126, 36);
             this.dtbJogAcc.Name = "dtbJogAcc";
-            this.dtbJogAcc.Size = new System.Drawing.Size(139, 23);
+            this.dtbJogAcc.Size = new System.Drawing.Size(124, 23);
             this.dtbJogAcc.TabIndex = 1;
             this.dtbJogAcc.Tag = "JOG加速度";
             // 
@@ -1202,16 +1203,16 @@
             this.dspGoHomeSettings.Controls.Add(this.cmbGoHomeType);
             this.dspGoHomeSettings.Controls.Add(this.darkLabel15);
             this.dspGoHomeSettings.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dspGoHomeSettings.Location = new System.Drawing.Point(868, 3);
+            this.dspGoHomeSettings.Location = new System.Drawing.Point(739, 3);
             this.dspGoHomeSettings.Name = "dspGoHomeSettings";
             this.dspGoHomeSettings.SectionHeader = "回原点模式参数";
-            this.dspGoHomeSettings.Size = new System.Drawing.Size(1, 158);
+            this.dspGoHomeSettings.Size = new System.Drawing.Size(562, 158);
             this.dspGoHomeSettings.TabIndex = 1;
             // 
             // btnGoHomeSave
             // 
             this.btnGoHomeSave.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnGoHomeSave.Location = new System.Drawing.Point(-42, 25);
+            this.btnGoHomeSave.Location = new System.Drawing.Point(519, 25);
             this.btnGoHomeSave.Name = "btnGoHomeSave";
             this.btnGoHomeSave.Padding = new System.Windows.Forms.Padding(5);
             this.btnGoHomeSave.Size = new System.Drawing.Size(42, 132);
@@ -1226,7 +1227,7 @@
             this.dtbGoHomeOffset.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.dtbGoHomeOffset.Location = new System.Drawing.Point(114, 123);
             this.dtbGoHomeOffset.Name = "dtbGoHomeOffset";
-            this.dtbGoHomeOffset.Size = new System.Drawing.Size(169, 23);
+            this.dtbGoHomeOffset.Size = new System.Drawing.Size(168, 23);
             this.dtbGoHomeOffset.TabIndex = 6;
             // 
             // dtbGoHomeDec
@@ -1236,16 +1237,16 @@
             this.dtbGoHomeDec.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.dtbGoHomeDec.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.dtbGoHomeDec.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.dtbGoHomeDec.Location = new System.Drawing.Point(423, 125);
+            this.dtbGoHomeDec.Location = new System.Drawing.Point(424, 125);
             this.dtbGoHomeDec.Name = "dtbGoHomeDec";
-            this.dtbGoHomeDec.Size = new System.Drawing.Size(0, 23);
+            this.dtbGoHomeDec.Size = new System.Drawing.Size(90, 23);
             this.dtbGoHomeDec.TabIndex = 10;
             // 
             // darkLabel19
             // 
             this.darkLabel19.AutoSize = true;
             this.darkLabel19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel19.Location = new System.Drawing.Point(287, 127);
+            this.darkLabel19.Location = new System.Drawing.Point(288, 127);
             this.darkLabel19.Name = "darkLabel19";
             this.darkLabel19.Size = new System.Drawing.Size(130, 15);
             this.darkLabel19.TabIndex = 32;
@@ -1258,16 +1259,16 @@
             this.dtbGoHomeAcc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.dtbGoHomeAcc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.dtbGoHomeAcc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.dtbGoHomeAcc.Location = new System.Drawing.Point(423, 96);
+            this.dtbGoHomeAcc.Location = new System.Drawing.Point(424, 96);
             this.dtbGoHomeAcc.Name = "dtbGoHomeAcc";
-            this.dtbGoHomeAcc.Size = new System.Drawing.Size(0, 23);
+            this.dtbGoHomeAcc.Size = new System.Drawing.Size(90, 23);
             this.dtbGoHomeAcc.TabIndex = 9;
             // 
             // darkLabel18
             // 
             this.darkLabel18.AutoSize = true;
             this.darkLabel18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel18.Location = new System.Drawing.Point(287, 99);
+            this.darkLabel18.Location = new System.Drawing.Point(288, 99);
             this.darkLabel18.Name = "darkLabel18";
             this.darkLabel18.Size = new System.Drawing.Size(130, 15);
             this.darkLabel18.TabIndex = 30;
@@ -1280,16 +1281,16 @@
             this.dtbGoHomeLocationVel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.dtbGoHomeLocationVel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.dtbGoHomeLocationVel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.dtbGoHomeLocationVel.Location = new System.Drawing.Point(422, 67);
+            this.dtbGoHomeLocationVel.Location = new System.Drawing.Point(423, 67);
             this.dtbGoHomeLocationVel.Name = "dtbGoHomeLocationVel";
-            this.dtbGoHomeLocationVel.Size = new System.Drawing.Size(0, 23);
+            this.dtbGoHomeLocationVel.Size = new System.Drawing.Size(90, 23);
             this.dtbGoHomeLocationVel.TabIndex = 8;
             // 
             // darkLabel17
             // 
             this.darkLabel17.AutoSize = true;
             this.darkLabel17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel17.Location = new System.Drawing.Point(287, 67);
+            this.darkLabel17.Location = new System.Drawing.Point(288, 67);
             this.darkLabel17.Name = "darkLabel17";
             this.darkLabel17.Size = new System.Drawing.Size(129, 15);
             this.darkLabel17.TabIndex = 28;
@@ -1302,16 +1303,16 @@
             this.dtbGoHomeSearchVel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.dtbGoHomeSearchVel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.dtbGoHomeSearchVel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.dtbGoHomeSearchVel.Location = new System.Drawing.Point(422, 36);
+            this.dtbGoHomeSearchVel.Location = new System.Drawing.Point(423, 36);
             this.dtbGoHomeSearchVel.Name = "dtbGoHomeSearchVel";
-            this.dtbGoHomeSearchVel.Size = new System.Drawing.Size(0, 23);
+            this.dtbGoHomeSearchVel.Size = new System.Drawing.Size(90, 23);
             this.dtbGoHomeSearchVel.TabIndex = 7;
             // 
             // darkLabel16
             // 
             this.darkLabel16.AutoSize = true;
             this.darkLabel16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel16.Location = new System.Drawing.Point(287, 40);
+            this.darkLabel16.Location = new System.Drawing.Point(288, 40);
             this.darkLabel16.Name = "darkLabel16";
             this.darkLabel16.Size = new System.Drawing.Size(129, 15);
             this.darkLabel16.TabIndex = 26;
@@ -1333,7 +1334,7 @@
             this.flowLayoutPanel2.Controls.Add(this.rdoGoHomeSearchNegative);
             this.flowLayoutPanel2.Location = new System.Drawing.Point(114, 94);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(169, 23);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(168, 23);
             this.flowLayoutPanel2.TabIndex = 24;
             // 
             // rdoGoHomeSearchPositive
@@ -1372,7 +1373,7 @@
             this.flowLayoutPanel1.Controls.Add(this.rdoGoHomeStartNegative);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(114, 65);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(169, 23);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(168, 23);
             this.flowLayoutPanel1.TabIndex = 22;
             // 
             // rdoGoHomeStartPositive
@@ -1420,7 +1421,7 @@
             this.cmbGoHomeType.Location = new System.Drawing.Point(114, 35);
             this.cmbGoHomeType.Name = "cmbGoHomeType";
             this.cmbGoHomeType.ReadOnly = true;
-            this.cmbGoHomeType.Size = new System.Drawing.Size(169, 24);
+            this.cmbGoHomeType.Size = new System.Drawing.Size(168, 24);
             this.cmbGoHomeType.TabIndex = 1;
             // 
             // darkLabel15
@@ -1445,16 +1446,16 @@
             this.dspPointMoveSettings.Controls.Add(this.dtbTrapDec);
             this.dspPointMoveSettings.Controls.Add(this.dtbTrapAcc);
             this.dspPointMoveSettings.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dspPointMoveSettings.Location = new System.Drawing.Point(523, 3);
+            this.dspPointMoveSettings.Location = new System.Drawing.Point(434, 3);
             this.dspPointMoveSettings.Name = "dspPointMoveSettings";
             this.dspPointMoveSettings.SectionHeader = "点位运动模式参数";
-            this.dspPointMoveSettings.Size = new System.Drawing.Size(339, 158);
+            this.dspPointMoveSettings.Size = new System.Drawing.Size(299, 158);
             this.dspPointMoveSettings.TabIndex = 0;
             // 
             // btnTrapSave
             // 
             this.btnTrapSave.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnTrapSave.Location = new System.Drawing.Point(296, 25);
+            this.btnTrapSave.Location = new System.Drawing.Point(256, 25);
             this.btnTrapSave.Name = "btnTrapSave";
             this.btnTrapSave.Padding = new System.Windows.Forms.Padding(5);
             this.btnTrapSave.Size = new System.Drawing.Size(42, 132);
@@ -1491,7 +1492,7 @@
             this.dtbTrapSmoothTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.dtbTrapSmoothTime.Location = new System.Drawing.Point(146, 125);
             this.dtbTrapSmoothTime.Name = "dtbTrapSmoothTime";
-            this.dtbTrapSmoothTime.Size = new System.Drawing.Size(144, 23);
+            this.dtbTrapSmoothTime.Size = new System.Drawing.Size(104, 23);
             this.dtbTrapSmoothTime.TabIndex = 4;
             // 
             // darkLabel1
@@ -1523,7 +1524,7 @@
             this.dtbTrapVel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.dtbTrapVel.Location = new System.Drawing.Point(146, 96);
             this.dtbTrapVel.Name = "dtbTrapVel";
-            this.dtbTrapVel.Size = new System.Drawing.Size(144, 23);
+            this.dtbTrapVel.Size = new System.Drawing.Size(104, 23);
             this.dtbTrapVel.TabIndex = 3;
             // 
             // dtbTrapDec
@@ -1535,7 +1536,7 @@
             this.dtbTrapDec.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.dtbTrapDec.Location = new System.Drawing.Point(146, 67);
             this.dtbTrapDec.Name = "dtbTrapDec";
-            this.dtbTrapDec.Size = new System.Drawing.Size(144, 23);
+            this.dtbTrapDec.Size = new System.Drawing.Size(104, 23);
             this.dtbTrapDec.TabIndex = 2;
             // 
             // dtbTrapAcc
@@ -1547,7 +1548,7 @@
             this.dtbTrapAcc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.dtbTrapAcc.Location = new System.Drawing.Point(146, 38);
             this.dtbTrapAcc.Name = "dtbTrapAcc";
-            this.dtbTrapAcc.Size = new System.Drawing.Size(144, 23);
+            this.dtbTrapAcc.Size = new System.Drawing.Size(104, 23);
             this.dtbTrapAcc.TabIndex = 1;
             // 
             // darkTitleBarPanel1
@@ -1559,7 +1560,7 @@
             this.darkTitleBarPanel1.Location = new System.Drawing.Point(3, 3);
             this.darkTitleBarPanel1.Name = "darkTitleBarPanel1";
             this.darkTitleBarPanel1.SectionHeader = "运动轴列表";
-            this.darkTitleBarPanel1.Size = new System.Drawing.Size(194, 158);
+            this.darkTitleBarPanel1.Size = new System.Drawing.Size(120, 158);
             this.darkTitleBarPanel1.TabIndex = 0;
             // 
             // dlvwAxes
@@ -1568,7 +1569,7 @@
             this.dlvwAxes.Location = new System.Drawing.Point(1, 25);
             this.dlvwAxes.Name = "dlvwAxes";
             this.dlvwAxes.ShowIcons = true;
-            this.dlvwAxes.Size = new System.Drawing.Size(190, 130);
+            this.dlvwAxes.Size = new System.Drawing.Size(116, 130);
             this.dlvwAxes.TabIndex = 0;
             this.dlvwAxes.Text = "darkListView1";
             // 
@@ -1580,10 +1581,10 @@
             this.darkSectionPanel1.Controls.Add(this.darkButton5);
             this.darkSectionPanel1.Controls.Add(this.darkButton7);
             this.darkSectionPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.darkSectionPanel1.Location = new System.Drawing.Point(868, 3);
+            this.darkSectionPanel1.Location = new System.Drawing.Point(1307, 3);
             this.darkSectionPanel1.Name = "darkSectionPanel1";
             this.darkSectionPanel1.SectionHeader = "轴状态操作";
-            this.darkSectionPanel1.Size = new System.Drawing.Size(167, 158);
+            this.darkSectionPanel1.Size = new System.Drawing.Size(169, 158);
             this.darkSectionPanel1.TabIndex = 3;
             // 
             // darkButton4
@@ -1607,7 +1608,7 @@
             this.toggleSwitch5.OnFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.toggleSwitch5.OnForeColor = System.Drawing.Color.PaleGreen;
             this.toggleSwitch5.OnText = "使能已开启";
-            this.toggleSwitch5.Size = new System.Drawing.Size(158, 23);
+            this.toggleSwitch5.Size = new System.Drawing.Size(160, 23);
             this.toggleSwitch5.TabIndex = 8;
             this.toggleSwitch5.Tag = "单轴使能开关";
             // 

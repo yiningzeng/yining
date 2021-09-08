@@ -5,6 +5,7 @@ using WaferAoi.Tools;
 using YiNing.Tools;
 using YiNing.UI.Controls;
 using YiNing.UI.Forms;
+using static WaferAoi.Tools.EMUMS;
 
 namespace WaferAoi
 {
@@ -23,6 +24,7 @@ namespace WaferAoi
             cmbWaferType.SelectedIndex = 0;
             cmbFlatOrNotche.SelectedIndex = 0;
             cmbFlatNotcheDirection.SelectedIndex = 0;
+            cmbRingPiece.SelectedIndex = 0;
 #if DEBUG
             tbJobName.Text = "test";
 #endif
@@ -42,9 +44,18 @@ namespace WaferAoi
             }
             else if (DialogResult == DialogResult.OK)
             {
-                ProgramConfig pc = new ProgramConfig() { Name = tbJobName.Text, WaferSize = (WaferSize)cmbWaferSize.SelectedIndex, WaferType = (WaferType)cmbWaferType.SelectedIndex, TraitType =(TraitType)cmbWaferType.SelectedIndex, TraitLocation = (TraitLocation)Enum.ToObject(typeof(TraitLocation), cmbFlatNotcheDirection.SelectedIndex) };
+                ProgramConfig pc = new ProgramConfig() { Name = tbJobName.Text,
+                    HaveRingPiece = (HaveRingPiece)cmbRingPiece.SelectedIndex,
+                    WaferSize = (WaferSize)cmbWaferSize.SelectedIndex,
+                    WaferType = (WaferType)cmbWaferType.SelectedIndex, 
+                    TraitType =(TraitType)cmbWaferType.SelectedIndex, 
+                    TraitLocation = (TraitLocation)Enum.ToObject(typeof(TraitLocation), cmbFlatNotcheDirection.SelectedIndex),
+                    ModelSavePath = Path.Combine(@"D:\QTWaferProgram", tbJobName.Text)
+                };
                 this.Tag = pc;
-                JsonHelper.Serialize(pc, Path.Combine(@"D:\QTWaferProgram",pc.Name + ".zyn"));
+
+                if (!Directory.Exists(pc.ModelSavePath)) Directory.CreateDirectory(pc.ModelSavePath);
+                JsonHelper.Serialize(pc, Path.Combine(pc.ModelSavePath, "config.zyn"));
             }
         }
     }

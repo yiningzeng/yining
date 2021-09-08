@@ -167,7 +167,6 @@ namespace WaferAoi.Tools
 
 
 
-
         public enum Status
         {
             On,             //控制卡被打开

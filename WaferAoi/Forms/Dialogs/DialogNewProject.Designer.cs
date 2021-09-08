@@ -42,11 +42,15 @@ namespace WaferAoi
             this.cmbWaferSize = new YiNing.UI.Controls.DarkComboBox();
             this.tbJobName = new YiNing.UI.Controls.DarkTextBox();
             this.darkLabel1 = new YiNing.UI.Controls.DarkLabel();
+            this.darkLabel4 = new YiNing.UI.Controls.DarkLabel();
+            this.cmbRingPiece = new YiNing.UI.Controls.DarkComboBox();
             this.darkSectionPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // darkSectionPanel1
             // 
+            this.darkSectionPanel1.Controls.Add(this.darkLabel4);
+            this.darkSectionPanel1.Controls.Add(this.cmbRingPiece);
             this.darkSectionPanel1.Controls.Add(this.darkLabel5);
             this.darkSectionPanel1.Controls.Add(this.cmbFlatOrNotche);
             this.darkSectionPanel1.Controls.Add(this.lbFlatNotcheDirection);
@@ -61,14 +65,14 @@ namespace WaferAoi
             this.darkSectionPanel1.Location = new System.Drawing.Point(0, 0);
             this.darkSectionPanel1.Name = "darkSectionPanel1";
             this.darkSectionPanel1.SectionHeader = null;
-            this.darkSectionPanel1.Size = new System.Drawing.Size(278, 212);
+            this.darkSectionPanel1.Size = new System.Drawing.Size(291, 274);
             this.darkSectionPanel1.TabIndex = 2;
             // 
             // darkLabel5
             // 
             this.darkLabel5.AutoSize = true;
             this.darkLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel5.Location = new System.Drawing.Point(8, 131);
+            this.darkLabel5.Location = new System.Drawing.Point(15, 131);
             this.darkLabel5.Name = "darkLabel5";
             this.darkLabel5.Size = new System.Drawing.Size(77, 15);
             this.darkLabel5.TabIndex = 22;
@@ -81,7 +85,7 @@ namespace WaferAoi
             this.cmbFlatOrNotche.Items.AddRange(new object[] {
             "凹槽",
             "切面"});
-            this.cmbFlatOrNotche.Location = new System.Drawing.Point(87, 128);
+            this.cmbFlatOrNotche.Location = new System.Drawing.Point(94, 128);
             this.cmbFlatOrNotche.Name = "cmbFlatOrNotche";
             this.cmbFlatOrNotche.ReadOnly = true;
             this.cmbFlatOrNotche.Size = new System.Drawing.Size(183, 24);
@@ -92,7 +96,7 @@ namespace WaferAoi
             // 
             this.lbFlatNotcheDirection.AutoSize = true;
             this.lbFlatNotcheDirection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.lbFlatNotcheDirection.Location = new System.Drawing.Point(13, 162);
+            this.lbFlatNotcheDirection.Location = new System.Drawing.Point(20, 162);
             this.lbFlatNotcheDirection.Name = "lbFlatNotcheDirection";
             this.lbFlatNotcheDirection.Size = new System.Drawing.Size(72, 15);
             this.lbFlatNotcheDirection.TabIndex = 20;
@@ -104,7 +108,7 @@ namespace WaferAoi
             this.cmbFlatNotcheDirection.FormattingEnabled = true;
             this.cmbFlatNotcheDirection.Items.AddRange(new object[] {
             "左"});
-            this.cmbFlatNotcheDirection.Location = new System.Drawing.Point(87, 158);
+            this.cmbFlatNotcheDirection.Location = new System.Drawing.Point(94, 158);
             this.cmbFlatNotcheDirection.MaxDropDownItems = 1;
             this.cmbFlatNotcheDirection.Name = "cmbFlatNotcheDirection";
             this.cmbFlatNotcheDirection.ReadOnly = true;
@@ -115,7 +119,7 @@ namespace WaferAoi
             // 
             this.darkLabel3.AutoSize = true;
             this.darkLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel3.Location = new System.Drawing.Point(13, 102);
+            this.darkLabel3.Location = new System.Drawing.Point(20, 102);
             this.darkLabel3.Name = "darkLabel3";
             this.darkLabel3.Size = new System.Drawing.Size(72, 15);
             this.darkLabel3.TabIndex = 18;
@@ -128,7 +132,7 @@ namespace WaferAoi
             this.cmbWaferType.Items.AddRange(new object[] {
             "图案晶圆",
             "无图案晶圆"});
-            this.cmbWaferType.Location = new System.Drawing.Point(87, 98);
+            this.cmbWaferType.Location = new System.Drawing.Point(94, 98);
             this.cmbWaferType.Name = "cmbWaferType";
             this.cmbWaferType.ReadOnly = true;
             this.cmbWaferType.Size = new System.Drawing.Size(183, 24);
@@ -138,7 +142,7 @@ namespace WaferAoi
             // 
             this.darkLabel2.AutoSize = true;
             this.darkLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel2.Location = new System.Drawing.Point(13, 72);
+            this.darkLabel2.Location = new System.Drawing.Point(20, 72);
             this.darkLabel2.Name = "darkLabel2";
             this.darkLabel2.Size = new System.Drawing.Size(72, 15);
             this.darkLabel2.TabIndex = 16;
@@ -151,7 +155,7 @@ namespace WaferAoi
             this.cmbWaferSize.Items.AddRange(new object[] {
             "6寸",
             "8寸"});
-            this.cmbWaferSize.Location = new System.Drawing.Point(87, 68);
+            this.cmbWaferSize.Location = new System.Drawing.Point(94, 68);
             this.cmbWaferSize.Name = "cmbWaferSize";
             this.cmbWaferSize.ReadOnly = true;
             this.cmbWaferSize.Size = new System.Drawing.Size(183, 24);
@@ -162,7 +166,7 @@ namespace WaferAoi
             this.tbJobName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.tbJobName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbJobName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.tbJobName.Location = new System.Drawing.Point(87, 39);
+            this.tbJobName.Location = new System.Drawing.Point(94, 39);
             this.tbJobName.Name = "tbJobName";
             this.tbJobName.Size = new System.Drawing.Size(183, 23);
             this.tbJobName.TabIndex = 1;
@@ -171,17 +175,41 @@ namespace WaferAoi
             // 
             this.darkLabel1.AutoSize = true;
             this.darkLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel1.Location = new System.Drawing.Point(13, 43);
+            this.darkLabel1.Location = new System.Drawing.Point(20, 43);
             this.darkLabel1.Name = "darkLabel1";
             this.darkLabel1.Size = new System.Drawing.Size(72, 15);
             this.darkLabel1.TabIndex = 0;
             this.darkLabel1.Text = "程式名称：";
             // 
+            // darkLabel4
+            // 
+            this.darkLabel4.AutoSize = true;
+            this.darkLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel4.Location = new System.Drawing.Point(7, 191);
+            this.darkLabel4.Name = "darkLabel4";
+            this.darkLabel4.Size = new System.Drawing.Size(85, 15);
+            this.darkLabel4.TabIndex = 24;
+            this.darkLabel4.Text = "是否带环片：";
+            // 
+            // cmbRingPiece
+            // 
+            this.cmbRingPiece.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cmbRingPiece.FormattingEnabled = true;
+            this.cmbRingPiece.Items.AddRange(new object[] {
+            "不带环片",
+            "带环片"});
+            this.cmbRingPiece.Location = new System.Drawing.Point(94, 188);
+            this.cmbRingPiece.MaxDropDownItems = 1;
+            this.cmbRingPiece.Name = "cmbRingPiece";
+            this.cmbRingPiece.ReadOnly = true;
+            this.cmbRingPiece.Size = new System.Drawing.Size(183, 24);
+            this.cmbRingPiece.TabIndex = 23;
+            // 
             // DialogNewProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(278, 254);
+            this.ClientSize = new System.Drawing.Size(291, 274);
             this.Controls.Add(this.darkSectionPanel1);
             this.DialogButtons = YiNing.UI.Forms.DarkDialogButton.OkCancel;
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -211,5 +239,7 @@ namespace WaferAoi
         private DarkComboBox cmbFlatNotcheDirection;
         private DarkLabel darkLabel5;
         private DarkComboBox cmbFlatOrNotche;
+        private DarkLabel darkLabel4;
+        private DarkComboBox cmbRingPiece;
     }
 }

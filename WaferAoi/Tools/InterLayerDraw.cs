@@ -1,6 +1,7 @@
 ﻿using HalconDotNet;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,11 @@ namespace WaferAoi.Tools
         public HDrawingObject line = new HDrawingObject();
         public HSmartWindowControl hsmartwindows;
         public double X = 0, Y = 0;
+        public int XPulse, YPulse, ZPulse, AllCols, AllRows;
+
+        #region 计算圆心需要用到的参数
+        public HTuple Point_X, Point_Y;
+        #endregion
         public InterLayerDraw(HSmartWindowControl hs)
         {
             hsmartwindows = hs;
@@ -86,8 +92,12 @@ namespace WaferAoi.Tools
                 {
                     if (hImage.IsInitialized()) hImage.Dispose();
                     hImage = e.ImageHobject.Clone();
+                    XPulse = e.XPulse;
+                    YPulse = e.YPulse;
+                    ZPulse = e.ZPulse;
+                    AllCols = e.Width;
+                    AllRows = e.Height;
                 }
-                HOperatorSet.WriteImage(e.ImageHobject, "bmp", 0, @"D:\1.bmp");
                 e.Dispose();
             }
         }
@@ -104,6 +114,7 @@ namespace WaferAoi.Tools
                     if (hImage.IsInitialized()) hImage.Dispose();
                     hImage = hObject.Clone();
                 }
+                HOperatorSet.WriteImage(hObject, "bmp", 0, @"D:\2.bmp");
                 hObject.Dispose();
             }
         }
@@ -114,6 +125,7 @@ namespace WaferAoi.Tools
         /// <returns></returns>
         public void SaveImg(string format, string path)
         {
+            if (hImage.IsInitialized())
             HOperatorSet.WriteImage(hImage, format, 0, path);
         }
         public void Dispose()
@@ -149,12 +161,33 @@ namespace WaferAoi.Tools
             }
         }
 
-        public string Drawline()
+        public string DrawRectange1(int col, int row, bool isSec = false)
         {
             try
             {
                 HDrawingObject rect1 = HDrawingObject.CreateDrawingObject(
-                     HDrawingObject.HDrawingObjectType.LINE, Y, X, Y + 50, X + 50);
+                     HDrawingObject.HDrawingObjectType.RECTANGLE1, row - 200, col - 200, row + 200, col + 200);
+                rect1.SetDrawingObjectParams("color", color);
+                selected_drawing_object = rect1;
+                if (!isSec)
+                    drawingObjects.Add(rect1);
+                else
+                    drawingObjects2.Add(rect1);
+                hsmartwindows.HalconWindow.AttachDrawingObjectToWindow(rect1);
+                return "";
+            }
+            catch (Exception er)
+            {
+                return "err";
+            }
+        }
+
+        public string Drawline(int size =50)
+        {
+            try
+            {
+                HDrawingObject rect1 = HDrawingObject.CreateDrawingObject(
+                     HDrawingObject.HDrawingObjectType.LINE, Y, X, Y + size, X + size);
                 rect1.SetDrawingObjectParams("color", color);
                 line = rect1;
                 hsmartwindows.HalconWindow.AttachDrawingObjectToWindow(rect1);
@@ -166,14 +199,93 @@ namespace WaferAoi.Tools
             }
         }
 
-        public string DrawCross()
+        public string Drawline(int x, int y, int size)
+        {
+            try
+            {
+                HDrawingObject rect1 = HDrawingObject.CreateDrawingObject(
+                     HDrawingObject.HDrawingObjectType.LINE, y, x, y + size, x + size);
+                rect1.SetDrawingObjectParams("color", color);
+                line = rect1;
+                hsmartwindows.HalconWindow.AttachDrawingObjectToWindow(rect1);
+                return "";
+            }
+            catch (Exception er)
+            {
+                return "err";
+            }
+        }
+
+        public string DrawCross(double size = 200)
         {
             try
             {
                 if (hImage != null && hImage.IsInitialized() == true)
                 {
                     HOperatorSet.SetColor(hsmartwindows.HalconWindow, color);
-                    HOperatorSet.GenCrossContourXld(out HObject hObjectCross, Y, X, 200, 0);
+                    HOperatorSet.GenCrossContourXld(out HObject hObjectCross, Y, X, size, 0);
+                    HOperatorSet.DispObj(hImage, hsmartwindows.HalconWindow);
+
+                    if (drawingCross != null)
+                    {
+                        HOperatorSet.DispObj(drawingCross, hsmartwindows.HalconWindow);
+                    }
+
+                    HOperatorSet.DispObj(hObjectCross, hsmartwindows.HalconWindow);
+
+                    hObjectCross.Dispose();
+                    return "已显示十字架";
+                }
+                else
+                {
+                    return "请查看图像是否存在";
+                }
+            }
+            catch (Exception er)
+            {
+                return "err";
+            }
+        }
+
+        public PointInfo DrawCrossRet(double size = 200)
+        {
+            try
+            {
+                if (hImage != null && hImage.IsInitialized() == true)
+                {
+                    HOperatorSet.SetColor(hsmartwindows.HalconWindow, color);
+                    HOperatorSet.GenCrossContourXld(out HObject hObjectCross, Y, X, size, 0);
+                    HOperatorSet.DispObj(hImage, hsmartwindows.HalconWindow);
+
+                    if (drawingCross != null)
+                    {
+                        HOperatorSet.DispObj(drawingCross, hsmartwindows.HalconWindow);
+                    }
+
+                    HOperatorSet.DispObj(hObjectCross, hsmartwindows.HalconWindow);
+
+                    hObjectCross.Dispose();
+                    return new PointInfo() { X = Convert.ToInt32(X), Y = Convert.ToInt32(Y) };
+                }
+                else
+                {
+                    return new PointInfo() { X = -1, Y = -1};
+                }
+            }
+            catch (Exception er)
+            {
+                return new PointInfo() { X = -1, Y = -1 };
+            }
+        }
+
+        public string DrawCross(double y, double x, double size = 500)
+        {
+            try
+            {
+                if (hImage != null && hImage.IsInitialized() == true)
+                {
+                    HOperatorSet.SetColor(hsmartwindows.HalconWindow, color);
+                    HOperatorSet.GenCrossContourXld(out HObject hObjectCross, y, x, size, 0);
                     HOperatorSet.DispObj(hImage, hsmartwindows.HalconWindow);
 
                     if (drawingCross != null)
@@ -289,6 +401,27 @@ namespace WaferAoi.Tools
                 return string.Format("保存完成 :路径 ={0}", path);
             }
             return "ROI不存在，请先绘制";
+        }
+
+        public void GetROIImage(HDrawingObject hDrawingObject, out HObject cropImg)
+        {
+            HOperatorSet.GenEmptyObj(out cropImg);
+            if (hDrawingObject.IsInitialized() == true)
+            {
+                double Row1 = hDrawingObject.GetDrawingObjectParams("row1");
+                double Row2 = hDrawingObject.GetDrawingObjectParams("row2");
+                double Col1 = hDrawingObject.GetDrawingObjectParams("column1");
+                double Col2 = hDrawingObject.GetDrawingObjectParams("column2");
+                HOperatorSet.CropRectangle1(hImage, out cropImg, Row1, Col1, Row2, Col2);
+            }
+        }
+
+        public void GetRoiRegion(HDrawingObject hDrawingObject, out double Row1, out double Col1, out double Row2, out double Col2)
+        {
+            Row1 = hDrawingObject.GetDrawingObjectParams("row1");
+            Row2 = hDrawingObject.GetDrawingObjectParams("row2");
+            Col1 = hDrawingObject.GetDrawingObjectParams("column1");
+            Col2 = hDrawingObject.GetDrawingObjectParams("column2");
         }
         public void SetRedColor()
         {

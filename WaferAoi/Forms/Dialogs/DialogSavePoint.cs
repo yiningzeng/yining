@@ -5,6 +5,7 @@ using WaferAoi.Tools;
 using YiNing.Tools;
 using YiNing.UI.Controls;
 using YiNing.UI.Forms;
+using static WaferAoi.Tools.EMUMS;
 
 namespace WaferAoi
 {
