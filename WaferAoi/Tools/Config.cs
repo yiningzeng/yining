@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HalconDotNet;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -9,6 +10,10 @@ namespace WaferAoi.Tools
 {
     public class Config
     {
+        /// <summary>
+        /// 像元 一个像素多少脉冲
+        /// </summary>
+        public float PixelLenght { get; set; }
         /// <summary>
         /// 运动轴
         /// </summary>
@@ -34,6 +39,14 @@ namespace WaferAoi.Tools
             Axes = new List<Axis>();
             Inch6SavePoints = new List<PointInfo>();
             Inch8SavePoints = new List<PointInfo>();
+        }
+        /// <summary>
+        /// 获取自身的保存路径
+        /// </summary>
+        /// <returns></returns>
+        public string GetThisFileName()
+        {
+            return "yining.config";
         }
     }
 
@@ -65,6 +78,15 @@ namespace WaferAoi.Tools
         {
             return X;
         }
+
+        //public HTuple RowH()
+        //{
+        //    return new HTuple(Y);
+        //}
+        //public HTuple ColH()
+        //{
+        //    return new HTuple(X);
+        //}
     }
     #endregion
 

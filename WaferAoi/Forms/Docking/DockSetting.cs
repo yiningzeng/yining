@@ -281,20 +281,20 @@ namespace WaferAoi
             string type = btn.Tag.ToString();
             switch (type)
             {
-                case "物镜1":
-                    if (nosepieceCom.isPortOpen) nosepieceCom.WriteData("5A A5 06 83 10 03 01 00 01 9E");
+                case "物镜1X":
+                    FsmHelper.ChangeLense(0);
                     break;
-                case "物镜2":
-                    if (nosepieceCom.isPortOpen) nosepieceCom.WriteData("5A A5 06 83 10 03 01 00 02 9F");
+                case "物镜2X":
+                    FsmHelper.ChangeLense(1);
                     break;
-                case "物镜3":
-                    if (nosepieceCom.isPortOpen) nosepieceCom.WriteData("5A A5 06 83 10 03 01 00 03 A0");
+                case "物镜5X":
+                    FsmHelper.ChangeLense(2);
                     break;
-                case "物镜4":
-                    if (nosepieceCom.isPortOpen) nosepieceCom.WriteData("5A A5 06 83 10 03 01 00 04 A1");
+                case "物镜10X":
+                    FsmHelper.ChangeLense(3);
                     break;
-                case "物镜5":
-                    if (nosepieceCom.isPortOpen) nosepieceCom.WriteData("5A A5 06 83 10 03 01 00 05 A2");
+                case "物镜20X":
+                    FsmHelper.ChangeLense(4);
                     break;
             }
         }

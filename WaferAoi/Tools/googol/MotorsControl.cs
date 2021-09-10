@@ -676,6 +676,17 @@ namespace WaferAoi.Tools
             catch { return 20181121; }
         }
 
+        public static int GetOneEncPos(int axisid)
+        {
+            try
+            {
+                double encZ;
+                uint clk = 0;
+                GSN.GTN_GetEncPos(CORE, (short)axisid, out encZ, 1, out clk);
+                return Convert.ToInt32(encZ);
+            }
+            catch { return 20181121; }
+        }
 
 
         public static short GoHome(int nAxisNumber, GSN.THomePrm goHomePrm, out GSN.THomeStatus homeStatus)
@@ -928,6 +939,51 @@ namespace WaferAoi.Tools
             pPrm.gpo = _gpo;
             pPrm.hso = _hso;
             pPrm.syncPos = interval;
+
+            nRetVal = GSN.GTN_SetPosComparePsoPrm(1, 1, ref pPrm);
+            if (nRetVal != 0)
+            {
+                return false;
+            }
+
+            return true;
+
+            #endregion
+        }
+
+        public static bool setCompareData_Pso_Offset(int offset)//wells0173
+        {
+            #region ***** 设置PSO数据 *****
+
+            short nRetVal = 0;
+
+            //nRetVal = GSN.GTN_PosCompareClear(1, 1);//清空比较数据缓存
+            //if (nRetVal != 0)
+            //{
+            //    return false;
+            //}
+
+            //GSN.TPosCompareMode mode;
+            //nRetVal = GSN.GTN_GetPosCompareMode(1, 1, out mode);//获取比较模式参数
+            //if (nRetVal != 0)
+            //{
+            //    return false;
+            //}
+
+            //if (mode.mode != 2 || _cmpMode != 2) //模式不匹配
+            //    return false;
+
+            GSN.TPosComparePsoPrm pPrm;
+            nRetVal = GSN.GTN_GetPosComparePsoPrm(1, 1, out pPrm);
+            if (nRetVal != 0)
+            {
+                return false;
+            }
+
+            pPrm.count = 1;
+            pPrm.gpo = _gpo;
+            pPrm.hso = _hso;
+            pPrm.syncPos = pPrm.syncPos + offset;
 
             nRetVal = GSN.GTN_SetPosComparePsoPrm(1, 1, ref pPrm);
             if (nRetVal != 0)

@@ -345,5 +345,15 @@ namespace WaferAoi
                 DockPanel.AddContent(new DockSoftwareEdit("程式制作", Icons.Cup, ref mVCameraHelper, (ProgramConfig)dialogNewProject.Tag));
             }
         }
+
+        private void 计算像元ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new DialogCalPixel(ref mVCameraHelper).ShowDialog();
+        }
+
+        private void 飞拍矫正测试ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new DialogFlyPhoto(ref mVCameraHelper).Show();
+        }
     }
 }

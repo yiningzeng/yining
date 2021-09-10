@@ -158,11 +158,33 @@ namespace WaferAoi.Tools
         }
 
 
-
-
-
-
-
+        /// <summary>
+        /// 改变物镜
+        /// </summary>
+        /// <param name="id"></param>
+        public static void ChangeLense(int id)
+        {
+            string hex = "";
+            switch (id)
+            {
+                case 0:
+                    hex = NosepieceData.Hole1Hex;
+                    break;
+                case 1:
+                    hex = NosepieceData.Hole2Hex;
+                    break;
+                case 2:
+                    hex = NosepieceData.Hole3Hex;
+                    break;
+                case 3:
+                    hex = NosepieceData.Hole4Hex;
+                    break;
+                case 4:
+                    hex = NosepieceData.Hole5Hex;
+                    break;
+            }
+            nosepieceCom.WriteData(hex);
+        }
 
 
 

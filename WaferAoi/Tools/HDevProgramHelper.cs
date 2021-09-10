@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -172,6 +173,86 @@ namespace WaferAoi.Tools
                 }
             }
             catch (Exception er) { }
+        }
+
+        /// <summary>
+        /// 计算像元
+        /// </summary>
+        /// <param name="baseHobject">做模板的大图</param>
+        /// <param name="region">模板的区域</param>
+        /// <param name="hObject2">比对的图片，模板区域不要移出一个视野</param>
+        /// <param name="dX">两者的位移差</param>
+        /// <param name="dY">两者的位移差</param>
+        /// <param name="pixelX">x方向的像元</param>
+        /// <param name="pixelY">y像元</param>
+        public void CalPixel(HObject baseHobject, HObject region, HObject hObject2, int dX, int dY, out HTuple pixelX, out HTuple pixelY)
+        {
+            pixelY = new HTuple();
+            pixelX = new HTuple();
+            try
+            {
+                using (HDevProcedureCall call = new HDevProcedureCall(new HDevProcedure(m_Program, "pixellength")))
+                {
+                    call.SetInputIconicParamObject("Image", baseHobject);
+                    call.SetInputIconicParamObject("Rectangle", region);
+                    call.SetInputIconicParamObject("Image1", hObject2);
+                    call.SetInputCtrlParamTuple("X_", dX);
+                    call.SetInputCtrlParamTuple("Y_", dY);
+                    call.Execute();
+                    pixelX = call.GetOutputCtrlParamTuple("pixel_length1_x");
+                    pixelY = call.GetOutputCtrlParamTuple("pixel_length_y");
+                }
+            }
+            catch (Exception er) { }
+            finally
+            {
+                //baseHobject.Dispose();
+                hObject2.Dispose();
+            }
+        }
+
+
+        /// <summary>
+        /// 创建训练模型
+        /// </summary>
+        public static void CreatVariationModele(HObject ho, out HTuple VariationModelID)
+        {
+            HOperatorSet.GetImageSize(ho, out HTuple w, out HTuple h);
+            HOperatorSet.CreateVariationModel(w, h, "byte", "standard", out VariationModelID);
+        }
+        /// <summary>
+        /// 获取训练的模型
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="VariationModelID"></param>
+        public static void GetVariationModel(string fileName, out HTuple VariationModelID)
+        {
+            if (File.Exists(fileName))
+                HOperatorSet.ReadVariationModel(fileName, out VariationModelID);
+            else
+                VariationModelID = null;
+        }
+
+        /// <summary>
+        /// 保存训练模型
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="VariationModelID"></param>
+        public static void SaveVariationModel(string fileName, HTuple VariationModelID)
+        {
+            //write_variation_model(VariationModelID, VariationModelFileName)
+            HOperatorSet.WriteVariationModel(VariationModelID, fileName);
+        }
+
+        /// <summary>
+        /// 训练
+        /// </summary>
+        /// <param name="ho"></param>
+        /// <param name="VariationModelID"></param>
+        public static void VariationTrain(HObject ho, HTuple VariationModelID)
+        {
+            HOperatorSet.TrainVariationModel(ho, VariationModelID);
+            ho.Dispose();
         }
         /// <summary>
         /// 提取晶圆

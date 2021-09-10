@@ -600,10 +600,10 @@
             this.darkRadioButton5.AutoSize = true;
             this.darkRadioButton5.Location = new System.Drawing.Point(36, 198);
             this.darkRadioButton5.Name = "darkRadioButton5";
-            this.darkRadioButton5.Size = new System.Drawing.Size(57, 19);
+            this.darkRadioButton5.Size = new System.Drawing.Size(70, 19);
             this.darkRadioButton5.TabIndex = 28;
-            this.darkRadioButton5.Tag = "物镜5";
-            this.darkRadioButton5.Text = "物镜5";
+            this.darkRadioButton5.Tag = "物镜20X";
+            this.darkRadioButton5.Text = "物镜20X";
             this.darkRadioButton5.CheckedChanged += new System.EventHandler(this.darkRadioButton_CheckedChanged);
             // 
             // darkRadioButton4
@@ -611,10 +611,10 @@
             this.darkRadioButton4.AutoSize = true;
             this.darkRadioButton4.Location = new System.Drawing.Point(36, 164);
             this.darkRadioButton4.Name = "darkRadioButton4";
-            this.darkRadioButton4.Size = new System.Drawing.Size(57, 19);
+            this.darkRadioButton4.Size = new System.Drawing.Size(70, 19);
             this.darkRadioButton4.TabIndex = 27;
-            this.darkRadioButton4.Tag = "物镜4";
-            this.darkRadioButton4.Text = "物镜4";
+            this.darkRadioButton4.Tag = "物镜10X";
+            this.darkRadioButton4.Text = "物镜10X";
             this.darkRadioButton4.CheckedChanged += new System.EventHandler(this.darkRadioButton_CheckedChanged);
             // 
             // darkRadioButton3
@@ -622,10 +622,10 @@
             this.darkRadioButton3.AutoSize = true;
             this.darkRadioButton3.Location = new System.Drawing.Point(36, 132);
             this.darkRadioButton3.Name = "darkRadioButton3";
-            this.darkRadioButton3.Size = new System.Drawing.Size(57, 19);
+            this.darkRadioButton3.Size = new System.Drawing.Size(64, 19);
             this.darkRadioButton3.TabIndex = 26;
-            this.darkRadioButton3.Tag = "物镜3";
-            this.darkRadioButton3.Text = "物镜3";
+            this.darkRadioButton3.Tag = "物镜5X";
+            this.darkRadioButton3.Text = "物镜5X";
             this.darkRadioButton3.CheckedChanged += new System.EventHandler(this.darkRadioButton_CheckedChanged);
             // 
             // darkRadioButton2
@@ -633,10 +633,10 @@
             this.darkRadioButton2.AutoSize = true;
             this.darkRadioButton2.Location = new System.Drawing.Point(36, 100);
             this.darkRadioButton2.Name = "darkRadioButton2";
-            this.darkRadioButton2.Size = new System.Drawing.Size(57, 19);
+            this.darkRadioButton2.Size = new System.Drawing.Size(64, 19);
             this.darkRadioButton2.TabIndex = 25;
-            this.darkRadioButton2.Tag = "物镜2";
-            this.darkRadioButton2.Text = "物镜2";
+            this.darkRadioButton2.Tag = "物镜2X";
+            this.darkRadioButton2.Text = "物镜2X";
             this.darkRadioButton2.CheckedChanged += new System.EventHandler(this.darkRadioButton_CheckedChanged);
             // 
             // darkRadioButton1
@@ -644,10 +644,10 @@
             this.darkRadioButton1.AutoSize = true;
             this.darkRadioButton1.Location = new System.Drawing.Point(36, 69);
             this.darkRadioButton1.Name = "darkRadioButton1";
-            this.darkRadioButton1.Size = new System.Drawing.Size(57, 19);
+            this.darkRadioButton1.Size = new System.Drawing.Size(64, 19);
             this.darkRadioButton1.TabIndex = 24;
-            this.darkRadioButton1.Tag = "物镜1";
-            this.darkRadioButton1.Text = "物镜1";
+            this.darkRadioButton1.Tag = "物镜1X";
+            this.darkRadioButton1.Text = "物镜1X";
             this.darkRadioButton1.CheckedChanged += new System.EventHandler(this.darkRadioButton_CheckedChanged);
             // 
             // darkButton1

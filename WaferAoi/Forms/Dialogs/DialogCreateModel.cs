@@ -1,6 +1,8 @@
 ﻿using HalconDotNet;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,7 +17,8 @@ namespace WaferAoi
 {
     public partial class DialogCreateModel : DarkDialog
     {
-        private string ChipModelRegionFileName, ChipModelFileName;
+        private Point leftTopPointPixel, rightBottomPointPixel; 
+        private ProgramConfig programConfig;
         List<Task<bool>> tasklst = new List<Task<bool>>();
         TaskFactory fac = new TaskFactory(new LimitedConcurrencyLevelTaskScheduler(3));
         HDevProgramHelper hDevProgramHelper;
@@ -24,7 +27,7 @@ namespace WaferAoi
         public DialogCreateModel()
         {
             InitializeComponent();
-            Ini();
+
         }
 
         /// <summary>
@@ -34,12 +37,17 @@ namespace WaferAoi
         /// <param name="_ChipModelRegionFileName">模型的区域保存地址</param>
         /// <param name="_ChipModelFileName">魔心保存地址</param>
         /// <param name="Title"></param>
-        public DialogCreateModel(HObject ho, string _ChipModelRegionFileName, string _ChipModelFileName, string Title = "模型制作") : this()
+        public DialogCreateModel(HObject ho, ProgramConfig pc, Point ltPoint, Point rbPoint) : this()
         {
+            leftTopPointPixel = ltPoint;
+            rightBottomPointPixel = rbPoint;
             hObject = ho;
-            ChipModelFileName = _ChipModelFileName;
-            ChipModelRegionFileName = _ChipModelRegionFileName;
-            this.Text = Title;
+            programConfig = pc;
+            dlvwProgress.Items.Clear();
+            dlvwProgress.Items.Add(new DarkListItem("框选模板区域"));
+            dlvwProgress.Items.Add(new DarkListItem("保存模板信息"));
+            dlvwProgress.SetStartNum(0);
+            Ini();
         }
 
         public void Ini()
@@ -54,12 +62,6 @@ namespace WaferAoi
             hswcMain.MouseWheel += hswcMain.HSmartWindowControl_MouseWheel;
 
             hswcMain.HMouseMove += HswcMain_HMouseMove;
-            dlvwProgress.Items.Clear();
-            dlvwProgress.Items.Add(new DarkListItem("框选模板区域"));
-            dlvwProgress.Items.Add(new DarkListItem("保存匹配的模板"));
-            dlvwProgress.Items.Add(new DarkListItem("框选检测区域"));
-            dlvwProgress.Items.Add(new DarkListItem("保存"));
-            dlvwProgress.SetStartNum(0);
         }
 
         private void DialogCreateModel_FormClosed(object sender, FormClosedEventArgs e)
@@ -83,6 +85,24 @@ namespace WaferAoi
         private void 画一个矩形区域ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ilMain.DrawRectange1();
+            ilMain.SetBlueColor();
+            dlvwProgress.SetStartNum(0);
+            //switch (dlvwProgress.NowItem().Text)
+            //{
+            //    case "框选模板区域":
+
+            //        break;
+            //    case "框选检测区域":
+
+            //        break;
+            //}
+        }
+        private void 画检测区域ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ilMain.ClearallTool2();
+            ilMain.DrawRectange1(800, 800, true);
+            ilMain.SetRedColor();
+            dlvwProgress.SetStartNum(1);
         }
 
         private void DialogCreateModel_Load(object sender, EventArgs e)
@@ -104,13 +124,28 @@ namespace WaferAoi
             //throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// 保存模板操作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SaveModel_Click(object sender, EventArgs e)
         {
+            if (ilMain.drawingObjects.Count ==0)
+            {
+                DarkMessageBox.ShowError("请先按流程操作");
+                return;
+            }
             _ = CreateModelAsync();
         }
         private async Task CreateModelAsync()
         {
             await Task.Run(() => CreateModel());
+            this.BeginInvoke(new Action(() =>
+            {
+                dlvwProgress.SetStartNum(1);
+                dlvwProgress.Next();
+            }));
         }
 
         private void CreateModel(bool save = true)
@@ -127,16 +162,30 @@ namespace WaferAoi
 
 
             // create_shape_model (ImageReduced, 'auto', -0.39, 0.79, 'auto', 'auto', 'use_polarity', 'auto', 'auto', ModelID1)
-            HOperatorSet.CreateShapeModel(imageReduced, "auto", -0.39, 0.79, "auto", "auto", "use_polarity", "auto", "auto", out HTuple ModelId);
-
+            HOperatorSet.CreateShapeModel(imageReduced, "auto", -0.18, 0.36, "auto", "auto", "use_polarity", "auto", "auto", out HTuple ModelId);
+            //HOperatorSet.CreateShapeModel(imageReduced, "auto", -0.18, 0.18, "auto", "auto", "use_polarity", "auto", "auto", out HTuple FlyModelId);
+            //(ImageReduced, 'auto', -0.1, 0.2, 'auto', 'use_polarity', ModelID)
+            //HOperatorSet.CreateNccModel(imageReduced, "auto", -0.18, 0.18, "auto", "use_polarity", out HTuple NccModel);
+            //HOperatorSet.WriteNccModel(NccModel, programConfig.GetChipNccModelFileName());
+            HOperatorSet.WriteShapeModel(ModelId, programConfig.GetFlyModelFileName());
             if (save)
             {
-                HOperatorSet.WriteRegion(region, ChipModelRegionFileName);
-                HOperatorSet.WriteShapeModel(ModelId, ChipModelFileName);
+                HOperatorSet.WriteRegion(region, programConfig.GetChipModelRegionFileName());
+                HOperatorSet.WriteShapeModel(ModelId, programConfig.GetChipModelFileName());
+
             }
             grayImage.Dispose();
             imageReduced.Dispose();
             region.Dispose();
+            HOperatorSet.GenEmptyObj(out HObject cropImg);
+            HOperatorSet.CropRectangle1(ilMain.hImage, out cropImg, leftTopPointPixel.Y, leftTopPointPixel.X, rightBottomPointPixel.Y, rightBottomPointPixel.X);
+            programConfig.DetectRegion = new RegionH(leftTopPointPixel.Y, leftTopPointPixel.X, rightBottomPointPixel.Y, rightBottomPointPixel.X);
+            JsonHelper.Serialize(programConfig, programConfig.GetThisFileName());
+            HDevProgramHelper.CreatVariationModele(cropImg, out HTuple vMId);
+            HDevProgramHelper.SaveVariationModel(programConfig.GetChipVariationModelFileName(), vMId);
+            ilMain.ClearallTool();
+            ilMain.ClearallTool2();
+            ilMain.ShowImg(cropImg);
         }
         /*
          *矫正
@@ -167,7 +216,7 @@ namespace WaferAoi
         {
             //DialogTestModel dialogTestModel = new DialogTestModel(programConfig);
             //dialogTestModel.ShowDialog();
-            if (!File.Exists(ChipModelFileName) || !File.Exists(ChipModelRegionFileName))
+            if (!File.Exists(programConfig.GetChipModelRegionFileName()) || !File.Exists(programConfig.GetChipModelFileName()))
             {
                 DarkMessageBox.ShowError("模型相关文件不存在，请重新保存");
                 return;
@@ -180,7 +229,7 @@ namespace WaferAoi
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 filePath = Path.GetFullPath(fileDialog.FileName);
-                new HDevelopExportTest(ChipModelFileName, ChipModelRegionFileName, filePath);
+                new HDevelopExportTest(programConfig.GetChipModelFileName(), programConfig.GetChipModelRegionFileName(), filePath);
                 fileDialog.Dispose();
             }
             else
@@ -188,7 +237,6 @@ namespace WaferAoi
                 fileDialog.Dispose();
             }
         }
-
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             if (HDevWindowStack.IsOpen())

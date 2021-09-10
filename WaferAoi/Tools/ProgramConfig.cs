@@ -22,7 +22,7 @@ namespace WaferAoi.Tools
         [Description("5A A5 06 83 10 03 01 00 04 A1")]
         X10,
         [Description("5A A5 06 83 10 03 01 00 05 A2")]
-        X10v2,
+        X20,
     }
     public enum WaferSize : int
     {
@@ -36,15 +36,15 @@ namespace WaferAoi.Tools
     }
     public enum TraitType : int
     {
-        Flat = 0, // 凹槽
-        Notch = 1 // 切面
+        Notch = 0,
+        Flat = 1 
     }
     public enum TraitLocation : int
     {
-        TOP = 0,
-        BOTTOM = 1,
-        LEFT = 2,
-        RIGHT = 3,
+        LEFT = 0,
+        RIGHT = 1,
+        TOP = 2,
+        BOTTOM = 3,
     }
     public enum HaveRingPiece : int
     {
@@ -68,12 +68,30 @@ namespace WaferAoi.Tools
         public int Diameter { get; set; }
     }
 
+    public class RegionH
+    {
+        public double Row1 { get; set; }
+        public double Col1 { get; set; }
+        public double Row2 { get; set; }
+        public double Col2 { get; set; }
+
+        public RegionH(double Row1, double Col1, double Row2, double Col2)
+        {
+            this.Row1 = Row1;
+            this.Col1 = Col1;
+            this.Row2 = Row2;
+            this.Col2 = Col2;
+        }
+    }
+
     public class ProgramConfig
     {
+        public RegionH DetectRegion { get; set; }
         public string Name { get; set; }
         public double DieWidth { get; set; }
         public double DieHeight { get; set; }
 
+        public ObjectiveLense ObjectiveLense { get; set; }
         /// <summary>
         /// 是否带环片
         /// </summary>
@@ -84,7 +102,11 @@ namespace WaferAoi.Tools
         /// </summary>
         public double WaferRadius { get; set; }
         /// <summary>
-        /// 切割道宽度
+        /// 切割道像素宽度
+        /// </summary>
+        public double CutRoadWidthPixel { get; set; }
+        /// <summary>
+        /// 切割道宽度微米
         /// </summary>
         public double CutRoadWidth { get; set; }
         //晶圆中心
@@ -111,7 +133,14 @@ namespace WaferAoi.Tools
 
         public string ModelSavePath { get; set; }
 
-
+        /// <summary>
+        /// 获取本身的文件名
+        /// </summary>
+        /// <returns></returns>
+        public string GetThisFileName()
+        {
+            return Path.Combine(ModelSavePath, "config.zyn");
+        }
         /// <summary>
         /// 获取芯片的4个脚模板文件名
         /// </summary>
@@ -135,7 +164,7 @@ namespace WaferAoi.Tools
         /// <returns></returns>
         public string GetWaferMarkModelFileName()
         {
-            return Path.Combine(ModelSavePath, "chip.model");
+            return Path.Combine(ModelSavePath, "WaferMark.model");
         }
         /// <summary>
         /// 获取晶圆的mark点区域文件名
@@ -143,7 +172,52 @@ namespace WaferAoi.Tools
         /// <returns></returns>
         public string GetWaferMarkModelRegionFileName()
         {
-            return Path.Combine(ModelSavePath, "mark.hobj");
+            return Path.Combine(ModelSavePath, "WaferMark.hobj");
+        }
+
+        /// <summary>
+        /// 获取训练的模型文件名
+        /// </summary>
+        /// <returns></returns>
+        public string GetChipVariationModelFileName()
+        {
+            return Path.Combine(ModelSavePath, "Variation.model");
+        }
+
+        /// <summary>
+        /// 主要用于飞拍矫正用的
+        /// </summary>
+        /// <returns></returns>
+        public string GetFlyModelFileName()
+        {
+            return Path.Combine(ModelSavePath, "fly.model");
+        }
+
+        /// <summary>
+        /// XXXXXX轴获取实际的长度通过像素(um微米)
+        /// </summary>
+        /// <param name="offsetPixel">像素差值</param>
+        /// <param name="pixelLenght">像元</param>
+        /// <param name="lense">物镜倍率</param>
+        /// <returns></returns>
+        public static int GetXPulseByPixel(int offsetPixel, float pixelLenght, ObjectiveLense Oblense = ObjectiveLense.X1)
+        {
+            int lense = ((int)Oblense) + 1;
+            return Convert.ToInt32(offsetPixel * 3.2 / (3.2 * (pixelLenght / lense)));
+        }
+
+
+        /// <summary>
+        /// YYYYYY轴获取实际的长度通过像素(um微米)
+        /// </summary>
+        /// <param name="offsetPixel">像素差值</param>
+        /// <param name="pixelLenght">像元</param>
+        /// <param name="lense">物镜倍率</param>
+        /// <returns></returns>
+        public static int GetYPulseByPixel(int offsetPixel, float pixelLenght, ObjectiveLense Oblense = ObjectiveLense.X1)
+        {
+            int lense = ((int)Oblense) + 1;
+            return Convert.ToInt32(offsetPixel * 3.2 / (3.2 * (-pixelLenght / lense))); // *相机像元 / 物镜的倍率 (物镜的倍率 = 相机像元 * 实际的算出来的像元大小)
         }
     }
 }

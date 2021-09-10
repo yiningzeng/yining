@@ -41,7 +41,7 @@ namespace WaferAoi
                 }
                 int a = data.Length;
                 waferMap.Dataset = data;
-                waferMap.Notchlocation = 0;
+                waferMap.Notchlocation = 90;
                 //wmap.MinimumSize = new Size(500, 500);
                 waferMap.Dock = DockStyle.Fill;
                 //waferMap.SelectX = 21;
@@ -155,5 +155,27 @@ namespace WaferAoi
         {
             dlvwProgress.Stop();
         }
+
+        private void darkButton5_Click(object sender, EventArgs e)
+        {
+            Config config = FsmHelper.GetConfig();
+            Axis ax = config.Axes.Find(v => v.Remarks == "载盘X轴");
+            Axis ay = config.Axes.Find(v => v.Remarks == "载盘Y轴");
+            DarkButton btn = sender as DarkButton;
+            string type = btn.Tag.ToString();
+            switch (type)
+            {
+                case "1":
+                    MotorsControl.MoveTrap(ax.Id, ax.TrapPrm.Get(), 50, 100000, false);
+                        break;
+
+                case "2":
+                    MotorsControl.MoveJog(ax.Id, ax.JogPrm.Get(), 20);
+                    Thread.Sleep(1000);
+                    MotorsControl.StopAxis(ax.Id, 0);
+                    break;
+            
+            }
+         }
     }
 }

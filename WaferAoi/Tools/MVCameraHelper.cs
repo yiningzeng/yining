@@ -106,6 +106,7 @@ namespace WaferAoi.Tools
     public class MVCameraHelper
     {
 
+        public int num = 0;
         public bool ThreadPoolEnable = false;
         public bool testBitmap = false;
         private int axisXId = 2, axisYId = 1; // X和Y轴的Id
@@ -126,6 +127,11 @@ namespace WaferAoi.Tools
         public MVCameraHelper(int TriggerMode = 2)
         {
             InitCamera(TriggerMode);
+        }
+
+        public void ReSetNum()
+        {
+            num = 0;
         }
         /// <summary>
         ///初始化相机
@@ -177,7 +183,7 @@ namespace WaferAoi.Tools
 
         private void CameraGrabberFrameCallback1(IntPtr Grabber, IntPtr pFrameBuffer, ref tSdkFrameHead pFrameHead, IntPtr Context)
         {
-      
+            num++;
             var xyzTemp = MotorsControl.GetXYZEncPos(2, 1, 4);
             if (ThreadPoolEnable)
             {

@@ -36,9 +36,6 @@ namespace WaferAoi
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.画一个矩形区域ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.darkToolStrip1 = new YiNing.UI.Controls.DarkToolStrip();
-            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
-            this.debugButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.darkSectionPanel2 = new YiNing.UI.Controls.DarkSectionPanel();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
@@ -47,6 +44,10 @@ namespace WaferAoi
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.画检测区域ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
+            this.debugButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.contextMenuStrip1.SuspendLayout();
             this.darkToolStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -78,15 +79,16 @@ namespace WaferAoi
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.画一个矩形区域ToolStripMenuItem});
+            this.画一个矩形区域ToolStripMenuItem,
+            this.画检测区域ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(161, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
             // 
             // 画一个矩形区域ToolStripMenuItem
             // 
             this.画一个矩形区域ToolStripMenuItem.Name = "画一个矩形区域ToolStripMenuItem";
-            this.画一个矩形区域ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.画一个矩形区域ToolStripMenuItem.Text = "画一个矩形区域";
+            this.画一个矩形区域ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.画一个矩形区域ToolStripMenuItem.Text = "画一个模板区域";
             this.画一个矩形区域ToolStripMenuItem.Click += new System.EventHandler(this.画一个矩形区域ToolStripMenuItem_Click);
             // 
             // darkToolStrip1
@@ -104,39 +106,6 @@ namespace WaferAoi
             this.darkToolStrip1.Size = new System.Drawing.Size(1090, 25);
             this.darkToolStrip1.TabIndex = 3;
             this.darkToolStrip1.Text = "darkToolStrip1";
-            // 
-            // toolStripButton7
-            // 
-            this.toolStripButton7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.toolStripButton7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.toolStripButton7.Image = global::WaferAoi.Properties.Resources.Save;
-            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton7.Name = "toolStripButton7";
-            this.toolStripButton7.Size = new System.Drawing.Size(76, 22);
-            this.toolStripButton7.Text = "保存模板";
-            this.toolStripButton7.Click += new System.EventHandler(this.SaveModel_Click);
-            // 
-            // debugButton
-            // 
-            this.debugButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.debugButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.debugButton.Image = global::WaferAoi.Properties.Resources.debug;
-            this.debugButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.debugButton.Name = "debugButton";
-            this.debugButton.Size = new System.Drawing.Size(124, 22);
-            this.debugButton.Text = "测试一张本地图片";
-            this.debugButton.Click += new System.EventHandler(this.debugButton_Click);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.toolStripButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.toolStripButton1.Image = global::WaferAoi.Icons.Close_16xLG;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(124, 22);
-            this.toolStripButton1.Text = "双击关闭测试窗口";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // panel2
             // 
@@ -213,6 +182,47 @@ namespace WaferAoi
             this.panel1.Size = new System.Drawing.Size(1090, 803);
             this.panel1.TabIndex = 0;
             // 
+            // 画检测区域ToolStripMenuItem
+            // 
+            this.画检测区域ToolStripMenuItem.Name = "画检测区域ToolStripMenuItem";
+            this.画检测区域ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.画检测区域ToolStripMenuItem.Text = "画一个检测区域";
+            this.画检测区域ToolStripMenuItem.Visible = false;
+            this.画检测区域ToolStripMenuItem.Click += new System.EventHandler(this.画检测区域ToolStripMenuItem_Click);
+            // 
+            // toolStripButton7
+            // 
+            this.toolStripButton7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.toolStripButton7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.toolStripButton7.Image = global::WaferAoi.Properties.Resources.Save;
+            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton7.Name = "toolStripButton7";
+            this.toolStripButton7.Size = new System.Drawing.Size(76, 22);
+            this.toolStripButton7.Text = "保存模板";
+            this.toolStripButton7.Click += new System.EventHandler(this.SaveModel_Click);
+            // 
+            // debugButton
+            // 
+            this.debugButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.debugButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.debugButton.Image = global::WaferAoi.Properties.Resources.debug;
+            this.debugButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.debugButton.Name = "debugButton";
+            this.debugButton.Size = new System.Drawing.Size(124, 22);
+            this.debugButton.Text = "测试一张本地图片";
+            this.debugButton.Click += new System.EventHandler(this.debugButton_Click);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.toolStripButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.toolStripButton1.Image = global::WaferAoi.Icons.Close_16xLG;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(124, 22);
+            this.toolStripButton1.Text = "双击关闭测试窗口";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // DialogCreateModel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -228,7 +238,7 @@ namespace WaferAoi
             this.MinimizeBox = false;
             this.Name = "DialogCreateModel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "芯片模板";
+            this.Text = "芯片模型制作";
             this.Controls.SetChildIndex(this.panel2, 0);
             this.Controls.SetChildIndex(this.splitter1, 0);
             this.Controls.SetChildIndex(this.panel3, 0);
@@ -260,5 +270,6 @@ namespace WaferAoi
         private DarkProgressReminder dlvwProgress;
         private DarkSectionPanel darkSectionPanel2;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripMenuItem 画检测区域ToolStripMenuItem;
     }
 }
