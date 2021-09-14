@@ -277,7 +277,7 @@ namespace WaferAoi
                     darkListView1.Items.Clear();
                     break;
                 case "保存最终结果":
-                    config.PixelLenght = float.Parse(tbAvg.Text);
+                    config.ActualPixelLenght = float.Parse(tbAvg.Text);
                     JsonHelper.Serialize(config, config.GetThisFileName());
                     break;
             }

@@ -66,7 +66,7 @@ namespace WaferAoi
             _dockControl = new DockControl(this);
             _dockLayers = new DockLayers();
             _dockHistory = new DockHistory();
-            _dockWorkSpace = new DockWorkSpace(this, "工作站", Icons.ChipOutline) { ShowCloseButton = false };
+            _dockWorkSpace = new DockWorkSpace(this, mVCameraHelper, "工作站", Icons.ChipOutline) { ShowCloseButton = false };
             // Add the tool windows to a list
             _toolWindows.Add(_dockWaferList);
             _toolWindows.Add(_dockProperties);
@@ -154,6 +154,9 @@ namespace WaferAoi
         {
             if (DarkMessageBox.ShowInformation("是否需要一键回原点", buttons: DarkDialogButton.YesNo) == DialogResult.Yes)
             {
+#if DEBUG
+                MotorsControl.IoExtSignalEXO(EMUMS.IOPointsOutExt.DieAir, 1);
+#endif
                 fsmHelper.IssueCommand(FsmHelper.MacroAction.DO_INIT);
             }
             var aa= GetLatestFiles(@"D:\WaferDataIn\mapping"); 
@@ -354,6 +357,32 @@ namespace WaferAoi
         private void 飞拍矫正测试ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new DialogFlyPhoto(ref mVCameraHelper).Show();
+        }
+
+        private void 检测结果ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new DialogDetectResult().ShowDialog();
+        }
+
+        private void toolStripButton_Click(object sender, EventArgs e)
+        {
+            ToolStripButton toolStripButton = sender as ToolStripButton;
+            switch (toolStripButton.Text)
+            {
+                case "运行程式":
+
+                    break;
+            }
+        }
+
+        private void 运行程式ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogSelectProgram aa =  new DialogSelectProgram();
+            aa.ShowDialog();
+            if (aa.DialogResult == DialogResult.OK)
+            {
+                _dockWorkSpace.SetProgress(aa.Tag.ToString());
+            }
         }
     }
 }

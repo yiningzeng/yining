@@ -93,6 +93,12 @@
             this.tbTopPointY = new YiNing.UI.Controls.DarkTextBox();
             this.tbTopPointX = new YiNing.UI.Controls.DarkTextBox();
             this.darkButton16 = new YiNing.UI.Controls.DarkButton();
+            this.darkButton17 = new YiNing.UI.Controls.DarkButton();
+            this.darkSectionPanel6 = new YiNing.UI.Controls.DarkSectionPanel();
+            this.darkLabel6 = new YiNing.UI.Controls.DarkLabel();
+            this.darkLabel7 = new YiNing.UI.Controls.DarkLabel();
+            this.tbWaferCenterY = new YiNing.UI.Controls.DarkTextBox();
+            this.tbWaferCenterX = new YiNing.UI.Controls.DarkTextBox();
             this.darkSectionPanel1.SuspendLayout();
             this.dsepMove.SuspendLayout();
             this.darkSectionPanel2.SuspendLayout();
@@ -100,6 +106,7 @@
             this.darkGroupBox1.SuspendLayout();
             this.darkSectionPanel4.SuspendLayout();
             this.darkSectionPanel5.SuspendLayout();
+            this.darkSectionPanel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // darkButton1
@@ -839,10 +846,75 @@
             this.darkButton16.Tag = "计算等边三角形";
             this.darkButton16.Text = "计算等边三角形";
             // 
+            // darkButton17
+            // 
+            this.darkButton17.Location = new System.Drawing.Point(4, 113);
+            this.darkButton17.Name = "darkButton17";
+            this.darkButton17.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton17.Size = new System.Drawing.Size(200, 23);
+            this.darkButton17.TabIndex = 48;
+            this.darkButton17.Tag = "计算点1 点2 点3的圆心";
+            this.darkButton17.Text = "计算点1 点2 点3的圆心";
+            // 
+            // darkSectionPanel6
+            // 
+            this.darkSectionPanel6.Controls.Add(this.darkLabel6);
+            this.darkSectionPanel6.Controls.Add(this.darkLabel7);
+            this.darkSectionPanel6.Controls.Add(this.tbWaferCenterY);
+            this.darkSectionPanel6.Controls.Add(this.tbWaferCenterX);
+            this.darkSectionPanel6.Controls.Add(this.darkButton17);
+            this.darkSectionPanel6.DragEnable = true;
+            this.darkSectionPanel6.Location = new System.Drawing.Point(72, 609);
+            this.darkSectionPanel6.Name = "darkSectionPanel6";
+            this.darkSectionPanel6.SectionHeader = "计算圆心";
+            this.darkSectionPanel6.Size = new System.Drawing.Size(246, 140);
+            this.darkSectionPanel6.TabIndex = 49;
+            // 
+            // darkLabel6
+            // 
+            this.darkLabel6.AutoSize = true;
+            this.darkLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel6.Location = new System.Drawing.Point(4, 67);
+            this.darkLabel6.Name = "darkLabel6";
+            this.darkLabel6.Size = new System.Drawing.Size(40, 15);
+            this.darkLabel6.TabIndex = 52;
+            this.darkLabel6.Text = "圆心Y";
+            // 
+            // darkLabel7
+            // 
+            this.darkLabel7.AutoSize = true;
+            this.darkLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel7.Location = new System.Drawing.Point(4, 38);
+            this.darkLabel7.Name = "darkLabel7";
+            this.darkLabel7.Size = new System.Drawing.Size(40, 15);
+            this.darkLabel7.TabIndex = 51;
+            this.darkLabel7.Text = "圆心X";
+            // 
+            // tbWaferCenterY
+            // 
+            this.tbWaferCenterY.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.tbWaferCenterY.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbWaferCenterY.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.tbWaferCenterY.Location = new System.Drawing.Point(50, 65);
+            this.tbWaferCenterY.Name = "tbWaferCenterY";
+            this.tbWaferCenterY.Size = new System.Drawing.Size(100, 23);
+            this.tbWaferCenterY.TabIndex = 50;
+            // 
+            // tbWaferCenterX
+            // 
+            this.tbWaferCenterX.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.tbWaferCenterX.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbWaferCenterX.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.tbWaferCenterX.Location = new System.Drawing.Point(50, 36);
+            this.tbWaferCenterX.Name = "tbWaferCenterX";
+            this.tbWaferCenterX.Size = new System.Drawing.Size(100, 23);
+            this.tbWaferCenterX.TabIndex = 49;
+            // 
             // DockDebugs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.darkSectionPanel6);
             this.Controls.Add(this.darkSectionPanel5);
             this.Controls.Add(this.darkSectionPanel4);
             this.Controls.Add(this.button14);
@@ -859,7 +931,7 @@
             this.Controls.Add(this.darkButton2);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "DockDebugs";
-            this.Size = new System.Drawing.Size(1249, 672);
+            this.Size = new System.Drawing.Size(1249, 807);
             this.darkSectionPanel1.ResumeLayout(false);
             this.dsepMove.ResumeLayout(false);
             this.darkSectionPanel2.ResumeLayout(false);
@@ -870,6 +942,8 @@
             this.darkSectionPanel4.PerformLayout();
             this.darkSectionPanel5.ResumeLayout(false);
             this.darkSectionPanel5.PerformLayout();
+            this.darkSectionPanel6.ResumeLayout(false);
+            this.darkSectionPanel6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -942,5 +1016,11 @@
         private YiNing.UI.Controls.DarkTextBox tbTopPointY;
         private YiNing.UI.Controls.DarkTextBox tbTopPointX;
         private YiNing.UI.Controls.DarkLabel darkLabel5;
+        private YiNing.UI.Controls.DarkButton darkButton17;
+        private YiNing.UI.Controls.DarkSectionPanel darkSectionPanel6;
+        private YiNing.UI.Controls.DarkLabel darkLabel6;
+        private YiNing.UI.Controls.DarkLabel darkLabel7;
+        private YiNing.UI.Controls.DarkTextBox tbWaferCenterY;
+        private YiNing.UI.Controls.DarkTextBox tbWaferCenterX;
     }
 }

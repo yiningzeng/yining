@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YiNing.WafermapDisplay.WafermapControl;
 
 namespace WaferAoi.Tools
 {    /// <summary>
@@ -90,12 +91,18 @@ namespace WaferAoi.Tools
         public string Name { get; set; }
         public double DieWidth { get; set; }
         public double DieHeight { get; set; }
-
+        public int BestZPulse { get; set; }
+        public Die[,] Mapping { get; set; }
         public ObjectiveLense ObjectiveLense { get; set; }
         /// <summary>
         /// 是否带环片
         /// </summary>
         public HaveRingPiece HaveRingPiece { get; set; }
+
+        /// <summary>
+        /// 排除边沿芯片的个数
+        /// </summary>
+        public int ExcludeEdgeNum { get; set; }
 
         /// <summary>
         /// 晶圆的半径
@@ -134,6 +141,14 @@ namespace WaferAoi.Tools
         public string ModelSavePath { get; set; }
 
         /// <summary>
+        /// 获取物镜的倍率
+        /// </summary>
+        /// <returns></returns>
+        public int GetLenseMag()
+        {
+            return ((int)ObjectiveLense) + 1;
+        }
+        /// <summary>
         /// 获取本身的文件名
         /// </summary>
         /// <returns></returns>
@@ -141,6 +156,16 @@ namespace WaferAoi.Tools
         {
             return Path.Combine(ModelSavePath, "config.zyn");
         }
+
+        /// <summary>
+        /// Mapping图谱信息
+        /// </summary>
+        /// <returns></returns>
+        public string GetMappingFileName()
+        {
+            return Path.Combine(ModelSavePath, "mapping.zyn");
+        }
+
         /// <summary>
         /// 获取芯片的4个脚模板文件名
         /// </summary>

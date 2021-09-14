@@ -1,6 +1,7 @@
 ﻿using HalconDotNet;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -177,6 +178,40 @@ namespace WaferAoi.Tools
                     if (lockTaken) Monitor.Exit(_tasks);
                 }
             }
+        }
+
+        /// <summary>
+        /// 任意三点计算圆心
+        /// </summary>
+        /// <param name="startPoint"></param>
+        /// <param name="secondPoint"></param>
+        /// <param name="endPoint"></param>
+        /// <returns></returns>
+        public static Point FindCenter(Point startPoint, Point secondPoint, Point endPoint)
+        {
+            double tempA1, tempA2, tempB1, tempB2, tempC1, tempC2, temp, x, y;
+
+            tempA1 = startPoint.X - secondPoint.X;
+
+            tempB1 = startPoint.Y - secondPoint.Y;
+            tempC1 = (Math.Pow(startPoint.X, 2) - Math.Pow(secondPoint.X, 2) + Math.Pow(startPoint.Y, 2) - Math.Pow(secondPoint.Y, 2)) / 2;
+
+            tempA2 = endPoint.X - secondPoint.X;
+            tempB2 = endPoint.Y - secondPoint.Y;
+            tempC2 = (Math.Pow(endPoint.X, 2) - Math.Pow(secondPoint.X, 2) + Math.Pow(endPoint.Y, 2) - Math.Pow(secondPoint.Y, 2)) / 2;
+
+            temp = tempA1 * tempB2 - tempA2 * tempB1;
+            if (temp == 0)
+            {
+                x = startPoint.X;
+                y = startPoint.Y;
+            }
+            else
+            {
+                x = (tempC1 * tempB2 - tempC2 * tempB1) / temp;
+                y = (tempA1 * tempC2 - tempA2 * tempC1) / temp;
+            }
+            return new Point(Convert.ToInt32(x), Convert.ToInt32(y)); //x  y为点的坐标
         }
     }
 }

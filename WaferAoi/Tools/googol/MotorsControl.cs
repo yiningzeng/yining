@@ -305,6 +305,18 @@ namespace WaferAoi.Tools
             catch (Exception er) { return false; }
         }
 
+        public static bool MovePoint2D(double vel, double px, double py, Axis ax, Axis ay, bool listen = false)
+        {
+            try
+            {
+                //Axis ax = config.Axes.Find(v => v.Id == 2);
+                //Axis ay = config.Axes.Find(v => v.Id == 1);
+                Parallel.Invoke(() => MoveTrap(ax.Id, ax.TrapPrm.Get(), vel, Convert.ToInt32(px), listen), () => MoveTrap(ay.Id, ay.TrapPrm.Get(), vel, Convert.ToInt32(py), listen));
+                return true;
+            }
+            catch (Exception er) { return false; }
+        }
+
         /// <summary>
         /// 点位运动模式
         /// </summary>
@@ -728,6 +740,10 @@ namespace WaferAoi.Tools
 
             Thread.Sleep(200);
             GSN.GTN_ZeroPos(CORE, axis, 1);
+#if DEBUG
+            if (nAxisNumber != 4)
+                IoExtSignalEXO(EMUMS.IOPointsOutExt.DieAir, 0);
+#endif
             return stn;
         }
 
@@ -782,6 +798,10 @@ namespace WaferAoi.Tools
                  Thread.Sleep(200);
                  GSN.GTN_ZeroPos(CORE, axis, 1);
                  _goHomeCallback(axis, homeStatus);
+#if DEBUG
+                 if (nAxisNumber != 4)
+                     IoExtSignalEXO(EMUMS.IOPointsOutExt.DieAir, 0);
+#endif
              }, objectArray);
         }
 
@@ -1029,6 +1049,102 @@ namespace WaferAoi.Tools
 
             #endregion
         }
+
+        /// <summary>
+        /// 获取飞拍的坐标数据
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="interval"></param>
+        /// <param name="direction">方向 大于0正方向 小于0 表示负方向</param>
+        /// <returns></returns>
+        public static List<int> GetFlyPos(int start, int end, int interval, int direction = 1)
+        {
+            List<int> res = new List<int>();
+            if (interval <= 0) return res;
+            if (direction > 0)
+            {
+                while (start <= end)
+                {
+                    start += interval;
+                    res.Add(start);
+                }
+            }
+            else
+            {
+                while (start >= end)
+                {
+                    start -= interval;
+                    res.Add(start);
+                }
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// 以X轴来触发
+        /// </summary>
+        /// <param name="startX"></param>
+        /// <param name="endX"></param>
+        /// <param name="interval"></param>
+        /// <param name="y"></param>
+        /// <param name="direction"></param>
+        /// <returns></returns>
+        public static List<PointInfo> GetFlyXPos(int startX, int endX, int interval, int y, int direction = 1)
+        {
+            List<PointInfo> res = new List<PointInfo>();
+            if (interval <= 0) return res;
+            if (direction > 0)
+            {
+                while (startX <= endX)
+                {
+                    startX += interval;
+                    res.Add(new PointInfo() { X = startX, Y = y });
+                }
+            }
+            else
+            {
+                while (startX >= endX)
+                {
+                    startX -= interval;
+                    res.Add(new PointInfo() { X = startX, Y = y });
+                }
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// 以Y轴来触发
+        /// </summary>
+        /// <param name="startY"></param>
+        /// <param name="endY"></param>
+        /// <param name="interval"></param>
+        /// <param name="y"></param>
+        /// <param name="direction"></param>
+        /// <returns></returns>
+        public static List<PointInfo> GetFlyYPos(int startY, int endY, int interval, int x, int direction = 1)
+        {
+            List<PointInfo> res = new List<PointInfo>();
+            if (interval <= 0) return res;
+            if (direction > 0)
+            {
+                while (startY <= endY)
+                {
+                    startY += interval;
+                    res.Add(new PointInfo() { X =x, Y = startY });
+                }
+            }
+            else
+            {
+                while (startY >= endY)
+                {
+                    startY -= interval;
+                    res.Add(new PointInfo() { X = x, Y = startY });
+                }
+            }
+            return res;
+        }
+
         #endregion
     }
 }

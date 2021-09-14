@@ -96,9 +96,9 @@ namespace WaferAoi
             this.hswcMain.Location = new System.Drawing.Point(0, 25);
             this.hswcMain.Margin = new System.Windows.Forms.Padding(0);
             this.hswcMain.Name = "hswcMain";
-            this.hswcMain.Size = new System.Drawing.Size(1001, 658);
+            this.hswcMain.Size = new System.Drawing.Size(932, 658);
             this.hswcMain.TabIndex = 4;
-            this.hswcMain.WindowSize = new System.Drawing.Size(1001, 658);
+            this.hswcMain.WindowSize = new System.Drawing.Size(932, 658);
             // 
             // contextMenuStrip1
             // 
@@ -106,19 +106,19 @@ namespace WaferAoi
             this.画一个矩形区域ToolStripMenuItem,
             this.保存模板ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(137, 48);
             // 
             // 画一个矩形区域ToolStripMenuItem
             // 
             this.画一个矩形区域ToolStripMenuItem.Name = "画一个矩形区域ToolStripMenuItem";
-            this.画一个矩形区域ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.画一个矩形区域ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.画一个矩形区域ToolStripMenuItem.Text = "画一个模板";
             this.画一个矩形区域ToolStripMenuItem.Click += new System.EventHandler(this.画一个矩形区域ToolStripMenuItem_Click_1);
             // 
             // 保存模板ToolStripMenuItem
             // 
             this.保存模板ToolStripMenuItem.Name = "保存模板ToolStripMenuItem";
-            this.保存模板ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.保存模板ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.保存模板ToolStripMenuItem.Text = "保存模板";
             this.保存模板ToolStripMenuItem.Click += new System.EventHandler(this.保存模板ToolStripMenuItem_Click);
             // 
@@ -217,10 +217,10 @@ namespace WaferAoi
             this.dsepMove.Controls.Add(this.dbupVel);
             this.dsepMove.Controls.Add(this.darkGroupBox7);
             this.dsepMove.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dsepMove.Location = new System.Drawing.Point(1003, 25);
+            this.dsepMove.Location = new System.Drawing.Point(935, 25);
             this.dsepMove.Name = "dsepMove";
             this.dsepMove.SectionHeader = "移动";
-            this.dsepMove.Size = new System.Drawing.Size(143, 661);
+            this.dsepMove.Size = new System.Drawing.Size(211, 661);
             this.dsepMove.TabIndex = 39;
             // 
             // darkGroupBox1
@@ -234,7 +234,7 @@ namespace WaferAoi
             this.darkGroupBox1.Controls.Add(this.darkLabel2);
             this.darkGroupBox1.Location = new System.Drawing.Point(4, 197);
             this.darkGroupBox1.Name = "darkGroupBox1";
-            this.darkGroupBox1.Size = new System.Drawing.Size(139, 111);
+            this.darkGroupBox1.Size = new System.Drawing.Size(162, 111);
             this.darkGroupBox1.TabIndex = 44;
             this.darkGroupBox1.TabStop = false;
             this.darkGroupBox1.Text = "最终像元";
@@ -256,7 +256,7 @@ namespace WaferAoi
             this.tbAvg.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.tbAvg.Location = new System.Drawing.Point(36, 80);
             this.tbAvg.Name = "tbAvg";
-            this.tbAvg.Size = new System.Drawing.Size(96, 23);
+            this.tbAvg.Size = new System.Drawing.Size(118, 23);
             this.tbAvg.TabIndex = 44;
             // 
             // tbFinalX
@@ -266,7 +266,7 @@ namespace WaferAoi
             this.tbFinalX.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.tbFinalX.Location = new System.Drawing.Point(36, 22);
             this.tbFinalX.Name = "tbFinalX";
-            this.tbFinalX.Size = new System.Drawing.Size(96, 23);
+            this.tbFinalX.Size = new System.Drawing.Size(118, 23);
             this.tbFinalX.TabIndex = 42;
             // 
             // tbFinalY
@@ -276,7 +276,7 @@ namespace WaferAoi
             this.tbFinalY.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.tbFinalY.Location = new System.Drawing.Point(36, 51);
             this.tbFinalY.Name = "tbFinalY";
-            this.tbFinalY.Size = new System.Drawing.Size(96, 23);
+            this.tbFinalY.Size = new System.Drawing.Size(118, 23);
             this.tbFinalY.TabIndex = 43;
             // 
             // darkLabel1
@@ -311,7 +311,7 @@ namespace WaferAoi
             this.darkSectionPanel1.Location = new System.Drawing.Point(0, 306);
             this.darkSectionPanel1.Name = "darkSectionPanel1";
             this.darkSectionPanel1.SectionHeader = "像元列表";
-            this.darkSectionPanel1.Size = new System.Drawing.Size(143, 355);
+            this.darkSectionPanel1.Size = new System.Drawing.Size(211, 355);
             this.darkSectionPanel1.TabIndex = 37;
             // 
             // darkListView1
@@ -319,7 +319,7 @@ namespace WaferAoi
             this.darkListView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.darkListView1.Location = new System.Drawing.Point(1, 25);
             this.darkListView1.Name = "darkListView1";
-            this.darkListView1.Size = new System.Drawing.Size(141, 329);
+            this.darkListView1.Size = new System.Drawing.Size(209, 329);
             this.darkListView1.TabIndex = 0;
             this.darkListView1.Text = "darkListView1";
             // 
@@ -378,7 +378,7 @@ namespace WaferAoi
             65536});
             this.dbupVel.Location = new System.Drawing.Point(50, 29);
             this.dbupVel.Name = "dbupVel";
-            this.dbupVel.Size = new System.Drawing.Size(89, 23);
+            this.dbupVel.Size = new System.Drawing.Size(157, 23);
             this.dbupVel.TabIndex = 34;
             this.dbupVel.Value = new decimal(new int[] {
             1,
@@ -539,6 +539,7 @@ namespace WaferAoi
             this.Name = "DialogCalPixel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "芯片模型制作";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Controls.SetChildIndex(this.panel3, 0);
             this.contextMenuStrip1.ResumeLayout(false);
             this.darkToolStrip1.ResumeLayout(false);

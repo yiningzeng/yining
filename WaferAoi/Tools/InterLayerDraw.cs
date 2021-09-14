@@ -74,6 +74,24 @@ namespace WaferAoi.Tools
             }
         }
 
+        public void ShowImg(string fileName, bool coverOldImage = true)
+        {
+            if (hsmartwindows != null)
+            {
+                HOperatorSet.ReadImage(out HObject ho, fileName);
+                HOperatorSet.GetImageSize(ho, out HTuple Iwidth, out HTuple Iheight);
+                HOperatorSet.SetPart(hsmartwindows.HalconWindow, 0, 0, Iheight - 1, Iwidth - 1);
+                HOperatorSet.ClearWindow(hsmartwindows.HalconWindow);
+                HOperatorSet.DispObj(ho, hsmartwindows.HalconWindow);
+                hsmartwindows.SetFullImagePart();
+                if (coverOldImage)
+                {
+                    if (hImage.IsInitialized()) hImage.Dispose();
+                    hImage = ho.Clone();
+                }
+                ho.Dispose();
+            }
+        }
         /// <summary>
         /// 显示图片
         /// </summary>
@@ -121,7 +139,7 @@ namespace WaferAoi.Tools
 
         public void ShowImg(HObject hObject, HObject region, bool coverOldImage = true)
         {
-            if (hsmartwindows != null)
+            if (hsmartwindows != null && hObject.IsInitialized())
             {
                 HOperatorSet.GetImageSize(hObject, out HTuple Iwidth, out HTuple Iheight);
                 HOperatorSet.ClearWindow(hsmartwindows.HalconWindow);

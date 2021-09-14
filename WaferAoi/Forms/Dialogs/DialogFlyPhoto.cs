@@ -74,7 +74,7 @@ namespace WaferAoi
                     sw.Stop();
                     Debug.WriteLine("灰度图-耗时(ms):" + sw.ElapsedMilliseconds);
                     sw.Restart();
-                    HOperatorSet.FindShapeModel(grayImage, DetectModelId, -0.001, 0.002, 0.5, 1, 0.9, "least_squares", 5, 0.9, out HTuple Row, out HTuple Col, out HTuple Angle1, out HTuple Score1);
+                    HOperatorSet.FindShapeModel(grayImage, DetectModelId, -0.001, 0.002, 0.5, 1, 0.5, "least_squares", 5, 0.9, out HTuple Row, out HTuple Col, out HTuple Angle1, out HTuple Score1);
                     sw.Stop();
                     Debug.WriteLine("FindModel-分数:"+ Score1.D + "耗时(ms):" + sw.ElapsedMilliseconds);
 
@@ -110,7 +110,7 @@ namespace WaferAoi
                         
                         //如果模板结果中心在图像左边就+，右边就减
                         double offsetX = Col.D - imgArg.Width / 2;
-                        double offsetXPulse = Math.Abs(ProgramConfig.GetXPulseByPixel(Convert.ToInt32(offsetX), config.PixelLenght));
+                        double offsetXPulse = Math.Abs(ProgramConfig.GetXPulseByPixel(Convert.ToInt32(offsetX), config.ActualPixelLenght));
                         int tempFlyInterval = -1;
                         if (offsetX > 0)
                         {

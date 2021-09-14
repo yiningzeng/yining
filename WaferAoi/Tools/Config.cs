@@ -11,9 +11,17 @@ namespace WaferAoi.Tools
     public class Config
     {
         /// <summary>
-        /// 像元 一个像素多少脉冲
+        /// 程式相关的保存路径
         /// </summary>
-        public float PixelLenght { get; set; }
+        public string ProgramSavePath { get; set; }
+        /// <summary>
+        /// 相机真实的像元
+        /// </summary>
+        public float CameraPixelLenght  {get; set; }
+        /// <summary>
+        /// 实际算出来的 像元 一个像素多少脉冲
+        /// </summary>
+        public float ActualPixelLenght { get; set; }
         /// <summary>
         /// 运动轴
         /// </summary>
@@ -77,6 +85,21 @@ namespace WaferAoi.Tools
         public int Col()
         {
             return X;
+        }
+
+        public PointInfo(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+        public PointInfo(double x, double y)
+        {
+            X = Convert.ToInt32(x);
+            Y = Convert.ToInt32(y);
+        }
+
+        public PointInfo()
+        {
         }
 
         //public HTuple RowH()

@@ -173,6 +173,29 @@ namespace YiNing.UI.Controls
             if (_startNum >= Items.Count) return new DarkListItem("已全部完成");
             return Items[_startNum];
         }
+        public enum _Status { 
+            DOING,
+            ERROR,
+            STOP,
+        }
+        /// <summary>
+        /// 获取当前的状态
+        /// </summary>
+        /// <returns></returns>
+        public _Status Status()
+        {
+            if (Items[_startNum].TextColor == Color.Red)
+            {
+                return _Status.ERROR;
+            } else if (Items[_startNum].TextColor == Color.Yellow)
+            {
+                return _Status.STOP;
+            }
+            else
+            {
+                return _Status.DOING;
+            }
+        }
         /// <summary>
         /// 上一个进度
         /// </summary>

@@ -20,7 +20,7 @@ namespace WaferAoi
         private void btnRobot_Click(object sender, System.EventArgs e)
         {
             mainForm._dockWaferList.StartWorking();
-            mainForm._dockWorkSpace.SetProgress();
+            //mainForm._dockWorkSpace.SetProgress();
         }
     }
 }

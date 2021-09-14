@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -127,6 +129,34 @@ namespace WaferAoi.Tools
         public MVCameraHelper(int TriggerMode = 2)
         {
             InitCamera(TriggerMode);
+        }
+
+        /// <summary>
+        /// 移除所有注册事件
+        /// </summary>
+        public void RemoveAllEvent(string eventName)
+        {
+            var newType = this.GetType();
+            foreach (var item in newType.GetEvents())
+            {
+                FieldInfo _Field = newType.GetField(item.Name, BindingFlags.Instance | BindingFlags.NonPublic);
+                if (_Field != null && item.Name.Equals(eventName))
+                {
+                    object _FieldValue = _Field.GetValue(this);
+                    if (_FieldValue != null && _FieldValue is Delegate)
+                    {
+                        Delegate _ObjectDelegate = (Delegate)_FieldValue;
+                        Delegate[] invokeList = _ObjectDelegate.GetInvocationList();
+                        if (invokeList != null)
+                        {
+                            foreach (Delegate del in invokeList)
+                            {
+                                item.RemoveEventHandler(this, del);
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         public void ReSetNum()

@@ -47,6 +47,7 @@
             this.darkButton3 = new YiNing.UI.Controls.DarkButton();
             this.darkButton4 = new YiNing.UI.Controls.DarkButton();
             this.waferMap = new YiNing.WafermapDisplay.Wafermap();
+            this.btnStart = new YiNing.UI.Controls.DarkButton();
             this.darkSectionPanel6.SuspendLayout();
             this.darkSectionPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -212,6 +213,7 @@
             this.darkButton1.Size = new System.Drawing.Size(75, 23);
             this.darkButton1.TabIndex = 21;
             this.darkButton1.Text = "Next";
+            this.darkButton1.Visible = false;
             this.darkButton1.Click += new System.EventHandler(this.darkButton1_Click);
             // 
             // darkButton2
@@ -222,6 +224,7 @@
             this.darkButton2.Size = new System.Drawing.Size(75, 23);
             this.darkButton2.TabIndex = 22;
             this.darkButton2.Text = "go to 1";
+            this.darkButton2.Visible = false;
             this.darkButton2.Click += new System.EventHandler(this.darkButton2_Click);
             // 
             // darkButton3
@@ -232,6 +235,7 @@
             this.darkButton3.Size = new System.Drawing.Size(75, 23);
             this.darkButton3.TabIndex = 23;
             this.darkButton3.Text = "出错啦";
+            this.darkButton3.Visible = false;
             this.darkButton3.Click += new System.EventHandler(this.darkButton3_Click);
             // 
             // darkButton4
@@ -242,6 +246,7 @@
             this.darkButton4.Size = new System.Drawing.Size(75, 23);
             this.darkButton4.TabIndex = 24;
             this.darkButton4.Text = "停止了";
+            this.darkButton4.Visible = false;
             this.darkButton4.Click += new System.EventHandler(this.darkButton4_Click);
             // 
             // waferMap
@@ -523,10 +528,22 @@
             this.waferMap.TranslationY = 0;
             this.waferMap.Zoom = 1F;
             // 
+            // btnStart
+            // 
+            this.btnStart.Location = new System.Drawing.Point(11, 275);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Padding = new System.Windows.Forms.Padding(5);
+            this.btnStart.Size = new System.Drawing.Size(168, 59);
+            this.btnStart.TabIndex = 25;
+            this.btnStart.Tag = "开始检测";
+            this.btnStart.Text = "开始检测";
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
             // DockWorkSpace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnStart);
             this.Controls.Add(this.darkButton4);
             this.Controls.Add(this.darkButton3);
             this.Controls.Add(this.darkButton2);
@@ -563,5 +580,6 @@
         private YiNing.UI.Controls.DarkButton darkButton2;
         private YiNing.UI.Controls.DarkButton darkButton3;
         private YiNing.UI.Controls.DarkButton darkButton4;
+        private YiNing.UI.Controls.DarkButton btnStart;
     }
 }

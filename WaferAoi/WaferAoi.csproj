@@ -109,6 +109,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\Dialogs\DialogSelectProgram.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\DialogSelectProgram.Designer.cs">
+      <DependentUpon>DialogSelectProgram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialogs\DialogWait.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\DialogWait.Designer.cs">
+      <DependentUpon>DialogWait.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Dialogs\DialogFlyPhoto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +132,12 @@
     </Compile>
     <Compile Include="Forms\Dialogs\DialogCalPixel.Designer.cs">
       <DependentUpon>DialogCalPixel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialogs\DialogDetectResult.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\DialogDetectResult.Designer.cs">
+      <DependentUpon>DialogDetectResult.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Dialogs\DialogTestModel.cs">
       <SubType>Form</SubType>
@@ -260,11 +278,20 @@
     <Compile Include="Tools\MVCameraHelper.cs" />
     <Compile Include="Tools\ProgramConfig.cs" />
     <Compile Include="Tools\Utils.cs" />
+    <EmbeddedResource Include="Forms\Dialogs\DialogSelectProgram.resx">
+      <DependentUpon>DialogSelectProgram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\DialogWait.resx">
+      <DependentUpon>DialogWait.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\DialogFlyPhoto.resx">
       <DependentUpon>DialogFlyPhoto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\DialogCalPixel.resx">
       <DependentUpon>DialogCalPixel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\DialogDetectResult.resx">
+      <DependentUpon>DialogDetectResult.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\DialogTestModel.resx">
       <DependentUpon>DialogTestModel.cs</DependentUpon>

@@ -36,7 +36,7 @@ namespace WaferAoi
             }
             //var aa = darkWaferList1.Items[darkWaferList1.SelectedIndices[0]].Tag;
             darkWaferList1.StartWorking();
-            mainForm._dockWorkSpace.SetProgress();
+            //mainForm._dockWorkSpace.SetProgress();
         }
 
         public void StopWorking()

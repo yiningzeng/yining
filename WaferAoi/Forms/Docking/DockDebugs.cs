@@ -238,6 +238,14 @@ namespace WaferAoi
                     mVCameraHelper.CameraSetExposureTime(double.Parse(dtbExposeTime.Text));
                             break;
 
+                case "计算点1 点2 点3的圆心":
+                    Point point = Utils.FindCenter(new Point(Convert.ToInt32(tb1x.Text), Convert.ToInt32(tb1y.Text)),
+                        new Point(Convert.ToInt32(tb2x.Text), Convert.ToInt32(tb2y.Text)),
+                        new Point(Convert.ToInt32(tb3x.Text), Convert.ToInt32(tb3y.Text))
+                        );
+                    tbWaferCenterX.Text = point.X.ToString();
+                    tbWaferCenterY.Text = point.Y.ToString();
+                    break;
                 case "计算等边三角形":
                     try
                     {

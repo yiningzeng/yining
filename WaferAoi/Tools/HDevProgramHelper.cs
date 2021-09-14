@@ -104,7 +104,7 @@ namespace WaferAoi.Tools
         /// <param name="S_scope"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        public void FindEdge(string funcName, HObject hObject, out HObject objectSelected, out HTuple pointXPulse, out HTuple pointYPulse, int xPulse, int yPulse, int width = 4096, int height = 3072, double S_scope = 2, double Pixel_Length = 3.2, double mult_V = 0.5, double thresh = 30)
+        public void FindEdge(string funcName, HObject hObject, out HObject objectSelected, out HTuple pointXPulse, out HTuple pointYPulse, int xPulse, int yPulse, double width = 4096, double height = 3072, double S_scope = 2, double Pixel_Length = 3.2, double mult_V = 0.5, double thresh = 30)
         {
             HOperatorSet.GenEmptyObj(out objectSelected);
             pointXPulse = new HTuple();
