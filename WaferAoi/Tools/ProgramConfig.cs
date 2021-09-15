@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Drawing;
+using System.Drawing.Design;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -69,26 +71,82 @@ namespace WaferAoi.Tools
         public int Diameter { get; set; }
     }
 
-    public class RegionH
-    {
-        public double Row1 { get; set; }
-        public double Col1 { get; set; }
-        public double Row2 { get; set; }
-        public double Col2 { get; set; }
 
-        public RegionH(double Row1, double Col1, double Row2, double Col2)
-        {
-            this.Row1 = Row1;
-            this.Col1 = Col1;
-            this.Row2 = Row2;
-            this.Col2 = Col2;
-        }
+    public class ChipModel
+    {
+        /// <summary>
+        /// 矫正的间隔FOV
+        /// </summary>
+        [Description("矫正间隔")]
+        public int CorrectInterval { get; set; }
+        /// <summary>
+        /// 创建模型的时候中心坐标
+        /// </summary>
+        [ReadOnly(true)]
+        public double ShapeModelCenterRow { get; set; }
+        [ReadOnly(true)]
+        public double ShapeModelCenterCol { get; set; }
+        public double AngleStart { get; set; }
+        public double AngleExtent { get; set; }
+
+        [Description("Minimum score of the instances of the model to be found.")]
+        public double MinScore { get; set; }
+
+        [Description("Number of instances of the model to be found (or 0 for all matches).")]
+        public double NumMatches { get; set; }
+        //[Description("Maximum overlap of the instances of the model to be found.")]
+        //public double MaxOverlap { get; set; }
+        [Description("Number of pyramid levels used in the matching (and lowest pyramid level to use if |NumLevels| = 2).")]
+        public double NumLevels { get; set; }
+
+        #region 检测区域
+        [ReadOnly(true)]
+        public double DetectRow1 { get; set; }
+        [ReadOnly(true)]
+        public double DetectCol1 { get; set; }
+        [ReadOnly(true)]
+        public double DetectRow2 { get; set; }
+        [ReadOnly(true)]
+        public double DetectCol2 { get; set; }
+        #endregion
+    }
+
+    public class ChipDetect
+    {
+        [Description("AbsThreshold determines the minimum amount of gray levels by which the image of the current object must differ from the image of the ideal object. ")]
+        public double AbsThreshold { get; set; }
+        [Description("VarThreshold determines a factor relative to the variation image for the minimum difference of the current image and the ideal image. ")]
+        public double VarThreshold { get; set; }
+
+        public double AreaMin { get; set; }
+        public double AreaMax { get; set; }
     }
 
     public class ProgramConfig
     {
-        public RegionH DetectRegion { get; set; }
+        //public sealed class MyCollectionEditor : CollectionEditor // need a reference to System.Design.dll
+        //{
+        //    public MyCollectionEditor(Type type)
+        //        : base(type)
+        //    {
+        //    }
+
+        //    protected override Type[] CreateNewItemTypes()
+        //    {
+        //        return new[] { typeof(RegionH) };
+        //    }
+        //}
+
+        //[Editor(typeof(MyCollectionEditor), typeof(UITypeEditor))]
+
+        public ChipDetect ChipDetectPar { get; set; }
+        public ChipModel ChipModelPar { get; set; }
         public string Name { get; set; }
+
+        /// <summary>
+        /// 晶圆的编号信息
+        /// </summary>
+        public string Id { get; set; }
         public double DieWidth { get; set; }
         public double DieHeight { get; set; }
         public int BestZPulse { get; set; }
@@ -139,7 +197,7 @@ namespace WaferAoi.Tools
         public TraitLocation TraitLocation { get; set; }
 
         public string ModelSavePath { get; set; }
-
+        public string ExportPath { get; set; }
         /// <summary>
         /// 获取物镜的倍率
         /// </summary>
@@ -148,6 +206,15 @@ namespace WaferAoi.Tools
         {
             return ((int)ObjectiveLense) + 1;
         }
+        /// <summary>
+        /// 结果保存路径
+        /// </summary>
+        /// <returns></returns>
+        public string GetExportFileName()
+        {
+            return Path.Combine(ExportPath, "config.zyn");
+        }
+
         /// <summary>
         /// 获取本身的文件名
         /// </summary>
@@ -165,7 +232,10 @@ namespace WaferAoi.Tools
         {
             return Path.Combine(ModelSavePath, "mapping.zyn");
         }
-
+        public string GetVisibleMappingFileName()
+        {
+            return Path.Combine(ExportPath, "mapping.vzyn");
+        }
         /// <summary>
         /// 获取芯片的4个脚模板文件名
         /// </summary>
@@ -228,7 +298,7 @@ namespace WaferAoi.Tools
         public static int GetXPulseByPixel(int offsetPixel, float pixelLenght, ObjectiveLense Oblense = ObjectiveLense.X1)
         {
             int lense = ((int)Oblense) + 1;
-            return Convert.ToInt32(offsetPixel * 3.2 / (3.2 * (pixelLenght / lense)));
+            return Convert.ToInt32(offsetPixel * ( (pixelLenght / lense)));
         }
 
 
@@ -242,7 +312,7 @@ namespace WaferAoi.Tools
         public static int GetYPulseByPixel(int offsetPixel, float pixelLenght, ObjectiveLense Oblense = ObjectiveLense.X1)
         {
             int lense = ((int)Oblense) + 1;
-            return Convert.ToInt32(offsetPixel * 3.2 / (3.2 * (-pixelLenght / lense))); // *相机像元 / 物镜的倍率 (物镜的倍率 = 相机像元 * 实际的算出来的像元大小)
+            return Convert.ToInt32(offsetPixel  * ( (-pixelLenght / lense))); // *相机像元 / 物镜的倍率 (物镜的倍率 = 相机像元 * 实际的算出来的像元大小)
         }
     }
 }

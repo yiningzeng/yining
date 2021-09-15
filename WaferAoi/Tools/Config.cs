@@ -11,6 +11,10 @@ namespace WaferAoi.Tools
     public class Config
     {
         /// <summary>
+        /// 检测相关的输出路径
+        /// </summary>
+        public string Export { get; set; }
+        /// <summary>
         /// 程式相关的保存路径
         /// </summary>
         public string ProgramSavePath { get; set; }

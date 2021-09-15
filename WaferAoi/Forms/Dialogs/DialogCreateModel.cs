@@ -27,7 +27,6 @@ namespace WaferAoi
         public DialogCreateModel()
         {
             InitializeComponent();
-
         }
 
         /// <summary>
@@ -82,20 +81,11 @@ namespace WaferAoi
             }
             catch (Exception er) { }
         }
-        private void 画一个矩形区域ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void 画一个模型区域ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ilMain.DrawRectange1();
             ilMain.SetBlueColor();
             dlvwProgress.SetStartNum(0);
-            //switch (dlvwProgress.NowItem().Text)
-            //{
-            //    case "框选模板区域":
-
-            //        break;
-            //    case "框选检测区域":
-
-            //        break;
-            //}
         }
         private void 画检测区域ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -104,10 +94,33 @@ namespace WaferAoi
             ilMain.SetRedColor();
             dlvwProgress.SetStartNum(1);
         }
+        private void 保存检测区域ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private void DialogCreateModel_Load(object sender, EventArgs e)
         {
-            ilMain.ShowImg(hObject);
+            HOperatorSet.GenEmptyObj(out HObject cropImg);
+            HOperatorSet.CropRectangle1(hObject, out cropImg, leftTopPointPixel.Y, leftTopPointPixel.X, rightBottomPointPixel.Y, rightBottomPointPixel.X);
+
+            programConfig.ChipModelPar = new ChipModel()
+            {
+                CorrectInterval = 1,
+                MinScore = 0.5,
+                AngleStart = -0.00872665,
+                AngleExtent = 0.0174533,
+                DetectRow1 = leftTopPointPixel.Y,
+                DetectCol1 = leftTopPointPixel.X,
+                DetectRow2 = rightBottomPointPixel.Y,
+                DetectCol2 = rightBottomPointPixel.X,
+                NumLevels = 4,
+                NumMatches = 1
+            };
+
+            propertyGrid1.SelectedObject = programConfig.ChipModelPar;
+            JsonHelper.Serialize(programConfig, programConfig.GetThisFileName());
+            ilMain.ShowImg(cropImg);
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
@@ -159,10 +172,11 @@ namespace WaferAoi
             HOperatorSet.Rgb1ToGray(ilMain.hImage, out HObject grayImage);
             HOperatorSet.ReduceDomain(grayImage, region, out HObject imageReduced);
             HOperatorSet.AreaCenter(region, out HTuple area, out HTuple regionCenterRow, out HTuple regionCenterCol);
-
+            programConfig.ChipModelPar.ShapeModelCenterRow = regionCenterRow + leftTopPointPixel.Y;
+            programConfig.ChipModelPar.ShapeModelCenterCol = regionCenterCol + leftTopPointPixel.X;
 
             // create_shape_model (ImageReduced, 'auto', -0.39, 0.79, 'auto', 'auto', 'use_polarity', 'auto', 'auto', ModelID1)
-            HOperatorSet.CreateShapeModel(imageReduced, "auto", -0.18, 0.36, "auto", "auto", "use_polarity", "auto", "auto", out HTuple ModelId);
+            HOperatorSet.CreateShapeModel(imageReduced, "auto", programConfig.ChipModelPar.AngleStart, programConfig.ChipModelPar.AngleExtent, "auto", "auto", "use_polarity", "auto", "auto", out HTuple ModelId);
             //HOperatorSet.CreateShapeModel(imageReduced, "auto", -0.18, 0.18, "auto", "auto", "use_polarity", "auto", "auto", out HTuple FlyModelId);
             //(ImageReduced, 'auto', -0.1, 0.2, 'auto', 'use_polarity', ModelID)
             //HOperatorSet.CreateNccModel(imageReduced, "auto", -0.18, 0.18, "auto", "use_polarity", out HTuple NccModel);
@@ -177,15 +191,16 @@ namespace WaferAoi
             grayImage.Dispose();
             imageReduced.Dispose();
             region.Dispose();
-            HOperatorSet.GenEmptyObj(out HObject cropImg);
-            HOperatorSet.CropRectangle1(ilMain.hImage, out cropImg, leftTopPointPixel.Y, leftTopPointPixel.X, rightBottomPointPixel.Y, rightBottomPointPixel.X);
-            programConfig.DetectRegion = new RegionH(leftTopPointPixel.Y, leftTopPointPixel.X, rightBottomPointPixel.Y, rightBottomPointPixel.X);
+            //HOperatorSet.GenEmptyObj(out HObject cropImg);
+            //HOperatorSet.CropRectangle1(ilMain.hImage, out cropImg, leftTopPointPixel.Y, leftTopPointPixel.X, rightBottomPointPixel.Y, rightBottomPointPixel.X);
+            //programConfig.DetectRegion = new RegionH(leftTopPointPixel.Y, leftTopPointPixel.X, rightBottomPointPixel.Y, rightBottomPointPixel.X);
             JsonHelper.Serialize(programConfig, programConfig.GetThisFileName());
-            HDevProgramHelper.CreatVariationModele(cropImg, out HTuple vMId);
+            HDevProgramHelper.CreatVariationModele(ilMain.hImage, out HTuple vMId);
             HDevProgramHelper.SaveVariationModel(programConfig.GetChipVariationModelFileName(), vMId);
             ilMain.ClearallTool();
             ilMain.ClearallTool2();
-            ilMain.ShowImg(cropImg);
+            DarkMessageBox.ShowInformation("保存成功");
+            //ilMain.ShowImg(cropImg);
         }
         /*
          *矫正
@@ -237,6 +252,7 @@ namespace WaferAoi
                 fileDialog.Dispose();
             }
         }
+
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             if (HDevWindowStack.IsOpen())

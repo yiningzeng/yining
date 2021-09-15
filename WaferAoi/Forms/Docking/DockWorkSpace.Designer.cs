@@ -46,10 +46,16 @@
             this.darkButton2 = new YiNing.UI.Controls.DarkButton();
             this.darkButton3 = new YiNing.UI.Controls.DarkButton();
             this.darkButton4 = new YiNing.UI.Controls.DarkButton();
-            this.waferMap = new YiNing.WafermapDisplay.Wafermap();
             this.btnStart = new YiNing.UI.Controls.DarkButton();
+            this.darkSectionPanel2 = new YiNing.UI.Controls.DarkSectionPanel();
+            this.hswcMain = new HalconDotNet.HSmartWindowControl();
+            this.btnContinue = new YiNing.UI.Controls.DarkButton();
+            this.darkButton5 = new YiNing.UI.Controls.DarkButton();
+            this.waferMap = new YiNing.WafermapDisplay.Wafermap();
+            this.timerDetect = new System.Windows.Forms.Timer(this.components);
             this.darkSectionPanel6.SuspendLayout();
             this.darkSectionPanel1.SuspendLayout();
+            this.darkSectionPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // darkSectionPanel6
@@ -66,7 +72,7 @@
             this.darkSectionPanel6.Controls.Add(this.isDoor);
             this.darkSectionPanel6.Controls.Add(this.isStop);
             this.darkSectionPanel6.DragEnable = true;
-            this.darkSectionPanel6.Location = new System.Drawing.Point(693, 10);
+            this.darkSectionPanel6.Location = new System.Drawing.Point(1016, 10);
             this.darkSectionPanel6.Name = "darkSectionPanel6";
             this.darkSectionPanel6.SectionHeader = "信号监控";
             this.darkSectionPanel6.Size = new System.Drawing.Size(152, 156);
@@ -192,7 +198,7 @@
             this.darkSectionPanel1.Location = new System.Drawing.Point(10, 10);
             this.darkSectionPanel1.Name = "darkSectionPanel1";
             this.darkSectionPanel1.SectionHeader = "进度提醒";
-            this.darkSectionPanel1.Size = new System.Drawing.Size(170, 259);
+            this.darkSectionPanel1.Size = new System.Drawing.Size(170, 391);
             this.darkSectionPanel1.TabIndex = 20;
             // 
             // dlvwProgress
@@ -200,7 +206,7 @@
             this.dlvwProgress.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dlvwProgress.Location = new System.Drawing.Point(1, 25);
             this.dlvwProgress.Name = "dlvwProgress";
-            this.dlvwProgress.Size = new System.Drawing.Size(168, 233);
+            this.dlvwProgress.Size = new System.Drawing.Size(168, 365);
             this.dlvwProgress.TabIndex = 0;
             this.dlvwProgress.Text = "darkProgressReminder1";
             // 
@@ -248,6 +254,67 @@
             this.darkButton4.Text = "停止了";
             this.darkButton4.Visible = false;
             this.darkButton4.Click += new System.EventHandler(this.darkButton4_Click);
+            // 
+            // btnStart
+            // 
+            this.btnStart.Location = new System.Drawing.Point(11, 407);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Padding = new System.Windows.Forms.Padding(5);
+            this.btnStart.Size = new System.Drawing.Size(168, 59);
+            this.btnStart.TabIndex = 25;
+            this.btnStart.Tag = "开始检测";
+            this.btnStart.Text = "开始检测";
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
+            // darkSectionPanel2
+            // 
+            this.darkSectionPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.darkSectionPanel2.Controls.Add(this.hswcMain);
+            this.darkSectionPanel2.DragEnable = true;
+            this.darkSectionPanel2.Location = new System.Drawing.Point(816, 417);
+            this.darkSectionPanel2.Name = "darkSectionPanel2";
+            this.darkSectionPanel2.SectionHeader = "实时视图";
+            this.darkSectionPanel2.Size = new System.Drawing.Size(352, 331);
+            this.darkSectionPanel2.TabIndex = 26;
+            // 
+            // hswcMain
+            // 
+            this.hswcMain.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.hswcMain.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.hswcMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hswcMain.HDoubleClickToFitContent = true;
+            this.hswcMain.HDrawingObjectsModifier = HalconDotNet.HSmartWindowControl.DrawingObjectsModifier.None;
+            this.hswcMain.HImagePart = new System.Drawing.Rectangle(0, 0, 640, 480);
+            this.hswcMain.HKeepAspectRatio = true;
+            this.hswcMain.HMoveContent = true;
+            this.hswcMain.HZoomContent = HalconDotNet.HSmartWindowControl.ZoomContent.WheelForwardZoomsIn;
+            this.hswcMain.Location = new System.Drawing.Point(1, 25);
+            this.hswcMain.Margin = new System.Windows.Forms.Padding(0);
+            this.hswcMain.Name = "hswcMain";
+            this.hswcMain.Size = new System.Drawing.Size(350, 305);
+            this.hswcMain.TabIndex = 0;
+            this.hswcMain.WindowSize = new System.Drawing.Size(350, 305);
+            // 
+            // btnContinue
+            // 
+            this.btnContinue.Location = new System.Drawing.Point(11, 472);
+            this.btnContinue.Name = "btnContinue";
+            this.btnContinue.Padding = new System.Windows.Forms.Padding(5);
+            this.btnContinue.Size = new System.Drawing.Size(168, 23);
+            this.btnContinue.TabIndex = 27;
+            this.btnContinue.Tag = "继续执行";
+            this.btnContinue.Text = "继续执行";
+            this.btnContinue.Click += new System.EventHandler(this.btnContinue_Click);
+            // 
+            // darkButton5
+            // 
+            this.darkButton5.Location = new System.Drawing.Point(59, 515);
+            this.darkButton5.Name = "darkButton5";
+            this.darkButton5.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton5.Size = new System.Drawing.Size(75, 23);
+            this.darkButton5.TabIndex = 28;
+            this.darkButton5.Text = "darkButton5";
+            this.darkButton5.Click += new System.EventHandler(this.darkButton5_Click_1);
             // 
             // waferMap
             // 
@@ -521,28 +588,26 @@
             this.waferMap.SelectRegionDiagonalDie = null;
             this.waferMap.SelectX = 0;
             this.waferMap.SelectY = 0;
-            this.waferMap.Size = new System.Drawing.Size(858, 533);
+            this.waferMap.Size = new System.Drawing.Size(1181, 762);
             this.waferMap.TabIndex = 0;
             this.waferMap.TooSmallString = "TOO SMALL";
             this.waferMap.TranslationX = 0;
             this.waferMap.TranslationY = 0;
+            this.waferMap.VisibleDatasetSavePath = "";
             this.waferMap.Zoom = 1F;
             // 
-            // btnStart
+            // timerDetect
             // 
-            this.btnStart.Location = new System.Drawing.Point(11, 275);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Padding = new System.Windows.Forms.Padding(5);
-            this.btnStart.Size = new System.Drawing.Size(168, 59);
-            this.btnStart.TabIndex = 25;
-            this.btnStart.Tag = "开始检测";
-            this.btnStart.Text = "开始检测";
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            this.timerDetect.Interval = 150;
+            this.timerDetect.Tick += new System.EventHandler(this.timerDetect_Tick);
             // 
             // DockWorkSpace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.darkButton5);
+            this.Controls.Add(this.btnContinue);
+            this.Controls.Add(this.darkSectionPanel2);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.darkButton4);
             this.Controls.Add(this.darkButton3);
@@ -553,10 +618,11 @@
             this.Controls.Add(this.waferMap);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "DockWorkSpace";
-            this.Size = new System.Drawing.Size(858, 533);
+            this.Size = new System.Drawing.Size(1181, 762);
             this.darkSectionPanel6.ResumeLayout(false);
             this.darkSectionPanel6.PerformLayout();
             this.darkSectionPanel1.ResumeLayout(false);
+            this.darkSectionPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -581,5 +647,10 @@
         private YiNing.UI.Controls.DarkButton darkButton3;
         private YiNing.UI.Controls.DarkButton darkButton4;
         private YiNing.UI.Controls.DarkButton btnStart;
+        private YiNing.UI.Controls.DarkSectionPanel darkSectionPanel2;
+        private HalconDotNet.HSmartWindowControl hswcMain;
+        private YiNing.UI.Controls.DarkButton btnContinue;
+        private YiNing.UI.Controls.DarkButton darkButton5;
+        private System.Windows.Forms.Timer timerDetect;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace WaferAoi
 {
-    partial class DialogCreateModel
+    partial class DialogTest
     {
         /// <summary>
         /// Required designer variable.
@@ -31,27 +31,24 @@ namespace WaferAoi
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DialogCreateModel));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DialogTest));
             this.hswcMain = new HalconDotNet.HSmartWindowControl();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.画一个模型区域ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.darkToolStrip1 = new YiNing.UI.Controls.DarkToolStrip();
-            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.debugButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.darkListView1 = new YiNing.UI.Controls.DarkListView();
             this.darkSectionPanel2 = new YiNing.UI.Controls.DarkSectionPanel();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
-            this.darkSectionPanel1 = new YiNing.UI.Controls.DarkSectionPanel();
-            this.dlvwProgress = new YiNing.UI.Controls.DarkProgressReminder();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.contextMenuStrip1.SuspendLayout();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.darkToolStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.darkSectionPanel2.SuspendLayout();
-            this.darkSectionPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -71,23 +68,14 @@ namespace WaferAoi
             this.hswcMain.Location = new System.Drawing.Point(0, 25);
             this.hswcMain.Margin = new System.Windows.Forms.Padding(0);
             this.hswcMain.Name = "hswcMain";
-            this.hswcMain.Size = new System.Drawing.Size(1090, 778);
+            this.hswcMain.Size = new System.Drawing.Size(949, 651);
             this.hswcMain.TabIndex = 4;
-            this.hswcMain.WindowSize = new System.Drawing.Size(1090, 778);
+            this.hswcMain.WindowSize = new System.Drawing.Size(949, 651);
             // 
             // contextMenuStrip1
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.画一个模型区域ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(161, 26);
-            // 
-            // 画一个模型区域ToolStripMenuItem
-            // 
-            this.画一个模型区域ToolStripMenuItem.Name = "画一个模型区域ToolStripMenuItem";
-            this.画一个模型区域ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.画一个模型区域ToolStripMenuItem.Text = "画一个模型区域";
-            this.画一个模型区域ToolStripMenuItem.Click += new System.EventHandler(this.画一个模型区域ToolStripMenuItem_Click);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // darkToolStrip1
             // 
@@ -95,26 +83,27 @@ namespace WaferAoi
             this.darkToolStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.darkToolStrip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.darkToolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton7,
+            this.toolStripButton2,
             this.debugButton,
-            this.toolStripButton1});
+            this.toolStripButton1,
+            this.toolStripButton3});
             this.darkToolStrip1.Location = new System.Drawing.Point(0, 0);
             this.darkToolStrip1.Name = "darkToolStrip1";
             this.darkToolStrip1.Padding = new System.Windows.Forms.Padding(5, 0, 1, 0);
-            this.darkToolStrip1.Size = new System.Drawing.Size(1090, 25);
+            this.darkToolStrip1.Size = new System.Drawing.Size(949, 25);
             this.darkToolStrip1.TabIndex = 3;
             this.darkToolStrip1.Text = "darkToolStrip1";
             // 
-            // toolStripButton7
+            // toolStripButton2
             // 
-            this.toolStripButton7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.toolStripButton7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.toolStripButton7.Image = global::WaferAoi.Properties.Resources.Save;
-            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton7.Name = "toolStripButton7";
-            this.toolStripButton7.Size = new System.Drawing.Size(76, 22);
-            this.toolStripButton7.Text = "保存模板";
-            this.toolStripButton7.Click += new System.EventHandler(this.SaveModel_Click);
+            this.toolStripButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.toolStripButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.toolStripButton2.Image = global::WaferAoi.Properties.Resources.debug;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(76, 22);
+            this.toolStripButton2.Text = "加载模型";
+            this.toolStripButton2.Click += new System.EventHandler(this.loadModel_Click);
             // 
             // debugButton
             // 
@@ -124,38 +113,36 @@ namespace WaferAoi
             this.debugButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.debugButton.Name = "debugButton";
             this.debugButton.Size = new System.Drawing.Size(124, 22);
-            this.debugButton.Text = "测试一张本地图片";
+            this.debugButton.Text = "训练一张本地图片";
             this.debugButton.Click += new System.EventHandler(this.debugButton_Click);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.toolStripButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.toolStripButton1.Image = global::WaferAoi.Icons.Close_16xLG;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(124, 22);
-            this.toolStripButton1.Text = "双击关闭测试窗口";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.darkListView1);
             this.panel2.Controls.Add(this.darkSectionPanel2);
-            this.panel2.Controls.Add(this.darkSectionPanel1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(1093, 0);
+            this.panel2.Location = new System.Drawing.Point(952, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 803);
+            this.panel2.Size = new System.Drawing.Size(200, 676);
             this.panel2.TabIndex = 4;
+            // 
+            // darkListView1
+            // 
+            this.darkListView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.darkListView1.Location = new System.Drawing.Point(0, 313);
+            this.darkListView1.Name = "darkListView1";
+            this.darkListView1.Size = new System.Drawing.Size(200, 363);
+            this.darkListView1.TabIndex = 4;
+            this.darkListView1.Text = "darkListView1";
             // 
             // darkSectionPanel2
             // 
             this.darkSectionPanel2.Controls.Add(this.propertyGrid1);
-            this.darkSectionPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.darkSectionPanel2.Location = new System.Drawing.Point(0, 219);
+            this.darkSectionPanel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.darkSectionPanel2.Location = new System.Drawing.Point(0, 0);
             this.darkSectionPanel2.Name = "darkSectionPanel2";
             this.darkSectionPanel2.SectionHeader = "参数";
-            this.darkSectionPanel2.Size = new System.Drawing.Size(200, 584);
+            this.darkSectionPanel2.Size = new System.Drawing.Size(200, 313);
             this.darkSectionPanel2.TabIndex = 3;
             // 
             // propertyGrid1
@@ -163,34 +150,15 @@ namespace WaferAoi
             this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.propertyGrid1.Location = new System.Drawing.Point(1, 25);
             this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(198, 558);
+            this.propertyGrid1.Size = new System.Drawing.Size(198, 287);
             this.propertyGrid1.TabIndex = 0;
-            // 
-            // darkSectionPanel1
-            // 
-            this.darkSectionPanel1.Controls.Add(this.dlvwProgress);
-            this.darkSectionPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.darkSectionPanel1.Location = new System.Drawing.Point(0, 0);
-            this.darkSectionPanel1.Name = "darkSectionPanel1";
-            this.darkSectionPanel1.SectionHeader = "流程参考";
-            this.darkSectionPanel1.Size = new System.Drawing.Size(200, 219);
-            this.darkSectionPanel1.TabIndex = 2;
-            // 
-            // dlvwProgress
-            // 
-            this.dlvwProgress.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dlvwProgress.Location = new System.Drawing.Point(1, 25);
-            this.dlvwProgress.Name = "dlvwProgress";
-            this.dlvwProgress.Size = new System.Drawing.Size(198, 193);
-            this.dlvwProgress.TabIndex = 1;
-            this.dlvwProgress.Text = "darkProgressReminder1";
             // 
             // splitter1
             // 
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.splitter1.Location = new System.Drawing.Point(1090, 0);
+            this.splitter1.Location = new System.Drawing.Point(949, 0);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 803);
+            this.splitter1.Size = new System.Drawing.Size(3, 676);
             this.splitter1.TabIndex = 5;
             this.splitter1.TabStop = false;
             // 
@@ -200,7 +168,7 @@ namespace WaferAoi
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1090, 803);
+            this.panel3.Size = new System.Drawing.Size(949, 676);
             this.panel3.TabIndex = 6;
             // 
             // panel1
@@ -210,14 +178,36 @@ namespace WaferAoi
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1090, 803);
+            this.panel1.Size = new System.Drawing.Size(949, 676);
             this.panel1.TabIndex = 0;
             // 
-            // DialogCreateModel
+            // toolStripButton1
+            // 
+            this.toolStripButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.toolStripButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.toolStripButton1.Image = global::WaferAoi.Properties.Resources.debug;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(76, 22);
+            this.toolStripButton1.Text = "准备模型";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click_1);
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.toolStripButton3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.toolStripButton3.Image = global::WaferAoi.Properties.Resources.debug;
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(100, 22);
+            this.toolStripButton3.Text = "测试一张图片";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
+            // DialogTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1293, 845);
+            this.ClientSize = new System.Drawing.Size(1152, 718);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.panel2);
@@ -226,18 +216,16 @@ namespace WaferAoi
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "DialogCreateModel";
+            this.Name = "DialogTest";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "芯片模型制作";
             this.Controls.SetChildIndex(this.panel2, 0);
             this.Controls.SetChildIndex(this.splitter1, 0);
             this.Controls.SetChildIndex(this.panel3, 0);
-            this.contextMenuStrip1.ResumeLayout(false);
             this.darkToolStrip1.ResumeLayout(false);
             this.darkToolStrip1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.darkSectionPanel2.ResumeLayout(false);
-            this.darkSectionPanel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -250,15 +238,14 @@ namespace WaferAoi
         private System.Windows.Forms.Panel panel3;
         private HalconDotNet.HSmartWindowControl hswcMain;
         private DarkToolStrip darkToolStrip1;
-        private System.Windows.Forms.ToolStripButton toolStripButton7;
         private System.Windows.Forms.ToolStripButton debugButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PropertyGrid propertyGrid1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private DarkSectionPanel darkSectionPanel1;
-        private DarkProgressReminder dlvwProgress;
         private DarkSectionPanel darkSectionPanel2;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private DarkListView darkListView1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripMenuItem 画一个模型区域ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton toolStripButton3;
     }
 }

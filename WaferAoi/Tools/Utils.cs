@@ -45,6 +45,7 @@ namespace WaferAoi.Tools
             return Deviation;
             #endregion
         }
+
         public class LimitedConcurrencyLevelTaskScheduler : TaskScheduler
         {
             /// <summary>Whether the current thread is processing work items.</summary> 
@@ -179,6 +180,7 @@ namespace WaferAoi.Tools
                 }
             }
         }
+
 
         /// <summary>
         /// 任意三点计算圆心

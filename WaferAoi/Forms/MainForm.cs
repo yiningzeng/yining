@@ -11,6 +11,7 @@ using YiNing.Tools;
 using System.Threading;
 using System.Linq;
 using YiNing.UI.Controls;
+using HalconDotNet;
 
 namespace WaferAoi
 {
@@ -381,8 +382,21 @@ namespace WaferAoi
             aa.ShowDialog();
             if (aa.DialogResult == DialogResult.OK)
             {
-                _dockWorkSpace.SetProgress(aa.Tag.ToString());
+                string[] programName = aa.Tag.ToString().Split('@');
+                _dockWorkSpace.SetProgress(programName[0], programName[1]);
             }
+        }
+
+        private void 测试ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ProgramConfig cccc = JsonHelper.DeserializeByFile<ProgramConfig>(@"D:\QTWaferProgram\fofofofofof\config.zyn");
+            HOperatorSet.ReadImage(out HObject ho, @"D:\QTWaferProgram\fofofofofof\main.bmp");
+            new DialogCreateModel(ho, cccc, new System.Drawing.Point(1013, 498), new System.Drawing.Point(3052, 2550)).Show();
+        }
+
+        private void 模型测试测试ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new DialogTest().Show();
         }
     }
 }

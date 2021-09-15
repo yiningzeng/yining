@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using HalconDotNet;
 using System.Threading.Tasks;
+using YiNing.WafermapDisplay.WafermapControl;
 
 namespace WaferAoi
 {
@@ -229,14 +230,14 @@ namespace WaferAoi
                     MovePoint(tbVel.Text, tb6x.Text, tb6y.Text);
                     break;
                 case "拍照比对":
-                    MotorsControl.setCompareMode(1,1);//(new short[] { 3, 4 }, new short[] { 1, 1 }, 2, 2, 1, 1, 2, 0, 100);
+                    MotorsControl.setCompareMode(1, 1);//(new short[] { 3, 4 }, new short[] { 1, 1 }, 2, 2, 1, 1, 2, 0, 100);
                     MotorsControl.setCompareData_Pso(1000); // 等差模式
                     MotorsControl.startCompare();
                     MotorsControl.stopCompare();
                     break;
                 case "相机曝光":
                     mVCameraHelper.CameraSetExposureTime(double.Parse(dtbExposeTime.Text));
-                            break;
+                    break;
 
                 case "计算点1 点2 点3的圆心":
                     Point point = Utils.FindCenter(new Point(Convert.ToInt32(tb1x.Text), Convert.ToInt32(tb1y.Text)),
@@ -270,6 +271,29 @@ namespace WaferAoi
                     }
                     catch (Exception er) { }
 
+                    break;
+                case "相机关":
+                    mVCameraHelper.CloseCameras();
+                    break;
+                case "相机开":
+                    mVCameraHelper.OpenCameras();
+                    break;
+                case "生成图谱":
+                    Die[,] data = new Die[64, 65];
+
+                    for (int x = 0; x < 64; x++)
+                    {
+                        for (int y = 0; y < 65; y++)
+                        {
+                            //if (y > 18 && y < 21 && x >= ss && x < 41 - ss)
+                            //{
+                            //    data[x, y] = new Die() { ColorIndex = 1, XIndex = x, YIndex = y, XPluse = 0, YPluse = 0 };// 
+                            //}
+                            //else
+                            data[x, y] = new Die() { ColorIndex = 0, XIndex = x, YIndex = y, XPluse = 0, YPluse = 0 };// 
+                        }
+                    }
+                    JsonHelper.Serialize(data, "D:/map.json");
                     break;
             }
         }

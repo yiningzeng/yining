@@ -99,6 +99,9 @@
             this.darkLabel7 = new YiNing.UI.Controls.DarkLabel();
             this.tbWaferCenterY = new YiNing.UI.Controls.DarkTextBox();
             this.tbWaferCenterX = new YiNing.UI.Controls.DarkTextBox();
+            this.darkButton18 = new YiNing.UI.Controls.DarkButton();
+            this.darkButton19 = new YiNing.UI.Controls.DarkButton();
+            this.darkButton20 = new YiNing.UI.Controls.DarkButton();
             this.darkSectionPanel1.SuspendLayout();
             this.dsepMove.SuspendLayout();
             this.darkSectionPanel2.SuspendLayout();
@@ -910,10 +913,43 @@
             this.tbWaferCenterX.Size = new System.Drawing.Size(100, 23);
             this.tbWaferCenterX.TabIndex = 49;
             // 
+            // darkButton18
+            // 
+            this.darkButton18.Location = new System.Drawing.Point(385, 609);
+            this.darkButton18.Name = "darkButton18";
+            this.darkButton18.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton18.Size = new System.Drawing.Size(149, 23);
+            this.darkButton18.TabIndex = 50;
+            this.darkButton18.Tag = "相机开";
+            this.darkButton18.Text = "相机开";
+            // 
+            // darkButton19
+            // 
+            this.darkButton19.Location = new System.Drawing.Point(385, 638);
+            this.darkButton19.Name = "darkButton19";
+            this.darkButton19.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton19.Size = new System.Drawing.Size(149, 23);
+            this.darkButton19.TabIndex = 51;
+            this.darkButton19.Tag = "相机关";
+            this.darkButton19.Text = "相机关";
+            // 
+            // darkButton20
+            // 
+            this.darkButton20.Location = new System.Drawing.Point(385, 668);
+            this.darkButton20.Name = "darkButton20";
+            this.darkButton20.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton20.Size = new System.Drawing.Size(149, 23);
+            this.darkButton20.TabIndex = 52;
+            this.darkButton20.Tag = "生成图谱";
+            this.darkButton20.Text = "生成图谱";
+            // 
             // DockDebugs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.darkButton20);
+            this.Controls.Add(this.darkButton19);
+            this.Controls.Add(this.darkButton18);
             this.Controls.Add(this.darkSectionPanel6);
             this.Controls.Add(this.darkSectionPanel5);
             this.Controls.Add(this.darkSectionPanel4);
@@ -1022,5 +1058,8 @@
         private YiNing.UI.Controls.DarkLabel darkLabel7;
         private YiNing.UI.Controls.DarkTextBox tbWaferCenterY;
         private YiNing.UI.Controls.DarkTextBox tbWaferCenterX;
+        private YiNing.UI.Controls.DarkButton darkButton18;
+        private YiNing.UI.Controls.DarkButton darkButton19;
+        private YiNing.UI.Controls.DarkButton darkButton20;
     }
 }

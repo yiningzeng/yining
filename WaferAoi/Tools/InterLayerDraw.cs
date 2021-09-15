@@ -97,12 +97,12 @@ namespace WaferAoi.Tools
         /// </summary>
         /// <param name="e"></param>
         /// <param name="tempControl"></param>
-        public void ShowImg(ImageArgs e, bool coverOldImage = true)
+        public void ShowImg(ImageArgs e, bool coverOldImage = true, bool dispose = true)
         {
             if (hsmartwindows != null && e.ImageHobject.IsInitialized())
             {
-                //HOperatorSet.GetImageSize(e.ImageHobject, out HTuple Iwidth, out HTuple Iheight);
-                HOperatorSet.SetPart(hsmartwindows.HalconWindow, 0, 0, e.Height - 1, e.Width - 1);
+                HOperatorSet.GetImageSize(e.ImageHobject, out HTuple Iwidth, out HTuple Iheight);
+                HOperatorSet.SetPart(hsmartwindows.HalconWindow, 0, 0, Iheight - 1, Iwidth - 1);
                 HOperatorSet.ClearWindow(hsmartwindows.HalconWindow);
                 HOperatorSet.DispObj(e.ImageHobject, hsmartwindows.HalconWindow);
                 hsmartwindows.SetFullImagePart();
@@ -116,7 +116,7 @@ namespace WaferAoi.Tools
                     AllCols = e.Width;
                     AllRows = e.Height;
                 }
-                e.Dispose();
+                if (dispose) e.Dispose();
             }
         }
         public void ShowImg(HObject hObject, bool coverOldImage = true)
@@ -401,7 +401,7 @@ namespace WaferAoi.Tools
             catch { return false; }
         }
 
-        public string DrawRectange2()
+        public string DrawRectange2(bool isSec = false)
         {
             try
             {
@@ -411,7 +411,10 @@ namespace WaferAoi.Tools
                     HDrawingObject.HDrawingObjectType.RECTANGLE2, Y, X, 0, 100, 100);
                     rect2.SetDrawingObjectParams("color", color);
                     selected_drawing_object = rect2;
-                    drawingObjects.Add(rect2);
+                    if (!isSec)
+                        drawingObjects.Add(rect2);
+                    else
+                        drawingObjects2.Add(rect2);
                     hsmartwindows.HalconWindow.AttachDrawingObjectToWindow(rect2);
                     return "已添加矩形2工具";
                 }
@@ -419,6 +422,27 @@ namespace WaferAoi.Tools
                 {
                     return "请查看图像是否存在";
                 }
+            }
+            catch (Exception er)
+            {
+                return "err";
+            }
+        }
+        public string DrawRectange2(int size, bool isSec = false)
+        {
+            try
+            {
+                //, row - 200, col - 200, row + 200, col + 200);
+                HDrawingObject rect2 = HDrawingObject.CreateDrawingObject(
+                      HDrawingObject.HDrawingObjectType.RECTANGLE2, Y, X, 0, size, size);
+                rect2.SetDrawingObjectParams("color", color);
+                selected_drawing_object = rect2;
+                if (!isSec)
+                    drawingObjects.Add(rect2);
+                else
+                    drawingObjects2.Add(rect2);
+                hsmartwindows.HalconWindow.AttachDrawingObjectToWindow(rect2);
+                return "";
             }
             catch (Exception er)
             {

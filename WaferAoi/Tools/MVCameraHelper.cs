@@ -25,6 +25,10 @@ namespace WaferAoi.Tools
             BITMAP,
         }
         /// <summary>
+        /// 这个是晶圆图谱上的点位信息
+        /// </summary>
+        int _xId, _yId;
+        /// <summary>
         /// 图像的宽高
         /// </summary>
         int _w, _h;
@@ -43,6 +47,27 @@ namespace WaferAoi.Tools
             this._hObject = hObject;
             _imageType = ImageTypeEn.HOBJECT;
         }
+        /// <summary>
+        /// 用于检测用的
+        /// </summary>
+        /// <param name="w"></param>
+        /// <param name="h"></param>
+        /// <param name="xPulse"></param>
+        /// <param name="yPulse"></param>
+        /// <param name="zPulse"></param>
+        /// <param name="hObject"></param>
+        public ImageArgs(int w, int h, int xPulse, int yPulse, int zPulse, HObject hObject, int xId, int yId)//当输入内容为字符
+        {
+            this._w = w;
+            this._h = h;
+            _xPulse = xPulse;
+            _yPulse = yPulse;
+            _zPulse = zPulse;
+            this._hObject = hObject;
+            _imageType = ImageTypeEn.HOBJECT;
+            _xId = xId;
+            _yId = yId;
+        }
         public ImageArgs(int w, int h, int xPulse, int yPulse, int zPulse, Bitmap bitmap)//当输入内容为字符
         {
             this._w = w;
@@ -52,6 +77,16 @@ namespace WaferAoi.Tools
             _zPulse = zPulse;
             this._bitmap = bitmap;
             _imageType = ImageTypeEn.BITMAP;
+        }
+        public int XId
+        {
+            get { return _xId; }
+            set { _xId = value; }
+        }
+        public int YId
+        {
+            get { return _yId; }
+            set { _yId = value; }
         }
         //事件属性
         public int Width

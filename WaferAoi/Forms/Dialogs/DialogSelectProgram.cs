@@ -28,8 +28,13 @@ namespace WaferAoi
 
         private void BtnOk_Click(object sender, System.EventArgs e)
         {
+            if (cmbProgram.Text == "" || tbWafweId.Text == "")
+            {
+                DarkMessageBox.ShowError("请填写参数");
+                return;
+            }
             this.DialogResult = DialogResult.OK;
-            this.Tag = cmbProgram.Text;
+            this.Tag = cmbProgram.Text+"@"+tbWafweId.Text;
             //this.Hide();
         }
 

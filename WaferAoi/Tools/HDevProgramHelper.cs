@@ -81,6 +81,7 @@ namespace WaferAoi.Tools
                     //return true;
 #if DEBUG
                     Debug.WriteLine(ratio.D.ToString());
+                    //HOperatorSet.WriteImage(image, "jpg", "0", "D:/fu.jpg");
 #endif
                     if (ratio.D >= min && ratio.D <= max)
                     {
@@ -115,6 +116,7 @@ namespace WaferAoi.Tools
                 {
                     HOperatorSet.Rgb1ToGray(hObject, out hObject);
 
+                    //HOperatorSet.WriteImage(hObject, "bmp", "0", "D:/ffffff.bmp");
                     call.SetInputIconicParamObject("Rectangle", hObject);
                     call.SetInputIconicParamObject("GrayImage", hObject);
                     call.SetInputCtrlParamTuple("mult_V", mult_V);

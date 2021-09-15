@@ -64,6 +64,9 @@ namespace WaferAoi
             this.btnFocus = new YiNing.UI.Controls.DarkButton();
             this.btnRotate = new YiNing.UI.Controls.DarkButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.darkButton30 = new YiNing.UI.Controls.DarkButton();
+            this.darkButton29 = new YiNing.UI.Controls.DarkButton();
+            this.darkButton28 = new YiNing.UI.Controls.DarkButton();
             this.darkSectionPanel13 = new YiNing.UI.Controls.DarkSectionPanel();
             this.hswcStep3Main = new HalconDotNet.HSmartWindowControl();
             this.darkButton23 = new YiNing.UI.Controls.DarkButton();
@@ -86,9 +89,9 @@ namespace WaferAoi
             this.darkGroupBox1 = new YiNing.UI.Controls.DarkGroupBox();
             this.darkGroupBox6 = new YiNing.UI.Controls.DarkGroupBox();
             this.darkLabel13 = new YiNing.UI.Controls.DarkLabel();
-            this.darkTextBox3 = new YiNing.UI.Controls.DarkTextBox();
+            this.tb3y = new YiNing.UI.Controls.DarkTextBox();
             this.tbRangeBottom = new YiNing.UI.Controls.DarkTextBox();
-            this.darkTextBox4 = new YiNing.UI.Controls.DarkTextBox();
+            this.tb3x = new YiNing.UI.Controls.DarkTextBox();
             this.darkLabel5 = new YiNing.UI.Controls.DarkLabel();
             this.darkLabel6 = new YiNing.UI.Controls.DarkLabel();
             this.darkGroupBox4 = new YiNing.UI.Controls.DarkGroupBox();
@@ -100,9 +103,9 @@ namespace WaferAoi
             this.tbRangeRight = new YiNing.UI.Controls.DarkTextBox();
             this.darkGroupBox5 = new YiNing.UI.Controls.DarkGroupBox();
             this.darkLabel4 = new YiNing.UI.Controls.DarkLabel();
-            this.darkTextBox2 = new YiNing.UI.Controls.DarkTextBox();
+            this.tb2x = new YiNing.UI.Controls.DarkTextBox();
             this.darkLabel12 = new YiNing.UI.Controls.DarkLabel();
-            this.darkTextBox1 = new YiNing.UI.Controls.DarkTextBox();
+            this.tb2y = new YiNing.UI.Controls.DarkTextBox();
             this.tbRangeTop = new YiNing.UI.Controls.DarkTextBox();
             this.darkLabel3 = new YiNing.UI.Controls.DarkLabel();
             this.darkSectionPanel4 = new YiNing.UI.Controls.DarkSectionPanel();
@@ -168,11 +171,16 @@ namespace WaferAoi
             this.画一个矩形区域ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.保存矩形区域为模板ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.dspStep6Test = new YiNing.UI.Controls.DarkSectionPanel();
+            this.hswcStep6Test = new HalconDotNet.HSmartWindowControl();
+            this.darkSectionPanel14 = new YiNing.UI.Controls.DarkSectionPanel();
+            this.pgdStep6Par = new System.Windows.Forms.PropertyGrid();
             this.darkSectionPanel17 = new YiNing.UI.Controls.DarkSectionPanel();
+            this.darkButton31 = new YiNing.UI.Controls.DarkButton();
             this.darkButton27 = new YiNing.UI.Controls.DarkButton();
             this.darkButton26 = new YiNing.UI.Controls.DarkButton();
             this.darkSectionPanel16 = new YiNing.UI.Controls.DarkSectionPanel();
-            this.darkLabel25 = new YiNing.UI.Controls.DarkLabel();
+            this.dlbStep6Tips = new YiNing.UI.Controls.DarkLabel();
             this.step6Wafermap = new YiNing.WafermapDisplay.Wafermap();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.darkLabel26 = new YiNing.UI.Controls.DarkLabel();
@@ -245,6 +253,8 @@ namespace WaferAoi
             this.dsPanelStep5WaferMap.SuspendLayout();
             this.contextMenuStrip_Step5.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            this.dspStep6Test.SuspendLayout();
+            this.darkSectionPanel14.SuspendLayout();
             this.darkSectionPanel17.SuspendLayout();
             this.darkSectionPanel16.SuspendLayout();
             this.tabPage7.SuspendLayout();
@@ -642,6 +652,9 @@ namespace WaferAoi
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage2.Controls.Add(this.darkButton30);
+            this.tabPage2.Controls.Add(this.darkButton29);
+            this.tabPage2.Controls.Add(this.darkButton28);
             this.tabPage2.Controls.Add(this.darkSectionPanel13);
             this.tabPage2.Controls.Add(this.darkButton23);
             this.tabPage2.Controls.Add(this.darkButton22);
@@ -657,6 +670,39 @@ namespace WaferAoi
             this.tabPage2.Size = new System.Drawing.Size(1201, 623);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "晶圆定位";
+            // 
+            // darkButton30
+            // 
+            this.darkButton30.Location = new System.Drawing.Point(232, 540);
+            this.darkButton30.Name = "darkButton30";
+            this.darkButton30.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton30.Size = new System.Drawing.Size(101, 23);
+            this.darkButton30.TabIndex = 15;
+            this.darkButton30.Tag = "移动到下中心";
+            this.darkButton30.Text = "移动到下中心";
+            this.darkButton30.Click += new System.EventHandler(this.darkStep3Button_Click);
+            // 
+            // darkButton29
+            // 
+            this.darkButton29.Location = new System.Drawing.Point(127, 539);
+            this.darkButton29.Name = "darkButton29";
+            this.darkButton29.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton29.Size = new System.Drawing.Size(99, 23);
+            this.darkButton29.TabIndex = 14;
+            this.darkButton29.Tag = "移动到上中心";
+            this.darkButton29.Text = "移动到上中心";
+            this.darkButton29.Click += new System.EventHandler(this.darkStep3Button_Click);
+            // 
+            // darkButton28
+            // 
+            this.darkButton28.Location = new System.Drawing.Point(7, 539);
+            this.darkButton28.Name = "darkButton28";
+            this.darkButton28.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton28.Size = new System.Drawing.Size(110, 23);
+            this.darkButton28.TabIndex = 13;
+            this.darkButton28.Tag = "移动到右中心";
+            this.darkButton28.Text = "移动到右中心";
+            this.darkButton28.Click += new System.EventHandler(this.darkStep3Button_Click);
             // 
             // darkSectionPanel13
             // 
@@ -905,9 +951,9 @@ namespace WaferAoi
             // 
             this.darkGroupBox6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.darkGroupBox6.Controls.Add(this.darkLabel13);
-            this.darkGroupBox6.Controls.Add(this.darkTextBox3);
+            this.darkGroupBox6.Controls.Add(this.tb3y);
             this.darkGroupBox6.Controls.Add(this.tbRangeBottom);
-            this.darkGroupBox6.Controls.Add(this.darkTextBox4);
+            this.darkGroupBox6.Controls.Add(this.tb3x);
             this.darkGroupBox6.Controls.Add(this.darkLabel5);
             this.darkGroupBox6.Controls.Add(this.darkLabel6);
             this.darkGroupBox6.Location = new System.Drawing.Point(10, 132);
@@ -927,17 +973,17 @@ namespace WaferAoi
             this.darkLabel13.TabIndex = 38;
             this.darkLabel13.Text = "搜寻范围:";
             // 
-            // darkTextBox3
+            // tb3y
             // 
-            this.darkTextBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.darkTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.darkTextBox3.Enabled = false;
-            this.darkTextBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkTextBox3.Location = new System.Drawing.Point(166, 20);
-            this.darkTextBox3.Name = "darkTextBox3";
-            this.darkTextBox3.Size = new System.Drawing.Size(53, 21);
-            this.darkTextBox3.TabIndex = 30;
-            this.darkTextBox3.Text = "15440";
+            this.tb3y.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tb3y.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb3y.Enabled = false;
+            this.tb3y.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.tb3y.Location = new System.Drawing.Point(166, 20);
+            this.tb3y.Name = "tb3y";
+            this.tb3y.Size = new System.Drawing.Size(53, 21);
+            this.tb3y.TabIndex = 30;
+            this.tb3y.Text = "15440";
             // 
             // tbRangeBottom
             // 
@@ -950,17 +996,17 @@ namespace WaferAoi
             this.tbRangeBottom.TabIndex = 37;
             this.tbRangeBottom.Text = "10000";
             // 
-            // darkTextBox4
+            // tb3x
             // 
-            this.darkTextBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.darkTextBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.darkTextBox4.Enabled = false;
-            this.darkTextBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkTextBox4.Location = new System.Drawing.Point(57, 20);
-            this.darkTextBox4.Name = "darkTextBox4";
-            this.darkTextBox4.Size = new System.Drawing.Size(53, 21);
-            this.darkTextBox4.TabIndex = 29;
-            this.darkTextBox4.Text = "140128";
+            this.tb3x.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tb3x.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb3x.Enabled = false;
+            this.tb3x.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.tb3x.Location = new System.Drawing.Point(57, 20);
+            this.tb3x.Name = "tb3x";
+            this.tb3x.Size = new System.Drawing.Size(53, 21);
+            this.tb3x.TabIndex = 29;
+            this.tb3x.Text = "140128";
             // 
             // darkLabel5
             // 
@@ -1067,9 +1113,9 @@ namespace WaferAoi
             // 
             this.darkGroupBox5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.darkGroupBox5.Controls.Add(this.darkLabel4);
-            this.darkGroupBox5.Controls.Add(this.darkTextBox2);
+            this.darkGroupBox5.Controls.Add(this.tb2x);
             this.darkGroupBox5.Controls.Add(this.darkLabel12);
-            this.darkGroupBox5.Controls.Add(this.darkTextBox1);
+            this.darkGroupBox5.Controls.Add(this.tb2y);
             this.darkGroupBox5.Controls.Add(this.tbRangeTop);
             this.darkGroupBox5.Controls.Add(this.darkLabel3);
             this.darkGroupBox5.Location = new System.Drawing.Point(10, 76);
@@ -1089,17 +1135,17 @@ namespace WaferAoi
             this.darkLabel4.TabIndex = 26;
             this.darkLabel4.Text = "中心X:";
             // 
-            // darkTextBox2
+            // tb2x
             // 
-            this.darkTextBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.darkTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.darkTextBox2.Enabled = false;
-            this.darkTextBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkTextBox2.Location = new System.Drawing.Point(58, 20);
-            this.darkTextBox2.Name = "darkTextBox2";
-            this.darkTextBox2.Size = new System.Drawing.Size(53, 21);
-            this.darkTextBox2.TabIndex = 24;
-            this.darkTextBox2.Text = "140128";
+            this.tb2x.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tb2x.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb2x.Enabled = false;
+            this.tb2x.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.tb2x.Location = new System.Drawing.Point(58, 20);
+            this.tb2x.Name = "tb2x";
+            this.tb2x.Size = new System.Drawing.Size(53, 21);
+            this.tb2x.TabIndex = 24;
+            this.tb2x.Text = "140128";
             // 
             // darkLabel12
             // 
@@ -1111,17 +1157,17 @@ namespace WaferAoi
             this.darkLabel12.TabIndex = 36;
             this.darkLabel12.Text = "搜寻范围:";
             // 
-            // darkTextBox1
+            // tb2y
             // 
-            this.darkTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.darkTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.darkTextBox1.Enabled = false;
-            this.darkTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkTextBox1.Location = new System.Drawing.Point(167, 20);
-            this.darkTextBox1.Name = "darkTextBox1";
-            this.darkTextBox1.Size = new System.Drawing.Size(53, 21);
-            this.darkTextBox1.TabIndex = 25;
-            this.darkTextBox1.Text = "214832";
+            this.tb2y.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tb2y.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb2y.Enabled = false;
+            this.tb2y.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.tb2y.Location = new System.Drawing.Point(167, 20);
+            this.tb2y.Name = "tb2y";
+            this.tb2y.Size = new System.Drawing.Size(53, 21);
+            this.tb2y.TabIndex = 25;
+            this.tb2y.Text = "214832";
             // 
             // tbRangeTop
             // 
@@ -1852,6 +1898,7 @@ namespace WaferAoi
             this.step5Wafermap.TooSmallString = "TOO SMALL";
             this.step5Wafermap.TranslationX = 0;
             this.step5Wafermap.TranslationY = 0;
+            this.step5Wafermap.VisibleDatasetSavePath = "";
             this.step5Wafermap.Zoom = 1F;
             // 
             // darkSectionPanel9
@@ -2047,7 +2094,7 @@ namespace WaferAoi
             this.darkTextBox5.Name = "darkTextBox5";
             this.darkTextBox5.Size = new System.Drawing.Size(61, 21);
             this.darkTextBox5.TabIndex = 9;
-            this.darkTextBox5.Text = "2";
+            this.darkTextBox5.Text = "1";
             // 
             // darkLabel19
             // 
@@ -2133,6 +2180,7 @@ namespace WaferAoi
             // tabPage5
             // 
             this.tabPage5.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage5.Controls.Add(this.dspStep6Test);
             this.tabPage5.Controls.Add(this.darkSectionPanel17);
             this.tabPage5.Controls.Add(this.darkSectionPanel16);
             this.tabPage5.Controls.Add(this.step6Wafermap);
@@ -2143,15 +2191,77 @@ namespace WaferAoi
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "检测程式制作";
             // 
+            // dspStep6Test
+            // 
+            this.dspStep6Test.Controls.Add(this.hswcStep6Test);
+            this.dspStep6Test.Controls.Add(this.darkSectionPanel14);
+            this.dspStep6Test.Dock = System.Windows.Forms.DockStyle.Right;
+            this.dspStep6Test.Location = new System.Drawing.Point(283, 3);
+            this.dspStep6Test.Name = "dspStep6Test";
+            this.dspStep6Test.SectionHeader = "测试";
+            this.dspStep6Test.Size = new System.Drawing.Size(915, 617);
+            this.dspStep6Test.TabIndex = 4;
+            this.dspStep6Test.Visible = false;
+            // 
+            // hswcStep6Test
+            // 
+            this.hswcStep6Test.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.hswcStep6Test.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.hswcStep6Test.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hswcStep6Test.HDoubleClickToFitContent = true;
+            this.hswcStep6Test.HDrawingObjectsModifier = HalconDotNet.HSmartWindowControl.DrawingObjectsModifier.None;
+            this.hswcStep6Test.HImagePart = new System.Drawing.Rectangle(0, 0, 640, 480);
+            this.hswcStep6Test.HKeepAspectRatio = true;
+            this.hswcStep6Test.HMoveContent = true;
+            this.hswcStep6Test.HZoomContent = HalconDotNet.HSmartWindowControl.ZoomContent.WheelForwardZoomsIn;
+            this.hswcStep6Test.Location = new System.Drawing.Point(1, 25);
+            this.hswcStep6Test.Margin = new System.Windows.Forms.Padding(0);
+            this.hswcStep6Test.Name = "hswcStep6Test";
+            this.hswcStep6Test.Size = new System.Drawing.Size(713, 591);
+            this.hswcStep6Test.TabIndex = 3;
+            this.hswcStep6Test.WindowSize = new System.Drawing.Size(713, 591);
+            // 
+            // darkSectionPanel14
+            // 
+            this.darkSectionPanel14.Controls.Add(this.pgdStep6Par);
+            this.darkSectionPanel14.Dock = System.Windows.Forms.DockStyle.Right;
+            this.darkSectionPanel14.Location = new System.Drawing.Point(714, 25);
+            this.darkSectionPanel14.Name = "darkSectionPanel14";
+            this.darkSectionPanel14.SectionHeader = "参数";
+            this.darkSectionPanel14.Size = new System.Drawing.Size(200, 591);
+            this.darkSectionPanel14.TabIndex = 2;
+            // 
+            // pgdStep6Par
+            // 
+            this.pgdStep6Par.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pgdStep6Par.Location = new System.Drawing.Point(1, 25);
+            this.pgdStep6Par.Name = "pgdStep6Par";
+            this.pgdStep6Par.Size = new System.Drawing.Size(198, 565);
+            this.pgdStep6Par.TabIndex = 1;
+            this.pgdStep6Par.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.pgdStep6Par_PropertyValueChanged);
+            // 
             // darkSectionPanel17
             // 
+            this.darkSectionPanel17.Controls.Add(this.darkButton31);
             this.darkSectionPanel17.Controls.Add(this.darkButton27);
             this.darkSectionPanel17.Controls.Add(this.darkButton26);
-            this.darkSectionPanel17.Location = new System.Drawing.Point(25, 103);
+            this.darkSectionPanel17.DragEnable = true;
+            this.darkSectionPanel17.Location = new System.Drawing.Point(6, 85);
             this.darkSectionPanel17.Name = "darkSectionPanel17";
             this.darkSectionPanel17.SectionHeader = "操作";
             this.darkSectionPanel17.Size = new System.Drawing.Size(251, 100);
             this.darkSectionPanel17.TabIndex = 3;
+            // 
+            // darkButton31
+            // 
+            this.darkButton31.Location = new System.Drawing.Point(15, 58);
+            this.darkButton31.Name = "darkButton31";
+            this.darkButton31.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton31.Size = new System.Drawing.Size(75, 23);
+            this.darkButton31.TabIndex = 2;
+            this.darkButton31.Tag = "打开测试";
+            this.darkButton31.Text = "打开测试";
+            this.darkButton31.Click += new System.EventHandler(this.Step6_DarkButton_Click);
             // 
             // darkButton27
             // 
@@ -2177,24 +2287,24 @@ namespace WaferAoi
             // 
             // darkSectionPanel16
             // 
-            this.darkSectionPanel16.Controls.Add(this.darkLabel25);
+            this.darkSectionPanel16.Controls.Add(this.dlbStep6Tips);
             this.darkSectionPanel16.DragEnable = true;
-            this.darkSectionPanel16.Location = new System.Drawing.Point(25, 24);
+            this.darkSectionPanel16.Location = new System.Drawing.Point(6, 6);
             this.darkSectionPanel16.Name = "darkSectionPanel16";
             this.darkSectionPanel16.SectionHeader = "提示";
             this.darkSectionPanel16.Size = new System.Drawing.Size(252, 73);
             this.darkSectionPanel16.TabIndex = 2;
             // 
-            // darkLabel25
+            // dlbStep6Tips
             // 
-            this.darkLabel25.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.darkLabel25.Font = new System.Drawing.Font("宋体", 15F);
-            this.darkLabel25.ForeColor = System.Drawing.Color.Coral;
-            this.darkLabel25.Location = new System.Drawing.Point(1, 25);
-            this.darkLabel25.Name = "darkLabel25";
-            this.darkLabel25.Size = new System.Drawing.Size(250, 47);
-            this.darkLabel25.TabIndex = 0;
-            this.darkLabel25.Text = "请尽可能的分散选择需要训练的芯片";
+            this.dlbStep6Tips.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dlbStep6Tips.Font = new System.Drawing.Font("宋体", 15F);
+            this.dlbStep6Tips.ForeColor = System.Drawing.Color.Coral;
+            this.dlbStep6Tips.Location = new System.Drawing.Point(1, 25);
+            this.dlbStep6Tips.Name = "dlbStep6Tips";
+            this.dlbStep6Tips.Size = new System.Drawing.Size(250, 47);
+            this.dlbStep6Tips.TabIndex = 0;
+            this.dlbStep6Tips.Text = "请尽可能的分散选择需要训练的芯片";
             // 
             // step6Wafermap
             // 
@@ -2472,6 +2582,7 @@ namespace WaferAoi
             this.step6Wafermap.TooSmallString = "TOO SMALL";
             this.step6Wafermap.TranslationX = 0;
             this.step6Wafermap.TranslationY = 0;
+            this.step6Wafermap.VisibleDatasetSavePath = "";
             this.step6Wafermap.Zoom = 1F;
             this.step6Wafermap.OnDieClick += new System.EventHandler<YiNing.WafermapDisplay.WafermapControl.Die>(this.step6Wafermap_OnDieClick);
             // 
@@ -2922,6 +3033,8 @@ namespace WaferAoi
             this.dsPanelStep5WaferMap.ResumeLayout(false);
             this.contextMenuStrip_Step5.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
+            this.dspStep6Test.ResumeLayout(false);
+            this.darkSectionPanel14.ResumeLayout(false);
             this.darkSectionPanel17.ResumeLayout(false);
             this.darkSectionPanel16.ResumeLayout(false);
             this.tabPage7.ResumeLayout(false);
@@ -2958,12 +3071,12 @@ namespace WaferAoi
         private YiNing.UI.Controls.DarkGroupBox darkGroupBox1;
         private YiNing.UI.Controls.DarkLabel darkLabel5;
         private YiNing.UI.Controls.DarkLabel darkLabel6;
-        private YiNing.UI.Controls.DarkTextBox darkTextBox3;
-        private YiNing.UI.Controls.DarkTextBox darkTextBox4;
+        private YiNing.UI.Controls.DarkTextBox tb3y;
+        private YiNing.UI.Controls.DarkTextBox tb3x;
         private YiNing.UI.Controls.DarkLabel darkLabel3;
         private YiNing.UI.Controls.DarkLabel darkLabel4;
-        private YiNing.UI.Controls.DarkTextBox darkTextBox1;
-        private YiNing.UI.Controls.DarkTextBox darkTextBox2;
+        private YiNing.UI.Controls.DarkTextBox tb2y;
+        private YiNing.UI.Controls.DarkTextBox tb2x;
         private YiNing.UI.Controls.DarkLabel darkLabel2;
         private YiNing.UI.Controls.DarkLabel darkLabel1;
         private YiNing.UI.Controls.DarkTextBox tb1y;
@@ -3107,11 +3220,19 @@ namespace WaferAoi
         private YiNing.UI.Controls.DarkButton darkButton25;
         private YiNing.WafermapDisplay.Wafermap step6Wafermap;
         private YiNing.UI.Controls.DarkSectionPanel darkSectionPanel16;
-        private YiNing.UI.Controls.DarkLabel darkLabel25;
+        private YiNing.UI.Controls.DarkLabel dlbStep6Tips;
         private YiNing.UI.Controls.DarkSectionPanel darkSectionPanel17;
         private YiNing.UI.Controls.DarkButton darkButton26;
         private YiNing.UI.Controls.DarkButton darkButton27;
         private System.Windows.Forms.PictureBox pictureBox2;
         private YiNing.UI.Controls.DarkLabel darkLabel26;
+        private YiNing.UI.Controls.DarkButton darkButton30;
+        private YiNing.UI.Controls.DarkButton darkButton29;
+        private YiNing.UI.Controls.DarkButton darkButton28;
+        private YiNing.UI.Controls.DarkSectionPanel dspStep6Test;
+        private YiNing.UI.Controls.DarkButton darkButton31;
+        private YiNing.UI.Controls.DarkSectionPanel darkSectionPanel14;
+        private System.Windows.Forms.PropertyGrid pgdStep6Par;
+        private HalconDotNet.HSmartWindowControl hswcStep6Test;
     }
 }

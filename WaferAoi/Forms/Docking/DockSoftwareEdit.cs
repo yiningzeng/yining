@@ -31,7 +31,7 @@ namespace WaferAoi
 
 
         bool canSkip = false; // 指示是否可以跳过流程测试的时候使用
-        InterLayerDraw ilFocus, ilRight, ilTop, ilBottom, ilChipModel, ilStep5Model, ilStep3Main;
+        InterLayerDraw ilFocus, ilRight, ilTop, ilBottom, ilChipModel, ilStep5Model, ilStep3Main, ilStep6Test;
         HDevProgramHelper hDevProgramHelper;
         List<Task<bool>> tasklst = new List<Task<bool>>();
         TaskFactory fac = new TaskFactory(new LimitedConcurrencyLevelTaskScheduler(8));
@@ -56,8 +56,11 @@ namespace WaferAoi
 
             hswcChipModel.HMouseMove += HswcChipModel_HMouseMove;
             hswcStep5Model.HMouseMove += HswcStep5Model_HMouseMove;
+            hswcStep6Test.MouseWheel += hswcStep6Test.HSmartWindowControl_MouseWheel;
+            hswcStep6Test.HMouseMove += HswcStep6Test_HMouseMove;
             IniData();
         }
+
         public override void Close()
         {
             var result = DarkMessageBox.ShowWarning(@"确定要退出么?", @"提醒", DarkDialogButton.YesNo);
@@ -95,6 +98,7 @@ namespace WaferAoi
             ilChipModel = new InterLayerDraw(hswcChipModel);
             ilStep5Model = new InterLayerDraw(hswcStep5Model);
             ilStep3Main = new InterLayerDraw(hswcStep3Main);
+            ilStep6Test = new InterLayerDraw(hswcStep6Test);
             hDevProgramHelper = new HDevProgramHelper("圆心查找ver3.1.hdev");
             UpdateGetAxes();
             #region 总流程步骤条
@@ -130,6 +134,7 @@ namespace WaferAoi
             pointInfos = programConfig.WaferSize == WaferSize.INCH6 ? config.Inch6SavePoints : config.Inch8SavePoints;
             SetCameraCallBack(MVCameraHelper_CameraImageCallBack_Step2);
             cmbObjectiveLense.SelectedIndex = 0;
+            mVCameraHelper.RemoveAllEvent("CameraImageCallBack");
         }
 
 
@@ -140,11 +145,7 @@ namespace WaferAoi
 
         private void SetCameraCallBack(EventHandler<ImageArgs> call)
         {
-            mVCameraHelper.CameraImageCallBack -= MVCameraHelper_CameraImageCallBack_Step2;
-            mVCameraHelper.CameraImageCallBack -= MVCameraHelper_CameraImageCallBack_Step3;
-            mVCameraHelper.CameraImageCallBack -= MVCameraHelper_CameraImageCallBack_Step4;
-            mVCameraHelper.CameraImageCallBack -= MVCameraHelper_CameraImageCallBack_Step5;
-            mVCameraHelper.CameraImageCallBack -= MVCameraHelper_CameraImageCallBack_Step6;
+            mVCameraHelper.RemoveAllEvent("CameraImageCallBack");
             mVCameraHelper.CameraImageCallBack += call;
         }
         protected virtual void DarkStepViewer1_OnStepChanged(object sender, EventArgs e)
@@ -266,6 +267,8 @@ namespace WaferAoi
                     dlvwProgress.Items.Clear();
                     dlvwProgress.Items.Add(new DarkListItem("随机选择待训练的芯片"));
                     dlvwProgress.Items.Add(new DarkListItem("开始训练"));
+                    dlvwProgress.Items.Add(new DarkListItem("移动视图"));
+                    dlvwProgress.Items.Add(new DarkListItem("测试"));
                     dlvwProgress.Items.Add(new DarkListItem("保存程式"));
                     dlvwProgress.SetStartNum(0);
                     break;
@@ -303,7 +306,8 @@ namespace WaferAoi
             mVCameraHelper.ThreadPoolEnable = false;
             MotorsControl.setCompareMode(ax.Id, ay.Id, new short[] { 1, 1 }, new short[] { 1, 1 }, 2, 2, 20);//(new short[] { 3, 4 }, new short[] { 1, 1 }, 2, 2, 1, 1, 2, 0, 100);
             MotorsControl.setCompareData_Pso(20); // 等差模式 
-            MotorsControl.startCompare();
+            //MotorsControl.startCompare();                     //MotorsControl.startCompare();
+            MotorsControl.stopCompare();
             Debug.WriteLine("开始运动");
             Button btn = sender as Button;
             Axis axis;
@@ -315,18 +319,21 @@ namespace WaferAoi
             double runInterval = 0;
             switch (btn.Tag.ToString())
             {
-                case "向上": axisId = 1; direction = -1 * runDirection; runInterval = programConfig.CutRoadWidth / 2 + programConfig.DieHeight; break; // 晶圆载具X轴状态
-                case "向下": axisId = 1; direction = 1 * runDirection; runInterval = programConfig.CutRoadWidth / 2 + programConfig.DieHeight; break;// 晶圆载具X轴状态
-                case "向左": axisId = 2; direction = 1 * runDirection; runInterval = programConfig.CutRoadWidth / 2 + programConfig.DieWidth; break;//"晶圆载具Y轴状态";
-                case "向右": axisId = 2; direction = -1 * runDirection; runInterval = programConfig.CutRoadWidth / 2 + programConfig.DieWidth; break;//晶圆载具Y轴状态";
+                case "向上": axisId = 1; direction = -1 * runDirection; runInterval = programConfig.CutRoadWidth  + programConfig.DieHeight; break; // 晶圆载具X轴状态
+                case "向下": axisId = 1; direction = 1 * runDirection; runInterval = programConfig.CutRoadWidth  + programConfig.DieHeight; break;// 晶圆载具X轴状态
+                case "向左": axisId = 2; direction = 1 * runDirection; runInterval = programConfig.CutRoadWidth  + programConfig.DieWidth; break;//"晶圆载具Y轴状态";
+                case "向右": axisId = 2; direction = -1 * runDirection; runInterval = programConfig.CutRoadWidth + programConfig.DieWidth; break;//晶圆载具Y轴状态";
             }
             axis = config.Axes.Find(a => a.Id == axisId);
             if (axis != null)
             {
                 axisNowPos = MotorsControl.GetOneEncPos(axisId);
-                MotorsControl.MoveTrap(axis.Id, axis.TrapPrm.Get(), Convert.ToDouble(dbupVel.Value), axisNowPos + Convert.ToInt32(runInterval * direction));
+                MotorsControl.MoveTrap(axis.Id, axis.TrapPrm.Get(), 10, axisNowPos + Convert.ToInt32(runInterval * direction), true);
             }
-
+            MotorsControl.stopCompare();
+            if (darkStepViewer1.CurrentStep == 6) { dlvwProgress.SetStartNum(3); }
+            MotorsControl.startCompare();
+            MotorsControl.stopCompare();
         }
         /// <summary>
         /// 运动控制停止运动
@@ -369,6 +376,7 @@ namespace WaferAoi
         /// <param name="e"></param>
         private void Button_MouseDown(object sender, MouseEventArgs e)
         {
+            if(darkStepViewer1.CurrentStep == 6) { dlvwProgress.SetStartNum(2); }
             mVCameraHelper.ThreadPoolEnable = false;
             MotorsControl.setCompareMode(ax.Id, ay.Id, new short[] { 1, 1 }, new short[] { 1, 1 }, 2, 2, 20);//(new short[] { 3, 4 }, new short[] { 1, 1 }, 2, 2, 1, 1, 2, 0, 100);
             MotorsControl.setCompareData_Pso(20); // 等差模式 
@@ -518,11 +526,9 @@ namespace WaferAoi
                             double tempScore = Utils.CalIntensity(imgArg.ImageHobject, 0.5);
                             if (bestZScore < tempScore)
                             {
-#if DEBUG
                                 bestZScore = tempScore;
                                 bestZPulse = isCo ? imgArg.ZPulse : focusPos[id];
                                 Debug.WriteLine("最优高度: " + bestZPulse + " 最高分数: " + bestZScore);
-#endif
                                 this.BeginInvoke(new Action<int>(v =>
                                 {
                                     //tbBsetZPulse.Text = v.ToString();
@@ -762,8 +768,13 @@ namespace WaferAoi
                         {
                             // 将object转成数组
                             ImageArgs imgArg = (ImageArgs)obs;
-                            if (hDevProgramHelper.CheckEdgeRatio(imgArg.ImageHobject, out HTuple ratio, 20, 45, 70))
+                            if (hDevProgramHelper.CheckEdgeRatio(imgArg.ImageHobject, out HTuple ratio, 20, 10, 90))
                             {
+                                ilRight.hImage = imgArg.ImageHobject;
+                                ilRight.XPulse = imgArg.XPulse;
+                                ilRight.YPulse = imgArg.YPulse;
+                                ilRight.AllCols = imgArg.Width;
+                                ilRight.AllRows = imgArg.Height;
                                 //alalreadyEdge = true;
                                 //MotorsControl.stopCompare();
                                 //MotorsControl.StopAxis(ax.Id, 1);
@@ -777,12 +788,10 @@ namespace WaferAoi
                                 if (imgArg.ImageHobject.IsInitialized()) HOperatorSet.WriteImage(imgArg.ImageHobject, "bmp", 0, @"D:\右.bmp");
                                 JsonHelper.Serialize(pf, "D:/右.json");
                                 Debug.WriteLine("找到右边沿，占比: " + ratio);
-                                this.BeginInvoke(new Action<PointInfo>((p) =>
-                                {
-                                    ilRight.XPulse = p.X;
-                                    ilRight.YPulse = p.Y;
-                                    ilRight.ShowImg(e);
-                                }), pf);
+                                //this.BeginInvoke(new Action<PointInfo>((p) =>
+                                //{
+                                //    ilRight.ShowImg(e);
+                                //}), pf);
                             }
                             else
                             {
@@ -797,8 +806,13 @@ namespace WaferAoi
                             // 将object转成数组
                             ImageArgs imgArg = (ImageArgs)obs;
                             //if (imgArg.ImageHobject.IsInitialized()) HOperatorSet.WriteImage(imgArg.ImageHobject, "bmp", 0, @"D:\上边沿\" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".bmp");
-                            if (hDevProgramHelper.CheckEdgeRatio(imgArg.ImageHobject, out HTuple ratio, 20, 45, 70))
+                            if (hDevProgramHelper.CheckEdgeRatio(imgArg.ImageHobject, out HTuple ratio, 20, 10, 90))
                             {
+                                ilTop.hImage = imgArg.ImageHobject;
+                                ilTop.XPulse = imgArg.XPulse;
+                                ilTop.YPulse = imgArg.YPulse;
+                                ilTop.AllCols = imgArg.Width;
+                                ilTop.AllRows = imgArg.Height;
                                 //alalreadyEdge = true;
                                 //MotorsControl.stopCompare();
                                 //MotorsControl.StopAxis(ax.Id, 1);
@@ -812,12 +826,10 @@ namespace WaferAoi
                                 if (imgArg.ImageHobject.IsInitialized()) HOperatorSet.WriteImage(imgArg.ImageHobject, "bmp", 0, @"D:\上.bmp");
                                 JsonHelper.Serialize(pf, "D:/上.json");
                                 Debug.WriteLine("找到上边沿，占比: " + ratio);
-                                this.BeginInvoke(new Action<PointInfo>((p) =>
-                                {
-                                    ilTop.XPulse = p.X;
-                                    ilTop.YPulse = p.Y;
-                                    ilTop.ShowImg(e);
-                                }), pf); 
+                                //this.BeginInvoke(new Action<PointInfo>((p) =>
+                                //{
+                                //    ilTop.ShowImg(e);
+                                //}), pf); 
                             }
                             else
                             {
@@ -832,8 +844,13 @@ namespace WaferAoi
                             // 将object转成数组
                             ImageArgs imgArg = (ImageArgs)obs;
                             //if (imgArg.ImageHobject.IsInitialized()) HOperatorSet.WriteImage(imgArg.ImageHobject, "bmp", 0, @"D:\下边沿\" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".bmp");
-                            if (hDevProgramHelper.CheckEdgeRatio(imgArg.ImageHobject, out HTuple ratio, 20, 45, 70))
+                            if (hDevProgramHelper.CheckEdgeRatio(imgArg.ImageHobject, out HTuple ratio, 20, 10, 90))
                             {
+                                ilBottom.hImage = imgArg.ImageHobject;
+                                ilBottom.XPulse = imgArg.XPulse;
+                                ilBottom.YPulse = imgArg.YPulse;
+                                ilBottom.AllCols = imgArg.Width;
+                                ilBottom.AllRows = imgArg.Height;
                                 //alalreadyEdge = true;
                                 //MotorsControl.stopCompare();
                                 //MotorsControl.StopAxis(ax.Id, 1);
@@ -847,12 +864,10 @@ namespace WaferAoi
                                 if (imgArg.ImageHobject.IsInitialized()) HOperatorSet.WriteImage(imgArg.ImageHobject, "bmp", 0, @"D:\下.bmp");
                                 JsonHelper.Serialize(pf, "D:/下.json");
                                 Debug.WriteLine("找到下边沿，占比: " + ratio);
-                                this.BeginInvoke(new Action<PointInfo>((p) =>
-                                {
-                                    ilBottom.XPulse = p.X;
-                                    ilBottom.YPulse = p.Y;
-                                    ilBottom.ShowImg(e);
-                                }), pf);
+                                //this.BeginInvoke(new Action<PointInfo>((p) =>
+                                //{
+                                //    ilBottom.ShowImg(e);
+                                //}), pf);
                             }
                             else
                             {
@@ -862,6 +877,7 @@ namespace WaferAoi
                         }, e));
                         break;
                     default:
+                        HOperatorSet.WriteImage(e.ImageHobject, "bmp", 0, "D:/final.bmp");
                         ilStep3Main.ShowImg(e);
                         break;
                 }
@@ -890,17 +906,49 @@ namespace WaferAoi
             }));
             this.BeginInvoke(new Action(() => { dlvwProgress.Next(); }));
 
-            await SearchAsync(pointInfos.Find(i => i.Remark == "右边沿搜索中心点"), int.Parse(tbRangeRight.Text));
+            //await SearchAsync(pointInfos.Find(i => i.Remark == "右边沿搜索中心点"), int.Parse(tbRangeRight.Text));
+            //Task.WaitAll(tasklst.ToArray());
+            //                case "移动到右中心":
+            //        _ = TestMove(double.Parse(tb1x.Text), double.Parse(tb1y.Text));
+            //break;
+            //    case "移动到上中心":
+            //        _ = TestMove(double.Parse(tb2x.Text), double.Parse(tb2y.Text));
+            //break;
+            //    case "移动到下中心":
+            //        _ = TestMove(double.Parse(tb3x.Text), double.Parse(tb3y.Text));
+            //break;
+            PointInfo p= pointInfos.Find(i => i.Remark == "右边沿搜索中心点");
+            await TestMove(p.X, p.Y);
+            tasklst.Add(fac.StartNew(() =>
+            {
+                Thread.Sleep(500);
+                 return false;
+            }));
             Task.WaitAll(tasklst.ToArray());
             if (!FindEdgeAndShow("edgepoint_right", ilRight, hswcRight)) { DarkMessageBox.ShowError("未找到边沿"); return; };
 
             alalreadyEdge = false;
-            await SearchAsync(pointInfos.Find(i => i.Remark == "上边沿搜索中心点"), int.Parse(tbRangeTop.Text));
+            //await SearchAsync(pointInfos.Find(i => i.Remark == "上边沿搜索中心点"), int.Parse(tbRangeTop.Text));
+            p = pointInfos.Find(i => i.Remark == "上边沿搜索中心点");
+            await TestMove(p.X, p.Y);
+            tasklst.Add(fac.StartNew(() =>
+            {
+                Thread.Sleep(500);
+                return false;
+            }));
             Task.WaitAll(tasklst.ToArray());
             if (!FindEdgeAndShow("edgepoint", ilTop, hswcTop)) { DarkMessageBox.ShowError("未找到边沿"); return; };
 
             alalreadyEdge = false;
-            await SearchAsync(pointInfos.Find(i => i.Remark == "下边沿搜索中心点"), int.Parse(tbRangeBottom.Text));
+            //await SearchAsync(pointInfos.Find(i => i.Remark == "下边沿搜索中心点"), int.Parse(tbRangeBottom.Text));
+
+            p = pointInfos.Find(i => i.Remark == "下边沿搜索中心点");
+            await TestMove(p.X, p.Y);
+            tasklst.Add(fac.StartNew(() =>
+            {
+                Thread.Sleep(500);
+                return false;
+            }));
             Task.WaitAll(tasklst.ToArray());
             if (!FindEdgeAndShow("edgepoint_down", ilBottom, hswcBottom)) { DarkMessageBox.ShowError("未找到边沿"); return; };
 
@@ -937,6 +985,7 @@ namespace WaferAoi
             HOperatorSet.GenEmptyObj(out HObject obj);
             try
             {
+                //HOperatorSet.WriteImage(il.hImage, "bmp", 0, "D:/aaaaaaaaaaaaaaaaaaaa.bmp");
                 hDevProgramHelper.FindEdge(funcName, il.hImage, out obj, out HTuple pointX, out HTuple pointY, il.XPulse, il.YPulse, il.AllCols * config.ActualPixelLenght / programConfig.GetLenseMag(), il.AllRows * config.ActualPixelLenght / programConfig.GetLenseMag(), programConfig.GetLenseMag(), config.ActualPixelLenght, 0.4);
                 HOperatorSet.DispObj(obj, hswc.HalconWindow);
                 if (obj.IsInitialized())
@@ -944,7 +993,13 @@ namespace WaferAoi
                
                     il.Point_X = pointX;
                     il.Point_Y = pointY;
-                    this.BeginInvoke(new Action(() => { dlvwProgress.Next(); }));
+                    JsonHelper.Serialize(new PointInfo() { X = Convert.ToInt32(il.Point_X.D), Y = Convert.ToInt32(il.Point_Y.D) }, "D:/"+funcName+".json");
+                    this.BeginInvoke(new Action<HObject, HObject>((a, b) => {
+                   
+                        dlvwProgress.Next();
+                        il.ShowImg(a, b, false);
+                        b.Dispose();
+                    }), il.hImage, obj);
                     return true;
                 }
                 else
@@ -962,7 +1017,7 @@ namespace WaferAoi
             catch (Exception er) { return false; }
             finally
             {
-                obj.Dispose();
+         
             }
 
 
@@ -1069,12 +1124,22 @@ namespace WaferAoi
                 case "移动到下边沿":
                     _ = TestMove(double.Parse(tbWaferCenterX.Text), double.Parse(tbWaferCenterY.Text) - double.Parse(tbWaferRadius.Text));
                     break;
+                case "移动到右中心":
+                    _ = TestMove(double.Parse(tb1x.Text), double.Parse(tb1y.Text));
+                    break;
+                case "移动到上中心":
+                    _ = TestMove(double.Parse(tb2x.Text), double.Parse(tb2y.Text));
+                    break;
+                case "移动到下中心":
+                    _ = TestMove(double.Parse(tb3x.Text), double.Parse(tb3y.Text));
+                    break;
             }
         }
 
         #endregion
 
         #region 第四步 扫描芯片
+        private bool scanIsOneFoc = true;
 
         private PointInfo step4TopLeftPoint, step4BottomRightPoint;
         private Point step4TopLeftPointPixel, step4BottomRightPointPixel;
@@ -1083,9 +1148,11 @@ namespace WaferAoi
             await Task.Run(() =>
             {
                 MotorsControl.setCompareMode(ax.Id, ay.Id, new short[] { 1, 1 }, new short[] { 1, 1 }, 2, 2);//(new short[] { 3, 4 }, new short[] { 1, 1 }, 2, 2, 1, 1, 2, 0, 100);
-                MotorsControl.setCompareData_Pso(800); // 等差模式 
+                MotorsControl.setCompareData_Pso(100); // 等差模式 
                 MotorsControl.startCompare();
                 MotorsControl.MovePoint2D(100, programConfig.WaferCenter.X, programConfig.WaferCenter.Y, ax, ay, true);
+                MotorsControl.stopCompare();
+                MotorsControl.startCompare();
                 MotorsControl.stopCompare();
             });
         }
@@ -1193,12 +1260,14 @@ namespace WaferAoi
                 MotorsControl.setCompareData_Pso(flyInterval); // 等差模式
                 if (flyLines == 0 && width / flyInterval == 0) //如果X和Y除以间距都是0的话那就在中心拍一张
                 {
+                    scanIsOneFoc = true;
                     MotorsControl.MovePoint2D(50, startPoint.X + width /2, startPoint.Y - height /2, ax, ay, true);
                     MotorsControl.startCompare();
                     MotorsControl.stopCompare();
                 }
                 else // 这里飞拍还要判断下XY方向
                 {
+                    scanIsOneFoc = false;
                     #region 这里是个小范围的飞拍
                     for (int i = 0; i < flyLines; i++)
                     {
@@ -1234,10 +1303,10 @@ namespace WaferAoi
         {
             //需要先判断fov视野是否能够拍全， 默认1倍镜是5毫米吧， 5000微米
             await Step4SearchAsync(step4TopLeftPoint, step4BottomRightPoint, 5000);
-            this.BeginInvoke(new Action(() =>
-            {
-                dlvwProgress.Next();
-            }));
+            //this.BeginInvoke(new Action(() =>
+            //{
+            //    dlvwProgress.Next();
+            //}));
         }
 
         private void MVCameraHelper_CameraImageCallBack_Step4(object sender, ImageArgs e)
@@ -1261,8 +1330,27 @@ namespace WaferAoi
                         //HOperatorSet.WriteImage(e.ImageHobject, "bmp", 0, "D;/4.bmp");
                         ilChipModel.ShowImg(e); // 简单模拟是拼图的结果
                         break;
+
+                    case "制作芯片模板":
+                        dlvwProgress.Next();
+                        if (scanIsOneFoc)
+                        {
+                            programConfig.DieWidth = step4BottomRightPoint.X - step4TopLeftPoint.X;
+                            programConfig.DieHeight = step4TopLeftPoint.Y - step4BottomRightPoint.Y;
+                            JsonHelper.Serialize(programConfig, programConfig.GetThisFileName());
+                            HOperatorSet.WriteImage(ilChipModel.hImage, "bmp", 0, @"D:\QTWaferProgram\fofofofofof\main.bmp");
+                            
+                            DialogCreateModel dialogCreateModel = new DialogCreateModel(ilChipModel.hImage, programConfig, step4TopLeftPointPixel, step4BottomRightPointPixel);
+                            dialogCreateModel.ShowDialog();
+                            if (dialogCreateModel.DialogResult == DialogResult.OK)
+                            {
+                                dlvwProgress.Next();
+                            }
+                        }
+                        break;
                     default:
                         ilChipModel.ShowImg(e);
+                        ilChipModel.DrawCross(e.Height / 2, e.Width / 2);
                         break;
                 }
             }
@@ -1294,16 +1382,9 @@ namespace WaferAoi
 
                     //break;
                 case "制作芯片模板":
-                    dlvwProgress.Next();
-                    if (dlvwProgress.NowId() != 3) { DarkMessageBox.ShowError("请先按流程操作"); return; }
-                    programConfig.DieWidth = step4BottomRightPoint.X - step4TopLeftPoint.X;
-                    programConfig.DieHeight = step4TopLeftPoint.Y - step4BottomRightPoint.Y;
-                    DialogCreateModel dialogCreateModel = new DialogCreateModel(ilChipModel.hImage, programConfig, step4TopLeftPointPixel, step4BottomRightPointPixel);
-                    dialogCreateModel.ShowDialog();
-                    if (dialogCreateModel.DialogResult == DialogResult.OK)
-                    {
-                        dlvwProgress.Next();
-                    }
+                    dlvwProgress.SetStartNum(3);
+                    //if (dlvwProgress.NowId() != 3) { DarkMessageBox.ShowError("请先按流程操作"); return; }
+                    _ = ScanOneChipAsync();
                     break;
                 case "框选芯片区域":
                     dlvwProgress.SetStartNum(3);
@@ -1315,14 +1396,14 @@ namespace WaferAoi
                     ilChipModel.DrawCross(step4BottomRightPointPixel.Y, step4BottomRightPointPixel.X);
                     break;
                 case "移动到左上角点":
-                    MotorsControl.MovePoint2D(20, Convert.ToInt32(tbStep4TopLeftX.Text), Convert.ToInt32(tbStep4TopLeftY.Text), ax, ay);
+                    MotorsControl.MovePoint2D(20, Convert.ToInt32(tbStep4TopLeftX.Text), Convert.ToInt32(tbStep4TopLeftY.Text), ax, ay, true);
                     MotorsControl.setCompareMode(ax.Id, ay.Id, new short[] { 1, 1 }, new short[] { 1, 1 }, 2, 2, 20);//(new short[] { 3, 4 }, new short[] { 1, 1 }, 2, 2, 1, 1, 2, 0, 100);
                     MotorsControl.setCompareData_Pso(20); // 等差模式 
                     MotorsControl.startCompare();
                     MotorsControl.stopCompare();
                     break;
                 case "移动到右下角点":
-                    MotorsControl.MovePoint2D(20, Convert.ToInt32(tbStep4BottomRightX.Text), Convert.ToInt32(tbStep4BottomRightY.Text), ax, ay);
+                    MotorsControl.MovePoint2D(20, Convert.ToInt32(tbStep4BottomRightX.Text), Convert.ToInt32(tbStep4BottomRightY.Text), ax, ay, true);
                     MotorsControl.setCompareMode(ax.Id, ay.Id, new short[] { 1, 1 }, new short[] { 1, 1 }, 2, 2, 20);//(new short[] { 3, 4 }, new short[] { 1, 1 }, 2, 2, 1, 1, 2, 0, 100);
                     MotorsControl.setCompareData_Pso(20); // 等差模式 
                     MotorsControl.startCompare();
@@ -1361,9 +1442,11 @@ namespace WaferAoi
             await Task.Run(() =>
             {
                 MotorsControl.setCompareMode(ax.Id, ay.Id, new short[] { 1, 1 }, new short[] { 1, 1 }, 2, 2);//(new short[] { 3, 4 }, new short[] { 1, 1 }, 2, 2, 1, 1, 2, 0, 100);
-                MotorsControl.setCompareData_Pso(800); // 等差模式 
+                MotorsControl.setCompareData_Pso(100); // 等差模式 
                 MotorsControl.startCompare();
                 MotorsControl.MovePoint2D(100, programConfig.WaferCenter.X, programConfig.WaferCenter.Y, ax, ay, true);
+                MotorsControl.stopCompare();
+                MotorsControl.startCompare();
                 MotorsControl.stopCompare();
             });
         }
@@ -1588,33 +1671,25 @@ namespace WaferAoi
             this.BeginInvoke(new Action(() =>
             {
                 dlvwProgress.Next();
-            }));
-            // 生成图谱
-            await Task.Run(() => {
-
-                Die[,] data = new Die[63, 63];
-                
-                for (int x = 0; x < 63; x++)
+                Die[,] data = new Die[65, 65];
+                for (int x = 0; x < 65; x++)
                 {
-                    for (int y = 0; y < 63; y++)
+                    for (int y = 0; y < 65; y++)
                     {
                         //if (y > 18 && y < 21 && x >= ss && x < 41 - ss)
                         //{
                         //    data[x, y] = new Die() { ColorIndex = 1, XIndex = x, YIndex = y, XPluse = 0, YPluse = 0 };// 
                         //}
                         //else
-                            data[x, y] = new Die() { ColorIndex = 0, XIndex = x, YIndex = y, XPluse = 0, YPluse = 0 };// 
+                        data[x, y] = new Die() { ColorIndex = 0, XIndex = x, YIndex = y, XPluse = 0, YPluse = 0 };// 
                     }
                 }
                 JsonHelper.Serialize(data, programConfig.GetMappingFileName());
-                this.BeginInvoke(new Action(() =>
-                {
-                    step5Wafermap.Colors = new Color[] { Color.Blue, Color.White };
-                    step5Wafermap.Dataset = data;
-                    step5Wafermap.Notchlocation = 90;
-                    dlvwProgress.Next();
-                }));
-            });
+                step5Wafermap.Dataset = data;
+            }));
+
+
+
         }
 
 
@@ -1707,9 +1782,9 @@ namespace WaferAoi
                 while (yInterval > bottomRightPoint.Y && !stop)
                 {
                     if (goBack)
-                        MotorsControl.MoveTrap(ax.Id, ax.TrapPrm.Get(), 50, topLeftPoint.X, true);
+                        MotorsControl.MoveTrap(ax.Id, ax.TrapPrm.Get(), 30, topLeftPoint.X, true);
                     else
-                        MotorsControl.MoveTrap(ax.Id, ax.TrapPrm.Get(), 50, bottomRightPoint.X, true);
+                        MotorsControl.MoveTrap(ax.Id, ax.TrapPrm.Get(), 30, bottomRightPoint.X, true);
                     yInterval -= Convert.ToInt32(programConfig.CutRoadWidth / 2 + programConfig.DieHeight);
                     MotorsControl.MoveTrap(ay.Id, ay.TrapPrm.Get(), 20, yInterval, true);
                     goBack = !goBack;
@@ -1902,7 +1977,7 @@ namespace WaferAoi
                                 sw.Stop();
                                 sw.Restart();
                                 Debug.WriteLine(num + "ReduceDomain-耗时(ms):" + sw.ElapsedMilliseconds);
-                                HOperatorSet.WriteImage(ress, "jpg", 0, @"D:\芯片HOBJECT_modelres\" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".jpg");
+                                //HOperatorSet.WriteImage(ress, "jpg", 0, @"D:\芯片HOBJECT_modelres\" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".jpg");
                                 sw.Restart();
                                 Debug.WriteLine(num + "WriteImage-耗时(ms):" + sw.ElapsedMilliseconds);
                                 ress.Dispose();
@@ -2024,7 +2099,17 @@ namespace WaferAoi
         #region 第六步 训练程式
         private DialogWait dialogWait;
         private int trainNum = 0;
-        private HTuple VariationModelID;
+        private HTuple VariationModelID, ChipModelId;
+
+        private void pgdStep6Par_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        {
+            HOperatorSet.PrepareVariationModel(VariationModelID, programConfig.ChipDetectPar.AbsThreshold, programConfig.ChipDetectPar.VarThreshold);
+            MotorsControl.startCompare();
+            MotorsControl.stopCompare();
+            JsonHelper.Serialize(programConfig, programConfig.GetThisFileName());
+        }
+
+        private HObject detectRegion;
         private void MVCameraHelper_CameraImageCallBack_Step6(object sender, ImageArgs e)
         {
             try
@@ -2034,8 +2119,12 @@ namespace WaferAoi
 #endif
                 switch (dlvwProgress.NowItem().Text)
                 {
+                    default:
+                        ilStep6Test.ShowImg(e);
+                        break;
                     case "开始训练":
                         trainNum--;
+                        HOperatorSet.ReadRegion(out detectRegion, programConfig.GetChipModelRegionFileName());
                         try
                         {
                             HOperatorSet.Rgb1ToGray(e.ImageHobject, out HObject grayImg);
@@ -2060,11 +2149,67 @@ namespace WaferAoi
                         //rgb1_to_gray(ImageStd, ImageStd)
                         //train_variation_model(ImageStd, VariationModelID)
                         break;
+                    case "测试":
+                        Stopwatch sw = new Stopwatch();
+                        sw.Restart();
+                        HOperatorSet.Rgb1ToGray(e.ImageHobject, out HObject grayImage);
+                        Debug.WriteLine("灰度图-耗时(ms):" + sw.ElapsedMilliseconds);
+                        sw.Restart();
+                        HOperatorSet.FindShapeModel(grayImage, ChipModelId, programConfig.ChipModelPar.AngleStart, programConfig.ChipModelPar.AngleExtent, programConfig.ChipModelPar.MinScore, programConfig.ChipModelPar.NumMatches, 0.5, "least_squares", programConfig.ChipModelPar.NumLevels, 0.9, out HTuple Row, out HTuple Col, out HTuple Angle1, out HTuple Score1);
+                        Debug.WriteLine("FindShapeModel-耗时(ms):" + sw.ElapsedMilliseconds);
+                        if (Score1.Length > 0)
+                        {
+                            sw.Restart();
+                            ImageTrans(grayImage, out HObject fu, Row, Col, Angle1, programConfig.ChipModelPar.ShapeModelCenterRow, programConfig.ChipModelPar.ShapeModelCenterCol, 0, out HTuple HomMat2D);
+                            Debug.WriteLine("ImageTrans-耗时(ms):" + sw.ElapsedMilliseconds);
+                            HOperatorSet.CropRectangle1(fu, out HObject detectImg, programConfig.ChipModelPar.DetectRow1, programConfig.ChipModelPar.DetectCol1, programConfig.ChipModelPar.DetectRow2, programConfig.ChipModelPar.DetectCol2);
+
+
+                            //HOperatorSet.WriteImage(trainImg, "jpg", 0, "D:/fu.jpg");
+                            try
+                            {//compare_variation_model
+                                sw.Restart();
+                                HOperatorSet.CompareVariationModel(detectImg, out HObject region, VariationModelID);
+                                Debug.WriteLine("CompareVariationModel-耗时(ms):" + sw.ElapsedMilliseconds);
+                                sw.Restart();
+                                HOperatorSet.AffineTransImage(e.ImageHobject, out HObject finalimg, HomMat2D, "constant", "false");
+                                Debug.WriteLine("AffineTransImage-耗时(ms):" + sw.ElapsedMilliseconds);
+                                sw.Restart();
+                                HOperatorSet.CropRectangle1(finalimg, out HObject finalCropimg, programConfig.ChipModelPar.DetectRow1, programConfig.ChipModelPar.DetectCol1, programConfig.ChipModelPar.DetectRow2, programConfig.ChipModelPar.DetectCol2);
+                                Debug.WriteLine("CropRectangle1-耗时(ms):" + sw.ElapsedMilliseconds);
+                                //                                connection(Region, ConnectedRegions)
+                                //select_shape(ConnectedRegions, SelectedRegions, 'area', 'and', area_min, area_max)
+
+                                HOperatorSet.Connection(region, out HObject ConnectedRegions);
+                                HOperatorSet.SelectShape(ConnectedRegions, out HObject selectRegions, "area", "and", programConfig.ChipDetectPar.AreaMin, programConfig.ChipDetectPar.AreaMax);
+                                ilStep6Test.ShowImg(finalCropimg, selectRegions);
+                                finalimg.Dispose();
+                            }
+                            catch (HalconException er) { ilStep6Test.ShowImg(e); }
+                            fu.Dispose();
+                            detectImg.Dispose();
+
+                            grayImage.Dispose();
+                        }
+                        else
+                        {
+                            ilStep6Test.ShowImg(e);
+                        }
+                        break;
                 }
             }
             catch (Exception er) { }
         }
 
+        private void HswcStep6Test_HMouseMove(object sender, HMouseEventArgs e)
+        {
+            try
+            {
+                ilStep6Test.X = Convert.ToInt32(e.X);
+                ilStep6Test.Y = Convert.ToInt32(e.Y);
+            }
+            catch (Exception er) { }
+        }
         private void step6Wafermap_OnDieClick(object sender, Die e)
         {
             e.ColorIndex = 1;
@@ -2077,32 +2222,62 @@ namespace WaferAoi
             string type = btn.Tag.ToString();
             switch (type)
             {
+                case "打开测试":
+                    dlvwProgress.SetStartNum(3);
+                    dlbStep6Tips.Text = "点击单个芯片移动来测试结果";
+                    if (programConfig.ChipDetectPar == null)
+                    {
+                        programConfig.ChipDetectPar = new ChipDetect { AbsThreshold = 20, VarThreshold = 2, AreaMin = 10, AreaMax = 999999 };
+                    }
+                    if (ChipModelId == null) HOperatorSet.ReadShapeModel(programConfig.GetChipModelFileName(), out ChipModelId);
+                    HOperatorSet.ReadVariationModel(programConfig.GetChipVariationModelFileName(), out VariationModelID);
+                    HOperatorSet.PrepareVariationModel(VariationModelID, programConfig.ChipDetectPar.AbsThreshold, programConfig.ChipDetectPar.VarThreshold);
+                    pgdStep6Par.SelectedObject = programConfig.ChipDetectPar;
+                    dspStep6Test.Visible = true;
+                    break;
                 case "重新选择":
+                    dlbStep6Tips.Text = "请尽可能的分散选择需要训练的芯片";
+                    dspStep6Test.Visible = false;
                     dlvwProgress.SetStartNum(0);
                     trainNum = 0;
                     Die[,] data = JsonHelper.DeserializeByFile<Die[,]>(programConfig.GetMappingFileName());
                     step6Wafermap.Dataset = data;
                     break;
                 case "开始训练":
+                    if (programConfig.ChipDetectPar == null)
+                    {
+                        programConfig.ChipDetectPar = new ChipDetect { AbsThreshold = 20, VarThreshold = 2, AreaMin = 10, AreaMax = 999999 };
+                    }
+                    dlbStep6Tips.Text = "请尽可能的分散选择需要训练的芯片";
+                    dspStep6Test.Visible = false;
                     dlvwProgress.SetStartNum(1);
                     dialogWait = new DialogWait("正在训练中......");
                     dialogWait.Show();
                     HOperatorSet.ReadVariationModel(programConfig.GetChipVariationModelFileName(), out VariationModelID);
-                    string[] files = Directory.GetFiles(programConfig.ModelSavePath + "/train");
+                    HOperatorSet.ReadShapeModel(programConfig.GetChipModelFileName(), out ChipModelId);
+                    string[] files = Directory.GetFiles("D:/train");
                     foreach (var f in files)
                     {
                         trainNum--;
                         HOperatorSet.ReadImage(out HObject img, f);
-                        HOperatorSet.Rgb1ToGray(img, out HObject grayImg);
-                        img.Dispose();
-                        HOperatorSet.TrainVariationModel(grayImg, VariationModelID);
-                        if (trainNum == 0)
-                        {
+                        HOperatorSet.Rgb1ToGray(img, out HObject grayImage);
+                        //img.Dispose();
 
+                        HOperatorSet.FindShapeModel(grayImage, ChipModelId, programConfig.ChipModelPar.AngleStart, programConfig.ChipModelPar.AngleExtent, programConfig.ChipModelPar.MinScore, programConfig.ChipModelPar.NumMatches, 0.5, "least_squares", programConfig.ChipModelPar.NumLevels, 0.9, out HTuple Row, out HTuple Col, out HTuple Angle1, out HTuple Score1);
+                        if (Score1.Length > 0)
+                        {
+                            ImageTrans(grayImage, out HObject fu, Row, Col, Angle1, programConfig.ChipModelPar.ShapeModelCenterRow, programConfig.ChipModelPar.ShapeModelCenterCol, 0, out HTuple aaa);
+                            HOperatorSet.CropRectangle1(fu, out HObject trainImg, programConfig.ChipModelPar.DetectRow1, programConfig.ChipModelPar.DetectCol1, programConfig.ChipModelPar.DetectRow2, programConfig.ChipModelPar.DetectCol2);
+                            try
+                            {
+                                HOperatorSet.TrainVariationModel(trainImg, VariationModelID);
+                            }
+                            catch (HalconException er) { DarkMessageBox.ShowError("训练失败"); }
                         }
+                        if (trainNum == 0) { }
                     }
-                    //write_variation_model
                     HOperatorSet.WriteVariationModel(VariationModelID, programConfig.GetChipVariationModelFileName());
+                    HOperatorSet.PrepareVariationModel(VariationModelID, programConfig.ChipDetectPar.AbsThreshold, programConfig.ChipDetectPar.VarThreshold);
                     if (dialogWait != null) dialogWait.Close();
                     JsonHelper.Serialize(programConfig, programConfig.GetThisFileName());
                     dlvwProgress.Next();
@@ -2110,6 +2285,31 @@ namespace WaferAoi
                     //read_variation_model('./ChipVariationModel', VariationModelID)
                     break;
             }
+        }
+
+        /*
+            *矫正
+            Angle5:=0
+            *输入
+            *GrayImage1 为采集的图像灰度图
+            *Row Column Angle模板匹配的结果
+            *Row5 Column5 Angle5 为原始模板的中心坐标，Angle5这里一般为0
+
+            *输出
+            *ImageAffineTrans 为输出的图像，可以跟原模板图像对比一下，感受一下
+            *HoMat2D 这里为转换矩阵*/
+        private void ImageTrans(HObject GrayImage1, out HObject ImageAffineTrans, HTuple Row, HTuple Column, HTuple Angle, HTuple Row5, HTuple Column5, HTuple Angle5, out HTuple HomMat2D)
+        {
+            HOperatorSet.GenEmptyObj(out ImageAffineTrans);
+            HomMat2D = new HTuple();
+            try
+            {
+                //vector_angle_to_rigid(Row, Column, Angle, Row5, Column5, Angle5, HomMat2D)
+                HOperatorSet.VectorAngleToRigid(Row, Column, Angle, Row5, Column5, Angle5, out HomMat2D);
+                //affine_trans_image(GrayImage1, ImageAffineTrans, HomMat2D, 'constant', 'false')
+                HOperatorSet.AffineTransImage(GrayImage1, out ImageAffineTrans, HomMat2D, "constant", "false");
+            }
+            catch (HalconException er) { }
         }
 
         #endregion
