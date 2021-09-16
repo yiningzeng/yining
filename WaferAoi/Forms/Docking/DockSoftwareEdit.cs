@@ -717,7 +717,7 @@ namespace WaferAoi
                 MotorsControl.MoveTrap(az.Id, az.TrapPrm.Get(), 10, upH, true);
                 focusPos.AddRange(MotorsControl.GetFlyPos(upH, downH, interval, -1));
                 MotorsControl.startCompare();
-                MotorsControl.MoveTrap(az.Id, az.TrapPrm.Get(), 1, downH, true);
+                MotorsControl.MoveTrap(az.Id, az.TrapPrm.Get(), 0.5, downH, true);
                 MotorsControl.stopCompare();
                 //MotorsControl.setCompareData_Pso(30); // 等差模式
                 //range = 150;

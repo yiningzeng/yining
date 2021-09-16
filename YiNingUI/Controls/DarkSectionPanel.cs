@@ -7,10 +7,25 @@ namespace YiNing.UI.Controls
 {
     public class DarkSectionPanel : Panel
     {
+        public enum MouseDirection
+        {
+            East,
+            West,
+            South,
+            North,
+            Southeast,
+            Southwest,
+            Northeast,
+            Northwest,
+            None
+        }
+        
         #region Field Region
         private Point startPoint;
         private bool _dragEnable = false;
         private string _sectionHeader;
+        private Size oldSize;
+        private MouseDirection direction;
         #endregion
 
         #region Property Region
@@ -105,35 +120,70 @@ namespace YiNing.UI.Controls
                 Controls[0].Focus();
             startPoint.X = e.X;
             startPoint.Y = e.Y;
+
+            if (e.Button == MouseButtons.Left)
+            {
+                oldSize = Size;
+            }
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
-            if (!_dragEnable) return;
-            var bgRect = new Rectangle(0, 0, ClientRectangle.Width, 25);
-            if (bgRect.Contains(new Point(e.X, e.Y)))
-            {
-                Cursor.Current = Cursors.NoMove2D;
-            }
-            else
-            {
-                Cursor.Current = Cursors.Default;
-            }
+            //if (!_dragEnable) return;
 
-            if (e.Button == MouseButtons.Left)
+            if (_dragEnable)
             {
-                Point mousePositon = Control.MousePosition;
-                mousePositon.Offset(-startPoint.X, -startPoint.Y);
-                Point point = Parent.PointToClient(mousePositon);
-                if (point.X < 0) point.X = 0;
-                if (point.Y < 0) point.Y = 0;
-                if (point.X + Width > Parent.Width) point.X = Parent.Width - Width;
-                if (point.Y + Height > Parent.Height) point.Y = Parent.Height - Height;
-                Location = point;
+                var bgRect = new Rectangle(0, 0, ClientRectangle.Width, 25);
+                if (bgRect.Contains(new Point(e.X, e.Y)))
+                {
+                    Cursor.Current = Cursors.NoMove2D;
+                }
+                else
+                {
+                    Cursor.Current = Cursors.Default;
+                }
+                if (e.Button == MouseButtons.Left)
+                {
+                    Point mousePositon = Control.MousePosition;
+                    mousePositon.Offset(-startPoint.X, -startPoint.Y);
+                    Point point = Parent.PointToClient(mousePositon);
+                    if (point.X < 0) point.X = 0;
+                    if (point.Y < 0) point.Y = 0;
+                    if (point.X + Width > Parent.Width) point.X = Parent.Width - Width;
+                    if (point.Y + Height > Parent.Height) point.Y = Parent.Height - Height;
+                    Location = point;
+                }
             }
+   
+
+            //if (e.Location.X >= Width - 5 && e.Location.Y >= Height - 5)
+            //{
+            //    Cursor = Cursors.SizeNWSE;
+            //    direction = MouseDirection.Southeast;
+            //}
+            //else if (e.Location.X <= 5 && e.Location.Y <= 5)
+            //{
+            //    Cursor = Cursors.SizeNWSE;
+            //    direction = MouseDirection.Northwest;
+            //}
+            //else if (e.Location.X <= 5 && e.Location.Y >= Height - 5)
+            //{
+            //    Cursor = Cursors.SizeNESW;
+            //    direction = MouseDirection.Southwest;
+            //}
+            //else if (e.Location.X >= Width - 5 && e.Location.Y <= 5)
+            //{
+            //    Cursor = Cursors.SizeNESW;
+            //    direction = MouseDirection.Northeast;
+            //}
+            //else
+            //{
+            //    Cursor = Cursors.Default;
+            //}
             Invalidate();
         }
+
 
         #endregion
 

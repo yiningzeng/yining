@@ -160,7 +160,7 @@ namespace WaferAoi
 #endif
                 fsmHelper.IssueCommand(FsmHelper.MacroAction.DO_INIT);
             }
-            var aa= GetLatestFiles(@"D:\WaferDataIn\mapping"); 
+            var aa = GetLatestFiles(@"D:\WaferDataIn\mapping");
         }
 
         private string[] GetLatestFiles(string Path)

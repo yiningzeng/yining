@@ -18,7 +18,7 @@ namespace WaferAoi
     {
         Die[,] data;
         List<Die> visDie;
-        string mapFilePath, visFilePath;
+        string mapFilePath = "", visFilePath ="";
         InterLayerDraw ilMain;
         public DialogDetectResult()
         {
@@ -39,24 +39,40 @@ namespace WaferAoi
             waferMap.OnDieClick += WaferMap_OnDieClick;
             waferMap.Colors =  new Color[] { Color.DimGray, Color.Blue, Color.Red };
 
+            if (mapFilePath == "") mapFilePath = @"D:\QTWaferProgram\test-final\mapping.zyn";
             data = JsonHelper.DeserializeByFile<Die[,]>(mapFilePath);
-            visDie = JsonHelper.DeserializeByFile<List<Die>>(visFilePath);
+
             waferMap.Dataset = data;
             waferMap.Notchlocation = 90;
             //wmap.MinimumSize = new Size(500, 500);
-            waferMap.Dock = DockStyle.Fill; 
-            foreach(var die in visDie)
+            waferMap.Dock = DockStyle.Fill;
+            if (visFilePath != "")
             {
-                waferMap.Dataset[die.XIndex, die.YIndex] = die;
+                visDie = JsonHelper.DeserializeByFile<List<Die>>(visFilePath);
+                foreach (var die in visDie)
+                {
+                    waferMap.Dataset[die.XIndex, die.YIndex] = die;
+                }
+                waferMap.ReFresh();
             }
-            waferMap.ReFresh();
+
         }
 
         private void WaferMap_OnDieClick(object sender, Die e)
         {
-            HOperatorSet.ReadImage(out HObject img, e.GetImagePath());
-            HOperatorSet.ReadRegion(out HObject region, e.GetHobjPath());
-            ilMain.ShowImg(img, region);
+            try
+            {
+                HOperatorSet.ReadImage(out HObject img, e.GetImagePath());
+                HOperatorSet.ReadRegion(out HObject region, e.GetHobjPath()+"");
+                ilMain.ShowImg(img, region);
+            }
+            catch(Exception er)
+            {
+                HOperatorSet.ReadImage(out HObject img, @"D:\QTWaferExport\2021-09-15\123\img\3-41.jpg");
+                HOperatorSet.ReadRegion(out HObject region, @"D:\QTWaferExport\2021-09-15\123\img\3-41.hobj");
+                ilMain.ShowImg(img, region);
+            }
+
             //e.
         }
     }

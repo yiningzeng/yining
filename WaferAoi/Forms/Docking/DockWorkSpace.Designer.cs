@@ -314,6 +314,7 @@
             this.darkButton5.Size = new System.Drawing.Size(75, 23);
             this.darkButton5.TabIndex = 28;
             this.darkButton5.Text = "darkButton5";
+            this.darkButton5.Visible = false;
             this.darkButton5.Click += new System.EventHandler(this.darkButton5_Click_1);
             // 
             // waferMap
@@ -598,7 +599,6 @@
             // 
             // timerDetect
             // 
-            this.timerDetect.Interval = 150;
             this.timerDetect.Tick += new System.EventHandler(this.timerDetect_Tick);
             // 
             // DockWorkSpace

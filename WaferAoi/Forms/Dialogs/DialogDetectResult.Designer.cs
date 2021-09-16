@@ -31,20 +31,20 @@ namespace WaferAoi
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DialogDetectResult));
             this.darkSectionPanel1 = new YiNing.UI.Controls.DarkSectionPanel();
+            this.darkSectionPanel3 = new YiNing.UI.Controls.DarkSectionPanel();
+            this.darkLabel6 = new YiNing.UI.Controls.DarkLabel();
+            this.darkLabel5 = new YiNing.UI.Controls.DarkLabel();
+            this.darkLabel4 = new YiNing.UI.Controls.DarkLabel();
+            this.darkLabel3 = new YiNing.UI.Controls.DarkLabel();
+            this.darkLabel2 = new YiNing.UI.Controls.DarkLabel();
+            this.darkLabel1 = new YiNing.UI.Controls.DarkLabel();
+            this.waferMap = new YiNing.WafermapDisplay.Wafermap();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.darkSectionPanel2 = new YiNing.UI.Controls.DarkSectionPanel();
             this.hswcMain = new HalconDotNet.HSmartWindowControl();
-            this.waferMap = new YiNing.WafermapDisplay.Wafermap();
-            this.darkSectionPanel3 = new YiNing.UI.Controls.DarkSectionPanel();
-            this.darkLabel1 = new YiNing.UI.Controls.DarkLabel();
-            this.darkLabel2 = new YiNing.UI.Controls.DarkLabel();
-            this.darkLabel3 = new YiNing.UI.Controls.DarkLabel();
-            this.darkLabel4 = new YiNing.UI.Controls.DarkLabel();
-            this.darkLabel5 = new YiNing.UI.Controls.DarkLabel();
-            this.darkLabel6 = new YiNing.UI.Controls.DarkLabel();
             this.darkSectionPanel1.SuspendLayout();
-            this.darkSectionPanel2.SuspendLayout();
             this.darkSectionPanel3.SuspendLayout();
+            this.darkSectionPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // darkSectionPanel1
@@ -58,41 +58,82 @@ namespace WaferAoi
             this.darkSectionPanel1.Size = new System.Drawing.Size(705, 798);
             this.darkSectionPanel1.TabIndex = 0;
             // 
-            // splitter1
+            // darkSectionPanel3
             // 
-            this.splitter1.Location = new System.Drawing.Point(705, 0);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(5, 798);
-            this.splitter1.TabIndex = 1;
-            this.splitter1.TabStop = false;
+            this.darkSectionPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.darkSectionPanel3.Controls.Add(this.darkLabel6);
+            this.darkSectionPanel3.Controls.Add(this.darkLabel5);
+            this.darkSectionPanel3.Controls.Add(this.darkLabel4);
+            this.darkSectionPanel3.Controls.Add(this.darkLabel3);
+            this.darkSectionPanel3.Controls.Add(this.darkLabel2);
+            this.darkSectionPanel3.Controls.Add(this.darkLabel1);
+            this.darkSectionPanel3.DragEnable = true;
+            this.darkSectionPanel3.ForeColor = System.Drawing.Color.Chocolate;
+            this.darkSectionPanel3.Location = new System.Drawing.Point(552, 41);
+            this.darkSectionPanel3.Name = "darkSectionPanel3";
+            this.darkSectionPanel3.SectionHeader = "统计";
+            this.darkSectionPanel3.Size = new System.Drawing.Size(136, 106);
+            this.darkSectionPanel3.TabIndex = 1;
             // 
-            // darkSectionPanel2
+            // darkLabel6
             // 
-            this.darkSectionPanel2.Controls.Add(this.hswcMain);
-            this.darkSectionPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.darkSectionPanel2.Location = new System.Drawing.Point(710, 0);
-            this.darkSectionPanel2.Name = "darkSectionPanel2";
-            this.darkSectionPanel2.SectionHeader = "检测结果";
-            this.darkSectionPanel2.Size = new System.Drawing.Size(548, 798);
-            this.darkSectionPanel2.TabIndex = 2;
+            this.darkLabel6.AutoSize = true;
+            this.darkLabel6.ForeColor = System.Drawing.Color.DarkGray;
+            this.darkLabel6.Location = new System.Drawing.Point(75, 86);
+            this.darkLabel6.Name = "darkLabel6";
+            this.darkLabel6.Size = new System.Drawing.Size(11, 12);
+            this.darkLabel6.TabIndex = 5;
+            this.darkLabel6.Text = "-";
             // 
-            // hswcMain
+            // darkLabel5
             // 
-            this.hswcMain.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.hswcMain.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.hswcMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hswcMain.HDoubleClickToFitContent = true;
-            this.hswcMain.HDrawingObjectsModifier = HalconDotNet.HSmartWindowControl.DrawingObjectsModifier.None;
-            this.hswcMain.HImagePart = new System.Drawing.Rectangle(0, 0, 640, 480);
-            this.hswcMain.HKeepAspectRatio = true;
-            this.hswcMain.HMoveContent = true;
-            this.hswcMain.HZoomContent = HalconDotNet.HSmartWindowControl.ZoomContent.WheelForwardZoomsIn;
-            this.hswcMain.Location = new System.Drawing.Point(1, 25);
-            this.hswcMain.Margin = new System.Windows.Forms.Padding(0);
-            this.hswcMain.Name = "hswcMain";
-            this.hswcMain.Size = new System.Drawing.Size(546, 772);
-            this.hswcMain.TabIndex = 0;
-            this.hswcMain.WindowSize = new System.Drawing.Size(546, 772);
+            this.darkLabel5.AutoSize = true;
+            this.darkLabel5.ForeColor = System.Drawing.Color.DarkGray;
+            this.darkLabel5.Location = new System.Drawing.Point(75, 63);
+            this.darkLabel5.Name = "darkLabel5";
+            this.darkLabel5.Size = new System.Drawing.Size(11, 12);
+            this.darkLabel5.TabIndex = 4;
+            this.darkLabel5.Text = "-";
+            // 
+            // darkLabel4
+            // 
+            this.darkLabel4.AutoSize = true;
+            this.darkLabel4.ForeColor = System.Drawing.Color.DarkGray;
+            this.darkLabel4.Location = new System.Drawing.Point(75, 38);
+            this.darkLabel4.Name = "darkLabel4";
+            this.darkLabel4.Size = new System.Drawing.Size(29, 12);
+            this.darkLabel4.TabIndex = 3;
+            this.darkLabel4.Text = "3844";
+            // 
+            // darkLabel3
+            // 
+            this.darkLabel3.AutoSize = true;
+            this.darkLabel3.ForeColor = System.Drawing.Color.DarkGray;
+            this.darkLabel3.Location = new System.Drawing.Point(13, 86);
+            this.darkLabel3.Name = "darkLabel3";
+            this.darkLabel3.Size = new System.Drawing.Size(65, 12);
+            this.darkLabel3.TabIndex = 2;
+            this.darkLabel3.Text = "缺陷个数：";
+            // 
+            // darkLabel2
+            // 
+            this.darkLabel2.AutoSize = true;
+            this.darkLabel2.ForeColor = System.Drawing.Color.DarkGray;
+            this.darkLabel2.Location = new System.Drawing.Point(13, 63);
+            this.darkLabel2.Name = "darkLabel2";
+            this.darkLabel2.Size = new System.Drawing.Size(65, 12);
+            this.darkLabel2.TabIndex = 1;
+            this.darkLabel2.Text = "良品个数：";
+            // 
+            // darkLabel1
+            // 
+            this.darkLabel1.AutoSize = true;
+            this.darkLabel1.ForeColor = System.Drawing.Color.DarkGray;
+            this.darkLabel1.Location = new System.Drawing.Point(13, 38);
+            this.darkLabel1.Name = "darkLabel1";
+            this.darkLabel1.Size = new System.Drawing.Size(65, 12);
+            this.darkLabel1.TabIndex = 0;
+            this.darkLabel1.Text = "芯片总数：";
             // 
             // waferMap
             // 
@@ -369,84 +410,44 @@ namespace WaferAoi
             this.waferMap.TooSmallString = "TOO SMALL";
             this.waferMap.TranslationX = 0;
             this.waferMap.TranslationY = 0;
+            this.waferMap.VisibleDatasetSavePath = "";
             this.waferMap.Zoom = 1F;
             // 
-            // darkSectionPanel3
+            // splitter1
             // 
-            this.darkSectionPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.darkSectionPanel3.Controls.Add(this.darkLabel6);
-            this.darkSectionPanel3.Controls.Add(this.darkLabel5);
-            this.darkSectionPanel3.Controls.Add(this.darkLabel4);
-            this.darkSectionPanel3.Controls.Add(this.darkLabel3);
-            this.darkSectionPanel3.Controls.Add(this.darkLabel2);
-            this.darkSectionPanel3.Controls.Add(this.darkLabel1);
-            this.darkSectionPanel3.DragEnable = true;
-            this.darkSectionPanel3.ForeColor = System.Drawing.Color.Chocolate;
-            this.darkSectionPanel3.Location = new System.Drawing.Point(552, 41);
-            this.darkSectionPanel3.Name = "darkSectionPanel3";
-            this.darkSectionPanel3.SectionHeader = "统计";
-            this.darkSectionPanel3.Size = new System.Drawing.Size(136, 106);
-            this.darkSectionPanel3.TabIndex = 1;
+            this.splitter1.Location = new System.Drawing.Point(705, 0);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(5, 798);
+            this.splitter1.TabIndex = 1;
+            this.splitter1.TabStop = false;
             // 
-            // darkLabel1
+            // darkSectionPanel2
             // 
-            this.darkLabel1.AutoSize = true;
-            this.darkLabel1.ForeColor = System.Drawing.Color.DarkGray;
-            this.darkLabel1.Location = new System.Drawing.Point(13, 38);
-            this.darkLabel1.Name = "darkLabel1";
-            this.darkLabel1.Size = new System.Drawing.Size(65, 12);
-            this.darkLabel1.TabIndex = 0;
-            this.darkLabel1.Text = "芯片总数：";
+            this.darkSectionPanel2.Controls.Add(this.hswcMain);
+            this.darkSectionPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.darkSectionPanel2.Location = new System.Drawing.Point(710, 0);
+            this.darkSectionPanel2.Name = "darkSectionPanel2";
+            this.darkSectionPanel2.SectionHeader = "检测结果";
+            this.darkSectionPanel2.Size = new System.Drawing.Size(548, 798);
+            this.darkSectionPanel2.TabIndex = 2;
             // 
-            // darkLabel2
+            // hswcMain
             // 
-            this.darkLabel2.AutoSize = true;
-            this.darkLabel2.ForeColor = System.Drawing.Color.DarkGray;
-            this.darkLabel2.Location = new System.Drawing.Point(13, 63);
-            this.darkLabel2.Name = "darkLabel2";
-            this.darkLabel2.Size = new System.Drawing.Size(65, 12);
-            this.darkLabel2.TabIndex = 1;
-            this.darkLabel2.Text = "良品个数：";
-            // 
-            // darkLabel3
-            // 
-            this.darkLabel3.AutoSize = true;
-            this.darkLabel3.ForeColor = System.Drawing.Color.DarkGray;
-            this.darkLabel3.Location = new System.Drawing.Point(13, 86);
-            this.darkLabel3.Name = "darkLabel3";
-            this.darkLabel3.Size = new System.Drawing.Size(65, 12);
-            this.darkLabel3.TabIndex = 2;
-            this.darkLabel3.Text = "缺陷个数：";
-            // 
-            // darkLabel4
-            // 
-            this.darkLabel4.AutoSize = true;
-            this.darkLabel4.ForeColor = System.Drawing.Color.DarkGray;
-            this.darkLabel4.Location = new System.Drawing.Point(75, 38);
-            this.darkLabel4.Name = "darkLabel4";
-            this.darkLabel4.Size = new System.Drawing.Size(17, 12);
-            this.darkLabel4.TabIndex = 3;
-            this.darkLabel4.Text = "10";
-            // 
-            // darkLabel5
-            // 
-            this.darkLabel5.AutoSize = true;
-            this.darkLabel5.ForeColor = System.Drawing.Color.DarkGray;
-            this.darkLabel5.Location = new System.Drawing.Point(75, 63);
-            this.darkLabel5.Name = "darkLabel5";
-            this.darkLabel5.Size = new System.Drawing.Size(17, 12);
-            this.darkLabel5.TabIndex = 4;
-            this.darkLabel5.Text = "10";
-            // 
-            // darkLabel6
-            // 
-            this.darkLabel6.AutoSize = true;
-            this.darkLabel6.ForeColor = System.Drawing.Color.DarkGray;
-            this.darkLabel6.Location = new System.Drawing.Point(75, 86);
-            this.darkLabel6.Name = "darkLabel6";
-            this.darkLabel6.Size = new System.Drawing.Size(17, 12);
-            this.darkLabel6.TabIndex = 5;
-            this.darkLabel6.Text = "10";
+            this.hswcMain.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.hswcMain.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.hswcMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hswcMain.HDoubleClickToFitContent = true;
+            this.hswcMain.HDrawingObjectsModifier = HalconDotNet.HSmartWindowControl.DrawingObjectsModifier.None;
+            this.hswcMain.HImagePart = new System.Drawing.Rectangle(0, 0, 640, 480);
+            this.hswcMain.HKeepAspectRatio = true;
+            this.hswcMain.HMoveContent = true;
+            this.hswcMain.HZoomContent = HalconDotNet.HSmartWindowControl.ZoomContent.WheelForwardZoomsIn;
+            this.hswcMain.Location = new System.Drawing.Point(1, 25);
+            this.hswcMain.Margin = new System.Windows.Forms.Padding(0);
+            this.hswcMain.Name = "hswcMain";
+            this.hswcMain.Size = new System.Drawing.Size(546, 772);
+            this.hswcMain.TabIndex = 0;
+            this.hswcMain.WindowSize = new System.Drawing.Size(546, 772);
             // 
             // DialogDetectResult
             // 
@@ -465,9 +466,9 @@ namespace WaferAoi
             this.Text = "检测结果";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.darkSectionPanel1.ResumeLayout(false);
-            this.darkSectionPanel2.ResumeLayout(false);
             this.darkSectionPanel3.ResumeLayout(false);
             this.darkSectionPanel3.PerformLayout();
+            this.darkSectionPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

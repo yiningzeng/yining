@@ -744,8 +744,13 @@ namespace WaferAoi
             {
                 this.BeginInvoke(new Action<int>((i) =>
                 {
-                    waferMap.Dataset[visibleDies[i].YIndex, visibleDies[i].XIndex].ColorIndex = 1;
-                    waferMap.ReFresh();
+                    try
+                    {
+                        waferMap.Dataset[visibleDies[i].YIndex, visibleDies[i].XIndex].ColorIndex = 1;
+                        waferMap.ReFresh();
+                    }
+                    catch (Exception er) { }
+
                 }), id);
             }
             catch { }

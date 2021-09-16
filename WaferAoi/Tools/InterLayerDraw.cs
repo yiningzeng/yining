@@ -146,7 +146,8 @@ namespace WaferAoi.Tools
                 HOperatorSet.DispObj(hObject, hsmartwindows.HalconWindow);
                 HOperatorSet.DispObj(region, hsmartwindows.HalconWindow);
                 HOperatorSet.SetColor(hsmartwindows.HalconWindow, "red");
-                HOperatorSet.SetDraw(hsmartwindows.HalconWindow, "margin");
+                //HOperatorSet.SetDraw(hsmartwindows.HalconWindow, "margin");
+                HOperatorSet.SetDraw(hsmartwindows.HalconWindow, "fill");
                 hsmartwindows.SetFullImagePart();
                 if (coverOldImage)
                 {
