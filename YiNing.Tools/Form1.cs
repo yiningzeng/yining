@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using YiNing.WafermapDisplay.WafermapControl;
+using YiNing.UI.Controls;
 
 namespace YiNing.Tools
 {
@@ -76,6 +76,13 @@ namespace YiNing.Tools
             waferMap.SelectY = 14;
             waferMap.SelectOneDie = data[21, 14];
 
+            waferMap.OnDieClick += WaferMap_OnDieClick;
+        }
+
+        private void WaferMap_OnDieClick(object sender, Die e)
+        {
+            lbX.Text = e.XIndex.ToString();
+            lbY.Text = e.YIndex.ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -91,6 +98,11 @@ namespace YiNing.Tools
         private void darkButton1_Click(object sender, EventArgs e)
         {
             //waferMap.Test();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var da = waferMap.Dataset;
         }
     }
 }

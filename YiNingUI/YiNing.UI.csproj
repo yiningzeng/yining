@@ -160,7 +160,13 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\DarkTreeNode.cs" />
+    <Compile Include="Controls\Die.cs" />
     <Compile Include="Controls\ScrollValueEventArgs.cs" />
+    <Compile Include="Controls\Wafermap.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Wafermap.Designer.cs" />
+    <Compile Include="Controls\WafermapTools.cs" />
     <Compile Include="Docking\DarkDockArea.cs" />
     <Compile Include="Docking\DarkDockContent.cs">
       <SubType>UserControl</SubType>
@@ -284,6 +290,7 @@
     <EmbeddedResource Include="Controls\DarkTitleBarPanel.resx">
       <DependentUpon>DarkTitleBarPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Wafermap.resx" />
     <EmbeddedResource Include="Forms\DarkDialog.resx">
       <DependentUpon>DarkDialog.cs</DependentUpon>
     </EmbeddedResource>

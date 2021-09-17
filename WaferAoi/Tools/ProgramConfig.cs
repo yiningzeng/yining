@@ -8,7 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using YiNing.WafermapDisplay.WafermapControl;
+using YiNing.UI.Controls;
 
 namespace WaferAoi.Tools
 {    /// <summary>

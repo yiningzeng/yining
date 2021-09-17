@@ -17,7 +17,6 @@ using YiNing.Tools;
 using YiNing.UI.Controls;
 using YiNing.UI.Docking;
 using YiNing.UI.Forms;
-using YiNing.WafermapDisplay.WafermapControl;
 using static WaferAoi.Tools.Utils;
 
 namespace WaferAoi

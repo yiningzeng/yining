@@ -9,7 +9,6 @@ using WaferAoi.Tools;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Threading;
-using YiNing.WafermapDisplay.WafermapControl;
 using HalconDotNet;
 using YiNing.Tools;
 using System.IO;

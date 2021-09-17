@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WaferAoi.Tools;
 using YiNing.Tools;
-using YiNing.WafermapDisplay.WafermapControl;
+using YiNing.UI.Controls;
 
 namespace WaferAoi
 {

@@ -457,10 +457,6 @@
       <Project>{f19472f5-8c44-4c51-a8a0-b9de5f555255}</Project>
       <Name>YiNing.UI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\YiNingWafermapDisplay\YiNing.WafermapDisplay.csproj">
-      <Project>{303c3301-3e16-4e88-991b-68ad9d66b11c}</Project>
-      <Name>YiNing.WafermapDisplay</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\wafer1.png" />

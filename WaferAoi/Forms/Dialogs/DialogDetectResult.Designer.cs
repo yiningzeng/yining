@@ -38,7 +38,7 @@ namespace WaferAoi
             this.darkLabel3 = new YiNing.UI.Controls.DarkLabel();
             this.darkLabel2 = new YiNing.UI.Controls.DarkLabel();
             this.darkLabel1 = new YiNing.UI.Controls.DarkLabel();
-            this.waferMap = new YiNing.WafermapDisplay.Wafermap();
+            this.waferMap = new YiNing.UI.Controls.Wafermap();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.darkSectionPanel2 = new YiNing.UI.Controls.DarkSectionPanel();
             this.hswcMain = new HalconDotNet.HSmartWindowControl();
@@ -479,7 +479,7 @@ namespace WaferAoi
         private System.Windows.Forms.Splitter splitter1;
         private YiNing.UI.Controls.DarkSectionPanel darkSectionPanel2;
         private HalconDotNet.HSmartWindowControl hswcMain;
-        private YiNing.WafermapDisplay.Wafermap waferMap;
+        private YiNing.UI.Controls.Wafermap waferMap;
         private YiNing.UI.Controls.DarkSectionPanel darkSectionPanel3;
         private YiNing.UI.Controls.DarkLabel darkLabel1;
         private YiNing.UI.Controls.DarkLabel darkLabel3;

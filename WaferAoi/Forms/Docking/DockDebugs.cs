@@ -11,7 +11,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using HalconDotNet;
 using System.Threading.Tasks;
-using YiNing.WafermapDisplay.WafermapControl;
 
 namespace WaferAoi
 {

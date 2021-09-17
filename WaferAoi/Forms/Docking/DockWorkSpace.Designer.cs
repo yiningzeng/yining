@@ -51,7 +51,7 @@
             this.hswcMain = new HalconDotNet.HSmartWindowControl();
             this.btnContinue = new YiNing.UI.Controls.DarkButton();
             this.darkButton5 = new YiNing.UI.Controls.DarkButton();
-            this.waferMap = new YiNing.WafermapDisplay.Wafermap();
+            this.waferMap = new YiNing.UI.Controls.Wafermap();
             this.timerDetect = new System.Windows.Forms.Timer(this.components);
             this.darkSectionPanel6.SuspendLayout();
             this.darkSectionPanel1.SuspendLayout();
@@ -640,7 +640,7 @@
         private YiNing.UI.Controls.DarkPointsIn isEmergencyStop;
         private System.Windows.Forms.Timer timerCheck;
         private YiNing.UI.Controls.DarkSectionPanel darkSectionPanel1;
-        public YiNing.WafermapDisplay.Wafermap waferMap;
+        public YiNing.UI.Controls.Wafermap waferMap;
         private YiNing.UI.Controls.DarkProgressReminder dlvwProgress;
         private YiNing.UI.Controls.DarkButton darkButton1;
         private YiNing.UI.Controls.DarkButton darkButton2;

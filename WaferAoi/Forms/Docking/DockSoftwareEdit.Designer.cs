@@ -144,7 +144,7 @@ namespace WaferAoi
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.darkSectionPanel8 = new YiNing.UI.Controls.DarkSectionPanel();
-            this.step5Wafermap = new YiNing.WafermapDisplay.Wafermap();
+            this.step5Wafermap = new YiNing.UI.Controls.Wafermap();
             this.darkSectionPanel9 = new YiNing.UI.Controls.DarkSectionPanel();
             this.darkButton25 = new YiNing.UI.Controls.DarkButton();
             this.darkButton24 = new YiNing.UI.Controls.DarkButton();
@@ -181,7 +181,7 @@ namespace WaferAoi
             this.darkButton26 = new YiNing.UI.Controls.DarkButton();
             this.darkSectionPanel16 = new YiNing.UI.Controls.DarkSectionPanel();
             this.dlbStep6Tips = new YiNing.UI.Controls.DarkLabel();
-            this.step6Wafermap = new YiNing.WafermapDisplay.Wafermap();
+            this.step6Wafermap = new YiNing.UI.Controls.Wafermap();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.darkLabel26 = new YiNing.UI.Controls.DarkLabel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -2584,7 +2584,7 @@ namespace WaferAoi
             this.step6Wafermap.TranslationY = 0;
             this.step6Wafermap.VisibleDatasetSavePath = "";
             this.step6Wafermap.Zoom = 1F;
-            this.step6Wafermap.OnDieClick += new System.EventHandler<YiNing.WafermapDisplay.WafermapControl.Die>(this.step6Wafermap_OnDieClick);
+            this.step6Wafermap.OnDieClick += new System.EventHandler<YiNing.UI.Controls.Die>(this.step6Wafermap_OnDieClick);
             // 
             // tabPage7
             // 
@@ -3178,7 +3178,7 @@ namespace WaferAoi
         private YiNing.UI.Controls.DarkButton darkButton13;
         private YiNing.UI.Controls.DarkLabel darkLabel19;
         private YiNing.UI.Controls.DarkTextBox darkTextBox5;
-        private YiNing.WafermapDisplay.Wafermap step5Wafermap;
+        private YiNing.UI.Controls.Wafermap step5Wafermap;
         private System.Windows.Forms.Panel panel3;
         private HalconDotNet.HSmartWindowControl hswcStep5Model;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip_Step5;
@@ -3218,7 +3218,7 @@ namespace WaferAoi
         private HalconDotNet.HSmartWindowControl hswcStep3Main;
         private YiNing.UI.Controls.DarkButton darkButton24;
         private YiNing.UI.Controls.DarkButton darkButton25;
-        private YiNing.WafermapDisplay.Wafermap step6Wafermap;
+        private YiNing.UI.Controls.Wafermap step6Wafermap;
         private YiNing.UI.Controls.DarkSectionPanel darkSectionPanel16;
         private YiNing.UI.Controls.DarkLabel dlbStep6Tips;
         private YiNing.UI.Controls.DarkSectionPanel darkSectionPanel17;

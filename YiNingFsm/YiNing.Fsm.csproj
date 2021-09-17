@@ -98,11 +98,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\YiNingWafermapDisplay\YiNing.WafermapDisplay.csproj">
-      <Project>{303c3301-3e16-4e88-991b-68ad9d66b11c}</Project>
-      <Name>YiNing.WafermapDisplay</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
